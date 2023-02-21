@@ -16,3 +16,16 @@ And installed project requirments:
 ```console
 (venv) $ python -m pip install -t requirments.txt 
 ```
+
+# Recent works and papers to be implemented
+- [ ] [Multi-modal artifcial intelligence 
+for the combination of automated 3D breast 
+ultrasound and mammograms in a population 
+of women with predominantly dense breasts](https://google.com)
+- [ ] []()
+- [ ] []()
+- [ ] []()
+- [ ] []()
+- [ ] []()
+- [ ] []()
+- [ ] []()
