@@ -13,7 +13,7 @@ $ source /venv/bin/activate
 ```
 
 And installed project requirments:
-```console
+```bash
 (venv) $ python -m pip install -t requirments.txt 
 ```
 
