@@ -18,6 +18,21 @@ $ conda activate abus-classification
 ```
 
 And installed project requirments:
-```console
-(venv) $ python -m pip install -t requirments.txt 
+```bash
+(venv) $ python -m pip install -t requirements.txt 
 ```
+
+## Windows (Comming soon...)
+
+# Recent works and papers to be implemented
+- [x] [Multi-modal artifcial intelligence 
+for the combination of automated 3D breast 
+ultrasound and mammograms in a population 
+of women with predominantly dense breasts](https://google.com)
+- [ ] []()
+- [ ] []()
+- [ ] []()
+- [ ] []()
+- [ ] []()
+- [ ] []()
+- [ ] []()
