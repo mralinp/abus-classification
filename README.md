@@ -25,9 +25,9 @@ And installed project requirments:
 ## Windows (Comming soon...)
 
 # Recent works and papers to be implemented
-- [] [BTC: 2D Convolutional Neural Networks for 3D Digital Breast Tomosynthesis Classification.](https://arxiv.org/pdf/2002.12314.pdf)
+- [ ] [BTC: 2D Convolutional Neural Networks for 3D Digital Breast Tomosynthesis Classification.](https://arxiv.org/pdf/2002.12314.pdf)
 - [ ] [DLF: A deep learning framework for supporting the classification of breast lesions in ultrasound images.](https://pubmed.ncbi.nlm.nih.gov/28753132/)
 - [ ] [A method for the automated classification of benign and malignant masses on digital breast tomosynthesis images using machine learning and radiomic features.](https://pubmed.ncbi.nlm.nih.gov/31686300/)
 - [ ] [Breast Cancer Classification in Automated Breast Ultrasound Using Multiview Convolutional Neural Network with Transfer Learning.](https://pubmed.ncbi.nlm.nih.gov/32059918/)
 - [ ] [Fully automatic classification of automated breast ultrasound (ABUS) imaging according to BI-RADS using a deep convolutional neural network](https://pubmed.ncbi.nlm.nih.gov/35147776/)
-- [] [Multi-modal artifcial intelligence for the combination of automated 3D breast ultrasound and mammograms in a population of women with predominantly dense breasts.](https://google.com)
+- [ ] [Multi-modal artifcial intelligence for the combination of automated 3D breast ultrasound and mammograms in a population of women with predominantly dense breasts.](https://google.com)
