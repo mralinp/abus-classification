@@ -1,3 +1,0 @@
-import wget
-
-wget.download()
