@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.6.1)  28 JUN 2023 08:24
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.6.1)  28 JUN 2023 09:13
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -863,11 +863,11 @@ Overfull \hbox (89.11206pt too wide) has occurred while \output is active
 [3
 
 ]
-<3d-vgg.png, id=143, 2410.00375pt x 332.24126pt>
-File: 3d-vgg.png Graphic file (type png)
-<use 3d-vgg.png>
-Package pdftex.def Info: 3d-vgg.png  used on input line 46.
-(pdftex.def)             Requested size: 337.39822pt x 46.51344pt.
+<Sample.png, id=144, 398.9304pt x 185.0112pt>
+File: Sample.png Graphic file (type png)
+<use Sample.png>
+Package pdftex.def Info: Sample.png  used on input line 42.
+(pdftex.def)             Requested size: 319.14474pt x 148.00916pt.
 
 Overfull \hbox (89.11206pt too wide) has occurred while \output is active
  [][][][]  
@@ -875,14 +875,20 @@ Overfull \hbox (89.11206pt too wide) has occurred while \output is active
 
 [4
 
- <./3d-vgg.png>]
+ <./sample.png>]
+<3d-vgg.png, id=172, 2410.00375pt x 332.24126pt>
+File: 3d-vgg.png Graphic file (type png)
+<use 3d-vgg.png>
+Package pdftex.def Info: 3d-vgg.png  used on input line 55.
+(pdftex.def)             Requested size: 337.39822pt x 46.51344pt.
+
 Overfull \hbox (89.11206pt too wide) has occurred while \output is active
  [][][][]  
  []
 
 [5
 
-]
+ <./3d-vgg.png>]
 Overfull \hbox (89.11206pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -890,44 +896,51 @@ Overfull \hbox (89.11206pt too wide) has occurred while \output is active
 [6
 
 ]
-<vgg-lstm.png, id=251, 874.26625pt x 282.05376pt>
-File: vgg-lstm.png Graphic file (type png)
-<use vgg-lstm.png>
-Package pdftex.def Info: vgg-lstm.png  used on input line 83.
-(pdftex.def)             Requested size: 262.28189pt x 84.61678pt.
-
 Overfull \hbox (89.11206pt too wide) has occurred while \output is active
  [][][][]  
  []
 
 [7
 
- <./vgg-lstm.png>]
+]
+<vgg-lstm.png, id=281, 874.26625pt x 282.05376pt>
+File: vgg-lstm.png Graphic file (type png)
+<use vgg-lstm.png>
+Package pdftex.def Info: vgg-lstm.png  used on input line 92.
+(pdftex.def)             Requested size: 262.28189pt x 84.61678pt.
+
 Overfull \hbox (89.11206pt too wide) has occurred while \output is active
  [][][][]  
  []
 
 [8
 
-]
-<unet.png, id=306, 643.40375pt x 241.90375pt>
-File: unet.png Graphic file (type png)
-<use unet.png>
-Package pdftex.def Info: unet.png  used on input line 102.
-(pdftex.def)             Requested size: 321.70108pt x 120.95157pt.
-
+ <./vgg-lstm.png>]
 Overfull \hbox (89.11206pt too wide) has occurred while \output is active
  [][][][]  
  []
 
 [9
 
- <./unet.png>]
+]
+<unet.png, id=334, 643.40375pt x 241.90375pt>
+File: unet.png Graphic file (type png)
+<use unet.png>
+Package pdftex.def Info: unet.png  used on input line 111.
+(pdftex.def)             Requested size: 321.70108pt x 120.95157pt.
+
 Overfull \hbox (89.11206pt too wide) has occurred while \output is active
  [][][][]  
  []
 
 [10
+
+ <./unet.png>]
+Overfull \hbox (89.11206pt too wide) has occurred while \output is active
+ [][][][]  
+ []
+
+[11
 
 ]
 \tf@nav=\write6
@@ -940,20 +953,14 @@ Overfull \hbox (89.11206pt too wide) has occurred while \output is active
 \openout8 = `presentation.snm'.
 
  (./presentation.aux)
-
-Package rerunfilecheck Warning: File `presentation.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `presentation.out':
-(rerunfilecheck)             Before: 418571797E357FB55B2F2EBACC677E80;644
-(rerunfilecheck)             After:  E397F4B39B2345E749B0B7BAB31EA0B1;636.
+Package rerunfilecheck Info: File `presentation.out' has not changed.
+(rerunfilecheck)             Checksum: E397F4B39B2345E749B0B7BAB31EA0B1;636.
  ) 
 Here is how much of TeX's memory you used:
- 21632 strings out of 480204
- 423108 string characters out of 5895011
+ 21643 strings out of 480204
+ 423244 string characters out of 5895011
  670629 words of memory out of 5000000
- 39135 multiletter control sequences out of 15000+600000
+ 39143 multiletter control sequences out of 15000+600000
  472271 words of font info for 38 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
  99i,15n,104p,392b,677s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -961,10 +968,10 @@ Here is how much of TeX's memory you used:
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/share/texli
 ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb>
-Output written on presentation.pdf (10 pages, 545781 bytes).
+Output written on presentation.pdf (11 pages, 589839 bytes).
 PDF statistics:
- 386 PDF objects out of 1000 (max. 8388607)
- 327 compressed objects within 4 object streams
- 26 named destinations out of 1000 (max. 500000)
- 230 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 414 PDF objects out of 1000 (max. 8388607)
+ 352 compressed objects within 4 object streams
+ 28 named destinations out of 1000 (max. 500000)
+ 235 words of extra memory for PDF output out of 10000 (max. 10000000)
 
