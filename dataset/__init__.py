@@ -5,7 +5,6 @@ import wget
 import os
 
 
-
 class Downloader:
     
     def __init__(self, dataset_name='iipl-abus') -> None:

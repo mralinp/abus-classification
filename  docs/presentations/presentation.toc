@@ -1,0 +1,5 @@
+\beamer@sectionintoc {1}{Problem statement}{3}{0}{1}
+\beamer@sectionintoc {2}{3D-VGG Like networks}{4}{0}{2}
+\beamer@sectionintoc {3}{2D VGG and LSTM}{7}{0}{3}
+\beamer@sectionintoc {4}{Multitask Learning}{9}{0}{4}
+\beamer@sectionintoc {5}{Conclusion}{10}{0}{5}
