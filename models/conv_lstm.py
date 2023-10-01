@@ -1,4 +1,5 @@
 import torch
+from torch import nn
 
 class VGGLSTM(nn.Module):
     def __init__(self, num_classes=2, hidden_size=256, num_layers=1):
