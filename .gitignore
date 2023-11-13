@@ -2,3 +2,5 @@ venv
 data/*
 .env
 .ipynb_checkpoints
+checkpoint/*
+saved_images/*
