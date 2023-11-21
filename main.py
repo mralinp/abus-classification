@@ -16,7 +16,7 @@ NUM_WORKERS = 2
 IMAGE_HEIGHT = 160  # 1280 originally
 IMAGE_WIDTH = 240  # 1918 originally
 
-print ('Using GPU' if torch.cuda.is_available() else "Using CPU")
+print('Using GPU' if torch.cuda.is_available() else "Using CPU")
 
 train_transform = A.Compose(
         [
