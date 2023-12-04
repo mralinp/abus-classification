@@ -4,185 +4,33 @@ import nrrd
 import numpy as np
 import cv2
 import os
-
-tumor_locals = [
-        [(243, 9, 232),   (509, 275, 267)], 
-        [(647, 69, 104),  (735, 157, 119)], 
-        [(324, 12, 143),  (600, 288, 190)], 
-        [(391, 60, 263),  (621, 290, 306)], 
-        [(224, 68, 120),  (326, 170, 132)], 
-        [(185, 109, 139), (283, 207, 154)], 
-        [(207, 64, 163),  (519, 376, 204)], 
-        [(408, 48, 260),  (550, 190, 273)], 
-        [(416, 34, 199),  (608, 226, 233)], 
-        [(347, 164, 196), (423, 240, 205)], 
-        [(415, 82, 204),  (567, 234, 225)], 
-        [(407, 100, 219), (501, 194, 233)], 
-        [(259, 23, 175),  (637, 401, 258)], 
-        [(287, 20, 248),  (429, 162, 261)], 
-        [(242, 95, 92),   (378, 231, 114)], 
-        [(79, 71, 163),   (355, 347, 210)], 
-        [(543, 105, 186), (729, 291, 224)], 
-        [(415, 150, 211), (559, 294, 238)], 
-        [(587, 28, 224),  (743, 184, 252)], 
-        [(336, 13, 194),  (622, 299, 240)], 
-        [(334, 125, 279), (616, 407, 344)], 
-        [(367, 40, 234),  (601, 274, 264)], 
-        [(256, 77, 259),  (508, 329, 313)], 
-        [(199, 65, 222),  (387, 253, 245)], 
-        [(217, 95, 143),  (325, 203, 164)], 
-        [(289, 44, 153),  (473, 228, 197)], 
-        [(348, 34, 144),  (532, 218, 179)], 
-        [(660, 225, 226), (712, 277, 232)], 
-        [(562, 75, 130),  (678, 191, 141)], 
-        [(497, 68, 125),  (809, 380, 161)], 
-        [(400, 29, 144),  (546, 175, 156)], 
-        [(509, 151, 243), (765, 407, 280)], 
-        [(178, 110, 155), (410, 342, 192)], 
-        [(598, 16, 106),  (828, 246, 146)], 
-        [(376, 40, 212),  (602, 266, 256)], 
-        [(246, 61, 220),  (542, 357, 277)], 
-        [(417, 41, 231),  (655, 279, 271)], 
-        [(504, 66, 239),  (668, 230, 278)], 
-        [(103, 67, 198),  (227, 191, 214)], 
-        [(208, 92, 194),  (346, 230, 210)], 
-        [(224, 40, 264),  (344, 160, 298)], 
-        [(642, 95, 91),   (780, 233, 106)], 
-        [(316, 143, 159), (420, 247, 188)], 
-        [(299, 45, 131),  (475, 221, 162)], 
-        [(339, 122, 226), (423, 206, 239)], 
-        [(253, 45, 123),  (453, 245, 162)], 
-        [(377, 0, 143),   (613, 236, 184)], 
-        [(221, 60, 159),  (379, 218, 186)], 
-        [(606, 62, 206),  (738, 194, 228)], 
-        [(433, 61, 203),  (571, 199, 239)], 
-        [(255, 89, 218),  (395, 229, 242)], 
-        [(516, 52, 151),  (588, 124, 166)], 
-        [(190, 57, 175),  (426, 293, 220)], 
-        [(348, 67, 225),  (438, 157, 241)], 
-        [(326, 76, 233),  (480, 230, 253)], 
-        [(381, 56, 225),  (617, 292, 280)], 
-        [(541, 91, 199),  (727, 277, 225)], 
-        [(387, 45, 194),  (537, 195, 217)], 
-        [(265, 26, 154),  (415, 176, 182)], 
-        [(216, 4, 164),   (706, 494, 340)], 
-        [(565, 13, 177),  (741, 189, 206)], 
-        [(370, 105, 152), (530, 265, 198)], 
-        [(598, 77, 210),  (764, 243, 239)], 
-        [(206, 192, 181), (366, 352, 200)], 
-        [(266, 21, 43),   (442, 197, 79)], 
-        [(520, 58, 190),  (658, 196, 200)], 
-        [(347, 33, 208),  (557, 243, 251)], 
-        [(309, 95, 192),  (437, 223, 214)], 
-        [(234, 9, 171),   (456, 231, 208)], 
-        [(207, 78, 266),  (359, 230, 300)], 
-        [(403, 95, 141),  (619, 311, 188)], 
-        [(451, 96, 242),  (523, 168, 254)], 
-        [(448, 180, 206), (704, 436, 238)], 
-        [(247, 101, 83),  (323, 177, 101)], 
-        [(343, 77, 151),  (469, 203, 178)], 
-        [(258, 41, 150),  (534, 317, 212)], 
-        [(350, 128, 216), (516, 294, 244)], 
-        [(276, 111, 227), (490, 325, 257)], 
-        [(512, 139, 250), (564, 191, 258)], 
-        [(242, 29, 99),   (454, 241, 143)], 
-        [(536, 94, 208),  (664, 222, 238)], 
-        [(391, 16, 211),  (483, 108, 223)], 
-        [(317, 35, 161),  (379, 97, 187)], 
-        [(247, 115, 232), (333, 201, 244)], 
-        [(291, 73, 206),  (567, 349, 254)], 
-        [(433, 147, 226), (557, 271, 246)], 
-        [(290, 158, 224), (464, 332, 244)], 
-        [(238, 95, 217),  (414, 271, 242)], 
-        [(587, 41, 171),  (789, 243, 206)], 
-        [(281, 71, 179),  (489, 279, 208)], 
-        [(345, 120, 230), (421, 196, 244)], 
-        [(490, 107, 147), (546, 163, 157)], 
-        [(449, 59, 160),  (555, 165, 174)], 
-        [(215, 29, 190),  (429, 243, 233)], 
-        [(195, 76, 209),  (427, 308, 251)], 
-        [(328, 116, 207), (412, 200, 231)], 
-        [(437, 56, 253),  (519, 138, 264)], 
-        [(525, 83, 228),  (655, 213, 241)], 
-        [(273, 107, 223), (475, 309, 249)], 
-        [(519, 122, 273), (641, 244, 295)]
-    ]
-
-def ToTensorTransformer(sample):
-    x, m = sample
-    x = torch.from_numpy(x)
-    y = torch.from_numpy(m)
-    
-    x = x.unsqueeze(0).permute(0, 3, 1, 2)
-    y = y.unsqueeze(0).permute(0, 3, 1, 2)
-    
-    return x, y
+from . import utils
+from . import static
 
 
-def ResizeData(sample, target_size):
-    # Get the original image dimensions
-    x, m = sample
-    
-    original_height, original_width, _ = x.shape
-    
-    # Set the target size
-    primary_target_size = (490, 490)
-
-    # Calculate the padding needed
-    padding_height = max(0, primary_target_size[0] - original_height)
-    padding_width = max(0, primary_target_size[1] - original_width)
-
-    # Calculate the padding amounts for top, bottom, left, and right
-    top_padding = padding_height // 2
-    bottom_padding = padding_height - top_padding
-    left_padding = padding_width // 2
-    right_padding = padding_width - left_padding
-
-    # Create a border around the image with zero-padding
-    image_with_padding = cv2.copyMakeBorder(
-        x,
-        top_padding,
-        bottom_padding,
-        left_padding,
-        right_padding,
-        cv2.BORDER_CONSTANT,
-        value=(0, 0, 0)  # Set the padding color to black
-    )
-    
-    mask_with_padding = cv2.copyMakeBorder(
-        m,
-        top_padding,
-        bottom_padding,
-        left_padding,
-        right_padding,
-        cv2.BORDER_CONSTANT,
-        value=(0, 0, 0)  # Set the padding color to black
-    )
-
-    # Resize the image to the target size
-    resized_image = cv2.resize(image_with_padding, target_size)
-    resized_mask = cv2.resize(mask_with_padding, target_size)
-    
-    return resized_image, resized_mask
-
+training_data_list = [1, 2, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14, 16, 17, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 31, 32, 33, 34, 35, 36, 39, 40, 41, 42, 43, 44, 45, 46, 47, 49, 50, 51, 52, 53, 54, 56, 58, 59, 61, 62, 64, 65, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 80, 81, 84, 85, 87, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99]
+validation_data_list = [0, 3, 5, 15, 18, 30, 37, 38, 48, 55, 57, 60, 63, 66, 79, 82, 83, 86, 88, 89]
 
 class TDSC(torch.utils.data.Dataset):
 
-    def __init__(self, path_to_dataset: str = "./data/tdsc/train", transform=None) -> None:
+    def __init__(self, path_to_dataset: str = "./data/tdsc", train=True, transform=None, to_tensor=True) -> None:
         """
         TDSC dataset constructor,
         :param path_to_dataset: Root path to the dataset
         :param type: Which type of dataset to be created (train, test, validation)
         """
 
-        self.path_to_dataset = path_to_dataset
-        self.transform = transform
-        mals = os.listdir(f"{path_to_dataset}/data/m")
-        bens = os.listdir(f"{path_to_dataset}/data/b")
-        mals = [(0, '/m/'+item) for item in mals]
-        bens = [(1, '/b/'+item) for item in bens]
-        self.data = mals + bens
+        global training_data_list, validation_data_list
         
+        self.path_to_dataset = path_to_dataset
+        self.metadata = pd.read_csv(f"{path_to_dataset}/labels.csv", dtype={'Case_id': int, 'Label': str, 'Data_path': str, 'Mask_path': str}).set_index('case_id')
+        self.transform = transform
+        self.to_tensor_output = to_tensor
+        
+        if train :
+            self.data_list = training_data_list
+        else:
+            self.data_list = validation_data_list
         
     def __getitem__(self, index) -> tuple:
         """
@@ -193,18 +41,21 @@ class TDSC(torch.utils.data.Dataset):
         
         global tumor_locals
 
-        label, path = self.data[index]
+        label, vol_path, mask_path = self.metadata.iloc[self.data_list[index]]
+        vol_path = vol_path.replace('\\', '/')
+        mask_path = mask_path.replace('\\', '/')
+        label = 0 if label == 'M' else 1
         
-        vol, _ = nrrd.read(f"{self.path_to_dataset}/data/{path}")
-        mask, _ = nrrd.read(f"{self.path_to_dataset}/mask/{path}")        
-        tumor_local_idx = (int(path.replace('.nrrd', '').replace('/m/', '').replace('/b/', '')))
         
-        # extracting tumors
-        p1, p2 = tumor_locals[tumor_local_idx]
+        vol, _ = nrrd.read(f"{self.path_to_dataset}/{vol_path}")
+        mask, _ = nrrd.read(f"{self.path_to_dataset}/{mask_path}") 
+        
+        # # extracting tumors
+        p1, p2 = static.tumor_locals[self.data_list[index]]
         vol = np.array(vol[p1[0]:p2[0], p1[1]:p2[1], p1[2]:p2[2]], dtype=np.float32)
         mask = np.array(mask[p1[0]:p2[0], p1[1]:p2[1], p1[2]:p2[2]], dtype=np.float32)
         
-        vol, mask = ResizeData((vol,mask), (256,256))
+        vol, mask = utils.ResizeData((vol,mask), (128,128))
         
         # Apply transformers
         if self.transform is not None:
@@ -212,17 +63,30 @@ class TDSC(torch.utils.data.Dataset):
                 augmentations = self.transform(image=vol[:,:,i], mask=mask[:,:,i])
                 vol[:,:,i] = augmentations["image"]
                 mask[:,:,i] = augmentations["mask"]
-            
-        vol, mask = ToTensorTransformer((vol,mask))
-        return vol, mask, label
+        
+        return vol/255, mask, label
 
     def __len__(self) -> int:
-        return len(self.data)
+        return len(self.data_list)
     
 import matplotlib.pyplot as plt
 
 if __name__ == '__main__':
-    dataset = TDSC(path_to_dataset="../data/tdsc/validation")
+    dataset = TDSC(path_to_dataset="./data/tdsc", train=False)
     print(len(dataset))
-    x,m,y = dataset[0]
-    print(x.shape)
+    vol,mask,label = dataset[1]
+    print(vol.shape)
+    print(mask.shape)
+    
+    x = vol[:,:,5]
+    y = mask[:,:,5]
+    
+    plt.subplot(1,3,1)
+    plt.imshow(x)
+    plt.subplot(1,3,2)
+    plt.imshow(y)
+    x = x-x*y
+    plt.subplot(1,3,3)
+    plt.imshow(x)
+    plt.show()
+    
