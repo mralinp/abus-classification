@@ -22,6 +22,7 @@ class UNet(torch.nn.Module):
     
     def __init__(self, in_channels, out_channels, features=[64, 128, 256, 512]) -> None:
         super(UNet, self).__init__()
+        self.slice_classifier = torch.nn.Linear(512,1)
         self.encoder = torch.nn.ModuleList()
         self.decoder = torch.nn.ModuleList()
         self.max_pool = torch.nn.MaxPool2d(kernel_size=2, stride=2)
@@ -31,7 +32,6 @@ class UNet(torch.nn.Module):
             in_channels = feature
         
         # Bottle neck
-        
         self.bottle_neck = DoubleConv(features[-1], features[-1]*2)
         
         for feature in reversed(features):
@@ -40,6 +40,8 @@ class UNet(torch.nn.Module):
         
         # last layer
         self.last_conv = torch.nn.Conv2d(features[0], out_channels, kernel_size=(1,1))
+        
+        self.bottle_neck_output = None
         
         
     def forward(self, x):
@@ -52,7 +54,10 @@ class UNet(torch.nn.Module):
             x = self.max_pool(x)
         
         x = self.bottle_neck(x)
-                
+        
+        # save bottleneck output
+        self.bottle_neck_output = x
+        
         # reverse skip_connections
         skip_connections.reverse()
         
@@ -67,3 +72,19 @@ class UNet(torch.nn.Module):
             x = self.decoder[idx+1](concat_skip)
         
         return self.last_conv(x)
+    
+    def get_bottleneck_output(self):
+        return self.bottle_neck_output
+    
+    
+if __name__ == "__main__":
+    
+    model = UNet(in_channels = 1, out_channels = 1)
+    x = torch.randn((1, 1, 128, 128))
+    print (x.shape)
+    o = model(x)
+    print(o.shape)
+    c = model.get_classification_output()
+    c = torch.sigmoid(c)
+    print(c.shape)
+    

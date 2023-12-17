@@ -121,3 +121,4 @@ def ResizeData(sample, target_size):
     resized_mask = cv2.resize(mask_with_padding, target_size)
     
     return resized_image, resized_mask
+
