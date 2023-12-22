@@ -14,13 +14,16 @@ bbxs = [[(370, 94, 19, 21, 232), (362, 86, 28, 29, 233), (357, 44, 39, 95, 234),
 
 def make_volume_from_slices(slices):
     d = len(slices)
-    vol = np.zeros((512,512,d),dtype=np.float32)
-    x_center, y_center = 512//2, 512//2
+    vol = np.zeros((500,500,d),dtype=np.float32)
     for i, slice in enumerate(slices):
+        sli = np.zeros((500,500), dtype=np.float32)
+        x_center, y_center = 500//2, 500//2
         w,h = slice.shape
         x = x_center - w//2
         y = y_center - h//2
-        vol[x:x+w,y:y+h,i] = slice
+        sli[x:x+w,y:y+h] = slice
+        # sli = cv2.resize(sli, (256,256))
+        vol[:,:,i] = sli
     
     return vol
         
@@ -84,6 +87,8 @@ class TDSC(torch.utils.data.Dataset):
         vol = make_volume_from_slices(vol_slices)
         mask = make_volume_from_slices(mask_slices)
         
+        
+        
         # Apply transformers
         if self.transform is not None:
             for i in range(vol.shape[2]):
@@ -131,4 +136,4 @@ if __name__ == '__main__':
     x = x-x*y*0.3
     plt.subplot(1,3,3)
     plt.imshow(x)
-    plt.show()    
+    plt.show()  
