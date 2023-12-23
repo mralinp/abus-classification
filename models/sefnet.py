@@ -1,10 +1,10 @@
 import torch
 
 
-class SEFNet(torch.nn.Module):
+class SEFNetFeatures(torch.nn.Module):
 
     def __init__(self, in_channels=3):
-        super(SEFNet, self).__init__()
+        super(SEFNetFeatures, self).__init__()
         self.c0 = torch.nn.Sequential(
             torch.nn.Conv2d(in_channels, 32, 3, dilation=1, padding=(1,1)),
             torch.nn.Conv2d(32, 32, 3, dilation=1, padding=(1,1)),
@@ -40,7 +40,26 @@ class SEFNet(torch.nn.Module):
         x = torch.nn.functional.avg_pool2d(x, 2)
         x = self.c5(x)
         x = torch.nn.functional.adaptive_avg_pool2d(x, 1)
-        x = x.squeeze(2)
+        return x
+
+
+class SEFNet(torch.nn.Module):
+
+    def __init__(self, in_channels=3):
+        super(SEFNet, self).__init__()
+        self.features = SEFNetFeatures(in_channels)
+        self.classifier = torch.nn.Sequential(
+            torch.nn.Flatten(),
+            torch.nn.Linear(256, 512),
+            torch.nn.ReLU(),
+            torch.nn.Linear(512, 128),
+            torch.nn.ReLU(),
+            torch.nn.Linear(128, 1)
+        )
+
+    def forward(self, x):
+        x = self.features(x)
+        x = self.classifier(x)
         return x
 
 
