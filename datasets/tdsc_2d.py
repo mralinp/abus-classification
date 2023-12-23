@@ -5,10 +5,31 @@ import numpy as np
 import random
 
 
-class TDSC_2D(torch.utils.data.Dataset):
+train_list = None
+validation_list = None
+
+
+def split_data(m, b):
+
+    global train_list, validation_list
+
+    m_t = set(random.sample(m, int(0.8*len(m))))
+    b_t = set(random.sample(b, int(0.8*len(b))))
+    m = set(m)
+    b = set(b)
+    m_v = m-m_t
+    b_v = b-b_t
+    train_list = list(m_t) + list(b_t)
+    validation_list = list(m_v) + list(b_v)
+    random.shuffle(train_list)
+    random.shuffle(validation_list)
+
+
+class TDSC2D(torch.utils.data.Dataset):
     
     def __init__(self, path="./data/tdsc/slice", train=True, transforms=None):
-        
+
+        global train_list, validation_list
         self.path = path
         self.transforms = transforms
         malignant = os.listdir(f"{path}/data/0")
@@ -16,20 +37,14 @@ class TDSC_2D(torch.utils.data.Dataset):
         malignant = [(f"data/0/{item}", 0) for item in malignant]
         benign = [(f"data/1/{item}", 1) for item in benign]
 
-        # if train :
-        #     malignant = random.sample(malignant, int(0.8*len(malignant)))
-        #     benign = random.sample(benign, int(0.8*len(benign)))
+        if not train_list or not validation_list:
+            split_data(malignant, benign)
 
-        # else:
-        #     malignant = random.sample(malignant, int(0.2*len(malignant)))
-        #     benign = random.sample(benign, int(0.2*len(benign)))
+        if train:
+            self.data_list = train_list
+        else:
+            self.data_list = validation_list
             
-        self.data_list = malignant + benign
-        self.__shuffle()
-        
-    def __shuffle(self):
-        random.shuffle(self.data_list)
-        
     def __len__(self):
         return len(self.data_list)
     
@@ -46,7 +61,7 @@ class TDSC_2D(torch.utils.data.Dataset):
         return image, mask, float(label)
 
 if __name__ == "__main__":
-    dataset = TDSC_2D(path="../data/tdsc/slices", train = True)
+    dataset = TDSC2D(path="../data/tdsc/slices", train = True)
     print(len(dataset))
     sample = dataset[0]
         
