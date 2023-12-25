@@ -27,7 +27,7 @@ def split_data(m, b):
 
 class TDSC2D(torch.utils.data.Dataset):
     
-    def __init__(self, path="./data/tdsc/slice", train=True, transforms=None):
+    def __init__(self, path="./data/tdsc/slices", train=True, transforms=None):
 
         global train_list, validation_list
         self.path = path
@@ -51,7 +51,7 @@ class TDSC2D(torch.utils.data.Dataset):
     def __getitem__(self, index):
         data_path, label = self.data_list[index]
         mask_path = data_path.replace('data', 'mask')
-        image = np.array(Image.open(f"{self.path}/{data_path}").convert("RGB"), dtype=np.float32)
+        image = np.array(Image.open(f"{self.path}/{data_path}").convert("L"), dtype=np.float32)
         mask = np.array(Image.open(f"{self.path}/{mask_path}").convert("L"), dtype=np.float32)
         mask[mask == 255.0] = 1.0
         if self.transforms is not None:
