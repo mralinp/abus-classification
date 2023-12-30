@@ -1,15 +1,11 @@
+import nrrd
 import torch
 import pandas as pd
-import nrrd
-import numpy as np
-import cv2
-import os
-import random
 
 
 class TDSC(torch.utils.data.Dataset):
 
-    def __init__(self, path_to_dataset: str = "./data/tdsc", train=True) -> None:
+    def __init__(self, path_to_dataset: str = "./data/tdsc") -> None:
         """
         TDSC dataset constructor,
         :param path_to_dataset: Root path to the dataset
