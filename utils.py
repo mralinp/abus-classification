@@ -40,3 +40,11 @@ def save_predictions_as_imgs(loader, model, folder="saved_images/", device="cuda
 
     model.train()
     
+def zero_pad_resize(img, size=(224,224)):
+    res = np.zeros(size, dtype=np.float32)
+    cx, cy = size[0]//2, size[1]//2
+    w,h = img.shape
+    if w > size[0] or h > size[1]:
+        raise f"Cant resize with zero padding from origin with shape {img.shape} to size {size}"
+    res[cx-w//2:cx+w//2, cy-h//2:cy+h//2] = img
+    return res
