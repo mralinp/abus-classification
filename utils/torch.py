@@ -9,7 +9,7 @@ def calculate_accuracy(dataset, model, device="cuda"):
 
     with torch.no_grad():
         for data in dataset:
-            x, y = data
+            x, _, y = data
             x = x.to(device)
             y = y.unsqueeze(1).to(device)
             

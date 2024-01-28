@@ -8,8 +8,10 @@ class TDSC(torch.utils.data.Dataset):
     def __init__(self, path_to_dataset: str = "./data/tdsc") -> None:
         """
         TDSC dataset constructor,
-        :param path_to_dataset: Root path to the dataset
-        :param type: Which type of dataset to be created (train, test, validation)
+        
+        parameters:
+        - path_to_dataset: Root path to the dataset
+        - type: Which type of dataset to be created (train, test, validation)
         """
         
         self.path_to_dataset = path_to_dataset
