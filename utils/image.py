@@ -1,7 +1,7 @@
 import numpy as np
 import cv2
 import matplotlib.pyplot as plt
-
+from . import math
 
 def zero_pad_resize(img, size=(224,224)):
     res = np.zeros(size, dtype=np.float32)
@@ -33,8 +33,17 @@ def show_image_mask_bbx(img, mask, bbx):
     plt.show()
 
 
-def find_bbx(mask):    
-    non_zeros = cv2.findNonZero(mask)
+def find_bbx(slice_img):
+    '''
+    Takes binary image containing a tumor mask inside and returns the bounding box containing that tumor.
+    
+    Parameters:    
+    - slice_image: binary image containing tumor mask inside
+    
+    Returns:
+    - tuple(x, y, width, height)
+    '''    
+    non_zeros = cv2.findNonZero(slice_img)
     return cv2.boundingRect(non_zeros)
 
 def subsample_image(img, size=(224,224), stride=1):
@@ -44,3 +53,39 @@ def subsample_image(img, size=(224,224), stride=1):
         for j in range(0, h-size[1], stride):
             res += [img[i:i + size[0], j:j+size[1]]]
     return np.array(res, dtype=np.float32)
+
+def rotate_image(x, degree):
+    height, width = x.shape
+    rotation_matrix = cv2.getRotationMatrix2D((width / 2, height / 2), degree, 1)
+    return cv2.warpAffine(x, rotation_matrix, (width, height))
+
+
+def get_boundary(binary_img):
+    uint_img = binary_img.astype(np.uint8)
+    return cv2.Canny(uint_img, 0, 1)
+
+
+def find_shape_center(binary_img):
+    nonzero_cords = np.nonzero(binary_img)
+    x_cords = nonzero_cords[0]
+    y_cords = nonzero_cords[1]
+    return x_cords.sum()//len(x_cords), y_cords.sum()//len(y_cords)
+
+
+def rotation_invariant(x):
+    w, h = x.shape
+    w = max(w,h)
+    x = zero_pad_resize(x, size=(w,w))
+    boundary = get_boundary(x)
+    cords_x, cords_y = np.nonzero(boundary)
+    boundary_points = list(zip(cords_x, cords_y))
+    slop = math.calculate_slope(math.find_farthest(boundary_points))
+    res = rotate_image(x, np.degrees(np.arctan(slop)))
+    h, _ = x.shape
+    a = res[:h//2,:].sum()
+    b = res[h//2:,:].sum()
+    
+    if a > b:
+        res = rotate_image(res, 180)
+    
+    return res

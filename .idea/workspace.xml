@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="55671f3f-5c5d-42a1-9a6e-d858adb3ce02" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/datasets/tdsc_classification.py" beforeDir="false" afterPath="$PROJECT_DIR$/datasets/tdsc_classification.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/handcrafted/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/handcrafted/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vgg16_boundary_signature.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/vgg16_boundary_signature.ipynb" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "customColor": "",
+  "associatedIndex": 4
+}]]></component>
+  <component name="ProjectId" id="2bBV9Osi8cBEoYxUMcXmHOhndhl" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/home/ozma/Source/military-weapons"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="55671f3f-5c5d-42a1-9a6e-d858adb3ce02" name="Changes" comment="" />
+      <created>1705688307720</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1705688307720</updated>
+    </task>
+    <servers />
+  </component>
+</project>
