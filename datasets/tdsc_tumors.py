@@ -6,7 +6,7 @@ import os
 import random
 from PIL import Image
 
-import utils
+from . import utils
 
 
 class TDSCTumors(torch.utils.data.Dataset):
@@ -20,6 +20,7 @@ class TDSCTumors(torch.utils.data.Dataset):
     def __getitem__(self, index):
         path, y = self.data_list[index]
         slices_list = os.listdir(f"{self.path}/data/{y}/{path}")
+        slices_list.sort()
         imgs = []
         msks = []
         for slice_name in slices_list:
