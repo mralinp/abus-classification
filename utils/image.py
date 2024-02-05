@@ -89,3 +89,8 @@ def rotation_invariant(x):
         res = rotate_image(res, 180)
     
     return res
+
+def crop(img, center, size=(224,224)):
+    cx,cy = center
+    w,h = size
+    return img[cx-w//2:cx+w//2,cy-h//2:cy+h//2]

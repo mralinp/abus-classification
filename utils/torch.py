@@ -9,9 +9,15 @@ def calculate_accuracy(dataset, model, device="cuda"):
 
     with torch.no_grad():
         for data in dataset:
-            x, _, y = data
+            x, y = 0,0
+            
+            if len(data) == 3:
+                x, _, y = data
+            else:
+                x, y = data
+                
             x = x.to(device)
-            y = y.unsqueeze(1).to(device)
+            y = y.to(device)
             
             predictions = torch.sigmoid(model(x))
             predictions = (predictions > 0.5).float()
