@@ -19,4 +19,4 @@ def calculate_slope(points):
     p1, p2 = points
     x1, y1 = p1
     x2, y2 = p2
-    return (y2-y1)/(x2-x1)
+    return (y2-y1)/(x2-x1 + 10e-6)
