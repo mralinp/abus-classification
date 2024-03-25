@@ -4,7 +4,7 @@ import os
 
 
 class Tumors(torch.utils.data.Dataset):
-    def __init__(self, path="./data/tdsc/tumors_3d/z", transforms=None):
+    def __init__(self, path="./data/tdsc/tumors_3d", transforms=None):
         
         self.root_path = path
         self.transforms = transforms

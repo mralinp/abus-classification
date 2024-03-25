@@ -94,3 +94,41 @@ def crop(img, center, size=(224,224)):
     cx,cy = center
     w,h = size
     return img[cx-w//2:cx+w//2,cy-h//2:cy+h//2]
+
+
+def find_tumors(mask: np) -> np:
+    '''
+    Finds all bounding boxes in volume containing tumors
+    
+    parameters:
+    - mask: numpy array with shape (x,y,d)
+    
+    returns:
+    - numpy array with (None, [x,y,w,h,d])
+    '''
+    
+    _, _, depth = mask.shape
+    bbxs = []
+    for d in range(depth):
+        sli = mask[:,:,d]
+        if sli.max() != 0:
+            *bbx, = find_bbx(sli)
+            bbx.append(d)
+            bbxs += [bbx]
+    return np.array(bbxs)
+
+
+def find_largest_bounding_box(bbxs: list):
+    
+    xl,yl = 1000, 1000
+    xh,yh = 0, 0
+    
+    for bbx in bbxs:
+        
+        x,y,w,h,_ = bbx
+        xl = min(xl, x)
+        yl = min(yl, y)
+        xh = max(xh, x+w)
+        yh = max(yh, y+h)
+        
+    return (xl,yl), (xh,yh)
