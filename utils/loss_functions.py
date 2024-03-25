@@ -1,3 +1,5 @@
+import torch
+
 class DiceLoss(torch.nn.Module):
     def __init__(self, smooth=1):
         super(DiceLoss, self).__init__()
