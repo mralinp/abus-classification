@@ -43,7 +43,7 @@ to share and publish until the event in finished and event holder is not publish
 | Dataset Name | Number of Volumes | Malignant | Begin |
 |:------------:|:-----------------:|:---------:|:-----:|
 | IIPL-3D-ABUS |        70         |    55     |  15   |
-|     TDSC     |        200        |    100    |  100  |  
+|     TDSC     |        100        |    58    |  42  |  
 # Recent works and papers to be implemented
 - [ ] [BTC: 2D Convolutional Neural Networks for 3D Digital Breast Tomosynthesis Classification.](https://arxiv.org/pdf/2002.12314.pdf)
 - [ ] [DLF: A deep learning framework for supporting the classification of breast lesions in ultrasound images.](https://pubmed.ncbi.nlm.nih.gov/28753132/)
