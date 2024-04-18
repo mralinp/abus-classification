@@ -40,7 +40,7 @@ consists of 70 Volumes of 3D ABUS and segmented by our team under supervision of
 2 expert radiologists and the other one is the data from TDSC challenge which we don't have the permission
 to share and publish until the event in finished and event holder is not published the data publicly.
 
-| Dataset Name | Number of Volumes | Malignant | Begin |
+| Dataset Name | Number of Volumes | Malignant | Benign |
 |:------------:|:-----------------:|:---------:|:-----:|
 | IIPL-3D-ABUS |        70         |    55     |  15   |
 |     TDSC     |        100        |    58    |  42  |  
