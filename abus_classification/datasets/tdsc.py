@@ -8,7 +8,7 @@ from .dataset import Dataset
 from .google_drive_downloader import GoogleDriveDownloader
 
 
-DATASET_ID: Final = "1NsYIqatNp2D4yCj8PwZ8g9IbAuAdPX6F"
+DATASET_URL: Final = "https://drive.google.com/file/d/1NsYIqatNp2D4yCj8PwZ8g9IbAuAdPX6F"
 
 
 class TDSC(Dataset):
@@ -22,7 +22,7 @@ class TDSC(Dataset):
         if not os.path.exists(self.path):
             os.makedirs(self.path)
             drive_downloader = GoogleDriveDownloader(None)
-            drive_downloader.download(DATASET_ID, f"{self.path}/dataset.zip")
+            drive_downloader.download(DATASET_URL, f"{self.path}/dataset.zip")
             # Unzip the downloaded data
             drive_downloader.save()
         return True
