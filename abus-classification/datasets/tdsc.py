@@ -1,28 +1,19 @@
+import os
 import nrrd
 import torch
 import pandas as pd
+from . import Downloader
 
 
 class TDSC(torch.utils.data.Dataset):
 
-    def __init__(self, path_to_dataset: str = "./data/tdsc") -> None:
-        """
-        TDSC dataset constructor,
-        
-        parameters:
-        - path_to_dataset: Root path to the dataset
-        - type: Which type of dataset to be created (train, test, validation)
-        """
-        
+    def __init__(self, path_to_dataset: str = "./dataset/tdsc") -> None:
+        if not os.path.exists(path_to_dataset):
+            
         self.path_to_dataset = path_to_dataset
         self.metadata = pd.read_csv(f"{path_to_dataset}/labels.csv", dtype={'Case_id': int, 'Label': str, 'Data_path': str, 'Mask_path': str}).set_index('case_id')
         
     def __getitem__(self, index) -> tuple:
-        """
-        returns the related data point with as a tuple of (volume, mask, label)
-        :param index:
-        :return:
-        """        
         label, vol_path, mask_path = self.metadata.iloc[index]
         vol_path = vol_path.replace('\\', '/')
         mask_path = mask_path.replace('\\', '/')
