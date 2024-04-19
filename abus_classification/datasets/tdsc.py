@@ -40,7 +40,6 @@ class TDSC(Dataset):
         downloader.download(DATASET_IDS.get("mask"), f"{self.path}/MASK/mask.zip")
         downloader.save()
         downloader.download(DATASET_IDS.get("labels"), f"{self.path}/labels.csv")
-        downloader.save()
         
         
         
