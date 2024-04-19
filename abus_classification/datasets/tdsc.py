@@ -8,12 +8,12 @@ from .dataset import Dataset
 from .google_drive_downloader import GoogleDriveDownloader
 
 
-DATASET_URL: Final = "https://drive.google.com/file/d/1NsYIqatNp2D4yCj8PwZ8g9IbAuAdPX6F"
+DATASET_ID: Final = "1NsYIqatNp2D4yCj8PwZ8g9IbAuAdPX6F"
 
 
 class TDSC(Dataset):
 
-    def __init__(self, path_to_dataset: str = "./dataset/tdsc") -> None:
+    def __init__(self, path_to_dataset: str = "./data/tdsc") -> None:
         
         super(TDSC, self).__init__(path_to_dataset)
         self.metadata = pd.read_csv(f"{self.path}/labels.csv", dtype={'Case_id': int, 'Label': str, 'Data_path': str, 'Mask_path': str}).set_index('case_id')
@@ -22,7 +22,7 @@ class TDSC(Dataset):
         if not os.path.exists(self.path):
             os.makedirs(self.path)
             drive_downloader = GoogleDriveDownloader(None)
-            drive_downloader.download(DATASET_URL, f"{self.path}/dataset.zip")
+            drive_downloader.download(DATASET_ID, f"{self.path}/tdsc.zip")
             # Unzip the downloaded data
             drive_downloader.save()
         return True
