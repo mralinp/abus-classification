@@ -3,7 +3,7 @@ from .tumors import Tumors
 from .abus import ABUS
 from .tdsc import TDSC
 
-path_to_data_directory = "./dataset"
+path_to_data_directory = "./datasets"
 
 if not os.path.exists(path_to_data_directory):
     os.makedirs(path_to_data_directory)
