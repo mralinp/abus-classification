@@ -4,3 +4,5 @@ data/*
 .ipynb_checkpoints
 checkpoint/*
 saved_images/*
+./datasets
+*.zip
