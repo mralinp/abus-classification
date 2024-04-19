@@ -8,7 +8,12 @@ from .dataset import Dataset
 from .google_drive_downloader import GoogleDriveDownloader
 
 
-DATASET_ID: Final = "1NsYIqatNp2D4yCj8PwZ8g9IbAuAdPX6F"
+DATASET_IDS: Final = {
+    "data_0": "1K762mw8vAIRjgoeR7aJN-0NIntOBUb6O",
+    "data_1": "17Umzl10lpFu4mGJ9HrZrC-Lcc-klKcl1",
+    "mask": "1Z2RUoUoOukA93LyTgwKPKCrfFePva1pV",
+    "labels": "1Fn6psOjknovxmShESRYpaxDAbb9txvH7",
+}
 
 
 class TDSC(Dataset):
@@ -21,11 +26,22 @@ class TDSC(Dataset):
     def validate(self):
         if not os.path.exists(self.path):
             os.makedirs(self.path)
-            drive_downloader = GoogleDriveDownloader(None)
-            drive_downloader.download(DATASET_ID, f"{self.path}/tdsc.zip")
-            # Unzip the downloaded data
-            drive_downloader.save()
+            os.makedirs(f"{self.path}/DATA")
+            os.makedirs(f"{self.path}/MASK")
+            self.download_data()
         return True
+    
+    def download_data(self):
+        downloader = GoogleDriveDownloader(None)
+        downloader.download(DATASET_IDS.get("data_0"), f"{self.path}/DATA/data0.zip")
+        downloader.save()
+        downloader.download(DATASET_IDS.get("data_1"), f"{self.path}/DATA/data1.zip")
+        downloader.save()
+        downloader.download(DATASET_IDS.get("mask"), f"{self.path}/MASK/mask.zip")
+        downloader.save()
+        downloader.download(DATASET_IDS.get("labels"), f"{self.path}/labels.csv")
+        downloader.save()
+        
         
         
     def __getitem__(self, index) -> tuple:
