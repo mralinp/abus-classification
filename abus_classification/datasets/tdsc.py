@@ -2,16 +2,31 @@ import os
 import nrrd
 import torch
 import pandas as pd
-# from . import Downloader
+from typing import Final
+
+from .dataset import Dataset
+from .google_drive_downloader import GoogleDriveDownloader
 
 
-class TDSC(torch.utils.data.Dataset):
+DATASET_URL: Final = "https://drive.google.com/file/d/1NsYIqatNp2D4yCj8PwZ8g9IbAuAdPX6F"
+
+
+class TDSC(Dataset):
 
     def __init__(self, path_to_dataset: str = "./dataset/tdsc") -> None:
-        if not os.path.exists(path_to_dataset):
-            pass
-        self.path_to_dataset = path_to_dataset
-        self.metadata = pd.read_csv(f"{path_to_dataset}/labels.csv", dtype={'Case_id': int, 'Label': str, 'Data_path': str, 'Mask_path': str}).set_index('case_id')
+        
+        super(TDSC, self).__init__(path_to_dataset)
+        self.metadata = pd.read_csv(f"{self.path}/labels.csv", dtype={'Case_id': int, 'Label': str, 'Data_path': str, 'Mask_path': str}).set_index('case_id')
+        
+    def validate(self):
+        if not os.path.exists(self.path):
+            os.makedirs(self.path)
+            drive_downloader = GoogleDriveDownloader(None)
+            drive_downloader.download(DATASET_URL, f"{self.path}/dataset.zip")
+            # Unzip the downloaded data
+            drive_downloader.save()
+        return True
+        
         
     def __getitem__(self, index) -> tuple:
         label, vol_path, mask_path = self.metadata.iloc[index]
@@ -20,18 +35,10 @@ class TDSC(torch.utils.data.Dataset):
         label = 0 if label == 'M' else 1
         
         
-        vol, _ = nrrd.read(f"{self.path_to_dataset}/{vol_path}")
-        mask, _ = nrrd.read(f"{self.path_to_dataset}/{mask_path}") 
+        vol, _ = nrrd.read(f"{self.path}/{vol_path}")
+        mask, _ = nrrd.read(f"{self.path}/{mask_path}") 
         
         return vol, mask, label
 
     def __len__(self) -> int:
         return len(self.metadata)
-    
-
-if __name__ == '__main__':
-    dataset = TDSC(path_to_dataset="../data/tdsc", train=False)
-    print(len(dataset))
-    vol,mask,label = dataset[1]
-    print(vol.shape)
-    print(mask.shape)
