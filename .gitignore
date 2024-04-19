@@ -1,6 +1,8 @@
-venv
-data/*
 .env
+venv
+saved_images
 .ipynb_checkpoints
+__pycache__
+.pytest_cache
+data
 checkpoint/*
-saved_images/*
