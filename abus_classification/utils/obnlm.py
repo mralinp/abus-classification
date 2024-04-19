@@ -5,12 +5,12 @@ from matplotlib import cm
 # Numpy library
 import numpy as np
 
-from skimage import util
+# from skimage import util
 
-from skimage import data
+# from skimage import data
 from skimage import img_as_float
 from skimage.transform import resize
-from datasets import TDSC
+# from datasets import TDSC
 
 #  img - input image
 #  t - search window
@@ -86,21 +86,21 @@ def obnlm(img,t,f,h):             #
 
 
 
-if __name__ == '__main__':
+# if __name__ == '__main__':
     
-    dataset = TDSC()
-    x,m,y = dataset[50]
-    sample = x[:,:,5]-x[:,:,5]*m[:,:,5]*0.6
-    print(sample.shape)
-    plt.figure()
-    plt.title("Original")
-    plt.imshow(sample)
-    # plt.show()
+#     dataset = TDSC()
+#     x,m,y = dataset[50]
+#     sample = x[:,:,5]-x[:,:,5]*m[:,:,5]*0.6
+#     print(sample.shape)
+#     plt.figure()
+#     plt.title("Original")
+#     plt.imshow(sample)
+#     # plt.show()
 
-    sigma = 0.1
-    img_denoised = obnlm(sample,5,2,sigma)
-    plt.figure()
-    plt.title("Filtered")
-    plt.imshow(img_denoised)
-    plt.show()
+#     sigma = 0.1
+#     img_denoised = obnlm(sample,5,2,sigma)
+#     plt.figure()
+#     plt.title("Filtered")
+#     plt.imshow(img_denoised)
+#     plt.show()
     

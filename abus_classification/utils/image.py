@@ -46,18 +46,12 @@ def find_bbx(slice_img):
     non_zeros = cv2.findNonZero(slice_img)
     return cv2.boundingRect(non_zeros)
 
-def subsample_image(img, size=(224,224), stride=1):
-    w,h = img.shape
-    res = []
-    for i in range(0, w-size[0], stride):
-        for j in range(0, h-size[1], stride):
-            res += [img[i:i + size[0], j:j+size[1]]]
-    return np.array(res, dtype=np.float32)
+
 
 def rotate_image(x, degree):
     height, width = x.shape
-    rotation_matrix = cv2.getRotationMatrix2D((width / 2, height / 2), degree, 1)
-    return cv2.warpAffine(x, rotation_matrix, (width, height))
+    rotation_matrix = cv2.getRotationMatrix2D(center=(width // 2, height // 2), angle=degree, scale=1)
+    return cv2.warpAffine(src=x, M=rotation_matrix, dsize=(width, height))
 
 
 def get_boundary(binary_img):

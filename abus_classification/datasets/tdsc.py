@@ -2,14 +2,14 @@ import os
 import nrrd
 import torch
 import pandas as pd
-from . import Downloader
+# from . import Downloader
 
 
 class TDSC(torch.utils.data.Dataset):
 
     def __init__(self, path_to_dataset: str = "./dataset/tdsc") -> None:
         if not os.path.exists(path_to_dataset):
-            
+            pass
         self.path_to_dataset = path_to_dataset
         self.metadata = pd.read_csv(f"{path_to_dataset}/labels.csv", dtype={'Case_id': int, 'Label': str, 'Data_path': str, 'Mask_path': str}).set_index('case_id')
         
