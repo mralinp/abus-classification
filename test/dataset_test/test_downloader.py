@@ -1,8 +1,8 @@
 from abus_classification.datasets.google_drive_downloader import GoogleDriveDownloader
 
 
-file_id = "0B1MVW1mFO2zmdGhyaUJESWROQkE"
+url = "1NsYIqatNp2D4yCj8PwZ8g9IbAuAdPX6F"
 
 def test_google_cloud_downloader():
     downloader = GoogleDriveDownloader()
-    downloader.download(file_id, "./100mb-test-file.zip")
+    downloader.download(url, "./dataset/tdsc.zip")

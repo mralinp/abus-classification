@@ -12,8 +12,8 @@ class GoogleDriveDownloader(Downloader):
         self.credentials = credentials
         self.file_name = None
         
-    def download(self, file_id, output_path):
-        gdown.download(id=file_id, output=output_path)
+    def download(self, file_url, output_path):
+        gdown.download(file_url, output=output_path)
         self.file_name = output_path
 
     def save(self):
