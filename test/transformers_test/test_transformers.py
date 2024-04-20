@@ -43,3 +43,4 @@ def test_to_tensor():
     data = transformer(data)
     
     assert isinstance(data, torch.Tensor)
+    
