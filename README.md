@@ -16,6 +16,33 @@ By the conclusion of this research, we anticipate developing a highly accurate a
 
 ## Build/Run
 
+o utilize the project source code, you have two options: either using **Google Colab** or setting up the environment on your local machine. For local installation, it's recommended to have a GPU and properly install Anaconda with GPU support.
+
+The core requirements of this project, such as `transformers`, base `models`, `datasets`, and `utilities`, are developed as a Python package named `abus_classification`, which you can import and utilize in your own code. `abus_classification` is written on the PyTorch framework.
+
+### Google Colab
+To use the project in colab, open a colab notebook, clone the project repository and add the path to the module in `sys.path`. To do so, insert the code below into the first code cell of your note book and run.
+
+```python
+!git clone https://github.com/mralinp/abus-classification.git
+!pip install pynrrd
+
+import sys
+sys.path.append("abus-classification")
+```
+After that, you will be able to import and use `abus_classification` in your notebook.
+
+Example:
+```python
+from abus_classification import datasets
+
+tdsc = datasets.TDSC() # This will automatically download the data
+
+x, y, m = tdsc[0] # x: volume, m: mask_volume, y: label (0:m, 1:b)
+```
+
+### Anaconda (Local machine)
+
 Before you get started please make sure that all the requirements are installed properly:
 
 - Anaconda
@@ -35,10 +62,11 @@ And install project requirments:
 ```
 
 ## Datasets
-For this work we used two datasets, one is collected by our team in Iran Image Processing Lab which
-consists of 70 Volumes of 3D ABUS and segmented by our team under supervision of
-2 expert radiologists and the other one is the data from TDSC challenge which we don't have the permission
-to share and publish until the event in finished and event holder is not published the data publicly.
+For this work, we utilized two datasets. The first dataset was collected by our team at the Iran Image Processing Lab, comprising 70 volumes of 3D ABUS. This dataset was meticulously segmented by our team under the supervision of two expert radiologists.
+
+The second dataset is from the TDSC challenge. However, we do not have permission to share or publish this data until the event is concluded and the event organizer has publicly released the data.
+
+It's crucial to adhere to data sharing and publication policies, especially when working with sensitive or proprietary datasets. Once the event concludes and the data becomes publicly available, we may be able to share our findings and insights from the TDSC challenge dataset.
 
 | Dataset Name | Number of Volumes | Malignant | Benign |
 |:------------:|:-----------------:|:---------:|:-----:|
