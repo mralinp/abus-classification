@@ -1,30 +1,47 @@
-import torch
+import pandas as pd
 import numpy as np
-import os
+
+from .tdsc import TDSC
 
 
-class Tumors(torch.utils.data.Dataset):
-    def __init__(self, path="./data/tdsc/tumors_3d", transforms=None):
-        
-        self.root_path = path
+class Tumors(TDSC):
+    def __init__(self, path="./data/tdsc", transforms=None):
+        super(Tumors, self).__init__(path)
         self.transforms = transforms
-        self.data_list = [(data_path, 0) for data_path in os.listdir(f"{path}/data/0")] + [(data_path, 1) for data_path in os.listdir(f"{path}/data/1")]
+        self.bbx_metadata = pd.read_csv(f"{self.path}/bbx_labels.csv", dtype={
+            'id': int, 
+            'c_x': float, 
+            'c_y': float, 
+            'c_z': float, 
+            'len_x': float,
+            'len_y': float,
+            'len_z': float,}, index_col='id')
 
+        
     def __getitem__(self, index):
-        
-        path, y = self.data_list[index]
-        v = np.load(f"{self.root_path}/data/{y}/{path}")
-        m = np.load(f"{self.root_path}/mask/{y}/{path}")
-        
+        x,m,y = super(Tumors, self).__getitem__(index)
+        c_x, c_y, c_z, len_x, len_y, len_z = self.bbx_metadata.iloc[index]
+
+        z_s = int(c_z-len_z/2)
+        z_e = int(c_z+len_z/2)
+
+        y_s = int(c_y-len_y/2)
+        y_e = int(c_y+len_y/2)
+
+        x_s = int(c_x-len_x/2)
+        x_e = int(c_x+len_x/2)
+
+        # z, y, x
+        x = x[z_s:z_e, y_s:y_e, x_s:x_e]
+        m = m[z_s:z_e, y_s:y_e, x_s:x_e]
+                
+        # apply transformers if needed
         if self.transforms:
             for transform in self.transforms:
-                m, v = transform(data=v,mask=m)
+                x, m = transform(data=x,mask=m)
                 
-        return v,m,y
+        return x,m,y
 
-    
-    def __len__(self):
-        return len(self.data_list)
     
 if __name__ == '__main__':
     data = Tumors()
