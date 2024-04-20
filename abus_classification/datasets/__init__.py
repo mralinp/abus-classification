@@ -1,4 +1,4 @@
 import os
-from .tumors import Tumors
+from .tdsc_tumors import TDSCTumors
 from .abus import ABUS
 from .tdsc import TDSC
