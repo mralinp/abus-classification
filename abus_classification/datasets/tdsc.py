@@ -13,6 +13,7 @@ DATASET_IDS: Final = {
     "data_1": "17Umzl10lpFu4mGJ9HrZrC-Lcc-klKcl1",
     "mask": "1Z2RUoUoOukA93LyTgwKPKCrfFePva1pV",
     "labels": "1Fn6psOjknovxmShESRYpaxDAbb9txvH7",
+    "bbx_labels": "1firgUGMMMscXoYlQCzdg8Y7x2Hc3enIt"
 }
 
 
@@ -40,6 +41,7 @@ class TDSC(Dataset):
         downloader.download(DATASET_IDS.get("mask"), f"{self.path}/MASK/mask.zip")
         downloader.save()
         downloader.download(DATASET_IDS.get("labels"), f"{self.path}/labels.csv")
+        downloader.download(DATASET_IDS.get("bbx_labels"), f"{self.path}/bbx_labels.csv")
         
         
         
