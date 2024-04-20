@@ -13,14 +13,15 @@ DATASET_IDS: Final = {
     "data_1": "17Umzl10lpFu4mGJ9HrZrC-Lcc-klKcl1",
     "mask": "1Z2RUoUoOukA93LyTgwKPKCrfFePva1pV",
     "labels": "1Fn6psOjknovxmShESRYpaxDAbb9txvH7",
+    "bbx_labels": "1firgUGMMMscXoYlQCzdg8Y7x2Hc3enIt"
 }
 
 
 class TDSC(Dataset):
 
-    def __init__(self, path_to_dataset: str = "./data/tdsc") -> None:
-        
+    def __init__(self, path_to_dataset: str = "./data/tdsc", transforms=None):
         super(TDSC, self).__init__(path_to_dataset)
+        self.transforms = transforms
         self.metadata = pd.read_csv(f"{self.path}/labels.csv", dtype={'Case_id': int, 'Label': str, 'Data_path': str, 'Mask_path': str}).set_index('case_id')
         
     def validate(self):
@@ -40,6 +41,7 @@ class TDSC(Dataset):
         downloader.download(DATASET_IDS.get("mask"), f"{self.path}/MASK/mask.zip")
         downloader.save()
         downloader.download(DATASET_IDS.get("labels"), f"{self.path}/labels.csv")
+        downloader.download(DATASET_IDS.get("bbx_labels"), f"{self.path}/bbx_labels.csv")
         
         
         
@@ -52,6 +54,10 @@ class TDSC(Dataset):
         
         vol, _ = nrrd.read(f"{self.path}/{vol_path}")
         mask, _ = nrrd.read(f"{self.path}/{mask_path}") 
+        
+        if self.transforms:
+            for transformer in self.transforms:
+                vol, mask = transformer(data=vol, mask=mask)
         
         return vol, mask, label
 
