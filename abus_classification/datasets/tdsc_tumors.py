@@ -4,9 +4,9 @@ import numpy as np
 from .tdsc import TDSC
 
 
-class Tumors(TDSC):
+class TDSCTumors(TDSC):
     def __init__(self, path="./data/tdsc", transforms=None):
-        super(Tumors, self).__init__(path)
+        super(TDSCTumors, self).__init__(path)
         self.transforms = transforms
         self.bbx_metadata = pd.read_csv(f"{self.path}/bbx_labels.csv", dtype={
             'id': int, 
@@ -19,7 +19,7 @@ class Tumors(TDSC):
 
         
     def __getitem__(self, index):
-        x,m,y = super(Tumors, self).__getitem__(index)
+        x,m,y = super(TDSCTumors, self).__getitem__(index)
         c_x, c_y, c_z, len_x, len_y, len_z = self.bbx_metadata.iloc[index]
 
         z_s = int(c_z-len_z/2)
