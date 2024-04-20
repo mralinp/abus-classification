@@ -41,10 +41,3 @@ class TDSCTumors(TDSC):
                 x, m = transform(data=x,mask=m)
                 
         return x,m,y
-
-    
-if __name__ == '__main__':
-    data = Tumors()
-    v,m,y = data[0]
-    
-    print(v.shape, m.shape, y)
