@@ -1,4 +1,4 @@
-from abus_classification.datasets import TDSC, Tumors
+from abus_classification.datasets import TDSC, TDSCTumors
 
 
 def test_tdsc():
@@ -6,7 +6,7 @@ def test_tdsc():
     assert len(dataset) == 100    
     
 def test_tumors():
-    dataset = Tumors()
+    dataset = TDSCTumors()
     assert len(dataset) == 100
     
     x,m,y = dataset[0]
