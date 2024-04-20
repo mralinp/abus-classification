@@ -8,8 +8,7 @@ class SliceTransformer(Transformer):
         self.offset = offset
         self.anchor = anchor
         
-        
-    def transform(self, data: np, mask: np):
+    def make_slice(self, data):
         start, end = 0, 0
         if self.anchor == 'middle':
             mid = data.shape[2]//2
@@ -22,20 +21,18 @@ class SliceTransformer(Transformer):
         elif self.anchor == end:
             start = data.shape[2]-self.offset
             end = data.shape[2]
-        
+            
         new_data = np.array(data[:,:,start:end])
-        new_mask = np.array(mask[:,:,start:end])
+        return new_data
         
-        return new_data, new_mask
-    
-    
-if __name__ == "__main__":
-    
-    data = np.zeros((256,256,256), dtype=np.uint8)
-    mask = np.zeros((256,256,256), dtype=np.uint8)
-    
-    transform = SliceTransformer(offset=20)
-    
-    data, mask = transform(data, mask)
-    
-    print(data.shape, mask.shape)
+    def transform(self, *inputs):
+        
+        assert len(inputs) > 0
+        res = []
+        
+        for data in inputs:
+            res.append(self.make_slice(data))
+        
+        res = tuple(res) if len(res) > 1 else res.pop()
+        
+        return res
