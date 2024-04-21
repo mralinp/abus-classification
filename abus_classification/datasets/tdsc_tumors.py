@@ -7,6 +7,7 @@ from .tdsc import TDSC
 class TDSCTumors(TDSC):
     def __init__(self, path="./data/tdsc", transforms=None):
         super(TDSCTumors, self).__init__(path)
+        self.do_transform = False
         self.transforms = transforms
         self.bbx_metadata = pd.read_csv(f"{self.path}/bbx_labels.csv", dtype={
             'id': int, 
@@ -38,6 +39,6 @@ class TDSCTumors(TDSC):
         # apply transformers if needed
         if self.transforms:
             for transform in self.transforms:
-                x, m = transform(data=x,mask=m)
+                x, m = transform(x,m)
                 
         return x,m,y
