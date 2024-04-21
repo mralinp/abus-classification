@@ -21,6 +21,7 @@ class TDSC(Dataset):
 
     def __init__(self, path_to_dataset: str = "./data/tdsc", transforms=None):
         super(TDSC, self).__init__(path_to_dataset)
+        self.do_transform = True
         self.transforms = transforms
         self.metadata = pd.read_csv(f"{self.path}/labels.csv", dtype={'Case_id': int, 'Label': str, 'Data_path': str, 'Mask_path': str}).set_index('case_id')
         
@@ -55,9 +56,9 @@ class TDSC(Dataset):
         vol, _ = nrrd.read(f"{self.path}/{vol_path}")
         mask, _ = nrrd.read(f"{self.path}/{mask_path}") 
         
-        if self.transforms:
+        if self.transforms and self.do_transform:
             for transformer in self.transforms:
-                vol, mask = transformer(data=vol, mask=mask)
+                vol, mask = transformer(vol, mask)
         
         return vol, mask, label
 
