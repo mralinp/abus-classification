@@ -3,14 +3,14 @@ import numpy as np
 from .transformer import Transformer
 
 
-class ResizeTransformer(Transformer):
+class Resize3DTransformer(Transformer):
     
     def __init__(self, target_size: tuple):
         self.size = target_size
         
     def resize(self, data):
         n_slices = data.shape[2]
-        resized_data = np.zeros((*self.size, n_slices), dtype=np.float32)
+        resized_data = np.zeros(self.size, dtype=np.float32)
         img_size = (self.size[0], self.size[1])
         
         for i in range(n_slices):
