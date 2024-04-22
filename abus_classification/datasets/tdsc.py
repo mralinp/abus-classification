@@ -53,7 +53,7 @@ class TDSC(Dataset):
     def download_data(self):
         downloader = GoogleDriveDownloader(None)
         for file_name, file_info in DATASET_IDS.items:
-            downloader.download(file_info.get("id"), f"{self.path}/{file_info.get("path")}/{file_name}")
+            downloader.download(file_info.get("id"), f"{self.path}/{file_info.get('path')}/{file_name}")
             if file_info.get("zip"):
                 downloader.save()
         
