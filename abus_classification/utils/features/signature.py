@@ -29,3 +29,7 @@ def boundary_signature_2d(boundary_image: np, resolution:float=1., dif_min:int=5
                 signature[idx] = np.sqrt((x0-x)**2 + (y0-y)**2)
 
     return signature
+
+
+def boundary_signature_3d(boundary: np, resolution:float=1., dif_min:int=5)->np:
+    pass
