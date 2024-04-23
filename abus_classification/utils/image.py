@@ -1,5 +1,6 @@
-import numpy as np
 import cv2
+import numpy as np
+import itertools
 import matplotlib.pyplot as plt
 from . import math
 
@@ -126,3 +127,31 @@ def find_largest_bounding_box(bbxs: list):
         yh = max(yh, y+h)
         
     return (xl,yl), (xh,yh)
+
+def find_surface_points_3d(binary_image:np)->np:
+    directions = np.array(list(itertools.product((-1,0,1), repeat=3)), dtype=np.int32)
+    boundary_points = []
+
+    w,h,d = binary_image.shape
+    
+    for i in range(w):
+        for j in range(h):
+            for k in range(d):
+                anchor_value = binary_image[i,j,k]
+                if anchor_value != 0:
+                    print(i,j,k)
+                    anchor_position = np.array([i,j,k], np.uint)
+                    for neighbor_direction in directions:
+                        neighbor_position = anchor_position + neighbor_direction                
+                        a = neighbor_direction[0]
+                        b = neighbor_direction[1]
+                        c = neighbor_direction[2]
+                        
+                        if a < 0 or b < 0 or c < 0:
+                            continue
+                        
+                        if binary_image[a,b,c] == 0:
+                            boundary_points.append((a,b,c))
+
+    return np.array(boundary_points, dtype=np.uint)
+                    

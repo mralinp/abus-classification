@@ -6,7 +6,7 @@ def test_tdsc():
     assert len(dataset) == 100    
     
 def test_tumors():
-    dataset = TDSCTumors(path="./datasets/tdsc")
+    dataset = TDSCTumors(path="./data/tdsc")
     assert len(dataset) == 100
     
     x,m,y = dataset[0]
