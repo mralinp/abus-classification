@@ -62,9 +62,20 @@ def get_boundary(binary_img):
 
 def find_shape_center(binary_img):
     nonzero_cords = np.nonzero(binary_img)
-    x_cords = nonzero_cords[0]
-    y_cords = nonzero_cords[1]
-    return x_cords.sum()//len(x_cords), y_cords.sum()//len(y_cords)
+    dims = len(nonzero_cords)
+    center = np.array([0 for i in range(dims)], dtype=np.float32)
+    num_cords = len(nonzero_cords[0])
+    
+    for cord_idx in range(num_cords):
+        point_values = []
+        for dim in range(dims):
+            point_values.append(nonzero_cords[dim][cord_idx])
+        point = np.array(point_values, dtype=np.float32)
+        center += point
+    
+    center /= num_cords
+    return center
+
 
 
 def rotation_invariant(x):
@@ -139,19 +150,22 @@ def find_surface_points_3d(binary_image:np)->np:
             for k in range(d):
                 anchor_value = binary_image[i,j,k]
                 if anchor_value != 0:
-                    print(i,j,k)
-                    anchor_position = np.array([i,j,k], np.uint)
+                    anchor_position = np.array([i,j,k], np.int32)
                     for neighbor_direction in directions:
                         neighbor_position = anchor_position + neighbor_direction                
-                        a = neighbor_direction[0]
-                        b = neighbor_direction[1]
-                        c = neighbor_direction[2]
+                        a = neighbor_position[0]
+                        b = neighbor_position[1]
+                        c = neighbor_position[2]
                         
                         if a < 0 or b < 0 or c < 0:
                             continue
                         
+                        if a >= w or b >= h or c >= d:
+                            continue
+                        
                         if binary_image[a,b,c] == 0:
-                            boundary_points.append((a,b,c))
+                            boundary_points.append((i,j,k))
+                            break
 
     return np.array(boundary_points, dtype=np.uint)
                     
