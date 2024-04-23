@@ -54,12 +54,11 @@ def test_find_center():
                   [0,0,0,0,0,0,0,0,0,0],
                   [0,0,0,0,0,0,0,0,0,0]], dtype=np.uint8) * 255
     
-    x, y = image.find_shape_center(x)
-    
-    print(x, y)
-    
-    assert y == 5 or y == 4
-    assert x == 5 or x == 4
+    center_point = image.find_shape_center(x)
+        
+    assert center_point.shape[0] == 2 
+    assert center_point[1] == 4.5
+    assert center_point[0] == 4.5
 
 def test_get_boundary():
     
