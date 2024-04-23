@@ -23,6 +23,6 @@ def calculate_slope(points):
 
 
 def normalize(x:np, interval=(0,1)):
-    x_std = x - x.min()/x.max()-x.min()
+    x_std = (x - x.min())/x.max()-x.min()
     mi, ma = interval
     return x_std*(ma-mi) + mi
