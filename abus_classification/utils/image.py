@@ -2,6 +2,8 @@ import cv2
 import numpy as np
 import itertools
 import matplotlib.pyplot as plt
+import scipy
+import scipy.ndimage
 from . import math
 
 def zero_pad_resize(img, size=(224,224)):
@@ -56,9 +58,11 @@ def rotate_image(x, degree):
 
 
 def get_boundary(binary_img):
-    uint_img = binary_img.astype(np.uint8)
-    return cv2.Canny(uint_img, 0, 1)
-
+    shape = [3 for i in range(len(binary_img.shape))]
+    kernel = np.ones(shape, dtype=np.uint8)
+    eroded = scipy.ndimage.binary_erosion(binary_img, structure=kernel).astype(np.uint8)
+    return  binary_img - eroded 
+    
 
 def find_shape_center(binary_img):
     nonzero_cords = np.nonzero(binary_img)
@@ -139,33 +143,9 @@ def find_largest_bounding_box(bbxs: list):
         
     return (xl,yl), (xh,yh)
 
-def find_surface_points_3d(binary_image:np)->np:
-    directions = np.array(list(itertools.product((-1,0,1), repeat=3)), dtype=np.int32)
-    boundary_points = []
-
-    w,h,d = binary_image.shape
-    
-    for i in range(w):
-        for j in range(h):
-            for k in range(d):
-                anchor_value = binary_image[i,j,k]
-                if anchor_value != 0:
-                    anchor_position = np.array([i,j,k], np.int32)
-                    for neighbor_direction in directions:
-                        neighbor_position = anchor_position + neighbor_direction                
-                        a = neighbor_position[0]
-                        b = neighbor_position[1]
-                        c = neighbor_position[2]
-                        
-                        if a < 0 or b < 0 or c < 0:
-                            continue
-                        
-                        if a >= w or b >= h or c >= d:
-                            continue
-                        
-                        if binary_image[a,b,c] == 0:
-                            boundary_points.append((i,j,k))
-                            break
-
-    return np.array(boundary_points, dtype=np.uint)
+def get_surface_points(binary_image:np)->np:
+    boundary = get_boundary(binary_img=binary_image)
+    cords = np.nonzero(boundary)
+    surface_points = list(zip(*cords))
+    return np.array(surface_points, dtype=np.int32)
                     
