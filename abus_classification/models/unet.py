@@ -76,15 +76,3 @@ class UNet(torch.nn.Module):
     def get_bottleneck_output(self):
         return self.bottle_neck_output
     
-    
-if __name__ == "__main__":
-    
-    model = UNet(in_channels = 1, out_channels = 1)
-    x = torch.randn((1, 1, 128, 128))
-    print (x.shape)
-    o = model(x)
-    print(o.shape)
-    c = model.get_classification_output()
-    c = torch.sigmoid(c)
-    print(c.shape)
-    
