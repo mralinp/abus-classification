@@ -39,7 +39,7 @@ from abus_classification import datasets
 
 tdsc = datasets.TDSC() # This will automatically download the data
 
-x, y, m = tdsc[0] # x: volume, m: mask_volume, y: label (0:m, 1:b)
+x, y, m = tdsc[0] # x: volume, m: mask_volume, y: label (0:malignant, 1:benign)
 ```
 
 ### Anaconda (Local machine)
