@@ -61,10 +61,3 @@ class SEFNet(torch.nn.Module):
         x = self.features(x)
         x = self.classifier(x)
         return x
-
-
-if __name__ == '__main__':
-    model = SEFNet()
-    x = torch.rand([1, 3, 224, 224], dtype=torch.float32)
-    p = model(x)
-    print(p.shape)
