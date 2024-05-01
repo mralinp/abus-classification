@@ -74,7 +74,11 @@ It's crucial to adhere to data sharing and publication policies, especially when
 | IIPL-3D-ABUS |        70         |    55     |   15   |
 |     TDSC     |        100        |    58     |   42   |  
 
-# Recent works and papers to be implemented
+# Related works and papers implementations
+
+To ensure a fair evaluation and comparison of related works with the suggested method, I have implemented the most relevant papers and trained the suggested methods using available datasets. The implementations of these papers are also accessible, with the models located under the `models` module of `abus_classification`.
+
+### List of Papers:
 - [x] [Multi-Task Learning for Segmentation and Classification of Tumors in 3D Automated Breast Ultrasound Images](https://drive.google.com/file/d/1ONcpYI0-VXYNkmmtPxh-CVP1bsN-UgM3/view)
 - [ ] [BTC: 2D Convolutional Neural Networks for 3D Digital Breast Tomosynthesis Classification.](https://arxiv.org/pdf/2002.12314.pdf)
 - [ ] [DLF: A deep learning framework for supporting the classification of breast lesions in ultrasound images.](https://pubmed.ncbi.nlm.nih.gov/28753132/)
