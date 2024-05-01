@@ -70,13 +70,14 @@ The second dataset is from the TDSC challenge. However, we do not have permissio
 It's crucial to adhere to data sharing and publication policies, especially when working with sensitive or proprietary datasets. Once the event concludes and the data becomes publicly available, we may be able to share our findings and insights from the TDSC challenge dataset.
 
 | Dataset Name | Number of Volumes | Malignant | Benign |
-|:------------:|:-----------------:|:---------:|:-----:|
-| IIPL-3D-ABUS |        70         |    55     |  15   |
-|     TDSC     |        100        |    58    |  42  |  
+|:------------:|:-----------------:|:---------:|:------:|
+| IIPL-3D-ABUS |        70         |    55     |   15   |
+|     TDSC     |        100        |    58     |   42   |  
+
 # Recent works and papers to be implemented
+- [x] [Multi-Task Learning for Segmentation and Classification of Tumors in 3D Automated Breast Ultrasound Images](https://drive.google.com/file/d/1ONcpYI0-VXYNkmmtPxh-CVP1bsN-UgM3/view)
 - [ ] [BTC: 2D Convolutional Neural Networks for 3D Digital Breast Tomosynthesis Classification.](https://arxiv.org/pdf/2002.12314.pdf)
 - [ ] [DLF: A deep learning framework for supporting the classification of breast lesions in ultrasound images.](https://pubmed.ncbi.nlm.nih.gov/28753132/)
 - [ ] [A method for the automated classification of benign and malignant masses on digital breast tomosynthesis images using machine learning and radiomic features.](https://pubmed.ncbi.nlm.nih.gov/31686300/)
 - [ ] [Breast Cancer Classification in Automated Breast Ultrasound Using Multiview Convolutional Neural Network with Transfer Learning.](https://pubmed.ncbi.nlm.nih.gov/32059918/)
 - [ ] [Fully automatic classification of automated breast ultrasound (ABUS) imaging according to BI-RADS using a deep convolutional neural network](https://pubmed.ncbi.nlm.nih.gov/35147776/)
-- [ ] [Multi-modal artifcial intelligence for the combination of automated 3D breast ultrasound and mammograms in a population of women with predominantly dense breasts.](https://google.com)
