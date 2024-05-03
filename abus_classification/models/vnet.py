@@ -5,7 +5,7 @@ import torchvision
 class ConvBatchNormReLu(torch.nn.Module):
     
     def __init__(self, in_channels, out_channels):        
-        super(Conv, self).__init__()
+        super(ConvBatchNormReLu, self).__init__()
         self.conv = torch.nn.Sequential(
             torch.nn.Conv3d(in_channels, out_channels, kernel_size=3, stride=1, padding=1, bias=False),
             torch.nn.BatchNorm3d(out_channels),
@@ -34,7 +34,7 @@ class VNet(torch.nn.Module):
     
     
     def __init__(self, in_channels, out_channels, features=[(16,1),(32,1),(64,2)], bottle_neck_layers=3) -> None:
-        super(UNet, self).__init__()
+        super(VNet, self).__init__()
         
         self.encoder = torch.nn.ModuleList()
         self.decoder = torch.nn.ModuleList()
