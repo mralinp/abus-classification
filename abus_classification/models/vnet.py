@@ -81,7 +81,7 @@ class VNet(torch.nn.Module):
     
     
     @property
-    def decoder_output(self):
+    def decoder_outputs(self):
         return self.__decoder_outputs
         
         
