@@ -5,6 +5,8 @@ import matplotlib.pyplot as plt
 import scipy
 import scipy.ndimage
 from . import math
+from scipy.ndimage import zoom
+from scipy.interpolate import RegularGridInterpolator
 
 def zero_pad_resize(img, size=(224,224)):
     res = np.zeros(size, dtype=np.float32)
@@ -149,3 +151,23 @@ def get_surface_points(binary_image:np)->np:
     surface_points = list(zip(*cords))
     return np.array(surface_points, dtype=np.int32)
                     
+
+def resample(x, pixel_sizes = {'x': 0.2, 'y': 0.073, 'z': 0.475674}):
+
+    # Determine the smallest pixel size
+    smallest_pixel_size = min(pixel_sizes.values())
+    # Calculate the scaling factors
+    scaling_factors = {dim: pixel_sizes[dim] / smallest_pixel_size for dim in pixel_sizes}
+    # Resample the dataset using zoom function from scipy
+    return zoom(x, zoom=[scaling_factors['x'], scaling_factors['y'], scaling_factors['z']], mode='nearest')
+
+
+def resample_volume(volume, pixel_sizes={'x': 0.2, 'y': 0.073, 'z': 0.475674}):
+    steps = list(pixel_sizes.values())    # original step sizes
+    x, y, z = [steps[k] * np.arange(volume.shape[k]) for k in range(3)]  # original grid
+    f = RegularGridInterpolator((x, y, z), volume)    # interpolator
+    step = min(steps)
+    dx, dy, dz = [step for i in range(3)]   # new step sizes
+    new_grid = np.mgrid[0:x[-1]:dx, 0:y[-1]:dy, 0:z[-1]:dz]   # new grid
+    new_grid = np.moveaxis(new_grid, (0, 1, 2, 3), (3, 0, 1, 2))  # reorder axes for evaluation
+    return f(new_grid)
