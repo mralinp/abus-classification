@@ -1,0 +1,4 @@
+
+
+def compactness(x):
+    pass

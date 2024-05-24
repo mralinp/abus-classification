@@ -1,0 +1,4 @@
+
+
+def entropy(x):
+    pass
