@@ -1,9 +1,9 @@
 import os
 import json
 import numpy as np
-from .dataset import Dataset
-from .tdsc_tumors import TDSCTumors
-from ..utils.image import resample
+from abus_classification.datasets.dataset import Dataset
+from abus_classification.datasets.tdsc_tumors import TDSCTumors
+from abus_classification.utils.image import resample
 
 
 class TDSCTumorsResampled(Dataset):

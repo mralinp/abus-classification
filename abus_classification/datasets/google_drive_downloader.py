@@ -3,7 +3,7 @@ import zipfile
 
 import gdown
 
-from .downloader import Downloader
+from abus_classification.datasets.downloader import Downloader
 
 
 class GoogleDriveDownloader(Downloader):
