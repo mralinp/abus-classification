@@ -1,4 +1,0 @@
-
-
-def sphercity(x):
-    pass

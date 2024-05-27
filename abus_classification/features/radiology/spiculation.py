@@ -23,7 +23,7 @@ def fractal_dimension(skeleton):
     return -slope[0]
 
 
-def spiculation_features(x, m):
+def spiculation(x, m):
     # Convert segmented mask to binary image
     m_binary = np.uint8(m > 0)
 
