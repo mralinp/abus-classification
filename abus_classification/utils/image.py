@@ -60,6 +60,15 @@ def rotate_image(x, degree):
 
 
 def get_boundary(binary_img):
+    '''
+    Takes a 2D/3D Image mask and returns the boundary image in 2D/3D
+    
+    Args:
+        binary_img (ndarray): Binary mask of the image
+    
+    Returns:
+        ndarray: boundary 2D/3D boundary image
+    '''
     shape = [3 for i in range(len(binary_img.shape))]
     kernel = np.ones(shape, dtype=np.uint8)
     eroded = scipy.ndimage.binary_erosion(binary_img, structure=kernel).astype(np.uint8)

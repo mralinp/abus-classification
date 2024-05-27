@@ -3,4 +3,4 @@ from . import torch
 from . import math
 from . import features
 
-from .obnlm import obnlm
+from ..preprocessing.obnlm import obnlm

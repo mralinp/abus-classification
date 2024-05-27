@@ -1,7 +1,19 @@
 import cv2
 import numpy as np
 
-def compute_gps(image): 
+
+def gps(image):
+    '''
+    Calculates the Global Point Signature of the given 3D-mesh point cloud of the tumor according to [Rustamov et al. 2007]
+    
+    Args:
+        point_cloud (trimesh):  The triangular mesh of the given lesion
+    
+    Returns:
+        list of gps descriptors for each point in given the 3D-mesh 
+    '''
+    
+    
     # Convert the image to grayscale 
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY) 
     # Detect corners using the FAST corner detector 
