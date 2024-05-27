@@ -3,8 +3,8 @@ import nrrd
 import pandas as pd
 from typing import Final
 
-from .dataset import Dataset
-from .google_drive_downloader import GoogleDriveDownloader
+from abus_classification.datasets.dataset import Dataset
+from abus_classification.datasets.google_drive_downloader import GoogleDriveDownloader
 
 
 DATASET_IDS: Final = {

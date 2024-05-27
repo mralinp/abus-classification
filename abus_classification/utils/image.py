@@ -4,9 +4,10 @@ import itertools
 import matplotlib.pyplot as plt
 import scipy
 import scipy.ndimage
-from . import math
+from abus_classification.utils import math
 from scipy.ndimage import zoom
 from scipy.interpolate import RegularGridInterpolator
+
 
 def zero_pad_resize(img, size=(224,224)):
     res = np.zeros(size, dtype=np.float32)
