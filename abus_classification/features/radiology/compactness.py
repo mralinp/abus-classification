@@ -1,7 +1,9 @@
 import numpy as np
 
 
-def compactness(perimeter, area):
+def compactness(lesion_pixels):
+    perimeter = calculate_perimeter(lesion_pixels)
+    area = calculate_area(lesion_pixels)
     return (perimeter ** 2) / (4 * np.pi * area)
 
 def calculate_perimeter(lesion_boundary):

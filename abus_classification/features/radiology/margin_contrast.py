@@ -2,7 +2,7 @@ import numpy as np
 from skimage import morphology
 
 
-def margin_contrast(volume:np, mask:np) -> float:
+def margin_contrast(volume:np.ndarray, mask:np.ndarray) -> float:
     '''
     Calculates the Margin Intensity feature according to the [Tao et .al 2013]
     
