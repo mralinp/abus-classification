@@ -5,3 +5,5 @@ from abus_classification.features.radiology.pab import posterior_acoustic_behavi
 from abus_classification.features.radiology.shpercity import sphericity
 from abus_classification.features.radiology.spiculation import spiculation
 from abus_classification.features.radiology.vhwr import height_to_width_ratio
+from abus_classification.features.radiology.margin_contrast import margin_contrast
+from abus_classification.features.radiology.variance_of_intensities import variance_of_intensities
