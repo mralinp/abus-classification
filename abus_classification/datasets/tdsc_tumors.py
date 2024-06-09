@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 
-from .tdsc import TDSC
+from abus_classification.datasets.tdsc import TDSC
 
 
 class TDSCTumors(TDSC):
