@@ -20,9 +20,8 @@ class DoubleConv(torch.nn.Module):
     
 class UNet(torch.nn.Module):
     
-    def __init__(self, in_channels, out_channels, features=[64, 128, 256, 512]) -> None:
+    def __init__(self, in_channels, out_channels, features=[16, 32, 128, 256]) -> None:
         super(UNet, self).__init__()
-        self.slice_classifier = torch.nn.Linear(512,1)
         self.encoder = torch.nn.ModuleList()
         self.decoder = torch.nn.ModuleList()
         self.max_pool = torch.nn.MaxPool2d(kernel_size=2, stride=2)
@@ -65,26 +64,11 @@ class UNet(torch.nn.Module):
             x = self.decoder[idx](x)
             skip_connection = skip_connections[idx//2]
             
-            if x.shape != skip_connection.shape:
-                x = torchvision.transforms.functional.resize(x, size=skip_connection.shape[2:])
-            
             concat_skip = torch.cat((skip_connection, x), dim=1)
             x = self.decoder[idx+1](concat_skip)
         
         return self.last_conv(x)
     
-    def get_bottleneck_output(self):
+    @property
+    def bottleneck_output(self):
         return self.bottle_neck_output
-    
-    
-if __name__ == "__main__":
-    
-    model = UNet(in_channels = 1, out_channels = 1)
-    x = torch.randn((1, 1, 128, 128))
-    print (x.shape)
-    o = model(x)
-    print(o.shape)
-    c = model.get_classification_output()
-    c = torch.sigmoid(c)
-    print(c.shape)
-    

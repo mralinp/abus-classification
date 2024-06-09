@@ -1,0 +1,18 @@
+[project]
+name = "abus-classification_mralinp"
+version = "0.0.1"
+authors = [
+  { name="Ali Naderi Parizi", email="alinaderiparizi@gmail.com" },
+]
+description = "A small example package"
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+Homepage = "https://github.com/mralinp/abus-classification"
+Issues = "https://github.com/mralinp/abus-classification/issues"
