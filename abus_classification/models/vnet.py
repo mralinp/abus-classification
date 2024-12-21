@@ -33,7 +33,7 @@ class ConvBatchNormReLuSigmoid(torch.nn.Module):
 class VNet(torch.nn.Module):
     
     
-    def __init__(self, in_channels, out_channels, features=[(16,1),(32,1),(64,2)], bottle_neck_layers=3) -> None:
+    def __init__(self, in_channels, out_channels, num_classes, features=[(16,1),(32,1),(64,2)], bottle_neck_layers=3) -> None:
         super(VNet, self).__init__()
         
         self.encoder = torch.nn.ModuleList()
@@ -68,6 +68,16 @@ class VNet(torch.nn.Module):
         self.__decoder_outputs = None
         self.__encoder_outputs = None
 
+        # Add classification head
+        self.classification_head = torch.nn.Sequential(
+            torch.nn.AdaptiveAvgPool3d(1),
+            torch.nn.Flatten(),
+            torch.nn.Linear(features[-1][0] * 2, 256),  # features[-1][0] * 2 is the bottleneck features
+            torch.nn.ReLU(inplace=True),
+            torch.nn.Dropout(0.5),
+            torch.nn.Linear(256, num_classes)
+        )
+
 
     @property
     def bottle_neck_output(self):
@@ -98,6 +108,9 @@ class VNet(torch.nn.Module):
         # save bottleneck output
         self.__bottle_neck_output = x
         
+        # Classification head
+        classification_output = self.classification_head(x)
+        
         for idx in range(0, len(self.decoder), 2):
             x = self.decoder[idx](x)
             skip_connection = self.__encoder_outputs[-(idx//2+1)]
@@ -105,5 +118,7 @@ class VNet(torch.nn.Module):
             x = self.decoder[idx+1](concat_skip)
             self.__decoder_outputs.append(x)
         
-        return self.output_conv(x)    
+        segmentation_output = self.output_conv(x)
+        
+        return segmentation_output, classification_output    
   
