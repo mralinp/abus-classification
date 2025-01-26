@@ -1,3 +1,4 @@
 from abus_classification.features.shape_descriptor.boundary_signature2d import boundary_signature2d
 from abus_classification.features.shape_descriptor.boundary_signature3d import boundary_signature3d
 from abus_classification.features.shape_descriptor.shape_descriptors import *
+from abus_classification.features.shape_descriptor.furrier_transform3d import *
