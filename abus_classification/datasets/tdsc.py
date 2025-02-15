@@ -36,26 +36,35 @@ DATASET_IDS: Final = {
 
 class TDSC(Dataset):
 
-    def __init__(self, path_to_dataset: str = "./data/tdsc", transforms=None):
-        super(TDSC, self).__init__(path_to_dataset)
+    class DataSplits:
+        TRAIN = "Train"
+        VALIDATION = "Validation"
+        TEST = "Test"
+
+    def __init__(self, path: str = "./data/tdsc", split: str = DataSplits.TRAIN, transforms=None):
+        super(TDSC, self).__init__(path)
+        self.split = split
         self.do_transform = True
         self.transforms = transforms
-        self.metadata = pd.read_csv(f"{self.path}/labels.csv", dtype={'Case_id': int, 'Label': str, 'Data_path': str, 'Mask_path': str}).set_index('case_id')
+        self.metadata = pd.read_csv(f"{self.path}/{self.split}/labels.csv", 
+                                  dtype={'Case_id': int, 'Label': str, 'Data_path': str, 'Mask_path': str}).set_index('case_id')
         
     def validate(self):
         if not os.path.exists(self.path):
             os.makedirs(self.path)
-            os.makedirs(f"{self.path}/DATA")
-            os.makedirs(f"{self.path}/MASK")
+            for split in [self.DataSplits.TRAIN, self.DataSplits.VALIDATION, self.DataSplits.TEST]:
+                os.makedirs(f"{self.path}/{split}/DATA")
+                os.makedirs(f"{self.path}/{split}/MASK")
             self.download_data()
         return True
     
     def download_data(self):
         downloader = GoogleDriveDownloader(None)
-        for file_name, file_info in DATASET_IDS.items():
-            downloader.download(file_info.get("id"), f"{self.path}/{file_info.get('path')}/{file_name}")
-            if file_info.get("zip"):
-                downloader.save()
+        for split in [self.DataSplits.TRAIN, self.DataSplits.VALIDATION, self.DataSplits.TEST]:
+            for file_name, file_info in DATASET_IDS.items():
+                downloader.download(file_info.get("id"), f"{self.path}/{split}/{file_info.get('path')}/{file_name}")
+                if file_info.get("zip"):
+                    downloader.save()
         
     def __getitem__(self, index) -> tuple:
         label, vol_path, mask_path = self.metadata.iloc[index]
@@ -63,9 +72,8 @@ class TDSC(Dataset):
         mask_path = mask_path.replace('\\', '/')
         label = 0 if label == 'M' else 1
         
-        
-        vol, _ = nrrd.read(f"{self.path}/{vol_path}")
-        mask, _ = nrrd.read(f"{self.path}/{mask_path}") 
+        vol, _ = nrrd.read(f"{self.path}/{self.split}/{vol_path}")
+        mask, _ = nrrd.read(f"{self.path}/{self.split}/{mask_path}") 
         
         if self.transforms and self.do_transform:
             for transformer in self.transforms:

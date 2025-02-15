@@ -5,11 +5,9 @@ from abus_classification.datasets.tdsc import TDSC
 
 
 class TDSCTumors(TDSC):
-    def __init__(self, path="./data/tdsc", transforms=None):
-        super(TDSCTumors, self).__init__(path)
-        self.do_transform = False
-        self.transforms = transforms
-        self.bbx_metadata = pd.read_csv(f"{self.path}/bbx_labels.csv", dtype={
+    def __init__(self, path="./data/tdsc", split=TDSC.DataSplits.TRAIN, transforms=None):
+        super().__init__(path, split, transforms)
+        self.bbx_metadata = pd.read_csv(f"{self.path}/{self.split}/bbx_labels.csv", dtype={
             'id': int, 
             'c_x': float, 
             'c_y': float, 
@@ -20,7 +18,7 @@ class TDSCTumors(TDSC):
 
         
     def __getitem__(self, index):
-        x,m,y = super(TDSCTumors, self).__getitem__(index)
+        x, m, y = super().__getitem__(index)
         c_x, c_y, c_z, len_x, len_y, len_z = self.bbx_metadata.iloc[index]
 
         z_s = int(c_z-len_z/2)
@@ -41,4 +39,4 @@ class TDSCTumors(TDSC):
             for transform in self.transforms:
                 x, m = transform(x,m)
                 
-        return x,m,y
+        return x, m, y

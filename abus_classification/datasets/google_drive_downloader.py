@@ -1,6 +1,5 @@
 import os
-import zipfile
-
+from zipfile import ZipFile
 import gdown
 
 from abus_classification.datasets.downloader import Downloader
@@ -18,5 +17,5 @@ class GoogleDriveDownloader(Downloader):
 
     def save(self):
         if self.file_name:
-            with zipfile.ZipFile(self.file_name) as zip_ref:
+            with ZipFile(self.file_name) as zip_ref:
                 zip_ref.extractall(os.path.dirname(self.file_name))
