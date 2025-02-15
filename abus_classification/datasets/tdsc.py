@@ -8,6 +8,8 @@ from abus_classification.datasets.google_drive_downloader import GoogleDriveDown
 
 
 DATASET_IDS: Final = {
+    "train":{
+    
     "data_0.zip": {
         "id":"1K762mw8vAIRjgoeR7aJN-0NIntOBUb6O",
         "path": "DATA",
@@ -31,6 +33,9 @@ DATASET_IDS: Final = {
         "id":"1firgUGMMMscXoYlQCzdg8Y7x2Hc3enIt",
         "path": "."
     }
+    },
+    "validation":{},
+    "test":{}
 }
 
 
