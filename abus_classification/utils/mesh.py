@@ -23,11 +23,13 @@ def preprocess_binary_mask(mask: np.ndarray,
         mask = mask.astype(bool)
     
     if remove_small_objects:
-        mask = morphology.remove_small_objects(mask, min_size=min_size)
+        # scikit-image >=0.26 renamed min_size to max_size and made the bound
+        # inclusive, so max_size=min_size-1 keeps the original semantics.
+        mask = morphology.remove_small_objects(mask, max_size=min_size - 1)
     
     if smooth:
         # Apply binary closing to smooth boundaries
-        mask = morphology.binary_closing(mask)
+        mask = morphology.closing(mask)
     
     return mask
 
@@ -75,9 +77,10 @@ def get_mesh_from_3d_mask(binary_mask_3d: np.ndarray,
                              faces=faces,
                              vertex_normals=normals)
         
-        # Basic mesh cleanup
-        mesh.remove_duplicate_faces()
-        mesh.remove_degenerate_faces()
+        # Basic mesh cleanup (trimesh >=4.0 replaced the remove_* helpers
+        # with update_faces() over an explicit face mask)
+        mesh.update_faces(mesh.unique_faces())
+        mesh.update_faces(mesh.nondegenerate_faces())
         mesh.remove_unreferenced_vertices()
         
         # Ensure consistent face winding and normals

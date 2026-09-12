@@ -23,6 +23,7 @@ dependencies = [
     { name = "pynrrd" },
     { name = "scikit-image" },
     { name = "scipy" },
+    { name = "tdsc-abus2023-pytorch" },
     { name = "torch" },
     { name = "torchvision" },
     { name = "trimesh" },
@@ -38,7 +39,6 @@ notebooks = [
     { name = "ipywidgets" },
     { name = "pillow" },
     { name = "scikit-learn" },
-    { name = "tdsc-abus2023-pytorch" },
     { name = "tqdm" },
 ]
 
@@ -53,6 +53,7 @@ requires-dist = [
     { name = "pynrrd", specifier = ">=1.1" },
     { name = "scikit-image", specifier = ">=0.24" },
     { name = "scipy", specifier = ">=1.14" },
+    { name = "tdsc-abus2023-pytorch", specifier = ">=0.1.10" },
     { name = "torch", specifier = ">=2.5" },
     { name = "torchvision", specifier = ">=0.20" },
     { name = "trimesh", specifier = ">=4.5" },
@@ -66,7 +67,6 @@ notebooks = [
     { name = "ipywidgets", specifier = ">=8.1" },
     { name = "pillow", specifier = ">=11.0" },
     { name = "scikit-learn", specifier = ">=1.5" },
-    { name = "tdsc-abus2023-pytorch", specifier = ">=0.1.10" },
     { name = "tqdm", specifier = ">=4.67" },
 ]
 
