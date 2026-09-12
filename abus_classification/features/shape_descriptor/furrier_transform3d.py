@@ -1,5 +1,4 @@
 import numpy as np
-import matplotlib.pyplot as plt
 from skimage.measure import marching_cubes
 
 def extract_boundary(mask):

@@ -1,33 +1,27 @@
 import numpy as np
 
 
-def height_to_width_ratio(mask: np):
+def height_to_width_ratio(mask: np.ndarray) -> float:
     """
-    Calculate the volumetric width-to-height ratio of a 3D lesion mask.
+    Calculate the volumetric height-to-width ratio of a 3D lesion mask.
+
+    Arrays follow the (z, y, x) ordering used throughout this project, so
+    height is the extent along y (axis 1) and width the extent along x
+    (axis 2). A ratio above 1 means the lesion is taller than it is wide,
+    the "taller-than-wide" sign associated with malignancy in breast
+    ultrasound.
 
     Args:
         mask (np.ndarray): A 3D numpy array containing the mask of the lesion.
 
     Returns:
-        float: The width-to-height ratio of the lesion.
+        float: height / width, or nan if the mask is empty.
     """
-    # Ensure the mask is a 3D array
     assert mask.ndim == 3, "The mask should be a 3D ndarray."
 
-    # Find the indices of the lesion (where the mask is non-zero)
-    lesion_indices = np.argwhere(mask)
+    lesion_indices = np.argwhere(np.asarray(mask) > 0)
+    if lesion_indices.size == 0:
+        return float("nan")
 
-    # Get the bounding box of the lesion
-    z_min, y_min, x_min = lesion_indices.min(axis=0)
-    z_max, y_max, x_max = lesion_indices.max(axis=0)
-
-    # Calculate the dimensions of the bounding box
-    width = x_max - x_min + 1
-    height = y_max - y_min + 1
-    depth = z_max - z_min + 1
-
-    # Calculate the width-to-height ratio
-    width_height_ratio = width / height
-
-    return width_height_ratio
-
+    _, height, width = np.ptp(lesion_indices, axis=0) + 1
+    return float(height) / float(width)

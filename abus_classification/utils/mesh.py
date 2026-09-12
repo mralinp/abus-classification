@@ -90,3 +90,33 @@ def get_mesh_from_3d_mask(binary_mask_3d: np.ndarray,
         
     except Exception as e:
         raise ValueError(f"Failed to generate mesh: {str(e)}")
+
+def lesion_mesh(mask: np.ndarray,
+                spacing: Optional[Tuple[float, float, float]] = None,
+                pad: int = 2) -> trimesh.Trimesh:
+    """
+    Build a watertight surface mesh for a lesion mask.
+
+    This is `get_mesh_from_3d_mask` with the two settings lesion masks need:
+
+    - The mask is zero-padded by `pad` voxels. Masks cropped to their bounding
+      box touch the array border, and marching cubes leaves the surface open
+      there. The mesh is translated back afterwards, so vertex coordinates stay
+      in the original mask's frame.
+    - Preprocessing is off. Its morphological closing pinches thin structures
+      into non-manifold geometry; on the TDSC-ABUS masks it leaves 8 of 200
+      surfaces open, with inverted winding and a negative volume.
+
+    Parameters:
+        mask: 3D binary lesion mask
+        spacing: Voxel spacing in each dimension. Defaults to (1, 1, 1).
+        pad: Zero voxels added on every side before meshing
+
+    Returns:
+        trimesh.Trimesh object representing the closed lesion surface
+    """
+    spacing = (1.0, 1.0, 1.0) if spacing is None else tuple(spacing)
+    padded = np.pad((np.asarray(mask) > 0).astype(np.uint8), pad)
+    mesh = get_mesh_from_3d_mask(padded, spacing=spacing, level=0.5, preprocess=False)
+    mesh.apply_translation(-pad * np.asarray(spacing, dtype=float))
+    return mesh
