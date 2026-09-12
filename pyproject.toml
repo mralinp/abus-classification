@@ -24,6 +24,7 @@ dependencies = [
     "pynrrd>=1.1",
     "scikit-image>=0.24",
     "scipy>=1.14",
+    "tdsc-abus2023-pytorch>=0.1.10",
     "torch>=2.5",
     "torchvision>=0.20",
     "trimesh>=4.5",
@@ -44,7 +45,6 @@ notebooks = [
     "ipywidgets>=8.1",
     "pillow>=11.0",
     "scikit-learn>=1.5",
-    "tdsc-abus2023-pytorch>=0.1.10",
     "tqdm>=4.67",
 ]
 
