@@ -1,5 +1,6 @@
 .env
 venv
+.venv
 saved_images
 .ipynb_checkpoints
 __pycache__

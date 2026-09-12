@@ -18,7 +18,7 @@ By the conclusion of this research, we anticipate developing a highly accurate a
 
 ## Build/Run
 
-o utilize the project source code, you have two options: either using **Google Colab** or setting up the environment on your local machine. For local installation, it's recommended to have a GPU and properly install Anaconda with GPU support.
+To utilize the project source code, you have two options: either using **Google Colab** or setting up the environment on your local machine. Local setup is managed with [uv](https://docs.astral.sh/uv/); a CUDA GPU is optional, and on Apple Silicon PyTorch runs on the `mps` backend.
 
 The core requirements of this project, such as `transformers`, base `models`, `datasets`, and `utilities`, are developed as a Python package named `abus_classification`, which you can import and utilize in your own code. `abus_classification` is written on the PyTorch framework.
 
@@ -43,25 +43,39 @@ tdsc = datasets.TDSC() # This will automatically download the data
 x, y, m = tdsc[0] # x: volume, m: mask_volume, y: label (0:malignant, 1:benign)
 ```
 
-### Anaconda (Local machine)
+### Local machine (uv)
 
-Before you get started please make sure that all the requirements are installed properly:
-
-- Anaconda
-
-> Note: For gpu support follow the instructions here: [Installing tensorflow with gpu support](https://www.tensorflow.org/install/pip)
-
-Then create and activate a virtual environment for the project:
+The project is managed with [uv](https://docs.astral.sh/uv/). Install it once:
 
 ```bash
-$ conda create --name abus-classification --python=3.9
-$ conda activate abus-classification
+$ curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 
-And install project requirments:
+Then create the environment and install everything (uv downloads the right
+Python for you, so no system Python or Anaconda setup is needed):
+
 ```bash
-(venv) $ python -m pip install -t requirements.txt 
+$ uv sync
 ```
+
+This creates `.venv/` and installs the library, the test tools and the extra
+packages the notebooks need. Run anything through `uv run`, which activates the
+environment for you:
+
+```bash
+$ uv run pytest
+$ uv run python main.py
+$ uv run jupyter lab      # after: uv add --group notebooks jupyterlab
+```
+
+Dependencies live in `pyproject.toml` and are pinned in `uv.lock` (commit both).
+Add a package with `uv add <name>`, or `uv add --group notebooks <name>` when
+it is only used by the notebooks.
+
+> Note: the lock file resolves for macOS only (`tool.uv.environments`), which
+> keeps the CUDA-only `nvidia-*` wheels out of the install. PyTorch uses the
+> Apple Silicon `mps` backend here. To build on Linux with CUDA again, remove
+> that setting and re-run `uv lock`.
 
 ## Datasets
 For this work, we utilized two datasets. The first dataset was collected by our team at the Iran Image Processing Lab, comprising 70 volumes of 3D ABUS. This dataset was meticulously segmented by our team under the supervision of two expert radiologists.
