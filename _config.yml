@@ -1,17 +1,93 @@
-# GitHub Pages configuration: README.md is rendered as the project homepage.
-title: Classification of Breast Cancer Lesions in 3D ABUS
-description: Reproducing published classifiers on TDSC-ABUS 2023 and developing 3D shape representations of breast tumors.
-theme: jekyll-theme-cayman
+# Project homepage, built and deployed by .github/workflows/jekyll-gh-pages.yml
+# (GitHub Pages' Jekyll template). Page content comes from README.md, pulled in by
+# index.md; this file holds the header, navigation and metadata.
+# Local preview: bundle install && bundle exec jekyll serve
 
-# Keep the site build to the homepage and its images.
+title: Classification of Breast Cancer Lesions in 3D Automated Breast Ultrasound
+short_title: 3D ABUS Lesion Classification
+tagline: Mathematical foundations of Laplace–⁠Beltrami shape representation for breast tumors
+description: >-
+  Reproducing published classifiers on TDSC-ABUS 2023 and developing the mathematical
+  foundations of Laplace–Beltrami shape descriptors for classifying breast lesions in 3D ABUS.
+url: https://alinaderiparizi.com
+baseurl: /abus-classification
+lang: en
+
+author:
+  name: Ali Naderiparizi
+  email: me@alinaderiparizi.com
+
+# jekyll-seo-tag: preview image for link cards
+image: /docs/assets/sample-tumors-transversal.png
+
+project:
+  eyebrow: Research project · 3D automated breast ultrasound
+  github: https://github.com/mralinp/abus-classification
+  authors:
+    - name: Ali Naderiparizi
+      url: https://alinaderiparizi.com
+    - name: Sepideh Barekatrezaei
+    - name: Ehsan Kozegar
+      role: Supervisor
+    - name: Mohsen Soryani
+      role: Main supervisor
+  affiliations:
+    - Iran Image Processing Lab (IIPL)
+  links:
+    - label: Code
+      url: https://github.com/mralinp/abus-classification
+      icon: github
+    - label: Previous paper
+      url: https://doi.org/10.1016/j.eswa.2025.129973
+      icon: paper
+    - label: Dataset
+      url: https://tdsc-abus2023.grand-challenge.org/
+      icon: database
+    - label: Roadmap
+      url: "#roadmap"
+      icon: map
+
+nav:
+  - label: Results
+    anchor: results-so-far
+  - label: Roadmap
+    anchor: roadmap
+  - label: Datasets
+    anchor: datasets
+  - label: Getting started
+    anchor: getting-started
+  - label: References
+    anchor: references
+  - label: Citation
+    anchor: citation
+
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+  auto_ids: true
+  syntax_highlighter: rouge
+  math_engine: mathjax
+
+plugins:
+  - jekyll-seo-tag
+
 exclude:
+  - README.md          # rendered through index.md
   - abus_classification
   - notebooks
   - test
   - data
   - tmp
   - docs/presentations
+  - docs/dataset.md
+  - docs/model.md
+  - docs/papers.md
   - main.py
   - pyproject.toml
   - pytest.ini
   - uv.lock
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - node_modules

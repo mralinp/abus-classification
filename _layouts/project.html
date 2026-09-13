@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="{{ site.lang | default: 'en' }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  {% seo %}
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='44' fill='%234a3aa7'/><path d='M28 58c6-18 14-26 22-26s16 8 22 26' fill='none' stroke='white' stroke-width='7' stroke-linecap='round'/><circle cx='50' cy='62' r='7' fill='white'/></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+  <link rel="stylesheet" href="{{ '/assets/css/site.css' | relative_url }}">
+</head>
+<body>
+  <a class="skip" href="#content">Skip to content</a>
+
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="{{ '/' | relative_url }}">{{ site.short_title }}</a>
+      <nav class="topnav" aria-label="Sections">
+        {%- for item in site.nav %}
+        <a href="#{{ item.anchor }}">{{ item.label }}</a>
+        {%- endfor %}
+      </nav>
+      <a class="topbar-icon" href="{{ site.project.github }}" aria-label="Source code on GitHub">{% include icon.html name="github" %}</a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <p class="eyebrow">{{ site.project.eyebrow }}</p>
+      <h1 class="title">{{ site.title }}</h1>
+      <p class="tagline">{{ site.tagline }}</p>
+      <ul class="authors">
+        {%- for person in site.project.authors %}
+        <li>
+          {%- if person.url %}<a href="{{ person.url }}">{{ person.name }}</a>{% else %}<span>{{ person.name }}</span>{% endif -%}
+          {%- if person.role %}<small>{{ person.role }}</small>{% endif -%}
+        </li>
+        {%- endfor %}
+      </ul>
+      <p class="affiliations">{{ site.project.affiliations | join: " · " }}</p>
+      <div class="buttons">
+        {%- for link in site.project.links %}
+        <a class="button" href="{{ link.url }}">{% include icon.html name=link.icon %}<span>{{ link.label }}</span></a>
+        {%- endfor %}
+      </div>
+    </div>
+  </section>
+
+  <main class="content" id="content">
+    {{ content }}
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <p>© {{ 'now' | date: '%Y' }} {{ site.author.name }} · Code under the MIT License ·
+        <a href="mailto:{{ site.author.email }}">{% include icon.html name="mail" %} {{ site.author.email }}</a></p>
+      <p class="muted">Last updated {{ site.time | date: '%B %-d, %Y' }} · Built with Jekyll</p>
+    </div>
+  </footer>
+
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"
+          onload="renderMathInElement(document.getElementById('content'), {delimiters: [{left: '\\[', right: '\\]', display: true}, {left: '\\(', right: '\\)', display: false}]});"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const content = document.getElementById("content");
+
+      // A paragraph holding only an image becomes a numbered figure, captioned by its alt text.
+      let figureNumber = 0;
+      content.querySelectorAll("p > img:only-child").forEach((img) => {
+        const paragraph = img.parentElement;
+        if (paragraph.textContent.trim() !== "") return;
+        figureNumber += 1;
+        const figure = document.createElement("figure");
+        const caption = document.createElement("figcaption");
+        const label = document.createElement("strong");
+        label.textContent = `Figure ${figureNumber}.`;
+        caption.append(label, ` ${img.alt}`);
+        paragraph.replaceWith(figure);
+        figure.append(img, caption);
+      });
+
+      // Roadmap status marks in the README (✅ 🔄 ⬜) become badges: pills in table cells, dots in text.
+      const STATUS = { "✅": ["done", "Done"], "🔄": ["progress", "In progress"], "⬜": ["planned", "Planned"] };
+      content.querySelectorAll("td:first-child").forEach((cell) => {
+        const status = STATUS[cell.textContent.trim().replace("\uFE0F", "")];
+        if (!status) return;
+        const pill = document.createElement("span");
+        pill.className = `status status-${status[0]}`;
+        pill.textContent = status[1];
+        cell.replaceChildren(pill);
+      });
+      const walker = document.createTreeWalker(content, NodeFilter.SHOW_TEXT);
+      const textNodes = [];
+      while (walker.nextNode()) textNodes.push(walker.currentNode);
+      textNodes.forEach((node) => {
+        if (!/[✅🔄⬜]/u.test(node.nodeValue) || node.parentElement.closest("pre, code")) return;
+        const fragment = document.createDocumentFragment();
+        node.nodeValue.split(/([✅🔄⬜])\uFE0F?/u).forEach((part) => {
+          if (STATUS[part]) {
+            const dot = document.createElement("span");
+            dot.className = `status-dot status-${STATUS[part][0]}`;
+            dot.title = STATUS[part][1];
+            dot.setAttribute("role", "img");
+            dot.setAttribute("aria-label", STATUS[part][1]);
+            fragment.append(dot);
+          } else if (part) {
+            fragment.append(part);
+          }
+        });
+        node.replaceWith(fragment);
+      });
+
+      // Wide tables scroll sideways instead of stretching the page.
+      content.querySelectorAll("table").forEach((table) => {
+        const wrap = document.createElement("div");
+        wrap.className = "table-wrap";
+        table.replaceWith(wrap);
+        wrap.append(table);
+      });
+
+      // Copy buttons on code blocks.
+      content.querySelectorAll("div.highlighter-rouge").forEach((block) => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "copy";
+        button.textContent = "Copy";
+        button.addEventListener("click", async () => {
+          try {
+            await navigator.clipboard.writeText(block.querySelector("code").innerText);
+            button.textContent = "Copied";
+          } catch {
+            button.textContent = "Select and copy";
+          }
+          setTimeout(() => { button.textContent = "Copy"; }, 1600);
+        });
+        block.append(button);
+      });
+
+      // Highlight the section currently in view.
+      const links = new Map([...document.querySelectorAll(".topnav a")].map((a) => [a.hash.slice(1), a]));
+      const hero = document.querySelector(".hero");
+      const aboveContent = () => window.scrollY < hero.offsetTop + hero.offsetHeight - 80;
+      const clearActive = () => links.forEach((a) => a.classList.remove("active"));
+      window.addEventListener("scroll", () => { if (aboveContent()) clearActive(); }, { passive: true });
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting || aboveContent()) return;
+          links.forEach((a) => a.classList.remove("active"));
+          const link = links.get(entry.target.id);
+          if (link) link.classList.add("active");
+        });
+      }, { rootMargin: "-15% 0px -75% 0px" });
+      links.forEach((_, id) => {
+        const section = document.getElementById(id);
+        if (section) observer.observe(section);
+      });
+    });
+  </script>
+</body>
+</html>
