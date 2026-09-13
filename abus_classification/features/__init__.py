@@ -1,3 +1,4 @@
 from abus_classification.features import shape_descriptor
 from abus_classification.features import texture
 from abus_classification.features import radiology
+from abus_classification.features import tan

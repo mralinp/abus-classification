@@ -12,6 +12,13 @@ def surface_area(mask: np.ndarray, spacing: tuple = None) -> float:
     border still produce a closed surface. Without it the boundary faces are
     missing and the area is underestimated.
 
+    Marching cubes overestimates surface area on a voxel staircase, and more
+    so when voxels are anisotropic: on TDSC-ABUS spacing a sphere gets
+    an area ~12% too large even with `spacing`, and the correct area after resampling to 0.6 mm
+    cubes. Resample to isotropic voxels first for values comparable across
+    datasets (``utils.spacing.prepare_lesion`` does this, and
+    ``extract_radiology_features`` uses it).
+
     Args:
         mask (np.ndarray): A 3D binary lesion mask.
         spacing (tuple, optional): Physical voxel size along each axis.
