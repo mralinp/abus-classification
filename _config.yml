@@ -1,0 +1,17 @@
+# GitHub Pages configuration: README.md is rendered as the project homepage.
+title: Classification of Breast Cancer Lesions in 3D ABUS
+description: Reproducing published classifiers on TDSC-ABUS 2023 and developing 3D shape representations of breast tumors.
+theme: jekyll-theme-cayman
+
+# Keep the site build to the homepage and its images.
+exclude:
+  - abus_classification
+  - notebooks
+  - test
+  - data
+  - tmp
+  - docs/presentations
+  - main.py
+  - pyproject.toml
+  - pytest.ini
+  - uv.lock
