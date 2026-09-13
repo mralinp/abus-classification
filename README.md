@@ -192,14 +192,13 @@ data/tdsc/
 from tdsc_abus2023_pytorch import TDSC, DataSplits
 from abus_classification.features import tan
 
-dataset = TDSC(path="data/tdsc", split=DataSplits.TRAIN)
+dataset = TDSC(path="data/tdsc", split=DataSplits.TRAIN, download=True)
 volume, mask, label, bbox = dataset[0]          # label: 0 = malignant, 1 = benign
 
 features = tan.extract_tan_features(volume, mask)   # millimetre-aware, uses TDSC-ABUS spacing
 ```
 
-Pass `download=True` only when a split is missing from disk: the loader currently downloads on every
-call when it is set.
+Passing `download=True` makes the dataset automatically downloaded if its not present on the system.
 
 ### Run
 
