@@ -1,6 +1,6 @@
 import numpy as np
 import trimesh
-from scipy.sparse.linalg import eigs
+from scipy.sparse.linalg import eigsh
 from scipy.sparse import csr_matrix
 import scipy.sparse as sp
 from typing import Tuple, Optional
@@ -8,72 +8,56 @@ from typing import Tuple, Optional
 def compute_laplace_beltrami_operator(mesh: trimesh.Trimesh) -> Tuple[csr_matrix, csr_matrix]:
     """
     Compute the Laplace-Beltrami operator using the cotangent weights scheme.
-    Returns both the Laplacian matrix L and the mass matrix M.
+    Returns both the Laplacian matrix L and the lumped mass matrix M.
+
+    L is positive semi-definite (L = D - W), so the generalised eigenvalues of
+    L phi = lambda M phi are >= 0 with lambda_0 = 0. The heat, wave and global
+    point signatures below all assume that convention.
+
+    The edge weight is w_ij = (cot a_ij + cot b_ij) / 2, where a_ij and b_ij
+    are the angles opposite edge (i, j) in its two adjacent triangles.
     """
-    vertices = mesh.vertices
-    faces = mesh.faces
+    vertices = np.asarray(mesh.vertices, dtype=np.float64)
+    faces = np.asarray(mesh.faces)
     n_vertices = len(vertices)
-    
-    # Initialize the matrices
-    L = sp.lil_matrix((n_vertices, n_vertices))
-    M = sp.lil_matrix((n_vertices, n_vertices))
-    
-    # Compute cotangent weights
-    for face in faces:
-        # Get vertices of the face
-        vi = vertices[face]
-        # Compute edges
-        edges = np.roll(vi, -1, axis=0) - vi
-        # Compute squared lengths of edges
-        sq_lengths = np.sum(edges**2, axis=1)
-        # Compute angles using cosine law
-        angles = []
-        for i in range(3):
-            j = (i + 1) % 3
-            k = (i + 2) % 3
-            cos_angle = np.dot(edges[j], -edges[k]) / np.sqrt(sq_lengths[j] * sq_lengths[k])
-            angle = np.arccos(np.clip(cos_angle, -1.0, 1.0))
-            angles.append(angle)
-        angles = np.array(angles)
-        
-        # Compute cotangent weights
-        cotangents = 1.0 / np.tan(angles)
-        
-        # Fill the Laplacian matrix
-        for i in range(3):
-            j = (i + 1) % 3
-            k = (i + 2) % 3
-            L[face[i], face[j]] += cotangents[k] / 2
-            L[face[j], face[i]] += cotangents[k] / 2
-    
-    # Make Laplacian symmetric
-    L = L.tocsr()
-    L = (L + L.T) / 2
-    
-    # Compute diagonal elements
-    L.setdiag(-np.array(L.sum(axis=1)).flatten())
-    
-    # Compute mass matrix (area weights)
-    for face in faces:
-        # Compute area of the face
-        vi = vertices[face]
-        area = np.linalg.norm(np.cross(vi[1] - vi[0], vi[2] - vi[0])) / 2
-        # Add area contribution to each vertex
-        for v in face:
-            M[v, v] += area / 3
-    
+
+    v0, v1, v2 = vertices[faces[:, 0]], vertices[faces[:, 1]], vertices[faces[:, 2]]
+
+    def cot(a, b):
+        cross = np.linalg.norm(np.cross(a, b), axis=1)
+        return np.einsum("ij,ij->i", a, b) / np.maximum(cross, 1e-12)
+
+    # Angle at each corner, paired with the edge opposite it.
+    cot0 = cot(v1 - v0, v2 - v0)   # opposite edge (1, 2)
+    cot1 = cot(v2 - v1, v0 - v1)   # opposite edge (2, 0)
+    cot2 = cot(v0 - v2, v1 - v2)   # opposite edge (0, 1)
+
+    rows = np.concatenate([faces[:, 1], faces[:, 2], faces[:, 0]])
+    cols = np.concatenate([faces[:, 2], faces[:, 0], faces[:, 1]])
+    weights = 0.5 * np.concatenate([cot0, cot1, cot2])
+
+    W = sp.coo_matrix((weights, (rows, cols)), shape=(n_vertices, n_vertices)).tocsr()
+    W = W + W.T
+    L = sp.diags(np.asarray(W.sum(axis=1)).ravel()) - W
+
+    # Lumped mass matrix: a third of each adjacent triangle's area per vertex.
+    areas = 0.5 * np.linalg.norm(np.cross(v1 - v0, v2 - v0), axis=1)
+    mass = np.bincount(faces.ravel(), weights=np.repeat(areas / 3, 3), minlength=n_vertices)
+    M = sp.diags(mass)
+
     return L.tocsr(), M.tocsr()
 
 def compute_eigendecomposition(L: csr_matrix, M: csr_matrix, k: int = 50) -> Tuple[np.ndarray, np.ndarray]:
     """
     Compute the first k eigenvalues and eigenvectors of the generalized eigenvalue problem L φ = λ M φ
+
+    Uses the symmetric solver in shift-invert mode around a small negative
+    shift, which finds the smallest eigenvalues reliably even though L is
+    singular.
     """
-    eigenvalues, eigenvectors = eigs(L, k=k, M=M, which='SM')
-    # Sort by eigenvalues
-    idx = eigenvalues.argsort()
-    eigenvalues = eigenvalues[idx].real
-    eigenvectors = eigenvectors[:, idx].real
-    return eigenvalues, eigenvectors
+    eigenvalues, eigenvectors = eigsh(L, k=k, M=M, sigma=-1e-8, which="LM")
+    idx = np.argsort(eigenvalues)
+    return eigenvalues[idx], eigenvectors[:, idx]
 
 def compute_hks(eigenvalues: np.ndarray, eigenvectors: np.ndarray, time_points: Optional[np.ndarray] = None) -> np.ndarray:
     """

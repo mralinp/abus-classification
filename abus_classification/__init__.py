@@ -1,5 +1,4 @@
 from abus_classification import models
-from abus_classification import datasets
 from abus_classification import transformers
 from abus_classification import utils
 from abus_classification import features

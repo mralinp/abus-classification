@@ -2,29 +2,34 @@ import numpy as np
 from scipy import stats
 
 
-def entropy(lesion):
+def entropy(volume: np.ndarray, mask: np.ndarray = None, bins: int = 256) -> float:
     """
-    Calculate the entropy of a 3D lesion mask.
+    Calculate the Shannon entropy of the intensity distribution of a lesion.
+
+    Entropy measures how disordered the echo pattern is: a uniform region has
+    low entropy, a heterogeneous one high entropy.
+
+    Pass `mask` to restrict the histogram to lesion voxels. Without it every
+    voxel of `volume` is counted, so any background included in the array
+    contributes its own mode and depresses the result.
 
     Args:
-        mask (np.ndarray): A 3D numpy array containing the mask of the lesion.
+        volume (np.ndarray): Intensity array of any dimensionality.
+        mask (np.ndarray, optional): Binary array selecting the lesion voxels.
+        bins (int): Number of histogram bins. Defaults to 256.
 
     Returns:
-        float: The entropy of the lesion mask.
+        float: Entropy in nats, or nan if there are no voxels to measure.
     """
-    # Ensure the mask is a 3D array
-    assert lesion.ndim == 3, "The lesion should be a 3D ndarray."
+    volume = np.asarray(volume)
+    values = volume[np.asarray(mask) > 0] if mask is not None else volume.ravel()
+    if values.size == 0:
+        return float("nan")
 
-    # Flatten the 3D mask to a 1D array
-    mask_flat = lesion.flatten()
+    counts, _ = np.histogram(values, bins=bins)
+    counts = counts[counts > 0]
+    if counts.size == 0:
+        return float("nan")
 
-    # Calculate the histogram of the voxel intensities
-    hist, bin_edges = np.histogram(mask_flat, bins=256, range=(0, 256), density=True)
-
-    # Normalize the histogram to get the probability distribution
-    p = hist[hist > 0]  # We only consider non-zero probabilities
-
-    # Calculate the entropy
-    ent = stats.entropy(p)
-
-    return ent
+    # stats.entropy normalises the counts into a probability distribution.
+    return float(stats.entropy(counts))

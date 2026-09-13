@@ -1,61 +1,58 @@
-import cv2
 import numpy as np
 from abus_classification.utils import image
 
 
-def boundary_signature3d(binary_volume: np, resolution:tuple[float, float]=(1.,1.), dif_min:int=5)->np:
-    
+def boundary_signature3d(binary_volume: np.ndarray, resolution: tuple[float, float] = (1., 1.), dif_min: int = 5) -> np.ndarray:
+    '''
+    Computes the radial boundary signature of a 3D shape.
+
+    Every surface voxel is placed in an (alpha, beta) bin by two angles
+    measured from the shape's centre: alpha in the (axis 0, axis 1) plane and
+    beta in the (axis 0, axis 2) plane, each over the full 0-360 degree range.
+    Each bin holds the mean centre-to-surface distance of its voxels; empty
+    bins are 0.
+
+    Args:
+        binary_volume (ndarray): 3D binary array of the filled shape.
+        resolution (tuple[float, float]): Angular bin size in degrees for
+            alpha and beta respectively.
+        dif_min (int): Kept for API compatibility; not used in 3D.
+
+    Returns:
+        ndarray: float32 array of shape (ceil(360 / resolution[0]),
+        ceil(360 / resolution[1])).
+    '''
     assert dif_min > 0
-    assert resolution[0] >= 0
-    assert resolution[1] >= 0
-    
-    n_alpha_bins = 360 // resolution[0]
-    n_alpha_bins = n_alpha_bins + 1 if 360%resolution[0] != 0 else n_alpha_bins
-    n_beta_bins = 360 // resolution[1]
-    n_beta_bins = n_beta_bins + 1 if 360%resolution[1] != 0 else n_beta_bins
-    
-    n_alpha_bins, n_beta_bins = int(n_alpha_bins), int(n_beta_bins)
-    
-    sig_counter = np.zeros((n_alpha_bins, n_beta_bins), dtype=np.float32)
-    sig = np.zeros((n_alpha_bins, n_beta_bins), dtype=np.int32)
-    
-    center = image.find_shape_center(binary_volume)
-    boundary_points = image.get_surface_points(binary_volume)
-    
-    for point in boundary_points:
-        
-        point_with_center_orig = point - center
-        alpha = np.arctan(point_with_center_orig[1]/point_with_center_orig[0])
-        beta = np.arctan(point_with_center_orig[2]/point_with_center_orig[0])
-        
-        alpha = np.degrees(alpha)%180
-        beta = np.degrees(beta)%180
-        
-                    
-        alpha_bin = int(alpha//resolution[0])
-        beta_bin = int(beta//resolution[0])
-        
-        alpha_bin_diff = alpha - alpha_bin*resolution[0]
-        beta_bin_diff = beta - beta_bin*resolution[0]
-        
-        if alpha_bin_diff > 0.5:
-            alpha_bin += 1
-            alpha_bin_diff = resolution[0] - alpha_bin_diff
-        
-        if beta_bin_diff > 0.5:
-            beta_bin += 1
-            beta_bin_diff = resolution[1] - beta_bin_diff
-            
-        alpha_bin = alpha_bin%n_alpha_bins
-        beta_bin = beta_bin%n_beta_bins
-        
-        distance = np.sqrt((point**2).sum())
-        sig[alpha_bin,beta_bin] += distance*(beta_bin_diff + alpha_bin_diff)
-        sig_counter[alpha_bin,beta_bin] += 1
-    
-    for i in range(n_alpha_bins):
-        for j in range(n_beta_bins):
-            if sig_counter[i][j] > 0:
-                sig[i][j] /= sig_counter[i][j]
-            
-    return np.array(sig, dtype=np.float32)
+    assert resolution[0] > 0
+    assert resolution[1] > 0
+
+    n_alpha_bins = int(np.ceil(360 / resolution[0]))
+    n_beta_bins = int(np.ceil(360 / resolution[1]))
+    signature = np.zeros((n_alpha_bins, n_beta_bins), dtype=np.float32)
+
+    binary = np.asarray(binary_volume) > 0
+    if not binary.any():
+        return signature
+
+    center = np.argwhere(binary).mean(axis=0)
+    points = image.get_surface_points(binary.astype(np.uint8))
+    offsets = points - center
+
+    # arctan2 keeps the quadrant and cannot divide by zero; the previous
+    # arctan(y / x) folded everything into 0-180, leaving half the bins empty.
+    alpha = np.degrees(np.arctan2(offsets[:, 1], offsets[:, 0])) % 360
+    beta = np.degrees(np.arctan2(offsets[:, 2], offsets[:, 0])) % 360
+
+    alpha_bin = np.round(alpha / resolution[0]).astype(int) % n_alpha_bins
+    beta_bin = np.round(beta / resolution[1]).astype(int) % n_beta_bins
+
+    # Distance from the centre (previously from the array origin).
+    distance = np.linalg.norm(offsets, axis=1)
+
+    sums = np.zeros_like(signature, dtype=np.float64)
+    counts = np.zeros_like(signature, dtype=np.float64)
+    np.add.at(sums, (alpha_bin, beta_bin), distance)
+    np.add.at(counts, (alpha_bin, beta_bin), 1)
+
+    np.divide(sums, counts, out=sums, where=counts > 0)
+    return sums.astype(np.float32)
