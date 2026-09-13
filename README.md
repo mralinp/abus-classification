@@ -16,7 +16,9 @@ not *why*. This project supplies the missing mathematics, toward a follow-up pap
    relates to spherical harmonic decompositions.
 3. **Derive better descriptors from that theory** and test whether they improve on the baselines.
 
-The work is carried out at the Iran Image Processing Lab (IIPL). Code is released under the MIT license.
+The work is carried out at the Iran Image Processing Lab (IIPL) by Ali Naderiparizi and Sepideh Barekatrezaei,
+under the supervision of Dr. Ehsan Kozegar and Dr. Mohsen Soryani (main supervisor). Code is released under
+the MIT license.
 
 ![Five malignant and five benign lesions from TDSC-ABUS, each shown in the transversal plane through its centre at a common millimetre scale](docs/assets/sample-tumors-transversal.png)
 
@@ -262,7 +264,7 @@ A paper is in preparation. Until then, please cite this repository:
 
 ```bibtex
 @misc{naderiparizi_abus_classification,
-  author       = {Ali Naderi Parizi},
+  author       = {Ali Naderiparizi and Sepideh Barekatrezaei and Ehsan Kozegar and Mohsen Soryani},
   title        = {Classification of Breast Cancer Lesions in 3D Automated Breast Ultrasound},
   year         = {2026},
   howpublished = {\url{https://github.com/mralinp/abus-classification}}

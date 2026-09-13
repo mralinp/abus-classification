@@ -10,3 +10,10 @@ checkpoint/*
 tmp
 *.pt
 data/*
+
+# Jekyll site
+_site/
+.jekyll-cache/
+.sass-cache/
+.bundle/
+vendor/
