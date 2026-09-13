@@ -1,55 +1,89 @@
 import numpy as np
-import cv2
-from skimage.morphology import skeletonize
-from scipy import ndimage as ndi
+from skimage import morphology
 
 
-def fractal_dimension(skeleton):
-    # Compute fractal dimension using box-counting method
-    L = skeleton.shape[0]
-    num_boxes = np.floor(np.log(L) / np.log(2))
-    counts = []
+def fractal_dimension(binary: np.ndarray) -> float:
+    """
+    Estimate the Minkowski-Bouligand (box-counting) dimension of a binary set.
 
-    for i in range(int(num_boxes)):
-        s = int(2 ** i)
-        boxes = ndi.labeled_comprehension(skeleton, np.zeros(skeleton.shape), np.arange(1, skeleton.max() + 1), np.sum, int, None, (s, s))
-        counts.append(np.count_nonzero(boxes))
+    The array is padded up to a power-of-two cube, then covered with boxes of
+    side 1, 2, 4, ... and the occupied boxes counted at each scale. The
+    dimension is the slope of log(count) against log(1 / side).
 
-    counts = np.array(counts)
-    log_counts = np.log(counts)
-    log_scales = np.log(2 ** np.arange(int(num_boxes)))
-    slope, _, _, _, _ = np.linalg.lstsq(log_scales.reshape(-1, 1), log_counts, rcond=None)
+    Args:
+        binary (np.ndarray): Binary array of any dimensionality.
 
-    return -slope[0]
+    Returns:
+        float: The box-counting dimension, or nan if the set is empty.
+    """
+    binary = np.asarray(binary) > 0
+    if not binary.any():
+        return float("nan")
+
+    ndim = binary.ndim
+    side = 2 ** int(np.ceil(np.log2(max(binary.shape))))
+    padded = np.zeros((side,) * ndim, dtype=bool)
+    padded[tuple(slice(0, s) for s in binary.shape)] = binary
+
+    scales, counts = [], []
+    for box in (2 ** np.arange(int(np.log2(side)))):
+        box = int(box)
+        blocks = padded.reshape(
+            [dim for _ in range(ndim) for dim in (side // box, box)]
+        )
+        occupied = blocks.sum(axis=tuple(range(1, 2 * ndim, 2)))
+        scales.append(box)
+        counts.append(int(np.count_nonzero(occupied)))
+
+    if len(scales) < 2:
+        return float("nan")
+
+    slope, _ = np.polyfit(np.log(1.0 / np.asarray(scales, dtype=float)), np.log(counts), 1)
+    return float(slope)
 
 
-def spiculation(x, m):
-    # Convert segmented mask to binary image
-    m_binary = np.uint8(m > 0)
+def spiculation(mask: np.ndarray) -> dict:
+    """
+    Quantify how spiculated (spiky and irregular) a lesion margin is.
 
-    # Skeletonize the binary mask
-    skeleton = skeletonize(m_binary)
+    Two complementary measures are returned:
 
-    # Detect edges of the segmented tumor
-    edges = cv2.Canny(np.uint8(x), 30, 70)
+    - `boundary_fractal_dimension` - the box-counting dimension of the lesion
+      surface. A smooth surface sits near the topological dimension of the
+      boundary; convoluted, spiculated margins push it higher.
+    - `radial_distance_deviation` - the standard deviation of centroid-to-
+      boundary distances divided by their mean. It is 0 for a perfect sphere
+      or circle and grows as spicules stretch the margin unevenly.
+    - `boundary_voxels` - the size of the extracted boundary, for reference.
 
-    # Calculate spiculation length
-    spiculation_length = np.sum(skeleton)
+    Args:
+        mask (np.ndarray): A 2D or 3D binary array containing the lesion mask.
 
-    # Calculate spiculation angle
-    dx, dy = np.gradient(skeleton)
-    angles = np.arctan2(dy, dx) * (180 / np.pi)
-    spiculation_angles = np.unique(angles)
+    Returns:
+        dict: The three measures above, as floats.
+    """
+    mask = np.asarray(mask) > 0
+    empty = {
+        "boundary_fractal_dimension": float("nan"),
+        "radial_distance_deviation": float("nan"),
+        "boundary_voxels": 0.0,
+    }
+    if not mask.any():
+        return empty
 
-    # Calculate spiculation density
-    spiculation_density = np.sum(skeleton) / np.sum(x)
+    boundary = mask & ~morphology.binary_erosion(mask)
+    points = np.argwhere(boundary)
+    if points.size == 0:
+        return empty
 
-    # Calculate spiculation complexity (e.g., using fractal dimension)
-    fractal_dimension_feature = fractal_dimension(skeleton)
+    centroid = np.argwhere(mask).mean(axis=0)
+    distances = np.linalg.norm(points - centroid, axis=1)
+    mean_distance = distances.mean()
 
     return {
-        'spiculation_length': spiculation_length,
-        'spiculation_angles': spiculation_angles,
-        'spiculation_density': spiculation_density,
-        'fractal_dimension': fractal_dimension_feature
+        "boundary_fractal_dimension": fractal_dimension(boundary),
+        "radial_distance_deviation": (
+            float(distances.std() / mean_distance) if mean_distance else float("nan")
+        ),
+        "boundary_voxels": float(points.shape[0]),
     }

@@ -2,7 +2,7 @@ from abus_classification.features.radiology.average_intensity import average_int
 from abus_classification.features.radiology.compactness import compactness
 from abus_classification.features.radiology.entropy import entropy
 from abus_classification.features.radiology.pab import posterior_acoustic_behavior
-from abus_classification.features.radiology.shpercity import sphericity
+from abus_classification.features.radiology.sphericity import sphericity
 from abus_classification.features.radiology.spiculation import spiculation
 from abus_classification.features.radiology.vhwr import height_to_width_ratio
 from abus_classification.features.radiology.margin_contrast import margin_contrast
