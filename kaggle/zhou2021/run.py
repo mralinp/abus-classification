@@ -7,4 +7,4 @@ os.makedirs("/kaggle/working/repo/data")
 os.symlink(cache, "/kaggle/working/repo/data/eswa2025.npz")
 sys.path.insert(0, "/kaggle/working/repo")
 import reproduce_zhou2021 as z
-z.main(60).to_csv("/kaggle/working/zhou2021_results.csv")
+z.main(100).to_csv("/kaggle/working/zhou2021_results.csv")
