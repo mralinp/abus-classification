@@ -1,10 +1,24 @@
 # abus-classification: working rules
 
+## Where code goes
+
+This repo is the library for every ABUS classification paper we reproduce, plus utilities for researchers.
+Everything reusable lives in the `abus_classification` package, never in root scripts or notebooks:
+
+- `papers/<author><year>/`: one subpackage per paper (`model.py`, `losses.py`, `train.py`/`pipeline.py`,
+  `__init__.py` exporting `main`, `__main__.py` CLI): `python -m abus_classification.papers.<name>`.
+- `protocol.py`: the shared evaluation protocol (device, metrics, folds, bootstrap CI).
+- `data/`: dataset-level caches (`lesion_cache.py`: patches, radiomic and Laplace-Beltrami features per volume).
+- `features/`, `models/`, `transformers/`, `preprocessing/`, `utils/`: reusable building blocks. If a second
+  paper needs something a paper subpackage defined, move it to one of these.
+- `test/papers_tests/`: shape, hand-computed-value and metric tests for each paper.
+- Root `reproduce_*.py` files are only back-compat shims for the Kaggle kernels; do not add new ones.
+
 ## One notebook per reproduced paper
 
 Every paper we reproduce (roadmap Phase 2 in `README.md`) gets its own notebook in `notebooks/`, numbered in the
-order we do them (`0-visualization`, `1-tao2013`, `2-barekatrezaei2026`, `3-zhou2021`, ...). The code lives in a
-`reproduce_<author><year>.py` script at the repo root; the notebook imports it, it does not duplicate it.
+order we do them (`0-visualization`, `1-tao2013`, `2-barekatrezaei2026`, `3-zhou2021`, ...). The code lives in
+`abus_classification/papers/<author><year>/`; the notebook imports it, it does not duplicate it.
 
 Each notebook must contain, so a reader can check the implementation is correct:
 
