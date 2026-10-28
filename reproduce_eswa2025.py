@@ -6,6 +6,7 @@
 Positive class = malignant (TDSC label 0). Table 3 of the paper is printed at the end.
 """
 import argparse
+import os
 from pathlib import Path
 
 import numpy as np
@@ -23,14 +24,16 @@ from sklearn.svm import SVC
 from tdsc_abus2023_pytorch import TDSC, DataSplits
 from torch import nn
 
+from abus_classification.features.radiology import extract_radiology_features
 from abus_classification.features.shape_descriptor.shape_descriptors import compute_laplace_beltrami_operator
 from abus_classification.utils.mesh import lesion_mesh
 from abus_classification.utils.spacing import TDSC_SPACING
 
 ROOT = Path(__file__).parent
 CACHE = ROOT / "data" / "eswa2025.npz"
+TDSC_PATH = os.environ.get("TDSC_PATH", str(ROOT / "data" / "tdsc"))  # downloaded here if missing
 PATCH, ISO, N_EIG = (128, 64, 80), 0.476, 100
-# Tan et al. 2012 six features, taken from the repo's existing radiomic table.
+# Tan et al. 2012 six features, computed with the repo's millimetre-aware extractor.
 RADIOMIC = ["height_to_width_ratio", "entropy", "mean_intensity", "margin_contrast", "intensity_variance", "sphericity"]
 DEVICE = "mps" if torch.backends.mps.is_available() else "cuda" if torch.cuda.is_available() else "cpu"
 
@@ -61,18 +64,15 @@ def patch(vol, mask):
 
 
 def build_cache():
-    rows = pd.read_csv(ROOT / "data" / "radiology_features.csv")
     data = {k: [] for k in ("split", "y", "radiomic", "lb", "vol", "mask")}
     for split in (DataSplits.TRAIN, DataSplits.VALIDATION, DataSplits.TEST):
-        ds = TDSC(path=str(ROOT / "data" / "tdsc"), split=split, download=False)
-        feats = rows[rows.split == split.name.capitalize()].sort_values("case")
-        assert len(feats) == len(ds), (split, len(feats), len(ds))
+        ds = TDSC(path=TDSC_PATH, split=split, download=True)
         for i in range(len(ds)):
             vol, mask, label, _ = ds[i]
             v, m = patch(vol, mask)
             data["split"].append(split.name == "TEST")
             data["y"].append(int(label == 0))              # 1 = malignant
-            data["radiomic"].append(feats.iloc[i][RADIOMIC].to_numpy(float))
+            data["radiomic"].append([extract_radiology_features(vol, mask)[k] for k in RADIOMIC])
             data["lb"].append(lb_eigenvalues(mask))
             data["vol"].append(v), data["mask"].append(m)
             print(split.name, i, flush=True)
