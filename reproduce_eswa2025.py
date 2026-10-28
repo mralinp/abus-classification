@@ -15,12 +15,14 @@ import torch
 from joblib import Parallel, delayed
 from scipy import ndimage
 from scipy.sparse.linalg import eigsh
+from sklearn.decomposition import PCA, KernelPCA
 from sklearn.ensemble import ExtraTreesClassifier, HistGradientBoostingClassifier
-from sklearn.manifold import Isomap
+from sklearn.linear_model import LogisticRegression
+from sklearn.manifold import Isomap, LocallyLinearEmbedding
 from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score, roc_auc_score
 from sklearn.model_selection import StratifiedKFold
 from sklearn.pipeline import make_pipeline
-from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import FunctionTransformer, StandardScaler
 from sklearn.svm import SVC
 from tdsc_abus2023_pytorch import TDSC, DataSplits
 from torch import nn
@@ -133,38 +135,91 @@ def metrics(y, p):
                 Sens=recall_score(y, pred), Spec=recall_score(y, pred, pos_label=0), F1=f1_score(y, pred))
 
 
-def main(epochs, seed=0):
+def load():
+    """Cached features with LB eigenvalues log-standardised (they span orders of magnitude; lambda_0 = 0 dropped)."""
     if not CACHE.exists():
         build_cache()
     d = np.load(CACHE)
     test, y = d["split"], d["y"]
-    X = {k: d[k] for k in ("radiomic", "lb", "vol", "mask")}
     tv, te = np.flatnonzero(~test), np.flatnonzero(test)
-    # Eigenvalues span orders of magnitude; standardise their logs before Isomap / the CNN head.
-    X["lb"] = np.log10(np.maximum(X["lb"], 1e-12)[:, 1:])   # drop lambda_0 = 0
-    lb_std = StandardScaler().fit(X["lb"][tv])
-    X["lb"] = lb_std.transform(X["lb"])
+    lb = np.log10(np.maximum(d["lb"], 1e-12)[:, 1:])
+    X = dict(radiomic=d["radiomic"], lb=StandardScaler().fit(lb[tv]).transform(lb), vol=d["vol"], mask=d["mask"])
+    return X, y, tv, te
 
-    names = ("SVM", "ExtraTrees", "CNN")
-    oof, tst = np.zeros((3, len(tv))), np.zeros((3, len(te)))
-    for fold, (a, b) in enumerate(StratifiedKFold(5, shuffle=True, random_state=seed).split(tv, y[tv])):
-        a, b = tv[a], tv[b]
-        iso = Isomap(n_components=2, n_neighbors=5).fit(X["lb"][a])
-        tab = lambda i: np.c_[X["radiomic"][i], iso.transform(X["lb"][i])]
-        for k, clf in enumerate((SVC(kernel="linear", probability=True, random_state=seed),
-                                 ExtraTreesClassifier(500, random_state=seed))):
+
+def folds(y, tv, seed):
+    return [(tv[a], tv[b]) for a, b in StratifiedKFold(5, shuffle=True, random_state=seed).split(tv, y[tv])]
+
+
+def tabular_cv(X, y, tv, te, seed, rad=True, lb=True, reducer="isomap", dim=2):
+    """Out-of-fold / fold-averaged test probabilities of SVM and Extra Trees on radiomic + reduced LB features."""
+    red = dict(isomap=lambda: Isomap(n_components=dim, n_neighbors=5), pca=lambda: PCA(dim, random_state=seed),
+               kpca=lambda: KernelPCA(dim, kernel="rbf", random_state=seed),
+               lle=lambda: LocallyLinearEmbedding(n_components=dim, n_neighbors=5, random_state=seed),
+               none=lambda: FunctionTransformer())[reducer]
+    oof, tst = np.zeros((2, len(tv))), np.zeros((2, len(te)))
+    for a, b in folds(y, tv, seed):
+        r = red().fit(X["lb"][a]) if lb else None
+        empty = lambda i: np.empty((len(i), 0))
+        tab = lambda i: np.c_[X["radiomic"][i] if rad else empty(i), r.transform(X["lb"][i]) if lb else empty(i)]
+        for k, clf in enumerate((SVC(kernel="linear", probability=True, random_state=seed), ExtraTreesClassifier(500, random_state=seed))):
             m = make_pipeline(StandardScaler(), clf).fit(tab(a), y[a])
             oof[k, np.isin(tv, b)], tst[k] = m.predict_proba(tab(b))[:, 1], tst[k] + m.predict_proba(tab(te))[:, 1] / 5
-        pack = lambda i: (X["vol"][i], X["mask"][i], X["lb"][i])
-        p_b, p_te = fit_cnn((*pack(a), y[a]), [pack(b), pack(te)], epochs, seed + fold)
-        oof[2, np.isin(tv, b)], tst[2] = p_b, tst[2] + p_te / 5
-        print(f"fold {fold} done", flush=True)
+    return oof, tst
 
-    meta = HistGradientBoostingClassifier(random_state=seed).fit(oof.T, y[tv])
-    rows = {n: metrics(y[te], tst[i]) for i, n in enumerate(names)}
-    rows["Voting"] = metrics(y[te], tst.mean(0))
-    rows["Stacking"] = metrics(y[te], meta.predict_proba(tst.T)[:, 1])
+
+def cnn_cv(X, y, tv, te, epochs, seed, head="lb"):
+    """Dual-path CNN; `head` picks the features concatenated after GAP: lb, both (radiomic + lb) or none."""
+    ext = dict(lb=X["lb"], both=np.c_[X["lb"], StandardScaler().fit(X["radiomic"][tv]).transform(X["radiomic"])],
+               none=np.empty((len(y), 0)))[head]
+    pack = lambda i: (X["vol"][i], X["mask"][i], ext[i])
+    oof, tst = np.zeros(len(tv)), np.zeros(len(te))
+    for fold, (a, b) in enumerate(folds(y, tv, seed)):
+        p_b, p_te = fit_cnn((*pack(a), y[a]), [pack(b), pack(te)], epochs, seed + fold)
+        oof[np.isin(tv, b)], tst = p_b, tst + p_te / 5
+        print(f"cnn[{head}] fold {fold} done", flush=True)
+    return oof, tst
+
+
+def stack(oof, tst, y_tv, y_te):
+    """Voting plus two stackers (gradient boosting, logistic regression) over the base classifiers' outputs."""
+    rows = {"Voting": metrics(y_te, tst.mean(0))}
+    for n, meta in (("Stacking-HGB", HistGradientBoostingClassifier(random_state=0)), ("Stacking-LR", LogisticRegression())):
+        rows[n] = metrics(y_te, meta.fit(oof.T, y_tv).predict_proba(tst.T)[:, 1])
+    return rows
+
+
+def main(epochs, seed=0):
+    X, y, tv, te = load()
+    (o_t, t_t), (o_c, t_c) = tabular_cv(X, y, tv, te, seed), cnn_cv(X, y, tv, te, epochs, seed)
+    oof, tst = np.r_[o_t, o_c[None]], np.r_[t_t, t_c[None]]
+    np.savez(CACHE.with_name(f"eswa2025_preds_s{seed}.npz"), oof=oof, tst=tst, y_tv=y[tv], y_te=y[te])
+    rows = {n: metrics(y[te], tst[i]) for i, n in enumerate(("SVM", "ExtraTrees", "CNN"))}
+    rows.update(stack(oof, tst, y[tv], y[te]))
     table = pd.DataFrame(rows).T.round(4)
+    print(table.to_string())
+    return table
+
+
+def ablations(epochs, seed=0):
+    """Tables 4-8 of the paper; the CNN is only retrained where a config changes it (Table 8)."""
+    X, y, tv, te = load()
+    cnn = {h: cnn_cv(X, y, tv, te, epochs, seed, h) for h in ("lb", "both", "none")}
+    full = tabular_cv(X, y, tv, te, seed)
+    run = lambda tab, c: stack(np.r_[tab[0], c[0][None]], np.r_[tab[1], c[1][None]], y[tv], y[te])
+    configs = {
+        **{f"T4 {r}": run(tabular_cv(X, y, tv, te, seed, reducer=r), cnn["lb"]) for r in ("isomap", "pca", "kpca", "lle", "none")},
+        **{f"T5 dim={d}": run(tabular_cv(X, y, tv, te, seed, dim=d), cnn["lb"]) for d in (2, 5, 10, 20, 50)},
+        "T7 no LB": run(tabular_cv(X, y, tv, te, seed, lb=False), cnn["lb"]),
+        "T7 no radiomic": run(tabular_cv(X, y, tv, te, seed, rad=False), cnn["lb"]),
+        "T8 CNN rad+LB": run(full, cnn["both"]),
+        "T8 CNN none": run(full, cnn["none"]),
+    }
+    oof, tst = np.r_[full[0], cnn["lb"][0][None]], np.r_[full[1], cnn["lb"][1][None]]
+    for drop, name in enumerate(("SVM", "ExtraTrees", "CNN")):       # T6: leave one base classifier out
+        keep = [k for k in range(3) if k != drop]
+        configs[f"T6 without {name}"] = stack(oof[keep], tst[keep], y[tv], y[te])
+    table = pd.DataFrame({f"{c} [{m}]": v for c, r in configs.items() for m, v in r.items()}).T.round(4)
     print(table.to_string())
     return table
 
@@ -173,4 +228,6 @@ if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--epochs", type=int, default=60)
     ap.add_argument("--seed", type=int, default=0)
-    main(**vars(ap.parse_args()))
+    ap.add_argument("--ablate", action="store_true", help="paper Tables 4-8 instead of Table 3")
+    a = ap.parse_args()
+    (ablations if a.ablate else main)(a.epochs, a.seed)
