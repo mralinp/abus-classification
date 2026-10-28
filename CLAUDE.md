@@ -14,6 +14,13 @@ Everything reusable lives in the `abus_classification` package, never in root sc
 - `test/papers_tests/`: shape, hand-computed-value and metric tests for each paper.
 - Root `reproduce_*.py` files are only back-compat shims for the Kaggle kernels; do not add new ones.
 
+## One branch per paper
+
+Implement papers one by one, each on its own branch (`feat/<author><year>`) with its own PR; never put two papers'
+work on one branch. Compare methods afterwards, in a separate comparison step (roadmap: unified comparison table).
+Shared code (protocol, data cache, utilities) goes in its own PR/branch first; a paper branch may build on it.
+Kaggle kernels clone the paper's own branch, so keep `kaggle/<name>/run.py` pointing at it.
+
 ## One notebook per reproduced paper
 
 Every paper we reproduce (roadmap Phase 2 in `README.md`) gets its own notebook in `notebooks/`, numbered in the
