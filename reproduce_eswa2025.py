@@ -12,6 +12,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 import torch
+from joblib import Parallel, delayed
 from scipy import ndimage
 from scipy.sparse.linalg import eigsh
 from sklearn.ensemble import ExtraTreesClassifier, HistGradientBoostingClassifier
@@ -63,20 +64,22 @@ def patch(vol, mask):
     return (out[0] / 255).astype(np.float16), (out[1] > 0.5).astype(np.float16)
 
 
+def one_case(split, i):
+    vol, mask, label, _ = TDSC(path=TDSC_PATH, split=split, download=False)[i]
+    v, m = patch(vol, mask)
+    feats = extract_radiology_features(vol, mask)           # once: it computes every feature
+    return dict(split=split.name == "TEST", y=int(label == 0),   # y: 1 = malignant
+                radiomic=[feats[k] for k in RADIOMIC], lb=lb_eigenvalues(mask), vol=v, mask=m)
+
+
 def build_cache():
-    data = {k: [] for k in ("split", "y", "radiomic", "lb", "vol", "mask")}
+    CACHE.parent.mkdir(parents=True, exist_ok=True)         # fail now, not after hours of work
+    jobs = []
     for split in (DataSplits.TRAIN, DataSplits.VALIDATION, DataSplits.TEST):
         ds = TDSC(path=TDSC_PATH, split=split, download=not (Path(TDSC_PATH) / str(split)).exists())
-        for i in range(len(ds)):
-            vol, mask, label, _ = ds[i]
-            v, m = patch(vol, mask)
-            data["split"].append(split.name == "TEST")
-            data["y"].append(int(label == 0))              # 1 = malignant
-            data["radiomic"].append([extract_radiology_features(vol, mask)[k] for k in RADIOMIC])
-            data["lb"].append(lb_eigenvalues(mask))
-            data["vol"].append(v), data["mask"].append(m)
-            print(split.name, i, flush=True)
-    np.savez_compressed(CACHE, **{k: np.asarray(v) for k, v in data.items()})
+        jobs += [(split, i) for i in range(len(ds))]
+    cases = Parallel(n_jobs=-1, verbose=5)(delayed(one_case)(*j) for j in jobs)   # input order is kept
+    np.savez_compressed(CACHE, **{k: np.asarray([c[k] for c in cases]) for k in cases[0]})
 
 
 class DualPath(nn.Module):
