@@ -6,5 +6,8 @@ cache = glob.glob("/kaggle/input/**/eswa2025.npz", recursive=True)[0]   # featur
 os.makedirs("/kaggle/working/repo/data")
 os.symlink(cache, "/kaggle/working/repo/data/eswa2025.npz")
 sys.path.insert(0, "/kaggle/working/repo")
-import reproduce_zhou2021 as z
-z.main(100).to_csv("/kaggle/working/zhou2021_results.csv")
+# Resume from checkpoints of an earlier (crashed) run: attach it as a kernel source, e.g. "simayousef/zhou2021-multitask".
+for f in glob.glob("/kaggle/input/**/zhou2021_seed*.pt", recursive=True):
+    sh(f"cp -n {f} /kaggle/working/")
+from abus_classification.papers.zhou2021 import main
+main(100, ckpt_dir="/kaggle/working").to_csv("/kaggle/working/zhou2021_results.csv")

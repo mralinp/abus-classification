@@ -11,6 +11,8 @@ Deviations: patches are our cached 128x64x80 voxels at 0.476 mm (paper 128x64x12
 random flips + isotropic scaling (no rotation / elastic); epochs, decay schedule and FC width are not given
 (100 epochs, cosine, 256). Protocol: train on Train+Validation (130), report on the official Test split (70).
 """
+from pathlib import Path
+
 import numpy as np
 import pandas as pd
 import torch
@@ -34,7 +36,7 @@ def augment(v, m):
     return warp(v, "bilinear"), (warp(m, "bilinear") > 0.5).float()
 
 
-def train_eval(X, y, tv, te, epochs, seed, lam=0.3, iters=2):
+def train_eval(X, y, tv, te, epochs, seed, lam=0.3, iters=2, ckpt_dir="."):
     torch.manual_seed(seed), np.random.seed(seed)
     t = lambda a: torch.as_tensor(np.asarray(a, np.float32))
     vol, mask, lab = t(X["vol"][tv]), t(X["mask"][tv]), t(y[tv])
@@ -42,7 +44,13 @@ def train_eval(X, y, tv, te, epochs, seed, lam=0.3, iters=2):
     net = MultiTaskVNet().to(DEVICE)
     opt = torch.optim.Adam(net.parameters(), 1e-4)
     sched = torch.optim.lr_scheduler.CosineAnnealingLR(opt, epochs)
-    for ep in range(epochs):
+    ckpt, start = Path(ckpt_dir) / f"zhou2021_seed{seed}.pt", 0
+    if ckpt.exists():                                                # resume after a crash / re-evaluate a finished run
+        state = torch.load(ckpt, map_location=DEVICE)
+        net.load_state_dict(state["net"]), opt.load_state_dict(state["opt"]), sched.load_state_dict(state["sched"])
+        start = state["epoch"]
+        print(f"seed {seed}: resumed from {ckpt} at epoch {start}", flush=True)
+    for ep in range(start, epochs):
         net.train()
         for idx in torch.randperm(len(lab)).split(2):
             if len(idx) < 2:                                         # BatchNorm needs more than one sample
@@ -55,25 +63,32 @@ def train_eval(X, y, tv, te, epochs, seed, lam=0.3, iters=2):
                 opt.zero_grad(), loss.backward(), opt.step()
                 prob = torch.sigmoid(seg).detach()
         sched.step()
-        if ep % 10 == 9:
+        if ep % 10 == 9 or ep + 1 == epochs:
             print(f"seed {seed} epoch {ep + 1} loss {loss.item():.3f}", flush=True)
+            ckpt.parent.mkdir(parents=True, exist_ok=True)
+            torch.save(dict(net=net.state_dict(), opt=opt.state_dict(), sched=sched.state_dict(), epoch=ep + 1), ckpt)
     net.eval()
+    probs, dices = [], []
     with torch.no_grad():
-        v, m = t(X["vol"][te]).to(DEVICE), t(X["mask"][te]).to(DEVICE)
-        prob = torch.zeros_like(v)
-        for _ in range(iters):
-            seg, logit = net(v[:, None] + prob[:, None])
-            prob = torch.sigmoid(seg)
-        pred = prob > 0.5
-        inter = (pred & (m > 0.5)).sum((1, 2, 3)).float()
-        dice = (2 * inter / (pred.sum((1, 2, 3)) + (m > 0.5).sum((1, 2, 3)))).mean().item()
-        return torch.sigmoid(logit).cpu().numpy(), dice
+        for idx in np.array_split(np.arange(len(te)), max(1, len(te) // 2)):        # small batches: 70 at once OOMs
+            v, m = t(X["vol"][te[idx]]).to(DEVICE), t(X["mask"][te[idx]]).to(DEVICE) > 0.5
+            prob = torch.zeros_like(v)
+            for _ in range(iters):
+                seg, logit = net(v[:, None] + prob[:, None])
+                prob = torch.sigmoid(seg)
+            pred = prob > 0.5
+            dices.append((2 * (pred & m).sum((1, 2, 3)).float() / (pred.sum((1, 2, 3)) + m.sum((1, 2, 3)))).cpu())
+            probs.append(torch.sigmoid(logit).cpu())
+    return torch.cat(probs).numpy(), torch.cat(dices).mean().item()
 
 
-def main(epochs, seeds=(0, 1, 2)):
+def main(epochs, seeds=(0, 1, 2), ckpt_dir="."):
     X, tv, te = load_raw()
     y = X["y"]
-    runs = [train_eval(X, y, tv, te, epochs, s) for s in seeds]
+    runs = []
+    for s in seeds:
+        runs.append(train_eval(X, y, tv, te, epochs, s, ckpt_dir=ckpt_dir))
+        np.save(Path(ckpt_dir) / f"zhou2021_probs_seed{s}.npy", runs[-1][0])                  # keep each seed even if a later one fails
     rows = {f"seed {s}": {**metrics(y[te], p), "Dice": d} for s, (p, d) in zip(seeds, runs)}
     mean = np.mean([p for p, _ in runs], 0)
     rows["mean of seeds"] = {**metrics(y[te], mean), "Dice": np.mean([d for _, d in runs])}
