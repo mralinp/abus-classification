@@ -66,7 +66,7 @@ def patch(vol, mask):
 def build_cache():
     data = {k: [] for k in ("split", "y", "radiomic", "lb", "vol", "mask")}
     for split in (DataSplits.TRAIN, DataSplits.VALIDATION, DataSplits.TEST):
-        ds = TDSC(path=TDSC_PATH, split=split, download=True)
+        ds = TDSC(path=TDSC_PATH, split=split, download=not (Path(TDSC_PATH) / str(split)).exists())
         for i in range(len(ds)):
             vol, mask, label, _ = ds[i]
             v, m = patch(vol, mask)
