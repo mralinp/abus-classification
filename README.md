@@ -91,7 +91,7 @@ DeLong's test. Each is evaluated twice — from ground-truth masks and from pred
 | --- | --- | --- |
 | ⬜ | Barekatrezaei et al. 2026 [7] — our previous work | Laplace–Beltrami spectra + dual-path CNN, stacked ensemble; re-run here as the reference baseline |
 | ⬜ | TDSC-ABUS challenge top entries [5] | 3D ResNet (T1); 2.5D DenseNet201 with voting (T4); patch-based 3D ResNet-18 (T3) |
-| 🔄 | Zhou et al. 2021 [6] | Multi-task V-Net: joint segmentation and classification — model implemented, evaluation pending |
+| 🔄 | Zhou et al. 2021 [6] | Multi-task V-Net: joint segmentation and classification — evaluated on Kaggle (test AUC 0.67, Dice 0.73), does not reproduce yet; `notebooks/3-zhou2021.ipynb` |
 | ⬜ | Yu et al. 2024 [8] | 2D-input networks with soft and hard voting across slices |
 | ⬜ | [Breast cancer classification in ABUS using multiview CNN with transfer learning](https://pubmed.ncbi.nlm.nih.gov/32059918/) | Multiview 2D CNN |
 | ⬜ | [Fully automatic classification of ABUS according to BI-RADS using a deep CNN](https://pubmed.ncbi.nlm.nih.gov/35147776/) | 2D deep CNN |
