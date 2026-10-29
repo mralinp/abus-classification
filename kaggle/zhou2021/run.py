@@ -10,4 +10,7 @@ sys.path.insert(0, "/kaggle/working/repo")
 for f in glob.glob("/kaggle/input/**/zhou2021_seed*.pt", recursive=True):
     sh(f"cp -n {f} /kaggle/working/")
 from abus_classification.papers.zhou2021 import main
-main(100, ckpt_dir="/kaggle/working").to_csv("/kaggle/working/zhou2021_results.csv")
+# Outputs per seed: checkpoint, test probabilities, <seed>_history.csv (focal / Dice terms, train AUC per epoch) and
+# <seed>_test.npz (per-case Dice, mid-plane probability maps). Finished checkpoints attached as input are only
+# re-evaluated, which gives the test npz without retraining. val=True: diagnostic run with 20% of Train+Validation held out.
+main(100, ckpt_dir="/kaggle/working", val=False).to_csv("/kaggle/working/zhou2021_results.csv")
