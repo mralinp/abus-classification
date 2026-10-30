@@ -36,3 +36,13 @@ def test_zhou_finished_checkpoint_is_reused_not_overwritten(tmp_path):
     assert ckpt.read_bytes() == before and (tmp_path / "zhou2021_seed0_val.pt").exists()
     assert {"focal", "dice_loss", "train_auc", "val_auc"} <= set(open(tmp_path / "zhou2021_seed0_val_history.csv").readline().strip().split(","))
     assert np.load(tmp_path / "zhou2021_seed0_test.npz")["seg_mid"].shape == (2, 16, 16)
+
+
+def test_zhou_ablations_keep_their_own_files(tmp_path):
+    from abus_classification.papers.zhou2021.train import train_eval
+    assert MultiTaskVNet(scales=(5,)).cls[0].in_features == 256
+    rng = np.random.default_rng(0)
+    X = {"vol": rng.random((6, 16, 16, 16)).astype(np.float32), "mask": np.ones((6, 16, 16, 16), np.float32)}
+    y = np.array([0, 1] * 3)
+    train_eval(X, y, np.arange(4), np.arange(4, 6), 1, 0, iters=1, scales=(5,), name="cvnet", ckpt_dir=tmp_path)
+    assert (tmp_path / "zhou2021_cvnet_seed0.pt").exists() and not (tmp_path / "zhou2021_seed0.pt").exists()

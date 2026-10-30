@@ -59,15 +59,16 @@ def predict(net, X, idx, iters=2):
     return torch.cat(probs).numpy(), torch.cat(dices).numpy(), torch.cat(mids).numpy()
 
 
-def train_eval(X, y, tv, te, epochs, seed, lam=0.3, iters=2, ckpt_dir=".", va=None):
+def train_eval(X, y, tv, te, epochs, seed, lam=0.3, iters=2, ckpt_dir=".", va=None, scales=(4, 5, 6), name=""):
     torch.manual_seed(seed), np.random.seed(seed)
     t = lambda a: torch.as_tensor(np.asarray(a, np.float32))
     vol, mask, lab = t(X["vol"][tv]), t(X["mask"][tv]), t(y[tv])
     w_m, w_n = (y[tv] == 0).mean(), (y[tv] == 1).mean()             # Eq. 3: w_m = N_n / (N_m + N_n)
-    net = MultiTaskVNet().to(DEVICE)
+    net = MultiTaskVNet(scales=scales).to(DEVICE)
     opt = torch.optim.Adam(net.parameters(), 1e-4)
     sched = torch.optim.lr_scheduler.CosineAnnealingLR(opt, epochs)
-    tag = f"zhou2021_seed{seed}" + ("_val" if va is not None else "")   # val runs never touch the protocol checkpoints
+    # val and ablation runs have their own files: they never touch the protocol checkpoints
+    tag = f"zhou2021_{name + '_' if name else ''}seed{seed}" + ("_val" if va is not None else "")
     ckpt, start, history = Path(ckpt_dir) / f"{tag}.pt", 0, []
     if ckpt.exists():                                                # resume after a crash / re-evaluate a finished run
         state = torch.load(ckpt, map_location=DEVICE)
@@ -129,3 +130,27 @@ def main(epochs, seeds=(0, 1, 2), ckpt_dir=".", val=False):
     print(table.to_string())
     print("AUC 95%% CI of the seed ensemble: %.3f-%.3f" % tuple(auc_ci(y[te], mean)))
     return table
+
+
+ABLATIONS = {                                                        # the full method (N=2, three scales) is main()
+    "vnet": dict(lam=0.0, iters=1),                                  # segmentation only
+    "cnet": dict(lam=1.0, iters=1),                                  # classification only
+    "cvnet": dict(iters=1, scales=(5,)),                             # multi-task, one scale, no refinement
+    "cmsvnet": dict(iters=1),                                        # multi-task, multi-scale, no refinement
+    "lam07": dict(lam=0.7),                                          # not in the paper: more weight on classification
+}
+
+
+def ablations(epochs, seed=0, ckpt_dir=".", names=tuple(ABLATIONS)):
+    X, tv, te = load_raw()
+    y, rows = X["y"], {}
+    for n in names:
+        p, d = train_eval(X, y, tv, te, epochs, seed, ckpt_dir=ckpt_dir, name=n, **ABLATIONS[n])
+        rows[n] = {**metrics(y[te], p), "Dice": d}
+        lam = ABLATIONS[n].get("lam")
+        if lam == 0:                                                 # the untrained task's numbers mean nothing
+            rows[n] = dict.fromkeys(rows[n], np.nan) | {"Dice": d}
+        elif lam == 1:
+            rows[n]["Dice"] = np.nan
+        pd.DataFrame(rows).T.round(4).to_csv(Path(ckpt_dir) / "zhou2021_ablations.csv")       # keep finished ones
+    return pd.DataFrame(rows).T.round(4)
