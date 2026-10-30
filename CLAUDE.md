@@ -57,5 +57,4 @@ Notebooks load stored results from `results/`; they must not need a multi-hour r
   detection boxes.
 - Heavy training runs on Kaggle GPU kernels (`kaggle/<name>/`, private datasets `simayousef/tdsc-abus2023-*`);
   the feature cache `data/eswa2025.npz` is the output of the `eswa2025-reproduction` kernel.
-- Commit trailer: `Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>`.
 - Write the user's name as "Ali Naderiparizi" in citations.
