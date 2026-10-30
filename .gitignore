@@ -5,11 +5,11 @@ saved_images
 .ipynb_checkpoints
 __pycache__
 .pytest_cache
-data
+/data
 checkpoint/*
 tmp
 *.pt
-data/*
+/data/*
 
 # Jekyll site
 _site/

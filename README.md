@@ -91,7 +91,7 @@ DeLong's test. Each is evaluated twice — from ground-truth masks and from pred
 | --- | --- | --- |
 | ⬜ | Barekatrezaei et al. 2026 [7] — our previous work | Laplace–Beltrami spectra + dual-path CNN, stacked ensemble; re-run here as the reference baseline |
 | ⬜ | TDSC-ABUS challenge top entries [5] | 3D ResNet (T1); 2.5D DenseNet201 with voting (T4); patch-based 3D ResNet-18 (T3) |
-| 🔄 | Zhou et al. 2021 [6] | Multi-task V-Net: joint segmentation and classification — model implemented, evaluation pending |
+| 🔄 | Zhou et al. 2021 [6] | Multi-task V-Net: joint segmentation and classification — evaluated on Kaggle: test AUC 0.67, Dice 0.73 (paper, on its own data: 0.787, 0.778); `notebooks/3-zhou2021.ipynb` |
 | ⬜ | Yu et al. 2024 [8] | 2D-input networks with soft and hard voting across slices |
 | ⬜ | [Breast cancer classification in ABUS using multiview CNN with transfer learning](https://pubmed.ncbi.nlm.nih.gov/32059918/) | Multiview 2D CNN |
 | ⬜ | [Fully automatic classification of ABUS according to BI-RADS using a deep CNN](https://pubmed.ncbi.nlm.nih.gov/35147776/) | 2D deep CNN |
@@ -239,7 +239,7 @@ uv run jupyter lab                                   # after: uv add --group not
 3. T. Tan. *Automated 3D breast ultrasound image analysis.* PhD thesis, Radboud University Nijmegen, 2014. [pdf](https://repository.ubn.ru.nl/bitstream/handle/2066/121931/121931.pdf)
 4. N. Karssemeijer, G. M. te Brake. Detection of stellate distortions in mammograms. *IEEE Transactions on Medical Imaging* 15(5):611–619, 1996. [doi:10.1109/42.538938](https://doi.org/10.1109/42.538938)
 5. G. Luo, M. Xu, H. Chen, X. Liang, X. Tao, D. Ni, et al. Tumor detection, segmentation and classification challenge on automated 3D breast ultrasound: the TDSC-ABUS challenge. arXiv:2501.15588, 2025. [arXiv](https://arxiv.org/abs/2501.15588)
-6. Y. Zhou, H. Chen, Y. Li, Q. Liu, X. Xu, S. Wang, P.-T. Yap, D. Shen. Multi-task learning for segmentation and classification of tumors in 3D automated breast ultrasound images. *Medical Image Analysis* 70:101918, 2021. [ScienceDirect](https://www.sciencedirect.com/science/article/abs/pii/S1361841520302826)
+6. Y. Zhou, H. Chen, Y. Li, Q. Liu, X. Xu, S. Wang, D. Shen, P.-T. Yap. Multi-task learning for segmentation and classification of tumors in 3D automated breast ultrasound images. *Medical Image Analysis* 70:101918, 2021. [ScienceDirect](https://www.sciencedirect.com/science/article/abs/pii/S1361841520302826)
 7. S. Barekatrezaei, A. Naderiparizi, E. Kozegar, J. Ghofrani, M. Soryani. Breast mass classification in 3D ABUS based on Laplace-Beltrami spectra and dual path CNN. *Expert Systems with Applications* 299:129973, 2026. [doi:10.1016/j.eswa.2025.129973](https://doi.org/10.1016/j.eswa.2025.129973)
 8. S. Yu, X. Liang, S. Zhao, Y. Xie, Q. Sun. Three-dimensional automated breast ultrasound (ABUS) tumor classification using a 2D-input network: soft voting or hard voting? *Applied Sciences* 14(24):11611, 2024. [doi:10.3390/app142411611](https://doi.org/10.3390/app142411611)
 9. M. Reuter, F.-E. Wolter, N. Peinecke. Laplace–Beltrami spectra as "Shape-DNA" of surfaces and solids. *Computer-Aided Design* 38(4):342–366, 2006. [doi:10.1016/j.cad.2005.10.011](https://doi.org/10.1016/j.cad.2005.10.011)
