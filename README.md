@@ -34,14 +34,16 @@ Always answering "malignant" scores 57.1% accuracy on it.
 | Tan et al. 2012, reproduced here | 11 radiomic features, RBF SVM | **0.86** (95% CI 0.77–0.94) | **78.6%** | CV AUC 0.83 ± 0.03 |
 | Tan et al. 2012 without spiculation, reproduced here | 8 features, RBF SVM | 0.79 | 75.7% | CV AUC 0.74 |
 | Tan et al. 2013, reproduced here | 14 features, LDA | 0.82 | 72.9% | CV AUC 0.82 |
+| Barekatrezaei et al. 2026, reproduced here | Laplace–Beltrami spectra + dual-path CNN, voting | 0.85–0.86 | 71.4–77.1% | 3 seeds; stacking reaches only 0.68–0.82, see below |
+| Zhou et al. 2021, reproduced here | Multi-task V-Net, CMSVNetIter | 0.67 (95% CI 0.53–0.79) | 62.9% | mean of 3 seeds; Dice 0.73 |
 | TDSC-ABUS challenge winner (T1, SZU) | 3D ResNet | 0.889 | 75.7% | reported in the challenge paper |
 | Barekatrezaei et al. 2026 — our previous work [7] | Laplace–Beltrami spectra + dual-path CNN | 0.935 | 84.3% | reported in [7] |
 
 > **Comparing across rows.** The reproductions here compute features from the ground-truth lesion
-> masks. Challenge entries had to locate and segment lesions themselves, so their task was harder.
+> masks, and the CNN patches are centred on those masks. Challenge entries had to locate and segment lesions themselves, so their task was harder.
 > Closing that gap — running every method on predicted segmentations as well — is part of Phase 2.
 
-**What the reproductions show so far** (details in
+**What the Tan et al. reproductions show so far** (details in
 [`tao2013.ipynb`](https://github.com/mralinp/abus-classification/blob/main/notebooks/tao2013.ipynb)):
 
 - **Coronal spiculation replicates.** Tan's spiculation features score AUC 0.80–0.81 on their own,
@@ -57,6 +59,30 @@ Always answering "malignant" scores 57.1% accuracy on it.
 | Tan's features on two lesions | ROC on the test split |
 | --- | --- |
 | ![Coronal plane, coronal spiculation map and transversal plane with the posterior region for a malignant and a benign lesion](docs/assets/tan-features-example.png) | ![ROC curves on the TDSC-ABUS test split for the reproduced Tan 2012 and Tan 2013 classifiers](docs/assets/tan-roc-test-split.png) |
+
+**Barekatrezaei et al. 2026** (details in
+[`2-barekatrezaei2026.ipynb`](https://github.com/mralinp/abus-classification/blob/main/notebooks/2-barekatrezaei2026.ipynb);
+remaining work in [#28](https://github.com/mralinp/abus-classification/issues/28)):
+
+- **Stacking does not reproduce yet.** The paper's stacked ensemble reports AUC 0.935; ours reaches 0.68–0.82,
+  depending on seed and stacker. Voting (0.85–0.86) is close to the paper's 0.873.
+- **The ablations do not reproduce either.** Removing the Laplace–Beltrami features does not hurt here, and the raw
+  eigenvalues act mostly as a proxy for lesion size. We are waiting for the original code to compare the pipelines.
+
+**Zhou et al. 2021** (details in
+[`3-zhou2021.ipynb`](https://github.com/mralinp/abus-classification/blob/main/notebooks/3-zhou2021.ipynb)):
+
+- **Below the paper, but not clearly so.** The paper reports AUC 0.787, accuracy 74.1% and Dice 0.778 from four-fold
+  cross-validation on private data. Ours is AUC 0.67, accuracy 62.9% and Dice 0.73, and the paper's AUC lies inside our
+  confidence interval.
+- **Refinement helps segmentation, as in the paper.** The paper's classification gain does not show here: on one seed,
+  the full method scores AUC 0.65 against 0.74 without refinement, with overlapping confidence intervals.
+- **The classification head under-fits.** Its loss barely falls during training and training AUC only reaches about
+  0.75. The cause is not yet tested.
+
+| Predicted and true tumors, Zhou et al. 2021 | Ablations against the paper |
+| --- | --- |
+| ![Coronal planes of five test lesions from worst to best Dice, with predicted and ground-truth contours](docs/assets/zhou-segmentation-overlays.png) | ![Bar charts of classification AUC and segmentation Dice for each ablation model, ours against the paper](docs/assets/zhou-ablations.png) |
 
 ---
 
@@ -89,9 +115,9 @@ DeLong's test. Each is evaluated twice — from ground-truth masks and from pred
 
 | | Paper | Approach |
 | --- | --- | --- |
-| ⬜ | Barekatrezaei et al. 2026 [7] — our previous work | Laplace–Beltrami spectra + dual-path CNN, stacked ensemble; re-run here as the reference baseline |
+| 🔄 | Barekatrezaei et al. 2026 [7] — our previous work | Laplace–Beltrami spectra + dual-path CNN, stacked ensemble; voting AUC 0.85–0.86, stacking does not reproduce yet ([#28](https://github.com/mralinp/abus-classification/issues/28)) |
 | ⬜ | TDSC-ABUS challenge top entries [5] | 3D ResNet (T1); 2.5D DenseNet201 with voting (T4); patch-based 3D ResNet-18 (T3) |
-| 🔄 | Zhou et al. 2021 [6] | Multi-task V-Net: joint segmentation and classification — evaluated on Kaggle: test AUC 0.67, Dice 0.73 (paper, on its own data: 0.787, 0.778); `notebooks/3-zhou2021.ipynb` |
+| ✅ | Zhou et al. 2021 [6] | Multi-task V-Net: joint segmentation and classification; test AUC 0.67, Dice 0.73 (paper, on its own data: 0.787, 0.778), with ablations; patches centred on ground-truth masks |
 | ⬜ | Yu et al. 2024 [8] | 2D-input networks with soft and hard voting across slices |
 | ⬜ | [Breast cancer classification in ABUS using multiview CNN with transfer learning](https://pubmed.ncbi.nlm.nih.gov/32059918/) | Multiview 2D CNN |
 | ⬜ | [Fully automatic classification of ABUS according to BI-RADS using a deep CNN](https://pubmed.ncbi.nlm.nih.gov/35147776/) | 2D deep CNN |
@@ -203,8 +229,15 @@ Passing `download=True` makes the dataset automatically downloaded if its not pr
 ### Run
 
 ```bash
-uv run pytest test/features_tests test/utils_tests   # feature library tests
+uv run pytest test/features_tests test/utils_tests test/papers_tests   # library and paper tests
 uv run jupyter lab                                   # after: uv add --group notebooks jupyterlab
+```
+
+Training runs on Kaggle GPU kernels (see [`kaggle/README.md`](kaggle/README.md)). Notebooks load the stored
+outputs in `results/`, so they open without a long run. To run a reproduction yourself:
+
+```bash
+uv run python -m abus_classification.papers.zhou2021 --epochs 100
 ```
 
 ### Google Colab
@@ -221,13 +254,18 @@ uv run jupyter lab                                   # after: uv add --group not
 
 | Path | Contents |
 | --- | --- |
+| `abus_classification/papers/` | One subpackage per reproduced paper (`barekatrezaei2026`, `zhou2021`) |
+| `abus_classification/protocol.py` | Shared evaluation protocol: device, metrics, folds, bootstrap CI |
+| `abus_classification/data/` | Lesion cache: patches, radiomic and Laplace–Beltrami features per volume |
 | `abus_classification/features/tan/` | Tan et al. (2012, 2013) features, including coronal spiculation |
 | `abus_classification/features/radiology/` | General radiomic features in physical units |
 | `abus_classification/features/shape_descriptor/` | Laplace–Beltrami operator, spectral signatures, boundary signatures |
 | `abus_classification/features/texture/` | Grey-level co-occurrence texture features |
 | `abus_classification/models/` | U-Net, V-Net, SE-FNet, multi-task V-Net |
 | `abus_classification/utils/` | Meshing, voxel spacing and resampling, image utilities |
-| `notebooks/` | Experiments — start with `visualization.ipynb` and `tao2013.ipynb` |
+| `notebooks/` | Experiments — start with `visualization.ipynb` and `tao2013.ipynb`; one notebook per reproduced paper |
+| `kaggle/` | Kaggle kernel scripts for the training runs |
+| `results/` | Stored results of those runs, per paper |
 | `test/` | Unit tests |
 
 ---
