@@ -8,6 +8,7 @@ Everything reusable lives in the `abus_classification` package, never in root sc
 - `papers/<author><year>/`: one subpackage per paper (`model.py`, `losses.py`, `train.py`/`pipeline.py`,
   `__init__.py` exporting `main`, `__main__.py` CLI): `python -m abus_classification.papers.<name>`.
 - `protocol.py`: the shared evaluation protocol (device, metrics, folds, bootstrap CI).
+- `challenge.py`: the TDSC-ABUS 2023 challenge evaluation and published leaderboard, reported by every paper.
 - `data/`: dataset-level caches (`lesion_cache.py`: patches, radiomic and Laplace-Beltrami features per volume).
 - `features/`, `models/`, `transformers/`, `preprocessing/`, `utils/`: reusable building blocks. If a second
   paper needs something a paper subpackage defined, move it to one of these.
@@ -42,6 +43,9 @@ Each notebook must contain, so a reader can check the implementation is correct:
 6. **Protocol**: data split, positive class, number of seeds, how to re-run (including the Kaggle kernel in
    `kaggle/`), and where the stored results are (`results/<paper>/`).
 7. **Open issues**: what does not reproduce and the current hypotheses.
+8. **Challenge benchmark**: the TDSC-ABUS 2023 evaluation (`abus_classification/challenge.py`) on stored predictions,
+   placed on the published leaderboard for every task the method does, stating whether it located the lesion itself or
+   used the ground truth. See `notebooks/challenge-benchmark.ipynb`.
 
 Notebooks load stored results from `results/`; they must not need a multi-hour run to open.
 
@@ -49,6 +53,8 @@ Notebooks load stored results from `results/`; they must not need a multi-hour r
 
 - Protocol for all methods: train on Train+Validation (130 volumes), report on the official Test split (70),
   malignant = positive class, AUC with bootstrap CI, 3 seeds.
+- Kaggle runs save what the benchmark needs: test probabilities and, if the method produces them, full-volume masks and
+  detection boxes.
 - Heavy training runs on Kaggle GPU kernels (`kaggle/<name>/`, private datasets `simayousef/tdsc-abus2023-*`);
   the feature cache `data/eswa2025.npz` is the output of the `eswa2025-reproduction` kernel.
 - Commit trailer: `Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>`.

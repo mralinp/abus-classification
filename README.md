@@ -112,11 +112,16 @@ Status: ✅ done · 🔄 in progress · ⬜ planned
 Every method is re-run under one protocol: train on Train + Validation (130 lesions), report AUC with
 a bootstrap confidence interval and accuracy on the official Test split, and compare pairs with
 DeLong's test. Each is evaluated twice — from ground-truth masks and from predicted segmentations.
+Each also reports the [challenge benchmark](notebooks/challenge-benchmark.ipynb) on the published leaderboard
+(`abus_classification/challenge.py`). So far that covers classification only ([#34](https://github.com/mralinp/abus-classification/issues/34)).
 
 | | Paper | Approach |
 | --- | --- | --- |
 | 🔄 | Barekatrezaei et al. 2026 [7] — our previous work | Laplace–Beltrami spectra + dual-path CNN, stacked ensemble; voting AUC 0.85–0.86, stacking does not reproduce yet ([#28](https://github.com/mralinp/abus-classification/issues/28)) |
-| ⬜ | TDSC-ABUS challenge top entries [5] | 3D ResNet (T1); 2.5D DenseNet201 with voting (T4); patch-based 3D ResNet-18 (T3) |
+| ⬜ | TDSC-ABUS T1, SZU [5] | 3D ResNet, U-Net and anchor-free detector ([#30](https://github.com/mralinp/abus-classification/issues/30)) |
+| ⬜ | TDSC-ABUS T2, POSTECH [5] | Multi-task residual nnU-Net ([#31](https://github.com/mralinp/abus-classification/issues/31)) |
+| ⬜ | TDSC-ABUS T3, HU [5] | nnU-Net, nnDetection and patch-based 3D ResNet-18 ([#32](https://github.com/mralinp/abus-classification/issues/32)) |
+| ⬜ | TDSC-ABUS T4, KTH [5] | STU-Net and 2.5D DenseNet201 with voting ([#33](https://github.com/mralinp/abus-classification/issues/33)) |
 | ✅ | Zhou et al. 2021 [6] | Multi-task V-Net: joint segmentation and classification; test AUC 0.67, Dice 0.73 (paper, on its own data: 0.787, 0.778), with ablations; patches centred on ground-truth masks |
 | ⬜ | Yu et al. 2024 [8] | 2D-input networks with soft and hard voting across slices |
 | ⬜ | [Breast cancer classification in ABUS using multiview CNN with transfer learning](https://pubmed.ncbi.nlm.nih.gov/32059918/) | Multiview 2D CNN |
@@ -256,6 +261,7 @@ uv run python -m abus_classification.papers.zhou2021 --epochs 100
 | --- | --- |
 | `abus_classification/papers/` | One subpackage per reproduced paper (`barekatrezaei2026`, `zhou2021`) |
 | `abus_classification/protocol.py` | Shared evaluation protocol: device, metrics, folds, bootstrap CI |
+| `abus_classification/challenge.py` | TDSC-ABUS 2023 challenge evaluation (Dice, HD, ACC, AUC, FROC) and published leaderboard |
 | `abus_classification/data/` | Lesion cache: patches, radiomic and Laplace–Beltrami features per volume |
 | `abus_classification/features/tan/` | Tan et al. (2012, 2013) features, including coronal spiculation |
 | `abus_classification/features/radiology/` | General radiomic features in physical units |
