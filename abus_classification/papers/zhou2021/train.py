@@ -132,12 +132,13 @@ def main(epochs, seeds=(0, 1, 2), ckpt_dir=".", val=False):
     return table
 
 
-ABLATIONS = {                                                        # the full method (N=2, three scales) is main()
+ABLATIONS = {                                                        # Table 1; CMSVNetIter (N=2, three scales) is main()
     "vnet": dict(lam=0.0, iters=1),                                  # segmentation only
-    "cnet": dict(lam=1.0, iters=1),                                  # classification only
-    "cvnet": dict(iters=1, scales=(5,)),                             # multi-task, one scale, no refinement
-    "cmsvnet": dict(iters=1),                                        # multi-task, multi-scale, no refinement
-    "lam07": dict(lam=0.7),                                          # not in the paper: more weight on classification
+    "clsnet": dict(lam=1.0, iters=1, scales=(5,)),                   # classification only, encoder features
+    "cvnet": dict(iters=1, scales=(5,)),                             # multi-task, one scale
+    "cvnetiter": dict(scales=(5,)),                                  # multi-task, one scale, N=2
+    "cmsvnet": dict(iters=1),                                        # multi-task, multi-scale
+    "lam07": dict(lam=0.7),                                          # Table 5: CMSVNetIter with lambda = 0.7
 }
 
 
