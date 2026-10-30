@@ -44,7 +44,7 @@ Always answering "malignant" scores 57.1% accuracy on it.
 > Closing that gap — running every method on predicted segmentations as well — is part of Phase 2.
 
 **What the Tan et al. reproductions show so far** (details in
-[`tao2013.ipynb`](https://github.com/mralinp/abus-classification/blob/main/notebooks/tao2013.ipynb)):
+[`1-tao2013.ipynb`](https://github.com/mralinp/abus-classification/blob/main/notebooks/1-tao2013.ipynb)):
 
 - **Coronal spiculation replicates.** Tan's spiculation features score AUC 0.80–0.81 on their own,
   matching the 0.81–0.83 reported on their Nijmegen data, and removing them costs the classifier
@@ -97,7 +97,7 @@ Status: ✅ done · 🔄 in progress · ⬜ planned
 | ✅ | Reproducible environment with [uv](https://docs.astral.sh/uv/) | `pyproject.toml`, `uv.lock` |
 | ✅ | TDSC-ABUS data loading | [`tdsc-abus2023-pytorch`](https://github.com/mralinp/tdsc-abus2023-pytorch) |
 | ✅ | Physical voxel spacing and ABUS plane geometry (transversal, coronal, sagittal) | `abus_classification/utils/spacing.py` |
-| ✅ | Dataset statistics and visualization, in millimetres | [`visualization.ipynb`](https://github.com/mralinp/abus-classification/blob/main/notebooks/visualization.ipynb) |
+| ✅ | Dataset statistics and visualization, in millimetres | [`0-visualization.ipynb`](https://github.com/mralinp/abus-classification/blob/main/notebooks/0-visualization.ipynb) |
 | ✅ | Tested feature library (radiomic, Tan et al., spectral shape descriptors) | `abus_classification/features`, `test/` |
 
 ### Phase 1 — Reproduce classical radiomics ✅
@@ -269,7 +269,7 @@ uv run python -m abus_classification.papers.zhou2021 --epochs 100
 | `abus_classification/features/texture/` | Grey-level co-occurrence texture features |
 | `abus_classification/models/` | U-Net, V-Net, SE-FNet, multi-task V-Net |
 | `abus_classification/utils/` | Meshing, voxel spacing and resampling, image utilities |
-| `notebooks/` | Experiments — start with `visualization.ipynb` and `tao2013.ipynb`; one notebook per reproduced paper |
+| `notebooks/` | Experiments — start with `0-visualization.ipynb` and `1-tao2013.ipynb`; one notebook per reproduced paper |
 | `kaggle/` | Kaggle kernel scripts for the training runs |
 | `results/` | Stored results of those runs, per paper |
 | `test/` | Unit tests |
