@@ -36,6 +36,7 @@ Always answering "malignant" scores 57.1% accuracy on it.
 | Tan et al. 2013, reproduced here | 14 features, LDA | 0.82 | 72.9% | CV AUC 0.82 |
 | Barekatrezaei et al. 2026, reproduced here | Laplace–Beltrami spectra + dual-path CNN, voting | 0.85–0.86 | 71.4–77.1% | 3 seeds; stacking reaches only 0.68–0.82, see below |
 | Zhou et al. 2021, reproduced here | Multi-task V-Net, CMSVNetIter | 0.67 (95% CI 0.53–0.79) | 62.9% | mean of 3 seeds; Dice 0.73 |
+| Wang et al. 2020, reproduced here | Multiview Inception-v3 (CNN A), official boxes | 0.755 (95% CI 0.63–0.86) | 65.7% | mean of 3 seeds; transverse view alone reaches 0.80 |
 | TDSC-ABUS challenge winner (T1, SZU) | 3D ResNet | 0.889 | 75.7% | reported in the challenge paper |
 | Barekatrezaei et al. 2026 — our previous work [7] | Laplace–Beltrami spectra + dual-path CNN | 0.935 | 84.3% | reported in [7] |
 
@@ -79,6 +80,15 @@ remaining work in [#28](https://github.com/mralinp/abus-classification/issues/28
   the full method scores AUC 0.65 against 0.74 without refinement, with overlapping confidence intervals.
 - **The classification head under-fits.** Its loss barely falls during training and training AUC only reaches about
   0.75. The cause is not yet tested.
+
+**Wang et al. 2020** (details in
+[`4-wang2020.ipynb`](https://github.com/mralinp/abus-classification/blob/main/notebooks/4-wang2020.ipynb)):
+
+- **Far below the paper.** The paper reports AUC 0.947 with five-fold cross-validation on private data; ours is 0.755, and the
+  paper's value is above our confidence interval.
+- **The multiview gain does not show.** The transverse view alone scores highest (0.80), and ImageNet weights give no visible
+  gain; all confidence intervals overlap.
+- **Validation overstates the result.** Best validation AUC averages 0.94 for CNN A on 30 lesions, against 0.74 on test.
 
 | Predicted and true tumors, Zhou et al. 2021 | Ablations against the paper |
 | --- | --- |
@@ -124,7 +134,7 @@ Each also reports the [challenge benchmark](notebooks/challenge-benchmark.ipynb)
 | ⬜ | TDSC-ABUS T4, KTH [5] | STU-Net and 2.5D DenseNet201 with voting ([#33](https://github.com/mralinp/abus-classification/issues/33)) |
 | ✅ | Zhou et al. 2021 [6] | Multi-task V-Net: joint segmentation and classification; test AUC 0.67, Dice 0.73 (paper, on its own data: 0.787, 0.778), with ablations; patches centred on ground-truth masks |
 | ⬜ | Yu et al. 2024 [8] | 2D-input networks with soft and hard voting across slices |
-| ⬜ | [Breast cancer classification in ABUS using multiview CNN with transfer learning](https://pubmed.ncbi.nlm.nih.gov/32059918/) | Multiview 2D CNN |
+| ✅ | [Wang et al. 2020: breast cancer classification in ABUS using multiview CNN with transfer learning](https://pubmed.ncbi.nlm.nih.gov/32059918/) | Multiview Inception-v3; test AUC 0.755 (paper, on its own data: 0.947), with view ablations; uses the official boxes |
 | ⬜ | [Fully automatic classification of ABUS according to BI-RADS using a deep CNN](https://pubmed.ncbi.nlm.nih.gov/35147776/) | 2D deep CNN |
 | ⬜ | Unified comparison table and statistical tests across all reproduced methods | — |
 

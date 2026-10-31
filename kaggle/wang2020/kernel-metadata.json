@@ -1,0 +1,1 @@
+{"id":"simayousef/wang2020-multiview","title":"wang2020-multiview","code_file":"run.py","language":"python","kernel_type":"script","is_private":true,"enable_gpu":true,"enable_internet":true,"dataset_sources":["simayousef/tdsc-abus2023-trainval","simayousef/tdsc-abus2023-test"],"kernel_sources":[]}

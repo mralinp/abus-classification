@@ -6,4 +6,5 @@ metrics, folds), `features`, `models`, `transformers`, `preprocessing`, `utils`.
     tan2012, tan2013   `abus_classification.features.tan`
     barekatrezaei2026  Laplace-Beltrami spectra + dual-path CNN + stacking
     zhou2021           iterative feature-refining multi-task V-Net
+    wang2020           multiview Inception-v3 on coronal and transverse patches
 """

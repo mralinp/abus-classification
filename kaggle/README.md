@@ -14,3 +14,7 @@ Results are in `results/eswa2025/`. Edit the kernel `id`s if you push under anot
 - `zhou2021-ablations/`, `zhou2021-ablations2/`: held-out diagnostics and the paper's Table 1 models (seed 0).
 
 Results are in `results/zhou2021/`.
+
+## Wang 2020
+
+`wang2020/`: builds the patches from the private datasets, then trains CNN A, CNN B, the single views and CNN A from scratch (3 seeds each). Finished runs are never trained again. Results are in `results/wang2020/`.
