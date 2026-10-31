@@ -1,3 +1,4 @@
+import base64
 import os
 import stat
 import time
@@ -45,3 +46,10 @@ def test_config_is_private(tmp_path, monkeypatch):
     monkeypatch.delenv("RCLONE_CONFIG", raising=False)
     configure_rclone("[gdrive]\n", str(path))
     assert stat.S_IMODE(path.stat().st_mode) == 0o600 and os.environ["RCLONE_CONFIG"] == str(path)
+
+
+def test_config_can_be_base64(tmp_path, monkeypatch):
+    path = tmp_path / "rclone.conf"
+    monkeypatch.delenv("RCLONE_CONFIG", raising=False)
+    configure_rclone(base64.b64encode(b"[gdrive]\ntype = drive\n").decode(), str(path))
+    assert path.read_text() == "[gdrive]\ntype = drive\n"

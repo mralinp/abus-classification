@@ -1,11 +1,14 @@
 """Keep a run's output on Google Drive through rclone, so that a cancelled or crashed Kaggle kernel loses little."""
+import base64
 import os
 import subprocess
 import threading
 
 
 def configure_rclone(conf, path="/tmp/rclone.conf"):
-    """Write rclone's config, which holds the Drive token, readable only by this user. Never print it."""
+    """Write rclone's config, plain or base64 (Kaggle secrets can lose line breaks), readable only by this user. Never print it."""
+    if "[" not in conf:
+        conf = base64.b64decode(conf).decode()
     with open(os.open(path, os.O_WRONLY | os.O_CREAT | os.O_TRUNC, 0o600), "w") as f:
         f.write(conf)
     os.environ["RCLONE_CONFIG"] = path
