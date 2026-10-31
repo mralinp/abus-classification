@@ -1,4 +1,4 @@
-import glob, os, shutil, subprocess, sys
+import os, shutil, subprocess, sys
 OUT = "/kaggle/working"
 sh = lambda c: subprocess.run(c, shell=True, check=True)
 
@@ -24,8 +24,7 @@ if __name__ == "__main__":
     from kaggle_secrets import UserSecretsClient
     from abus_classification.papers.luo2025_t1 import main
     from abus_classification.utils.drive import DriveSync, configure_rclone
-    private = glob.glob("/kaggle/input/**/rclone.conf.b64", recursive=True)   # a private dataset; a CLI push cannot read secrets
-    configure_rclone(open(private[0]).read() if private else UserSecretsClient().get_secret("RCLONE_CONF"))
+    configure_rclone(UserSecretsClient().get_secret("RCLONE_CONF"))
     with DriveSync("abus-checkpoints/luo2025-t1", OUT):               # fails here, in minutes, if Drive does not work
         main(out_dir=OUT, hours=10)                                   # ends before the 12 h session limit, so the output is kept
     shutil.rmtree(f"{OUT}/repo")
