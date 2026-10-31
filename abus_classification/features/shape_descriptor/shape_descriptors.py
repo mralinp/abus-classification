@@ -70,6 +70,26 @@ def lb_spectrum(mesh: trimesh.Trimesh, k: int = 50, scale_invariant: bool = True
     eigenvalues, _ = compute_eigendecomposition(L, M, k=k)
     return eigenvalues * mesh.area if scale_invariant else eigenvalues
 
+def heat_trace_coefficients(eigenvalues: np.ndarray, area: float, n_times: int = 30,
+                            tail: float = 8.0, tau_max: float = 0.02) -> Tuple[float, float, float]:
+    """
+    Fit Z(t) = sum exp(-lambda t) = A / (4 pi t) + chi / 6 + t / (60 pi) * int K^2 dA + ... (McKean and Singer 1967).
+
+    Works in tau = t / area, which makes the three terms scale-free: Z = c0 / (4 pi tau) + chi / 6 + c2 tau, with c0 = 1
+    on the true surface and c2 = area * int K^2 dA / (60 pi). Times start where the truncated tail is negligible,
+    exp(-lambda_max t) = exp(-tail), so too few modes raise the first time, and tau_max keeps the expansion valid.
+
+    Returns:
+        (c0, chi, c2). Each eigenvalue list must come from one connected surface and include the zero mode.
+    """
+    eigenvalues = np.asarray(eigenvalues, dtype=float) * area
+    tau = np.geomspace(tail / eigenvalues[-1], tau_max, n_times)
+    trace = np.exp(-np.outer(tau, eigenvalues)).sum(axis=1)
+    design = np.column_stack([1 / (4 * np.pi * tau), np.full(n_times, 1 / 6), tau])
+    # Relative weights: Z spans orders of magnitude over the window.
+    c0, chi, c2 = np.linalg.lstsq(design / trace[:, None], np.ones(n_times), rcond=None)[0]
+    return float(c0), float(chi), float(c2)
+
 def compute_hks(eigenvalues: np.ndarray, eigenvectors: np.ndarray, time_points: Optional[np.ndarray] = None) -> np.ndarray:
     """
     Compute the Heat Kernel Signature (HKS)

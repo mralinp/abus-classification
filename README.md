@@ -126,6 +126,14 @@ of the paper. See [#28](https://github.com/mralinp/abus-classification/issues/28
 
 ![Stored ESWA eigenvalues against mesh vertex count, eig(L) times vertex count against lambda times area, and raw against area-normalised eigenvalues by lesion volume](docs/assets/lb-invariance.png)
 
+**What the Laplace–Beltrami spectrum determines** (details in
+[`lb-spectrum-content.ipynb`](https://github.com/mralinp/abus-classification/blob/main/notebooks/lb-spectrum-content.ipynb)):
+
+- **Area can be read from the spectrum, volume cannot.** Weyl's law recovers lesion area to about 4% from modes around k = 50–100. The Euler number comes back within about 0.1 on fine sphere and torus meshes, but too noisily on lesion meshes to count handles.
+- **Kac's limit is real here.** An isometric dent changes volume but not the spectrum, and a Sunada pair of non-isometric surfaces shares its spectrum to 3e-15.
+- **Area normalisation is not enough in practice.** At a fixed voxel size and smoothing width, λₖ·Area at high modes still follows volume (Spearman up to 0.96).
+- **In a linear model, the spectrum adds nothing to volume on Train + Validation.** With volume removed, AUC is at most 0.49 on every surface up to k = 100. Tan's spiculation, which uses image gradients, keeps 0.69 under the same check. Sphericity also falls to about chance. Non-linear models and size-matched meshing are untested.
+
 | Predicted and true tumors, Zhou et al. 2021 | Ablations against the paper |
 | --- | --- |
 | ![Coronal planes of five test lesions from worst to best Dice, with predicted and ground-truth contours](docs/assets/zhou-segmentation-overlays.png) | ![Bar charts of classification AUC and segmentation Dice for each ablation model, ours against the paper](docs/assets/zhou-ablations.png) |
@@ -194,7 +202,7 @@ derive better-founded descriptors.
 | ✅ | Watertight lesion surfaces | `utils.mesh.lesion_mesh`: meshes in millimetres; padding and no morphological closing keep all 200 surfaces closed |
 | ✅ | Discrete Laplace–Beltrami operator | Cotangent scheme with lumped mass matrix, verified against the analytic spectrum of the unit sphere; convergence to the smooth operator depends on mesh conditions studied in [15, 16] |
 | ✅ | Invariance | Proved and verified for rigid motion, isometry and scale (λₖ·Area). On re-voxelised lesions it holds to 0.2–1%. [`lb-invariance.ipynb`](https://github.com/mralinp/abus-classification/blob/main/notebooks/lb-invariance.ipynb) |
-| ⬜ | What the spectrum determines | Surface area from Weyl's law [17]; area and Euler characteristic from the heat-trace expansion [18]; and its limits, the question posed by Kac [19] |
+| ✅ | What the spectrum determines | Surface area from Weyl's law [17]; area and Euler characteristic from the heat-trace expansion [18]; and its limits, the question posed by Kac [19]. Area is recoverable to about 4% on lesions; the Euler number only on fine meshes. [`lb-spectrum-content.ipynb`](https://github.com/mralinp/abus-classification/blob/main/notebooks/lb-spectrum-content.ipynb) |
 | ⬜ | Roundness and irregularity | Hersch's inequality, λ₁·Area ≤ 8π on genus-0 surfaces with equality only for the round sphere [20], makes the first eigenvalue a provable measure of departure from roundness; relate higher eigenvalues to lobulation and spiculation |
 | ⬜ | Stability | Bound how far eigenvalues move under surface perturbation, mesh resolution, voxel anisotropy and segmentation error, and measure it on TDSC-ABUS |
 | 🔄 | Spectral descriptors | Shape-DNA [9], heat kernel signature [10], wave kernel signature [11], global point signature [12] — implemented, classification pending |
@@ -202,6 +210,42 @@ derive better-founded descriptors.
 | ⬜ | Theory-driven descriptors | Design descriptors from the results above, fuse them with spiculation, intensity and CNN features, and evaluate under the Phase 2 protocol with ablations |
 
 ![Lesion surfaces reconstructed by marching cubes for a malignant and a benign lesion, drawn at true physical proportions](docs/assets/lesion-surfaces-3d.png)
+
+#### The feature sets in 3D
+
+[`lb-features-3d.ipynb`](https://github.com/mralinp/abus-classification/blob/main/notebooks/lb-features-3d.ipynb) shows what each one measures, on reference shapes and real TDSC-ABUS lesions chosen by volume percentile. These illustrate one lesion per class and are not evidence of a class difference.
+
+**The real surfaces.** Staircase meshes from binary masks, and the same lesions after light smoothing.
+
+![Six lesions at the 25th, 50th and 75th volume percentiles of each class, as staircase and smoothed surfaces](docs/assets/lb-3d-lesions.png)
+
+**Shape-DNA, the eigenvalues:** the pitches a surface vibrates at, a global description that ignores pose and, multiplied by area, size. Shape appears as the departure from Weyl's line.
+
+![Four shapes above plots of lambda times area minus 4 pi k](docs/assets/lb-3d-shapedna.png)
+
+**Eigenfunctions:** the vibration patterns. Low modes split a shape along its long extents; higher modes make finer patches.
+
+![Eigenfunctions 1, 2, 5, 20 and 60 on a sphere, a bumpy sphere and two lesions](docs/assets/lb-3d-modes.png)
+
+**Heat diffusion:** heat placed at one point spreads over time, and how much returns underlies the heat trace.
+
+![Heat spreading from one point on two lesions at four times](docs/assets/lb-3d-diffusion.png)
+
+**Heat kernel signature:** how much heat stays at each point. It stays longest on tips, so dark regions mark protrusions at the scale set by time.
+
+![Heat kernel signature at three times on a sphere, a bumpy sphere and two lesions](docs/assets/lb-3d-hks.png)
+
+**Wave kernel signature:** a band-pass version that isolates one range of modes.
+
+![Wave kernel signature at low, middle and high energy on a sphere, a bumpy sphere and two lesions](docs/assets/lb-3d-wks.png)
+
+**Global point signature:** a new embedding where distance reflects how the surface connects, not how it sits in space.
+
+![Three shapes beside their first three global point signature coordinates](docs/assets/lb-3d-gps.png)
+
+**What it cannot see:** an isometric dent keeps the spectrum and changes the volume, and Sunada surfaces share a spectrum without being isometric.
+
+![Sphere and dented sphere cut open, and the gluing patterns of a Sunada pair](docs/assets/lb-3d-limits.png)
 
 ### Phase 4 — Paper ⬜
 
@@ -313,7 +357,7 @@ uv run python -m abus_classification.papers.zhou2021 --epochs 100
 | --- | --- |
 | `abus_classification/papers/` | Paper implementations (`barekatrezaei2026`, `zhou2021`, `wang2020`, `yu2024`); completion and source verification vary |
 | `abus_classification/protocol.py` | Shared evaluation protocol: device, metrics, folds, bootstrap CI |
-| `abus_classification/lb_invariance.py` | Invariance experiment for the Laplace–Beltrami spectrum on TDSC-ABUS lesions |
+| `abus_classification/lb_invariance.py`, `lb_spectrum_content.py` | Laplace–Beltrami experiments on TDSC-ABUS lesions: invariance, and what the spectrum determines |
 | `abus_classification/challenge.py` | TDSC-ABUS 2023 challenge evaluation (Dice, HD, ACC, AUC, FROC) and published leaderboard |
 | `abus_classification/data/` | Lesion cache: patches, radiomic and Laplace–Beltrami features per volume |
 | `abus_classification/features/tan/` | Tan et al. (2012, 2013) features, including coronal spiculation |
