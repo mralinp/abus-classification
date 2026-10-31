@@ -134,6 +134,18 @@ of the paper. See [#28](https://github.com/mralinp/abus-classification/issues/28
 - **Area normalisation is not enough in practice.** At a fixed voxel size and smoothing width, λₖ·Area at high modes still follows volume (Spearman up to 0.96).
 - **In a linear model, the spectrum adds nothing to volume on Train + Validation.** With volume removed, AUC is at most 0.49 on every surface up to k = 100. Tan's spiculation, which uses image gradients, keeps 0.69 under the same check. Sphericity also falls to about chance. Non-linear models and size-matched meshing are untested.
 
+**Roundness and lobulation from the spectrum** (details in
+[`lb-roundness.ipynb`](https://github.com/mralinp/abus-classification/blob/main/notebooks/lb-roundness.ipynb)):
+
+- **Matching meshes to lesion size fixes the size leak.** Giving each lesion a grid and smoothing proportional to its size cuts the correlation of λₖ·Area with volume from up to 0.96 to at most 0.21.
+- **Hersch's bound holds, and λ₁·Area / 8π mostly reads elongation.** No genus-0 lesion exceeds the bound; the median ratio is 0.61 and the largest 0.88. Its Spearman correlation with elongation is −0.69.
+- **Lobes split eigenvalues by an exact rule, on near-round shapes only.** A lobe of even degree d first splits level d/2, within about 5% of the first-order prediction, and odd degrees split only at second order. Real lesions are far outside that range.
+- **Little spectral signal remains beyond volume, even when sizes are matched.** On Train + Validation, CV AUC after removing volume is 0.57 for λ₁·Area and at most 0.55 for all-mode sets. Adding λ₁·Area to volume gives 0.72 against 0.71. A plain extent ratio does better: 0.63 after volume, 0.75 with it. Many comparisons were made on 130 lesions.
+
+| Lobes and the levels they split | Real lesions by their distance from the round sphere |
+| --- | --- |
+| ![Spheres with lobes of degree 2, 3, 4, 6 and 8 above bar charts of eigenvalue spread at each level](docs/assets/lb-3d-lobes.png) | ![Ten real lesions coloured by their first eigenfunction, ordered by lambda 1 times area over 8 pi](docs/assets/lb-3d-roundness.png) |
+
 | Predicted and true tumors, Zhou et al. 2021 | Ablations against the paper |
 | --- | --- |
 | ![Coronal planes of five test lesions from worst to best Dice, with predicted and ground-truth contours](docs/assets/zhou-segmentation-overlays.png) | ![Bar charts of classification AUC and segmentation Dice for each ablation model, ours against the paper](docs/assets/zhou-ablations.png) |
@@ -203,7 +215,7 @@ derive better-founded descriptors.
 | ✅ | Discrete Laplace–Beltrami operator | Cotangent scheme with lumped mass matrix, verified against the analytic spectrum of the unit sphere; convergence to the smooth operator depends on mesh conditions studied in [15, 16] |
 | ✅ | Invariance | Proved and verified for rigid motion, isometry and scale (λₖ·Area). On re-voxelised lesions it holds to 0.2–1%. [`lb-invariance.ipynb`](https://github.com/mralinp/abus-classification/blob/main/notebooks/lb-invariance.ipynb) |
 | ✅ | What the spectrum determines | Surface area from Weyl's law [17]; area and Euler characteristic from the heat-trace expansion [18]; and its limits, the question posed by Kac [19]. Area is recoverable to about 4% on lesions; the Euler number only on fine meshes. [`lb-spectrum-content.ipynb`](https://github.com/mralinp/abus-classification/blob/main/notebooks/lb-spectrum-content.ipynb) |
-| ⬜ | Roundness and irregularity | Hersch's inequality, λ₁·Area ≤ 8π on genus-0 surfaces with equality only for the round sphere [20], makes the first eigenvalue a provable measure of departure from roundness; relate higher eigenvalues to lobulation and spiculation |
+| ✅ | Roundness and irregularity | Hersch's inequality, λ₁·Area ≤ 8π on genus-0 surfaces with equality only for the round sphere [20], makes the first eigenvalue a provable measure of departure from roundness; relate higher eigenvalues to lobulation and spiculation. Hersch's bound holds on every genus-0 lesion; a selection rule ties lobes to eigenvalue splitting on near-round shapes only. [`lb-roundness.ipynb`](https://github.com/mralinp/abus-classification/blob/main/notebooks/lb-roundness.ipynb) |
 | ⬜ | Stability | Bound how far eigenvalues move under surface perturbation, mesh resolution, voxel anisotropy and segmentation error, and measure it on TDSC-ABUS |
 | 🔄 | Spectral descriptors | Shape-DNA [9], heat kernel signature [10], wave kernel signature [11], global point signature [12] — implemented, classification pending |
 | ⬜ | Spherical harmonics | Spherical harmonics are the Laplace–Beltrami eigenfunctions of the sphere, so a spherical harmonic decomposition [13, 14] and the lesion's own spectrum are two views of one framework; it needs genus-0 surfaces, so voxel-derived surfaces with handles require topology correction first |
@@ -357,7 +369,7 @@ uv run python -m abus_classification.papers.zhou2021 --epochs 100
 | --- | --- |
 | `abus_classification/papers/` | Paper implementations (`barekatrezaei2026`, `zhou2021`, `wang2020`, `yu2024`); completion and source verification vary |
 | `abus_classification/protocol.py` | Shared evaluation protocol: device, metrics, folds, bootstrap CI |
-| `abus_classification/lb_invariance.py`, `lb_spectrum_content.py` | Laplace–Beltrami experiments on TDSC-ABUS lesions: invariance, and what the spectrum determines |
+| `abus_classification/lb_invariance.py`, `lb_spectrum_content.py`, `lb_roundness.py` | Laplace–Beltrami experiments on TDSC-ABUS lesions: invariance, what the spectrum determines, roundness |
 | `abus_classification/challenge.py` | TDSC-ABUS 2023 challenge evaluation (Dice, HD, ACC, AUC, FROC) and published leaderboard |
 | `abus_classification/data/` | Lesion cache: patches, radiomic and Laplace–Beltrami features per volume |
 | `abus_classification/features/tan/` | Tan et al. (2012, 2013) features, including coronal spiculation |
@@ -397,6 +409,7 @@ uv run python -m abus_classification.papers.zhou2021 --epochs 100
 18. H. P. McKean, I. M. Singer. Curvature and the eigenvalues of the Laplacian. *Journal of Differential Geometry* 1(1–2):43–69, 1967. [doi:10.4310/jdg/1214427880](https://doi.org/10.4310/jdg/1214427880)
 19. M. Kac. Can one hear the shape of a drum? *The American Mathematical Monthly* 73(4):1–23, 1966. [doi:10.1080/00029890.1966.11970915](https://doi.org/10.1080/00029890.1966.11970915)
 20. J. Hersch. Quatre propriétés isopérimétriques de membranes sphériques homogènes. *Comptes Rendus de l'Académie des Sciences de Paris* 270:1645–1648, 1970.
+21. M. Karpukhin, N. Nadirashvili, A. V. Penskoi, I. Polterovich. An isoperimetric inequality for Laplace eigenvalues on the sphere. *Journal of Differential Geometry* 118(2):313–333, 2021. [doi:10.4310/jdg/1622743142](https://doi.org/10.4310/jdg/1622743142)
 
 ---
 

@@ -90,6 +90,21 @@ def heat_trace_coefficients(eigenvalues: np.ndarray, area: float, n_times: int =
     c0, chi, c2 = np.linalg.lstsq(design / trace[:, None], np.ones(n_times), rcond=None)[0]
     return float(c0), float(chi), float(c2)
 
+def sphere_level_spread(eigenvalues: np.ndarray, levels: int = 6) -> np.ndarray:
+    """
+    How far each group of modes that coincide on a round sphere has split apart: std / mean of lambda within the group.
+
+    On a sphere, degree l has 2l + 1 equal eigenvalues, at indices l^2 to l^2 + 2l. A small deformation by a spherical
+    harmonic of even degree d splits level l at first order only if 2l >= d, so low levels ignore fine lobes.
+
+    Args:
+        eigenvalues: Sorted eigenvalues with the zero mode, at least (levels + 1)^2 of them.
+        levels: Number of levels, starting at l = 1.
+    """
+    eigenvalues = np.asarray(eigenvalues, dtype=float)
+    groups = [eigenvalues[l ** 2:(l + 1) ** 2] for l in range(1, levels + 1)]
+    return np.array([g.std() / g.mean() for g in groups])
+
 def compute_hks(eigenvalues: np.ndarray, eigenvectors: np.ndarray, time_points: Optional[np.ndarray] = None) -> np.ndarray:
     """
     Compute the Heat Kernel Signature (HKS)

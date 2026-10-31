@@ -1,3 +1,6 @@
+import pytest
+from scipy.special import sph_harm_y
+from abus_classification.features.shape_descriptor.shape_descriptors import sphere_level_spread
 import itertools
 
 import scipy.sparse as sp
@@ -211,3 +214,43 @@ def test_sunada_pair_shares_a_spectrum_but_is_not_isometric():
     t = 1 / lam1[3]
     h1, h2 = (np.sort((np.exp(-lam * t) * phi ** 2).sum(1)) for lam, phi in ((lam1, phi1), (lam2, phi2)))
     assert np.abs(h1 - h2).max() / h1.mean() > 0.01
+
+
+def lobed_sphere(degree, epsilon, subdivisions=6):
+    """Unit sphere with radius 1 + epsilon * Y, where Y is the axial spherical harmonic scaled to a peak of 1."""
+    mesh = trimesh.creation.icosphere(subdivisions=subdivisions)
+    theta = np.arccos(np.clip(mesh.vertices[:, 2], -1, 1))
+    y = sph_harm_y(degree, 0, theta, 0 * theta).real
+    return trimesh.Trimesh(mesh.vertices * (1 + epsilon * y / np.abs(y).max())[:, None], mesh.faces, process=False)
+
+
+def predicted_level_spread(level, degree, epsilon):
+    """First-order std / mean of level l under that deformation: delta lambda_m = -2 lambda int f |Y_lm|^2 dA."""
+    x, w = np.polynomial.legendre.leggauss(200)
+    theta = np.arccos(x)
+    peak = np.abs(sph_harm_y(degree, 0, np.linspace(0, np.pi, 4001), 0.0).real).max()
+    f = epsilon * sph_harm_y(degree, 0, theta, 0.0).real / peak
+    shifts = [-2 * 2 * np.pi * (w * f * np.abs(sph_harm_y(level, m, theta, 0.0)) ** 2).sum() for m in range(-level, level + 1)]
+    return np.std(shifts)   # shifts are relative to lambda
+
+
+def test_hersch_bound_is_reached_by_the_sphere_only():
+    sphere = trimesh.creation.icosphere(subdivisions=5)
+    assert abs(lb_spectrum(sphere, 4)[1] / (8 * np.pi) - 1) < 1e-3
+    for scale in ([1, 1, 2], [1, 1, 0.5], [1, 0.7, 0.4]):
+        stretched = sphere.copy()
+        stretched.vertices = stretched.vertices * scale
+        assert lb_spectrum(stretched, 4)[1] < 0.95 * 8 * np.pi
+
+
+@pytest.mark.parametrize("degree", [2, 4, 6, 8])
+def test_even_lobes_split_exactly_the_levels_the_selection_rule_allows(degree):
+    spread = sphere_level_spread(lb_spectrum(lobed_sphere(degree, 0.02), 49, False))
+    first = degree // 2
+    assert all(spread[:first - 1] < 0.25 * spread[first - 1])   # lower levels split only at second order
+    assert spread[first - 1] == pytest.approx(predicted_level_spread(first, degree, 0.02), rel=0.1)
+
+
+def test_odd_lobes_split_only_at_second_order():
+    small, large = (sphere_level_spread(lb_spectrum(lobed_sphere(3, e), 16, False), levels=3)[0] for e in (0.02, 0.05))
+    assert 4 < large / small < 9     # (2.5)^2 = 6.25, not 2.5
