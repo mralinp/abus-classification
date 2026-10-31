@@ -150,7 +150,7 @@ fits only Train (100); it must not be described as the same training protocol. E
 together when creating splits. Pairwise statistical comparisons and evaluation using
 predicted segmentations remain planned where not explicitly reported.
 
-Each study also reports the [challenge benchmark](notebooks/challenge-benchmark.ipynb) on the published leaderboard
+Each study also reports the [challenge benchmark](https://github.com/mralinp/abus-classification/blob/main/notebooks/challenge-benchmark.ipynb) on the published leaderboard
 (`abus_classification/challenge.py`). So far that covers classification only ([#34](https://github.com/mralinp/abus-classification/issues/34)).
 
 | | Paper | Authors | Approach and PR |
@@ -276,7 +276,7 @@ uv run pytest test/features_tests test/utils_tests test/papers_tests   # library
 uv run jupyter lab                                   # after: uv add --group notebooks jupyterlab
 ```
 
-Training runs on Kaggle GPU kernels (see [`kaggle/README.md`](kaggle/README.md)). Notebooks load the stored
+Training runs on Kaggle GPU kernels (see [`kaggle/README.md`](https://github.com/mralinp/abus-classification/blob/main/kaggle/README.md)). Notebooks load the stored
 outputs in `results/`, so they open without a long run. To run a reproduction yourself:
 
 ```bash
@@ -356,5 +356,5 @@ A paper is in preparation. Until then, please cite this repository:
 
 ## License and contact
 
-Code: [MIT License](LICENSE). The TDSC-ABUS data is subject to the challenge's data use agreement.
+Code: [MIT License](https://github.com/mralinp/abus-classification/blob/main/LICENSE). The TDSC-ABUS data is subject to the challenge's data use agreement.
 Questions and collaboration: <me@alinaderiparizi.com>

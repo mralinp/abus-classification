@@ -98,6 +98,25 @@ notebook instead of copying its tables. Each document contains:
 
 Only state commands and run times that were actually used. Write "not run yet" for anything that was not.
 
+## Landing page on every PR
+
+The landing page is a primary research artifact. `index.md` includes `README.md`, with presentation
+and metadata in `_layouts/project.html`, `_config.yml` and `assets/css/site.css`. Review its impact
+on every PR; update the page in the same PR whenever study status, methods, results, docs or figures
+change. An unrelated code change need not manufacture a page edit, but its PR should state the review outcome.
+
+Keep the introduction, hero text, roadmap, result tables and figure captions aligned with the notebook,
+reproduction record and stored artifacts. Label provisional results and protocol differences consistently.
+Use existing research images where they explain the evidence; verify their provenance, alt text, captions
+and readability. Never invent a figure or treat an available image as validation of a scientific claim.
+
+Check links from both GitHub and the deployed site's `/abus-classification/` base path. Link to GitHub
+for notebooks, source and documents excluded from Jekyll; keep image paths valid on the deployed site.
+For page/presentation changes, build with the locked Jekyll dependencies and inspect desktop and mobile
+rendering, navigation, tables, figures and light/dark readability when tools are available. Report which
+checks ran and any build or visual-review limitation; static checks alone are not a visual review.
+Keep the current design polished and coherent rather than adding disconnected sections or stale figures.
+
 ## Conventions
 
 - Shared target protocol: fit Train+Validation (130 volumes), report on the official Test split (70),

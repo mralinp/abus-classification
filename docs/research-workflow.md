@@ -115,6 +115,21 @@ unresolved differences and failed attempts, remain in the study notebook and rep
 README omission must not erase or relabel a provisional experiment as a success. Make conclusions
 specific to the implementation, data and protocol, and explain what another researcher can rely on.
 
+### Landing-page review for every PR
+
+The project homepage is rendered from `README.md` through `index.md`. Review it alongside each PR's
+research changes: purpose and hero metadata, study status, supported result summaries, roadmap, linked
+records and relevant images should agree. Use figures that explain the current results and give them
+accurate captions, descriptive alt text and traceable sources. Preserve the distinction between
+provisional findings, completed experiments and author verification.
+
+Check navigation, figures, wide tables and links on the deployed base path as well as GitHub. Notebooks
+and internal guides excluded by Jekyll should link to GitHub, not missing pages on the website. For
+presentation changes, build with the locked Jekyll dependencies and inspect desktop/mobile and
+light/dark rendering when available. The PR should record the landing-page review, changes made or
+why no page edit was needed, checks run and any unverified rendering. Do not claim a visual review
+from a source-only check.
+
 Follow [CLAUDE.md](../CLAUDE.md): one task branch and PR for shared work, one feature branch and PR per
 paper. Update its reproduction record with changes to code, kernels or results. Use the repository's
 integration branch if configured, and integrate into `main` only through a PR. Do not commit directly

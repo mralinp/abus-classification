@@ -40,3 +40,15 @@ Validation completed for this change:
 GPU reruns, full historical notebook execution and a website build are outside this documentation job.
 New README documentation links target GitHub so they remain accessible from the project homepage,
 whose Jekyll configuration excludes internal research guides.
+
+## Landing-page follow-up
+
+Added landing-page review to every PR's contributor and research workflow: align the public summary,
+metadata, study status, reported results and relevant images with the supporting records. Source review
+confirmed the existing README figures remain linked and have descriptive alt text. Corrected the
+remaining README links to the excluded benchmark notebook, the Kaggle Markdown guide and the license
+to target GitHub, so the shared README also works as landing-page content.
+
+Static checks cover image integrity, local image/link targets and configured navigation anchors.
+The current machine has no Ruby/Bundler installation, so a Jekyll build and rendered desktop/mobile
+review were not performed. No layout/CSS changes or new scientific figures are introduced by this follow-up.
