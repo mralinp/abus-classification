@@ -114,8 +114,8 @@ Status: ✅ done · 🔄 in progress · ⬜ planned
 
 | | Paper | Authors | Notebook and results |
 | --- | --- | --- | --- |
-| ✅ | *Computer-aided lesion diagnosis in automated 3-D breast ultrasound using coronal spiculation* [1, 3] | Tan et al. 2012 | [`1-tao2013.ipynb`](https://github.com/mralinp/abus-classification/blob/main/notebooks/1-tao2013.ipynb) |
-| ✅ | *Evaluation of the effect of computer-aided classification of benign and malignant lesions on reader performance in automated three-dimensional breast ultrasound* [2, 3] | Tan et al. 2013 | [`1-tao2013.ipynb`](https://github.com/mralinp/abus-classification/blob/main/notebooks/1-tao2013.ipynb) |
+| ✅ | *[Computer-aided lesion diagnosis in automated 3-D breast ultrasound using coronal spiculation](https://doi.org/10.1109/TMI.2012.2184549)* [1, 3] | Tan et al. 2012 | [`1-tao2013.ipynb`](https://github.com/mralinp/abus-classification/blob/main/notebooks/1-tao2013.ipynb) |
+| ✅ | *[Evaluation of the effect of computer-aided classification of benign and malignant lesions on reader performance in automated three-dimensional breast ultrasound](https://doi.org/10.1016/j.acra.2013.07.013)* [2, 3] | Tan et al. 2013 | [`1-tao2013.ipynb`](https://github.com/mralinp/abus-classification/blob/main/notebooks/1-tao2013.ipynb) |
 
 ### Phase 2 — Reproduce the strongest published results 🔄
 
@@ -127,13 +127,13 @@ Each also reports the [challenge benchmark](notebooks/challenge-benchmark.ipynb)
 
 | | Paper | Authors | Notebook and results |
 | --- | --- | --- | --- |
-| 🔄 | *Breast mass classification in 3D ABUS based on Laplace-Beltrami spectra and dual path CNN* [7], our previous work | Barekatrezaei et al. 2026 | [`2-barekatrezaei2026.ipynb`](https://github.com/mralinp/abus-classification/blob/main/notebooks/2-barekatrezaei2026.ipynb); stacking does not reproduce yet ([#28](https://github.com/mralinp/abus-classification/issues/28)) |
-| ⬜ | *Tumor detection, segmentation and classification challenge on automated 3D breast ultrasound: the TDSC-ABUS challenge* [5], team T1 (SZU) | Luo et al. 2025 | Not started ([#30](https://github.com/mralinp/abus-classification/issues/30)) |
-| ⬜ | *Tumor detection, segmentation and classification challenge on automated 3D breast ultrasound: the TDSC-ABUS challenge* [5], team T2 (POSTECH) | Luo et al. 2025 | Not started ([#31](https://github.com/mralinp/abus-classification/issues/31)) |
-| ⬜ | *Tumor detection, segmentation and classification challenge on automated 3D breast ultrasound: the TDSC-ABUS challenge* [5], team T3 (HU) | Luo et al. 2025 | Not started ([#32](https://github.com/mralinp/abus-classification/issues/32)) |
-| ⬜ | *Tumor detection, segmentation and classification challenge on automated 3D breast ultrasound: the TDSC-ABUS challenge* [5], team T4 (KTH) | Luo et al. 2025 | Not started ([#33](https://github.com/mralinp/abus-classification/issues/33)) |
-| ✅ | *Multi-task learning for segmentation and classification of tumors in 3D automated breast ultrasound images* [6] | Zhou et al. 2021 | [`3-zhou2021.ipynb`](https://github.com/mralinp/abus-classification/blob/main/notebooks/3-zhou2021.ipynb) |
-| 🔄 | *Three-dimensional automated breast ultrasound (ABUS) tumor classification using a 2D-input network: soft voting or hard voting?* [8] | Yu et al. 2024 | In progress, running on Kaggle |
+| 🔄 | *[Breast mass classification in 3D ABUS based on Laplace-Beltrami spectra and dual path CNN](https://doi.org/10.1016/j.eswa.2025.129973)* [7], our previous work | Barekatrezaei et al. 2026 | [`2-barekatrezaei2026.ipynb`](https://github.com/mralinp/abus-classification/blob/main/notebooks/2-barekatrezaei2026.ipynb); stacking does not reproduce yet ([#28](https://github.com/mralinp/abus-classification/issues/28)) |
+| ⬜ | *[Tumor detection, segmentation and classification challenge on automated 3D breast ultrasound: the TDSC-ABUS challenge](https://arxiv.org/abs/2501.15588)* [5], team T1 (SZU) | Luo et al. 2025 | Not started ([#30](https://github.com/mralinp/abus-classification/issues/30)) |
+| ⬜ | *[Tumor detection, segmentation and classification challenge on automated 3D breast ultrasound: the TDSC-ABUS challenge](https://arxiv.org/abs/2501.15588)* [5], team T2 (POSTECH) | Luo et al. 2025 | Not started ([#31](https://github.com/mralinp/abus-classification/issues/31)) |
+| ⬜ | *[Tumor detection, segmentation and classification challenge on automated 3D breast ultrasound: the TDSC-ABUS challenge](https://arxiv.org/abs/2501.15588)* [5], team T3 (HU) | Luo et al. 2025 | Not started ([#32](https://github.com/mralinp/abus-classification/issues/32)) |
+| ⬜ | *[Tumor detection, segmentation and classification challenge on automated 3D breast ultrasound: the TDSC-ABUS challenge](https://arxiv.org/abs/2501.15588)* [5], team T4 (KTH) | Luo et al. 2025 | Not started ([#33](https://github.com/mralinp/abus-classification/issues/33)) |
+| ✅ | *[Multi-task learning for segmentation and classification of tumors in 3D automated breast ultrasound images](https://www.sciencedirect.com/science/article/abs/pii/S1361841520302826)* [6] | Zhou et al. 2021 | [`3-zhou2021.ipynb`](https://github.com/mralinp/abus-classification/blob/main/notebooks/3-zhou2021.ipynb) |
+| 🔄 | *[Three-dimensional automated breast ultrasound (ABUS) tumor classification using a 2D-input network: soft voting or hard voting?](https://doi.org/10.3390/app142411611)* [8] | Yu et al. 2024 | In progress, running on Kaggle |
 | ✅ | *[Breast cancer classification in automated breast ultrasound using multiview convolutional neural network with transfer learning](https://doi.org/10.1016/j.ultrasmedbio.2020.01.001)* | Wang et al. 2020 | [`4-wang2020.ipynb`](https://github.com/mralinp/abus-classification/blob/main/notebooks/4-wang2020.ipynb) |
 | 🔄 | *[Fully automatic classification of automated breast ultrasound (ABUS) imaging according to BI-RADS using a deep convolutional neural network](https://doi.org/10.1007/s00330-022-08558-0)* | Hejduk et al. 2022 | In progress, running on Kaggle |
 | ⬜ | Unified comparison table and statistical tests across all reproduced methods | — | — |
