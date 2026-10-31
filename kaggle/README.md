@@ -18,3 +18,7 @@ Results are in `results/zhou2021/`.
 ## Wang 2020
 
 `wang2020/`: builds the patches from the private datasets, then trains CNN A, CNN B, the single views and CNN A from scratch (3 seeds each). Finished runs are never trained again. Results are in `results/wang2020/`.
+
+## Hejduk 2022
+
+`hejduk2022/`: builds the crops from the private datasets, trains the three models (3 seeds) and scans the test volumes with a 20 pixel step on every fifth slice. Finished models and seeds are never redone. Results are in `results/hejduk2022/`.
