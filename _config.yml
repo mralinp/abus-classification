@@ -5,10 +5,10 @@
 
 title: Classification of Breast Cancer Lesions in 3D Automated Breast Ultrasound
 short_title: 3D ABUS Lesion Classification
-tagline: Mathematical foundations of Laplace–⁠Beltrami shape representation for breast tumors
+tagline: Reproducing and evaluating ABUS research on TDSC-ABUS 2023
 description: >-
-  Reproducing published classifiers on TDSC-ABUS 2023 and developing the mathematical
-  foundations of Laplace–Beltrami shape descriptors for classifying breast lesions in 3D ABUS.
+  A research reference for implementing and evaluating published ABUS methods on TDSC-ABUS 2023,
+  with reproducible experiments and a later study of Laplace–Beltrami shape descriptors.
 url: https://alinaderiparizi.com
 baseurl: /abus-classification
 lang: en
@@ -83,6 +83,7 @@ exclude:
   - docs/dataset.md
   - docs/model.md
   - docs/papers.md
+  - docs/research-workflow.md
   - docs/reproductions
   - main.py
   - pyproject.toml
