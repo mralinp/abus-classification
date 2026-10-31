@@ -133,7 +133,7 @@ Each also reports the [challenge benchmark](notebooks/challenge-benchmark.ipynb)
 | ⬜ | TDSC-ABUS T3, HU [5] | nnU-Net, nnDetection and patch-based 3D ResNet-18 ([#32](https://github.com/mralinp/abus-classification/issues/32)) |
 | ⬜ | TDSC-ABUS T4, KTH [5] | STU-Net and 2.5D DenseNet201 with voting ([#33](https://github.com/mralinp/abus-classification/issues/33)) |
 | ✅ | Zhou et al. 2021 [6] | Multi-task V-Net: joint segmentation and classification; test AUC 0.67, Dice 0.73 (paper, on its own data: 0.787, 0.778), with ablations; patches centred on ground-truth masks |
-| ⬜ | Yu et al. 2024 [8] | 2D-input networks with soft and hard voting across slices |
+| ✅ | Yu et al. 2024 [8] | ResNet34 with soft and hard voting across slices; test AUC 0.81 from lesion crops, 0.75 from whole slices (paper, five-fold CV on Train: 0.986; ours on that protocol: 0.85) |
 | ✅ | [Wang et al. 2020: breast cancer classification in ABUS using multiview CNN with transfer learning](https://pubmed.ncbi.nlm.nih.gov/32059918/) | Multiview Inception-v3; test AUC 0.755 (paper, on its own data: 0.947), with view ablations; uses the official boxes |
 | ⬜ | [Fully automatic classification of ABUS according to BI-RADS using a deep CNN](https://pubmed.ncbi.nlm.nih.gov/35147776/) | 2D deep CNN |
 | ⬜ | Unified comparison table and statistical tests across all reproduced methods | — |
