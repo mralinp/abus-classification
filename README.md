@@ -37,6 +37,7 @@ Always answering "malignant" scores 57.1% accuracy on it.
 | Barekatrezaei et al. 2026, reproduced here | Laplace–Beltrami spectra + dual-path CNN, voting | 0.85–0.86 | 71.4–77.1% | 3 seeds; stacking reaches only 0.68–0.82, see below |
 | Zhou et al. 2021, reproduced here | Multi-task V-Net, CMSVNetIter | 0.67 (95% CI 0.53–0.79) | 62.9% | mean of 3 seeds; Dice 0.73 |
 | Wang et al. 2020, reproduced here | Multiview Inception-v3 (CNN A), official boxes | 0.755 (95% CI 0.63–0.86) | 65.7% | mean of 3 seeds; transverse view alone reaches 0.80 |
+| Yu et al. 2024, reproduced here | ResNet34 on lesion crops, soft voting | 0.81 (mean of seeds 0.825, 95% CI 0.72–0.92) | 70.0% | 3 seeds; whole slices reach 0.75 |
 | TDSC-ABUS challenge winner (T1, SZU) | 3D ResNet | 0.889 | 75.7% | reported in the challenge paper |
 | Barekatrezaei et al. 2026 — our previous work [7] | Laplace–Beltrami spectra + dual-path CNN | 0.935 | 84.3% | reported in [7] |
 
@@ -90,6 +91,16 @@ remaining work in [#28](https://github.com/mralinp/abus-classification/issues/28
   gain; all confidence intervals overlap.
 - **Validation overstates the result.** Best validation AUC averages 0.94 for CNN A on 30 lesions, against 0.74 on test.
 
+**Yu et al. 2024** (details in
+[`6-yu2024.ipynb`](https://github.com/mralinp/abus-classification/blob/main/notebooks/6-yu2024.ipynb)):
+
+- **Far below the paper, on its own data and protocol.** The paper reports soft voting AUC 0.986 from five-fold cross-validation on
+  the TDSC Train split; the same protocol gives 0.85 here. The paper's numbers are also inconsistent: its voting rows list AUC equal
+  to accuracy, and its hard voting sensitivity and specificity imply accuracy 0.937, not 0.907.
+- **Soft voting helps only a little over hard voting.** It adds about 0.02 AUC, without a paired test yet.
+- **Training memorises quickly.** Training accuracy reaches about 100%, by epoch 2 on whole slices. The likely cause is volumes
+  being memorised; this is not yet tested.
+
 | Predicted and true tumors, Zhou et al. 2021 | Ablations against the paper |
 | --- | --- |
 | ![Coronal planes of five test lesions from worst to best Dice, with predicted and ground-truth contours](docs/assets/zhou-segmentation-overlays.png) | ![Bar charts of classification AUC and segmentation Dice for each ablation model, ours against the paper](docs/assets/zhou-ablations.png) |
@@ -133,7 +144,7 @@ Each also reports the [challenge benchmark](notebooks/challenge-benchmark.ipynb)
 | ⬜ | *[Tumor detection, segmentation and classification challenge on automated 3D breast ultrasound: the TDSC-ABUS challenge](https://arxiv.org/abs/2501.15588)* [5], team T3 (HU) | Luo et al. 2025 | nnU-Net, nnDetection and patch-based 3D ResNet-18; not started ([#32](https://github.com/mralinp/abus-classification/issues/32)) |
 | ⬜ | *[Tumor detection, segmentation and classification challenge on automated 3D breast ultrasound: the TDSC-ABUS challenge](https://arxiv.org/abs/2501.15588)* [5], team T4 (KTH) | Luo et al. 2025 | STU-Net and 2.5D DenseNet201 with voting; not started ([#33](https://github.com/mralinp/abus-classification/issues/33)) |
 | ✅ | *[Multi-task learning for segmentation and classification of tumors in 3D automated breast ultrasound images](https://www.sciencedirect.com/science/article/abs/pii/S1361841520302826)* [6] | Zhou et al. 2021 | Multi-task V-Net: joint segmentation and classification; test AUC 0.67, Dice 0.73 (paper, on its own data: 0.787, 0.778), with ablations; patches centred on ground-truth masks. [`3-zhou2021.ipynb`](https://github.com/mralinp/abus-classification/blob/main/notebooks/3-zhou2021.ipynb), PR [#26](https://github.com/mralinp/abus-classification/pull/26) |
-| 🔄 | *[Three-dimensional automated breast ultrasound (ABUS) tumor classification using a 2D-input network: soft voting or hard voting?](https://doi.org/10.3390/app142411611)* [8] | Yu et al. 2024 | ResNet34 on 2D slices with hard and soft voting; running on Kaggle, no PR yet |
+| ✅ | *[Three-dimensional automated breast ultrasound (ABUS) tumor classification using a 2D-input network: soft voting or hard voting?](https://doi.org/10.3390/app142411611)* [8] | Yu et al. 2024 | ResNet34 on 2D slices with hard and soft voting; test AUC 0.81 from lesion crops, 0.75 from whole slices (paper: 0.986, five-fold CV on Train; ours on that protocol: 0.85). [`6-yu2024.ipynb`](https://github.com/mralinp/abus-classification/blob/main/notebooks/6-yu2024.ipynb), PR [#43](https://github.com/mralinp/abus-classification/pull/43) |
 | ✅ | *[Breast cancer classification in automated breast ultrasound using multiview convolutional neural network with transfer learning](https://doi.org/10.1016/j.ultrasmedbio.2020.01.001)* | Wang et al. 2020 | Multiview Inception-v3; test AUC 0.755 (paper, on its own data: 0.947), with view ablations; uses the official boxes. [`4-wang2020.ipynb`](https://github.com/mralinp/abus-classification/blob/main/notebooks/4-wang2020.ipynb), PR [#38](https://github.com/mralinp/abus-classification/pull/38) |
 | 🔄 | *[Fully automatic classification of automated breast ultrasound (ABUS) imaging according to BI-RADS using a deep convolutional neural network](https://doi.org/10.1007/s00330-022-08558-0)* | Hejduk et al. 2022 | Three step-wise 2D CNNs and a sliding window over slices; running on Kaggle, no PR yet |
 | ⬜ | Unified comparison table and statistical tests across all reproduced methods | — | — |

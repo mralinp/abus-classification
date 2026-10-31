@@ -7,4 +7,5 @@ metrics, folds), `features`, `models`, `transformers`, `preprocessing`, `utils`.
     barekatrezaei2026  Laplace-Beltrami spectra + dual-path CNN + stacking
     zhou2021           iterative feature-refining multi-task V-Net
     wang2020           multiview Inception-v3 on coronal and transverse patches
+    yu2024             2D ResNet34 on tumor slices with hard and soft voting
 """
