@@ -1,11 +1,11 @@
 # Kaggle kernels for the ESWA 2025 reproduction
 
-Script kernels (GPU + internet). Push one with `kaggle kernels push -p kaggle/<name>`.
+Script kernels (GPU + internet). Push one with `python kaggle/push.py <name>`, which adds each source's owner from `~/.kaggle/owners.json` (see `push.py`).
 
-- `reproduction/`: clones this branch, finds the TDSC-ABUS splits in the private datasets `simayousef/tdsc-abus2023-trainval` and `-test`, builds the feature cache (about 1.7 h), runs Table 3. Its output holds `eswa2025.npz`.
+- `reproduction/`: clones this branch, finds the TDSC-ABUS splits in the private datasets `tdsc-abus2023-trainval` and `-test`, builds the feature cache (about 1.7 h), runs Table 3. Its output holds `eswa2025.npz`.
 - `ablations/`, `seeds/`: reuse that cache through `kernel_sources` (no rebuild). Ablations (paper Tables 4-8, seed 0) take about 3 h; seeds 1 and 2 about 2 h.
 
-Results are in `results/eswa2025/`. Edit the kernel `id`s if you push under another Kaggle account.
+Results are in `results/eswa2025/`. Kernels run under the `mralinp` account. Kernels that read another kernel's output through `kernel_sources` need that kernel run first under the same account: `reproduction/` before the others, and `zhou2021/` before `zhou2021-eval/`. Edit the kernel `id`s if you push under another Kaggle account.
 
 ## Zhou 2021
 

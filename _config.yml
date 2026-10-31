@@ -83,6 +83,7 @@ exclude:
   - docs/dataset.md
   - docs/model.md
   - docs/papers.md
+  - docs/reproductions
   - main.py
   - pyproject.toml
   - pytest.ini
