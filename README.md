@@ -133,9 +133,9 @@ Each also reports the [challenge benchmark](notebooks/challenge-benchmark.ipynb)
 | ⬜ | *Tumor detection, segmentation and classification challenge on automated 3D breast ultrasound: the TDSC-ABUS challenge* [5], team T3 (HU) | Luo et al. 2025 | Not started ([#32](https://github.com/mralinp/abus-classification/issues/32)) |
 | ⬜ | *Tumor detection, segmentation and classification challenge on automated 3D breast ultrasound: the TDSC-ABUS challenge* [5], team T4 (KTH) | Luo et al. 2025 | Not started ([#33](https://github.com/mralinp/abus-classification/issues/33)) |
 | ✅ | *Multi-task learning for segmentation and classification of tumors in 3D automated breast ultrasound images* [6] | Zhou et al. 2021 | [`3-zhou2021.ipynb`](https://github.com/mralinp/abus-classification/blob/main/notebooks/3-zhou2021.ipynb) |
-| ⬜ | *Three-dimensional automated breast ultrasound (ABUS) tumor classification using a 2D-input network: soft voting or hard voting?* [8] | Yu et al. 2024 | Not started |
+| 🔄 | *Three-dimensional automated breast ultrasound (ABUS) tumor classification using a 2D-input network: soft voting or hard voting?* [8] | Yu et al. 2024 | In progress, running on Kaggle |
 | ✅ | *[Breast cancer classification in automated breast ultrasound using multiview convolutional neural network with transfer learning](https://doi.org/10.1016/j.ultrasmedbio.2020.01.001)* | Wang et al. 2020 | [`4-wang2020.ipynb`](https://github.com/mralinp/abus-classification/blob/main/notebooks/4-wang2020.ipynb) |
-| 🔄 | *[Fully automatic classification of automated breast ultrasound (ABUS) imaging according to BI-RADS using a deep convolutional neural network](https://doi.org/10.1007/s00330-022-08558-0)* | Hejduk et al. 2022 | In progress, not run yet |
+| 🔄 | *[Fully automatic classification of automated breast ultrasound (ABUS) imaging according to BI-RADS using a deep convolutional neural network](https://doi.org/10.1007/s00330-022-08558-0)* | Hejduk et al. 2022 | In progress, running on Kaggle |
 | ⬜ | Unified comparison table and statistical tests across all reproduced methods | — | — |
 
 ### Phase 3 — Mathematical foundations of Laplace–Beltrami shape representation ⬜
