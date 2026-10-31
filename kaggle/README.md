@@ -41,3 +41,7 @@ Results are in `results/zhou2021/`.
 `yu2024/`: runs on the `mralinp` account. Builds the slices from the private datasets, trains ResNet34 on whole slices, lesion crops and from scratch (3 seeds each), and repeats the paper's five-fold CV on Train. Finished runs are never trained again. Results are in `results/yu2024/`.
 
 `yu2024-early-stopping/`: the same trainings with early stopping and an LR scheduler on the official Validation split, one training per GPU on T4 x 2. Push with `--accelerator NvidiaTeslaT4`. It needs the Kaggle secret `RCLONE_CONF` attached (a base64-encoded rclone config with a `gdrive` remote, `scope=drive.file`), never committed. Start it from Kaggle's editor with Save & Run All, since a CLI push could not read the secret. Output and checkpoints go to `abus-checkpoints/yu2024-early-stopping` on Drive every 10 minutes, and a restarted kernel resumes from them.
+
+## TDSC-ABUS challenge, team T1
+
+`luo2025-t1/`: builds a 0.5 mm cache from the private datasets, then trains DETNet and SEGNet, then CLSNet (3 seeds each, one training per GPU on T4 x 2), then scores all three tasks with the challenge's metrics. Push with `python kaggle/push.py luo2025-t1 --accelerator NvidiaTeslaT4`. It needs the Kaggle secret `RCLONE_CONF`, so start it from Kaggle's editor with Save & Run All, then stop the editor session. Checkpoints, weights and output go to `abus-checkpoints/luo2025-t1` on Drive every 10 minutes, and a restarted kernel resumes from them.
