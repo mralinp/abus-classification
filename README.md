@@ -101,11 +101,11 @@ remaining work in [#28](https://github.com/mralinp/abus-classification/issues/28
 - **Training memorises quickly.** Training accuracy reaches about 100%, by epoch 2 on whole slices. The likely cause is volumes
   being memorised; this is not yet tested.
 - **Early stopping did not help, so the paper defaults stay the main result.** We added it because of that memorising, stopping on the
-  official Validation split. Crops stay at ensemble AUC 0.825, whole slices fall from 0.765 to 0.676, and no pretraining rises from 0.687
-  to 0.705; all paired 95% intervals include zero. Five-fold CV also falls, from 0.846 to 0.815 on crops. Validation AUC reaches
-  0.91–0.995 against 0.69–0.80 on Test, so 30 validation volumes are a poor guide.
-- **Challenge benchmark, classification only:** crops rank 4 of 9 (Cls_Score 0.734) with defaults and 3 of 9 (0.767) with early stopping.
-  The AUC is equal, and the gap is one test volume at the 0.5 threshold. This method uses ground-truth masks, so it has no overall rank.
+  official Validation split. Crops move from ensemble AUC 0.825 to 0.832, whole slices fall from 0.765 to 0.676, and no pretraining rises from 0.687
+  to 0.697; all paired 95% intervals include zero. Five-fold CV also falls, from 0.846 to 0.796 on crops. Validation AUC reaches
+  0.91–0.994 against 0.67–0.81 on Test, so 30 validation volumes are a poor guide.
+- **Challenge benchmark, classification only:** crops rank 4 of 9 (Cls_Score 0.734) with defaults and 2 of 9 (0.844) with early stopping.
+  AUC is close, and most of the gap is three test volumes at the 0.5 threshold. A second session with the same settings gave rank 3, so this rank is not stable. This method uses ground-truth masks, so it has no overall rank.
 
 | Predicted and true tumors, Zhou et al. 2021 | Ablations against the paper |
 | --- | --- |
