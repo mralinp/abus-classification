@@ -20,7 +20,8 @@ original-author verification, or equivalence to a challenge team's end-to-end pi
 Original-author verification is not established for these implementations by the checked-in records.
 The first paper's legacy `eswa2025` names refer to Barekatrezaei 2026; keep them for artifact traceability.
 Hejduk 2022 and challenge-team methods are tracked in the roadmap, but their implementation artifacts
-are not present in this checkout. The README's Hejduk running status is not independently verified here.
+are not present in this checkout. The roadmap marks T1 (SZU) in progress; its implementation and Kaggle
+run are under way. These running statuses are not independently verified by this documentation update.
 
 ## Shared benchmark and tools
 
@@ -31,6 +32,17 @@ are not present in this checkout. The README's Hejduk running status is not inde
 - [Feature modules](../abus_classification/features/), [meshing and spacing tools](../abus_classification/utils/)
   and the [lesion cache](../abus_classification/data/lesion_cache.py) support multiple studies.
 - [tdsc-abus2023-pytorch](https://github.com/mralinp/tdsc-abus2023-pytorch) supplies the dataset loader.
+
+## Phase 3: current foundational study
+
+[Invariance notebook](../notebooks/lb-invariance.ipynb),
+[reproduction record](reproductions/lb-invariance.md),
+[implementation](../abus_classification/lb_invariance.py),
+[stored spectra](../results/lb-invariance/spectra.npz) and
+[figure](assets/lb-invariance.png) record rigid-motion, isometry and scale investigations.
+This foundational work has started alongside the benchmark studies. It does not establish completion
+of the full Phase 3 classification comparison. Its retained study record describes CPU execution,
+Train+Validation diagnostics and the unrun Test evaluation.
 
 ## Historical thesis and exploratory notebooks
 

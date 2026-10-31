@@ -117,6 +117,24 @@ rendering, navigation, tables, figures and light/dark readability when tools are
 checks ran and any build or visual-review limitation; static checks alone are not a visual review.
 Keep the current design polished and coherent rather than adding disconnected sections or stale figures.
 
+## How we run a paper
+
+Do these in order, for every paper:
+
+1. Mark the paper 🔄 in the `README.md` roadmap.
+2. Implement it on its own branch with its tests, Kaggle kernel, notebook and document. Test it on real volumes locally before using GPU quota.
+3. Open the PR. Keep its text to what the document says, and update both as results arrive.
+4. Push the kernel and wait until it finishes, then store the results and update the notebook, document and README.
+5. Write every open question, unexplained result or deferred piece of work as a GitHub issue with a fitting label (`question`, `bug`, `enhancement`, `documentation`), so nothing depends on memory.
+
+Every Kaggle training run must:
+
+- **Save to Drive.** Sync checkpoints, final trained weights, logs and results to `abus-checkpoints/<name>` with `utils.drive.DriveSync`, which needs the `RCLONE_CONF` secret and so a start from Kaggle's editor. Stop the editor session afterwards, or a second copy trains.
+- **Resume.** Save a checkpoint every epoch, skip finished runs, and stop before the 12 h session limit so the output is kept.
+- **Use all the hardware.** Check for T4 x 2 at the start, run one training per GPU or use both in one model, and parallelise CPU work across all cores.
+- **Log properly.** Write timestamped lines for each epoch to stdout and a progress file: loss, learning rate, validation metric, best so far, time.
+- **Stop early.** Use an LR scheduler and early stopping on a volume-level validation set; record it as a deviation if the paper differs.
+
 ## Conventions
 
 - Shared target protocol: fit Train+Validation (130 volumes), report on the official Test split (70),

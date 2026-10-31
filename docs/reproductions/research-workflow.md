@@ -52,3 +52,20 @@ to target GitHub, so the shared README also works as landing-page content.
 Static checks cover image integrity, local image/link targets and configured navigation anchors.
 The current machine has no Ruby/Bundler installation, so a Jekyll build and rendered desktop/mobile
 review were not performed. No layout/CSS changes or new scientific figures are introduced by this follow-up.
+
+## Integration with current main
+
+Resolved PR #53's conflicts with `main` at `8b8158d`, retaining both the landing-page review rules
+and the newer paper/Kaggle workflow in `CLAUDE.md`. The README keeps the first paper's pending-source
+status and the updated T1 in-progress status. Corrected Yu results, invariance code, spectra, notebook
+and figure from main are retained. The research index now links the invariance study, and the Phase 3
+summary acknowledges foundational work already begun while full classification comparisons remain pending.
+
+This merge resolves conflicts on the documentation branch only; it does not merge the PR into main.
+
+Conflict-resolution validation: documentation links, image integrity, navigation anchors, YAML,
+notebook schemas and conflict-marker/index checks passed. Upstream artifacts other than the two
+conflicted documentation files were verified byte-for-byte against main. The selected library and
+paper suites passed 74 tests: 73 in the sandbox, with the multiprocessing worker test passing on a
+separate rerun with local socket access (its initial sandbox run failed on a denied socket operation).
+No Jekyll build or rendered visual review was performed in this merge.

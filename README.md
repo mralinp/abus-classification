@@ -107,11 +107,24 @@ of the paper. See [#28](https://github.com/mralinp/abus-classification/issues/28
 - **Training memorises quickly.** Training accuracy reaches about 100%, by epoch 2 on whole slices. The likely cause is volumes
   being memorised; this is not yet tested.
 - **Early stopping did not help, so the paper defaults stay the main result.** We added it because of that memorising, stopping on the
-  official Validation split. Crops stay at ensemble AUC 0.825, whole slices fall from 0.765 to 0.676, and no pretraining rises from 0.687
-  to 0.705; all paired 95% intervals include zero. Five-fold CV also falls, from 0.846 to 0.815 on crops. Validation AUC reaches
-  0.91–0.995 against 0.69–0.80 on Test, so 30 validation volumes are a poor guide.
-- **Challenge benchmark, classification only:** crops rank 4 of 9 (Cls_Score 0.734) with defaults and 3 of 9 (0.767) with early stopping.
-  The AUC is equal, and the gap is one test volume at the 0.5 threshold. This method uses ground-truth masks, so it has no overall rank.
+  official Validation split. Crops move from ensemble AUC 0.825 to 0.832, whole slices fall from 0.765 to 0.676, and no pretraining rises from 0.687
+  to 0.697; all paired 95% intervals include zero. Five-fold CV also falls, from 0.846 to 0.796 on crops. Validation AUC reaches
+  0.91–0.994 against 0.67–0.81 on Test, so 30 validation volumes are a poor guide.
+- **Challenge benchmark, classification only:** crops rank 4 of 9 (Cls_Score 0.734) with defaults and 2 of 9 (0.844) with early stopping.
+  AUC is close, and most of the gap is three test volumes at the 0.5 threshold. A second session with the same settings gave rank 3, so this rank is not stable. This method uses ground-truth masks, so it has no overall rank.
+
+**Laplace–Beltrami invariance** (details in
+[`lb-invariance.ipynb`](https://github.com/mralinp/abus-classification/blob/main/notebooks/lb-invariance.ipynb)):
+
+- **The invariances hold.** Rigid motion, isometry and scale (λₖ·Area) are exact on meshes. Random rigid motions of re-voxelised lesions
+  change λₖ·Area by about 0.2% on smoothed surfaces and 1% on staircase surfaces.
+- **The eigenvalues in our previous work measure size.** They come from the cotangent matrix L without the mass matrix, and eig(L) ≈ λ·Area / n,
+  with n the vertex count (ratio 0.99–1.00 here). The stored values rank lesions almost exactly by vertex count (Spearman −1.00 at k = 99), so they
+  also depend on the voxel grid. In 29 of 200 lesions, an extra mesh piece shifts their indices.
+- **Little signal remains in the low modes once size is removed.** On Train + Validation, cross-validated AUC is 0.59 for λₖ·Area with k = 1–20, 0.71 for
+  volume and 0.72 for the stored values. Adding these modes to volume lowers it to 0.65. Higher modes and lighter smoothing are untested.
+
+![Stored ESWA eigenvalues against mesh vertex count, eig(L) times vertex count against lambda times area, and raw against area-normalised eigenvalues by lesion volume](docs/assets/lb-invariance.png)
 
 | Predicted and true tumors, Zhou et al. 2021 | Ablations against the paper |
 | --- | --- |
@@ -156,7 +169,7 @@ Each study also reports the [challenge benchmark](https://github.com/mralinp/abu
 | | Paper | Authors | Approach and PR |
 | --- | --- | --- | --- |
 | 🔄 | *[Breast mass classification in 3D ABUS based on Laplace-Beltrami spectra and dual path CNN](https://doi.org/10.1016/j.eswa.2025.129973)* [7], our previous work | Barekatrezaei et al. 2026 | Awaiting finalized source, including the CNN code, from the first author; provisional findings retained in the notebook and [reproduction record](https://github.com/mralinp/abus-classification/blob/main/docs/reproductions/barekatrezaei2026.md) ([#28](https://github.com/mralinp/abus-classification/issues/28)). [`2-barekatrezaei2026.ipynb`](https://github.com/mralinp/abus-classification/blob/main/notebooks/2-barekatrezaei2026.ipynb), PR [#27](https://github.com/mralinp/abus-classification/pull/27) |
-| ⬜ | *[Tumor detection, segmentation and classification challenge on automated 3D breast ultrasound: the TDSC-ABUS challenge](https://arxiv.org/abs/2501.15588)* [5], team T1 (SZU) | Luo et al. 2025 | 3D ResNet, U-Net and anchor-free detector; not started ([#30](https://github.com/mralinp/abus-classification/issues/30)) |
+| 🔄 | *[Tumor detection, segmentation and classification challenge on automated 3D breast ultrasound: the TDSC-ABUS challenge](https://arxiv.org/abs/2501.15588)* [5], team T1 (SZU) | Luo et al. 2025 | 3D ResNet, U-Net and anchor-free detector; in progress, implementation and Kaggle run under way ([#30](https://github.com/mralinp/abus-classification/issues/30)) |
 | ⬜ | *[Tumor detection, segmentation and classification challenge on automated 3D breast ultrasound: the TDSC-ABUS challenge](https://arxiv.org/abs/2501.15588)* [5], team T2 (POSTECH) | Luo et al. 2025 | Multi-task residual nnU-Net; not started ([#31](https://github.com/mralinp/abus-classification/issues/31)) |
 | ⬜ | *[Tumor detection, segmentation and classification challenge on automated 3D breast ultrasound: the TDSC-ABUS challenge](https://arxiv.org/abs/2501.15588)* [5], team T3 (HU) | Luo et al. 2025 | nnU-Net, nnDetection and patch-based 3D ResNet-18; not started ([#32](https://github.com/mralinp/abus-classification/issues/32)) |
 | ⬜ | *[Tumor detection, segmentation and classification challenge on automated 3D breast ultrasound: the TDSC-ABUS challenge](https://arxiv.org/abs/2501.15588)* [5], team T4 (KTH) | Luo et al. 2025 | STU-Net and 2.5D DenseNet201 with voting; not started ([#33](https://github.com/mralinp/abus-classification/issues/33)) |
@@ -166,10 +179,11 @@ Each study also reports the [challenge benchmark](https://github.com/mralinp/abu
 | 🔄 | *[Fully automatic classification of automated breast ultrasound (ABUS) imaging according to BI-RADS using a deep convolutional neural network](https://doi.org/10.1007/s00330-022-08558-0)* | Hejduk et al. 2022 | Three step-wise 2D CNNs and a sliding window over slices; running on Kaggle, no PR yet |
 | ⬜ | Unified comparison table and statistical tests across all reproduced methods | — | — |
 
-### Phase 3 — Mathematical foundations of Laplace–Beltrami shape representation ⬜
+### Phase 3 — Mathematical foundations of Laplace–Beltrami shape representation 🔄
 
-Our previous work [7] motivates studying Laplace–Beltrami spectra of lesion surfaces. After the
-benchmark studies, this phase will test their classification performance and investigate the mathematics: which
+Our previous work [7] motivates studying Laplace–Beltrami spectra of lesion surfaces. Foundational
+invariance work has begun alongside the benchmark studies; full descriptor classification comparisons
+remain pending. This phase investigates which
 properties of a tumor's shape the spectrum provably captures, which it cannot, how stable it is under
 the imperfections of real ultrasound segmentations, and how it relates to spherical harmonic
 decompositions. Every claim is paired with an empirical check on TDSC-ABUS, and the theory is used to
@@ -179,7 +193,7 @@ derive better-founded descriptors.
 | --- | --- | --- |
 | ✅ | Watertight lesion surfaces | `utils.mesh.lesion_mesh`: meshes in millimetres; padding and no morphological closing keep all 200 surfaces closed |
 | ✅ | Discrete Laplace–Beltrami operator | Cotangent scheme with lumped mass matrix, verified against the analytic spectrum of the unit sphere; convergence to the smooth operator depends on mesh conditions studied in [15, 16] |
-| ⬜ | Invariance | Prove and verify invariance to rigid motion and isometric deformation, and normalise for scale (λₖ·Area) so lesions of different size are comparable |
+| ✅ | Invariance | Proved and verified for rigid motion, isometry and scale (λₖ·Area). On re-voxelised lesions it holds to 0.2–1%. [`lb-invariance.ipynb`](https://github.com/mralinp/abus-classification/blob/main/notebooks/lb-invariance.ipynb) |
 | ⬜ | What the spectrum determines | Surface area from Weyl's law [17]; area and Euler characteristic from the heat-trace expansion [18]; and its limits, the question posed by Kac [19] |
 | ⬜ | Roundness and irregularity | Hersch's inequality, λ₁·Area ≤ 8π on genus-0 surfaces with equality only for the round sphere [20], makes the first eigenvalue a provable measure of departure from roundness; relate higher eigenvalues to lobulation and spiculation |
 | ⬜ | Stability | Bound how far eigenvalues move under surface perturbation, mesh resolution, voxel anisotropy and segmentation error, and measure it on TDSC-ABUS |
@@ -299,6 +313,7 @@ uv run python -m abus_classification.papers.zhou2021 --epochs 100
 | --- | --- |
 | `abus_classification/papers/` | Paper implementations (`barekatrezaei2026`, `zhou2021`, `wang2020`, `yu2024`); completion and source verification vary |
 | `abus_classification/protocol.py` | Shared evaluation protocol: device, metrics, folds, bootstrap CI |
+| `abus_classification/lb_invariance.py` | Invariance experiment for the Laplace–Beltrami spectrum on TDSC-ABUS lesions |
 | `abus_classification/challenge.py` | TDSC-ABUS 2023 challenge evaluation (Dice, HD, ACC, AUC, FROC) and published leaderboard |
 | `abus_classification/data/` | Lesion cache: patches, radiomic and Laplace–Beltrami features per volume |
 | `abus_classification/features/tan/` | Tan et al. (2012, 2013) features, including coronal spiculation |
