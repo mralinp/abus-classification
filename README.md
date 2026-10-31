@@ -112,10 +112,10 @@ Status: ✅ done · 🔄 in progress · ⬜ planned
 
 ### Phase 1 — Reproduce classical radiomics ✅
 
-| | Paper | Result on TDSC-ABUS test split |
-| --- | --- | --- |
-| ✅ | Tan et al. 2012 — coronal spiculation after the mammography stellate-lesion statistic [4], 11 features, SVM [1, 3] | AUC 0.86 |
-| ✅ | Tan et al. 2013 — 14 features, LDA [2, 3] | AUC 0.82 |
+| | Paper | Authors | Notebook and results |
+| --- | --- | --- | --- |
+| ✅ | *Computer-aided lesion diagnosis in automated 3-D breast ultrasound using coronal spiculation* [1, 3] | Tan et al. 2012 | [`1-tao2013.ipynb`](https://github.com/mralinp/abus-classification/blob/main/notebooks/1-tao2013.ipynb) |
+| ✅ | *Evaluation of the effect of computer-aided classification of benign and malignant lesions on reader performance in automated three-dimensional breast ultrasound* [2, 3] | Tan et al. 2013 | [`1-tao2013.ipynb`](https://github.com/mralinp/abus-classification/blob/main/notebooks/1-tao2013.ipynb) |
 
 ### Phase 2 — Reproduce the strongest published results 🔄
 
@@ -125,18 +125,18 @@ DeLong's test. Each is evaluated twice — from ground-truth masks and from pred
 Each also reports the [challenge benchmark](notebooks/challenge-benchmark.ipynb) on the published leaderboard
 (`abus_classification/challenge.py`). So far that covers classification only ([#34](https://github.com/mralinp/abus-classification/issues/34)).
 
-| | Paper | Approach |
-| --- | --- | --- |
-| 🔄 | Barekatrezaei et al. 2026 [7] — our previous work | Laplace–Beltrami spectra + dual-path CNN, stacked ensemble; voting AUC 0.85–0.86, stacking does not reproduce yet ([#28](https://github.com/mralinp/abus-classification/issues/28)) |
-| ⬜ | TDSC-ABUS T1, SZU [5] | 3D ResNet, U-Net and anchor-free detector ([#30](https://github.com/mralinp/abus-classification/issues/30)) |
-| ⬜ | TDSC-ABUS T2, POSTECH [5] | Multi-task residual nnU-Net ([#31](https://github.com/mralinp/abus-classification/issues/31)) |
-| ⬜ | TDSC-ABUS T3, HU [5] | nnU-Net, nnDetection and patch-based 3D ResNet-18 ([#32](https://github.com/mralinp/abus-classification/issues/32)) |
-| ⬜ | TDSC-ABUS T4, KTH [5] | STU-Net and 2.5D DenseNet201 with voting ([#33](https://github.com/mralinp/abus-classification/issues/33)) |
-| ✅ | Zhou et al. 2021 [6] | Multi-task V-Net: joint segmentation and classification; test AUC 0.67, Dice 0.73 (paper, on its own data: 0.787, 0.778), with ablations; patches centred on ground-truth masks |
-| ⬜ | Yu et al. 2024 [8] | 2D-input networks with soft and hard voting across slices |
-| ✅ | [Wang et al. 2020: breast cancer classification in ABUS using multiview CNN with transfer learning](https://pubmed.ncbi.nlm.nih.gov/32059918/) | Multiview Inception-v3; test AUC 0.755 (paper, on its own data: 0.947), with view ablations; uses the official boxes |
-| ⬜ | [Fully automatic classification of ABUS according to BI-RADS using a deep CNN](https://pubmed.ncbi.nlm.nih.gov/35147776/) | 2D deep CNN |
-| ⬜ | Unified comparison table and statistical tests across all reproduced methods | — |
+| | Paper | Authors | Notebook and results |
+| --- | --- | --- | --- |
+| 🔄 | *Breast mass classification in 3D ABUS based on Laplace-Beltrami spectra and dual path CNN* [7], our previous work | Barekatrezaei et al. 2026 | [`2-barekatrezaei2026.ipynb`](https://github.com/mralinp/abus-classification/blob/main/notebooks/2-barekatrezaei2026.ipynb); stacking does not reproduce yet ([#28](https://github.com/mralinp/abus-classification/issues/28)) |
+| ⬜ | *Tumor detection, segmentation and classification challenge on automated 3D breast ultrasound: the TDSC-ABUS challenge* [5], team T1 (SZU) | Luo et al. 2025 | Not started ([#30](https://github.com/mralinp/abus-classification/issues/30)) |
+| ⬜ | *Tumor detection, segmentation and classification challenge on automated 3D breast ultrasound: the TDSC-ABUS challenge* [5], team T2 (POSTECH) | Luo et al. 2025 | Not started ([#31](https://github.com/mralinp/abus-classification/issues/31)) |
+| ⬜ | *Tumor detection, segmentation and classification challenge on automated 3D breast ultrasound: the TDSC-ABUS challenge* [5], team T3 (HU) | Luo et al. 2025 | Not started ([#32](https://github.com/mralinp/abus-classification/issues/32)) |
+| ⬜ | *Tumor detection, segmentation and classification challenge on automated 3D breast ultrasound: the TDSC-ABUS challenge* [5], team T4 (KTH) | Luo et al. 2025 | Not started ([#33](https://github.com/mralinp/abus-classification/issues/33)) |
+| ✅ | *Multi-task learning for segmentation and classification of tumors in 3D automated breast ultrasound images* [6] | Zhou et al. 2021 | [`3-zhou2021.ipynb`](https://github.com/mralinp/abus-classification/blob/main/notebooks/3-zhou2021.ipynb) |
+| ⬜ | *Three-dimensional automated breast ultrasound (ABUS) tumor classification using a 2D-input network: soft voting or hard voting?* [8] | Yu et al. 2024 | Not started |
+| ✅ | *[Breast cancer classification in automated breast ultrasound using multiview convolutional neural network with transfer learning](https://doi.org/10.1016/j.ultrasmedbio.2020.01.001)* | Wang et al. 2020 | [`4-wang2020.ipynb`](https://github.com/mralinp/abus-classification/blob/main/notebooks/4-wang2020.ipynb) |
+| 🔄 | *[Fully automatic classification of automated breast ultrasound (ABUS) imaging according to BI-RADS using a deep convolutional neural network](https://doi.org/10.1007/s00330-022-08558-0)* | Hejduk et al. 2022 | In progress, not run yet |
+| ⬜ | Unified comparison table and statistical tests across all reproduced methods | — | — |
 
 ### Phase 3 — Mathematical foundations of Laplace–Beltrami shape representation ⬜
 
