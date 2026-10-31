@@ -1,241 +1,381 @@
-16:13:51 building the cache
-16:19:16 3170 slices with tumor on Train (paper: 2028), 2 GPUs, 4 CPUs
-16:19:42 es_cv_resnet34_seed0_fold4 start on cuda:0, 2573 slices
-16:19:46 es_resnet34_crop_seed0 start on cuda:1, 3170 slices
-16:19:58 es_cv_resnet34_seed0_fold4 epoch 1 loss 0.107 acc 0.956 lr 1.0e-04 val AUC 0.882 best 0.882 at 1 16 s since start
-16:20:04 es_resnet34_crop_seed0 epoch 1 loss 0.473 acc 0.750 lr 1.0e-04 val AUC 0.959 best 0.959 at 1 18 s since start
-16:20:12 es_cv_resnet34_seed0_fold4 epoch 2 loss 0.019 acc 0.994 lr 1.0e-04 val AUC 0.751 best 0.882 at 1 30 s since start
-16:20:21 es_resnet34_crop_seed0 epoch 2 loss 0.257 acc 0.889 lr 1.0e-04 val AUC 0.991 best 0.991 at 2 35 s since start
-16:20:27 es_cv_resnet34_seed0_fold4 epoch 3 loss 0.005 acc 0.999 lr 1.0e-04 val AUC 0.751 best 0.882 at 1 45 s since start
-16:20:39 es_resnet34_crop_seed0 epoch 3 loss 0.200 acc 0.920 lr 1.0e-04 val AUC 0.959 best 0.991 at 2 53 s since start
-16:20:42 es_cv_resnet34_seed0_fold4 epoch 4 loss 0.002 acc 0.999 lr 1.0e-04 val AUC 0.810 best 0.882 at 1 60 s since start
-16:20:57 es_resnet34_crop_seed0 epoch 4 loss 0.155 acc 0.934 lr 1.0e-04 val AUC 0.964 best 0.991 at 2 71 s since start
-16:20:58 es_cv_resnet34_seed0_fold4 epoch 5 loss 0.017 acc 0.994 lr 1.0e-04 val AUC 0.765 best 0.882 at 1 76 s since start
-16:21:15 es_cv_resnet34_seed0_fold4 epoch 6 loss 0.003 acc 1.000 lr 5.0e-05 val AUC 0.833 best 0.882 at 1 92 s since start
-16:21:17 es_resnet34_crop_seed0 epoch 5 loss 0.128 acc 0.947 lr 1.0e-04 val AUC 0.968 best 0.991 at 2 90 s since start
-16:21:32 es_cv_resnet34_seed0_fold4 epoch 7 loss 0.003 acc 0.999 lr 5.0e-05 val AUC 0.801 best 0.882 at 1 110 s since start
-16:21:37 es_resnet34_crop_seed0 epoch 6 loss 0.069 acc 0.973 lr 1.0e-04 val AUC 0.968 best 0.991 at 2 111 s since start
-16:21:50 es_cv_resnet34_seed0_fold4 epoch 8 loss 0.006 acc 0.998 lr 5.0e-05 val AUC 0.738 best 0.882 at 1 128 s since start
-16:21:57 es_resnet34_crop_seed0 epoch 7 loss 0.030 acc 0.992 lr 5.0e-05 val AUC 0.995 best 0.995 at 7 130 s since start
-16:22:07 es_cv_resnet34_seed0_fold4 epoch 9 loss 0.005 acc 0.999 lr 5.0e-05 val AUC 0.774 best 0.882 at 1 145 s since start
-16:22:16 es_resnet34_crop_seed0 epoch 8 loss 0.013 acc 0.997 lr 5.0e-05 val AUC 0.977 best 0.995 at 7 149 s since start
-16:22:23 es_cv_resnet34_seed0_fold4 epoch 10 loss 0.001 acc 1.000 lr 2.5e-05 val AUC 0.796 best 0.882 at 1 161 s since start
-16:22:35 es_resnet34_crop_seed0 epoch 9 loss 0.013 acc 0.997 lr 5.0e-05 val AUC 0.991 best 0.995 at 7 169 s since start
-16:22:40 es_cv_resnet34_seed0_fold4 epoch 11 loss 0.000 acc 1.000 lr 2.5e-05 val AUC 0.805 best 0.882 at 1 178 s since start
-16:22:40 es_cv_resnet34_seed0_fold4 early stop at epoch 11
-16:22:41 es_cv_resnet34_seed0_fold4 done, best epoch 1, val AUC 0.882
-16:22:46 es_resnet34_crop_seed1 start on cuda:0, 3170 slices
-16:22:55 es_resnet34_crop_seed0 epoch 10 loss 0.018 acc 0.993 lr 5.0e-05 val AUC 0.986 best 0.995 at 7 188 s since start
-16:23:07 es_resnet34_crop_seed1 epoch 1 loss 0.460 acc 0.772 lr 1.0e-04 val AUC 0.946 best 0.946 at 1 20 s since start
-16:23:15 es_resnet34_crop_seed0 epoch 11 loss 0.007 acc 0.998 lr 5.0e-05 val AUC 0.991 best 0.995 at 7 208 s since start
-16:23:27 es_resnet34_crop_seed1 epoch 2 loss 0.239 acc 0.899 lr 1.0e-04 val AUC 0.959 best 0.959 at 2 41 s since start
-16:23:35 es_resnet34_crop_seed0 epoch 12 loss 0.010 acc 0.998 lr 2.5e-05 val AUC 0.991 best 0.995 at 7 229 s since start
-16:23:47 es_resnet34_crop_seed1 epoch 3 loss 0.157 acc 0.934 lr 1.0e-04 val AUC 0.932 best 0.959 at 2 61 s since start
-16:23:54 es_resnet34_crop_seed0 epoch 13 loss 0.007 acc 1.000 lr 2.5e-05 val AUC 0.991 best 0.995 at 7 248 s since start
-16:24:08 es_resnet34_crop_seed1 epoch 4 loss 0.129 acc 0.946 lr 1.0e-04 val AUC 0.982 best 0.982 at 4 81 s since start
-16:24:14 es_resnet34_crop_seed0 epoch 14 loss 0.004 acc 0.999 lr 2.5e-05 val AUC 0.986 best 0.995 at 7 268 s since start
-16:24:28 es_resnet34_crop_seed1 epoch 5 loss 0.074 acc 0.971 lr 1.0e-04 val AUC 0.928 best 0.982 at 4 101 s since start
-16:24:34 es_resnet34_crop_seed0 epoch 15 loss 0.002 acc 1.000 lr 2.5e-05 val AUC 0.995 best 0.995 at 7 287 s since start
-16:24:48 es_resnet34_crop_seed1 epoch 6 loss 0.124 acc 0.967 lr 1.0e-04 val AUC 0.968 best 0.982 at 4 122 s since start
-16:24:53 es_resnet34_crop_seed0 epoch 16 loss 0.007 acc 0.999 lr 1.3e-05 val AUC 0.991 best 0.995 at 7 307 s since start
-16:25:08 es_resnet34_crop_seed1 epoch 7 loss 0.150 acc 0.943 lr 1.0e-04 val AUC 0.986 best 0.986 at 7 142 s since start
-16:25:13 es_resnet34_crop_seed0 epoch 17 loss 0.030 acc 0.998 lr 1.3e-05 val AUC 0.991 best 0.995 at 7 327 s since start
-16:25:13 es_resnet34_crop_seed0 early stop at epoch 17
-16:25:17 es_resnet34_crop_seed0 done, best epoch 7, val AUC 0.995
-16:25:22 es_resnet34_crop_seed2 start on cuda:1, 3170 slices
-16:25:28 es_resnet34_crop_seed1 epoch 8 loss 0.052 acc 0.983 lr 1.0e-04 val AUC 0.991 best 0.991 at 8 162 s since start
-16:25:41 es_resnet34_crop_seed2 epoch 1 loss 0.486 acc 0.756 lr 1.0e-04 val AUC 1.000 best 1.000 at 1 19 s since start
-16:25:49 es_resnet34_crop_seed1 epoch 9 loss 0.025 acc 0.992 lr 1.0e-04 val AUC 0.982 best 0.991 at 8 182 s since start
-16:26:01 es_resnet34_crop_seed2 epoch 2 loss 0.281 acc 0.885 lr 1.0e-04 val AUC 0.959 best 1.000 at 1 39 s since start
-16:26:09 es_resnet34_crop_seed1 epoch 10 loss 0.013 acc 0.997 lr 1.0e-04 val AUC 0.977 best 0.991 at 8 203 s since start
-16:26:20 es_resnet34_crop_seed2 epoch 3 loss 0.185 acc 0.924 lr 1.0e-04 val AUC 0.959 best 1.000 at 1 58 s since start
-16:26:29 es_resnet34_crop_seed1 epoch 11 loss 0.009 acc 0.999 lr 1.0e-04 val AUC 0.973 best 0.991 at 8 223 s since start
-16:26:40 es_resnet34_crop_seed2 epoch 4 loss 0.100 acc 0.958 lr 1.0e-04 val AUC 0.968 best 1.000 at 1 78 s since start
-16:26:50 es_resnet34_crop_seed1 epoch 12 loss 0.018 acc 0.994 lr 1.0e-04 val AUC 0.941 best 0.991 at 8 243 s since start
-16:26:59 es_resnet34_crop_seed2 epoch 5 loss 0.102 acc 0.965 lr 1.0e-04 val AUC 0.986 best 1.000 at 1 98 s since start
-16:27:10 es_resnet34_crop_seed1 epoch 13 loss 0.021 acc 0.994 lr 5.0e-05 val AUC 0.937 best 0.991 at 8 264 s since start
-16:27:19 es_resnet34_crop_seed2 epoch 6 loss 0.093 acc 0.968 lr 5.0e-05 val AUC 0.964 best 1.000 at 1 117 s since start
-16:27:31 es_resnet34_crop_seed1 epoch 14 loss 0.005 acc 0.999 lr 5.0e-05 val AUC 0.964 best 0.991 at 8 284 s since start
-16:27:39 es_resnet34_crop_seed2 epoch 7 loss 0.049 acc 0.985 lr 5.0e-05 val AUC 0.959 best 1.000 at 1 137 s since start
-16:27:51 es_resnet34_crop_seed1 epoch 15 loss 0.015 acc 0.999 lr 5.0e-05 val AUC 0.973 best 0.991 at 8 305 s since start
-16:27:59 es_resnet34_crop_seed2 epoch 8 loss 0.017 acc 0.995 lr 5.0e-05 val AUC 0.959 best 1.000 at 1 157 s since start
-16:28:11 es_resnet34_crop_seed1 epoch 16 loss 0.062 acc 0.983 lr 5.0e-05 val AUC 0.982 best 0.991 at 8 325 s since start
-16:28:18 es_resnet34_crop_seed2 epoch 9 loss 0.009 acc 0.998 lr 5.0e-05 val AUC 0.959 best 1.000 at 1 177 s since start
-16:28:32 es_resnet34_crop_seed1 epoch 17 loss 0.013 acc 0.997 lr 2.5e-05 val AUC 0.968 best 0.991 at 8 346 s since start
-16:28:38 es_resnet34_crop_seed2 epoch 10 loss 0.042 acc 0.998 lr 2.5e-05 val AUC 0.973 best 1.000 at 1 196 s since start
-16:28:52 es_resnet34_crop_seed1 epoch 18 loss 0.005 acc 0.999 lr 2.5e-05 val AUC 0.977 best 0.991 at 8 366 s since start
-16:28:52 es_resnet34_crop_seed1 early stop at epoch 18
-16:28:56 es_resnet34_crop_seed1 done, best epoch 8, val AUC 0.991
-16:28:58 es_resnet34_crop_seed2 epoch 11 loss 0.024 acc 0.992 lr 2.5e-05 val AUC 0.955 best 1.000 at 1 216 s since start
-16:28:58 es_resnet34_crop_seed2 early stop at epoch 11
-16:29:01 es_cv_resnet34_crop_seed0_fold0 start on cuda:0, 2373 slices
-16:29:02 es_resnet34_crop_seed2 done, best epoch 1, val AUC 1.000
-16:29:07 es_cv_resnet34_crop_seed0_fold1 start on cuda:1, 2552 slices
-16:29:17 es_cv_resnet34_crop_seed0_fold0 epoch 1 loss 0.489 acc 0.754 lr 1.0e-04 val AUC 0.986 best 0.986 at 1 16 s since start
-16:29:23 es_cv_resnet34_crop_seed0_fold1 epoch 1 loss 0.460 acc 0.768 lr 1.0e-04 val AUC 0.946 best 0.946 at 1 16 s since start
-16:29:33 es_cv_resnet34_crop_seed0_fold0 epoch 2 loss 0.252 acc 0.891 lr 1.0e-04 val AUC 0.937 best 0.986 at 1 31 s since start
-16:29:39 es_cv_resnet34_crop_seed0_fold1 epoch 2 loss 0.234 acc 0.900 lr 1.0e-04 val AUC 0.955 best 0.955 at 2 33 s since start
-16:29:49 es_cv_resnet34_crop_seed0_fold0 epoch 3 loss 0.171 acc 0.929 lr 1.0e-04 val AUC 0.968 best 0.986 at 1 47 s since start
-16:29:56 es_cv_resnet34_crop_seed0_fold1 epoch 3 loss 0.165 acc 0.934 lr 1.0e-04 val AUC 0.910 best 0.955 at 2 49 s since start
-16:30:05 es_cv_resnet34_crop_seed0_fold0 epoch 4 loss 0.122 acc 0.950 lr 1.0e-04 val AUC 0.937 best 0.986 at 1 63 s since start
-16:30:12 es_cv_resnet34_crop_seed0_fold1 epoch 4 loss 0.117 acc 0.955 lr 1.0e-04 val AUC 0.910 best 0.955 at 2 66 s since start
-16:30:20 es_cv_resnet34_crop_seed0_fold0 epoch 5 loss 0.127 acc 0.953 lr 1.0e-04 val AUC 0.968 best 0.986 at 1 79 s since start
-16:30:28 es_cv_resnet34_crop_seed0_fold1 epoch 5 loss 0.077 acc 0.970 lr 1.0e-04 val AUC 0.946 best 0.955 at 2 82 s since start
-16:30:36 es_cv_resnet34_crop_seed0_fold0 epoch 6 loss 0.061 acc 0.977 lr 5.0e-05 val AUC 0.973 best 0.986 at 1 95 s since start
-16:30:44 es_cv_resnet34_crop_seed0_fold1 epoch 6 loss 0.106 acc 0.960 lr 1.0e-04 val AUC 0.941 best 0.955 at 2 98 s since start
-16:30:52 es_cv_resnet34_crop_seed0_fold0 epoch 7 loss 0.021 acc 0.996 lr 5.0e-05 val AUC 0.977 best 0.986 at 1 110 s since start
-16:31:01 es_cv_resnet34_crop_seed0_fold1 epoch 7 loss 0.059 acc 0.978 lr 5.0e-05 val AUC 0.932 best 0.955 at 2 114 s since start
-16:31:07 es_cv_resnet34_crop_seed0_fold0 epoch 8 loss 0.018 acc 0.997 lr 5.0e-05 val AUC 0.982 best 0.986 at 1 126 s since start
-16:31:17 es_cv_resnet34_crop_seed0_fold1 epoch 8 loss 0.018 acc 0.995 lr 5.0e-05 val AUC 0.928 best 0.955 at 2 130 s since start
-16:31:23 es_cv_resnet34_crop_seed0_fold0 epoch 9 loss 0.013 acc 0.997 lr 5.0e-05 val AUC 0.991 best 0.991 at 9 142 s since start
-16:31:33 es_cv_resnet34_crop_seed0_fold1 epoch 9 loss 0.008 acc 0.999 lr 5.0e-05 val AUC 0.932 best 0.955 at 2 147 s since start
-16:31:39 es_cv_resnet34_crop_seed0_fold0 epoch 10 loss 0.013 acc 0.999 lr 5.0e-05 val AUC 0.986 best 0.991 at 9 158 s since start
-16:31:50 es_cv_resnet34_crop_seed0_fold1 epoch 10 loss 0.004 acc 1.000 lr 5.0e-05 val AUC 0.950 best 0.955 at 2 163 s since start
-16:31:55 es_cv_resnet34_crop_seed0_fold0 epoch 11 loss 0.073 acc 0.981 lr 5.0e-05 val AUC 0.955 best 0.991 at 9 174 s since start
-16:32:06 es_cv_resnet34_crop_seed0_fold1 epoch 11 loss 0.004 acc 1.000 lr 2.5e-05 val AUC 0.950 best 0.955 at 2 179 s since start
-16:32:11 es_cv_resnet34_crop_seed0_fold0 epoch 12 loss 0.015 acc 0.997 lr 5.0e-05 val AUC 0.977 best 0.991 at 9 190 s since start
-16:32:22 es_cv_resnet34_crop_seed0_fold1 epoch 12 loss 0.003 acc 1.000 lr 2.5e-05 val AUC 0.941 best 0.955 at 2 196 s since start
-16:32:22 es_cv_resnet34_crop_seed0_fold1 early stop at epoch 12
-16:32:24 es_cv_resnet34_crop_seed0_fold1 done, best epoch 2, val AUC 0.955
-16:32:27 es_cv_resnet34_crop_seed0_fold0 epoch 13 loss 0.006 acc 0.999 lr 5.0e-05 val AUC 0.973 best 0.991 at 9 206 s since start
-16:32:28 es_cv_resnet34_crop_seed0_fold2 start on cuda:1, 2597 slices
-16:32:43 es_cv_resnet34_crop_seed0_fold0 epoch 14 loss 0.013 acc 0.999 lr 2.5e-05 val AUC 0.973 best 0.991 at 9 222 s since start
-16:32:45 es_cv_resnet34_crop_seed0_fold2 epoch 1 loss 0.490 acc 0.746 lr 1.0e-04 val AUC 0.905 best 0.905 at 1 16 s since start
-16:32:59 es_cv_resnet34_crop_seed0_fold0 epoch 15 loss 0.031 acc 0.996 lr 2.5e-05 val AUC 0.973 best 0.991 at 9 237 s since start
-16:33:01 es_cv_resnet34_crop_seed0_fold2 epoch 2 loss 0.237 acc 0.893 lr 1.0e-04 val AUC 0.955 best 0.955 at 2 33 s since start
-16:33:15 es_cv_resnet34_crop_seed0_fold0 epoch 16 loss 0.016 acc 0.995 lr 2.5e-05 val AUC 0.986 best 0.991 at 9 253 s since start
-16:33:18 es_cv_resnet34_crop_seed0_fold2 epoch 3 loss 0.191 acc 0.918 lr 1.0e-04 val AUC 0.905 best 0.955 at 2 49 s since start
-16:33:30 es_cv_resnet34_crop_seed0_fold0 epoch 17 loss 0.003 acc 1.000 lr 2.5e-05 val AUC 0.982 best 0.991 at 9 269 s since start
-16:33:34 es_cv_resnet34_crop_seed0_fold2 epoch 4 loss 0.094 acc 0.967 lr 1.0e-04 val AUC 0.959 best 0.959 at 4 66 s since start
-16:33:46 es_cv_resnet34_crop_seed0_fold0 epoch 18 loss 0.003 acc 1.000 lr 1.3e-05 val AUC 0.982 best 0.991 at 9 285 s since start
-16:33:51 es_cv_resnet34_crop_seed0_fold2 epoch 5 loss 0.121 acc 0.964 lr 1.0e-04 val AUC 0.955 best 0.959 at 4 82 s since start
-16:34:02 es_cv_resnet34_crop_seed0_fold0 epoch 19 loss 0.006 acc 1.000 lr 1.3e-05 val AUC 0.986 best 0.991 at 9 301 s since start
-16:34:02 es_cv_resnet34_crop_seed0_fold0 early stop at epoch 19
-16:34:04 es_cv_resnet34_crop_seed0_fold0 done, best epoch 9, val AUC 0.991
-16:34:07 es_cv_resnet34_crop_seed0_fold2 epoch 6 loss 0.142 acc 0.947 lr 1.0e-04 val AUC 1.000 best 1.000 at 6 99 s since start
-16:34:09 es_cv_resnet34_crop_seed0_fold3 start on cuda:0, 2585 slices
-16:34:24 es_cv_resnet34_crop_seed0_fold2 epoch 7 loss 0.098 acc 0.964 lr 1.0e-04 val AUC 0.955 best 1.000 at 6 115 s since start
-16:34:25 es_cv_resnet34_crop_seed0_fold3 epoch 1 loss 0.463 acc 0.765 lr 1.0e-04 val AUC 0.946 best 0.946 at 1 17 s since start
-16:34:40 es_cv_resnet34_crop_seed0_fold2 epoch 8 loss 0.057 acc 0.984 lr 1.0e-04 val AUC 1.000 best 1.000 at 6 132 s since start
-16:34:42 es_cv_resnet34_crop_seed0_fold3 epoch 2 loss 0.244 acc 0.887 lr 1.0e-04 val AUC 0.950 best 0.950 at 2 34 s since start
-16:34:57 es_cv_resnet34_crop_seed0_fold2 epoch 9 loss 0.021 acc 0.993 lr 1.0e-04 val AUC 0.982 best 1.000 at 6 149 s since start
-16:34:59 es_cv_resnet34_crop_seed0_fold3 epoch 3 loss 0.146 acc 0.942 lr 1.0e-04 val AUC 0.986 best 0.986 at 3 51 s since start
-16:35:14 es_cv_resnet34_crop_seed0_fold2 epoch 10 loss 0.016 acc 0.996 lr 1.0e-04 val AUC 0.973 best 1.000 at 6 165 s since start
-16:35:16 es_cv_resnet34_crop_seed0_fold3 epoch 4 loss 0.111 acc 0.954 lr 1.0e-04 val AUC 0.955 best 0.986 at 3 68 s since start
-16:35:30 es_cv_resnet34_crop_seed0_fold2 epoch 11 loss 0.011 acc 0.997 lr 5.0e-05 val AUC 0.982 best 1.000 at 6 182 s since start
-16:35:33 es_cv_resnet34_crop_seed0_fold3 epoch 5 loss 0.074 acc 0.968 lr 1.0e-04 val AUC 0.941 best 0.986 at 3 85 s since start
-16:35:47 es_cv_resnet34_crop_seed0_fold2 epoch 12 loss 0.035 acc 0.993 lr 5.0e-05 val AUC 0.973 best 1.000 at 6 199 s since start
-16:35:50 es_cv_resnet34_crop_seed0_fold3 epoch 6 loss 0.103 acc 0.962 lr 1.0e-04 val AUC 0.986 best 0.986 at 3 102 s since start
-16:36:04 es_cv_resnet34_crop_seed0_fold2 epoch 13 loss 0.047 acc 0.987 lr 5.0e-05 val AUC 0.950 best 1.000 at 6 215 s since start
-16:36:07 es_cv_resnet34_crop_seed0_fold3 epoch 7 loss 0.047 acc 0.983 lr 1.0e-04 val AUC 0.968 best 0.986 at 3 119 s since start
-16:36:20 es_cv_resnet34_crop_seed0_fold2 epoch 14 loss 0.032 acc 0.992 lr 5.0e-05 val AUC 0.982 best 1.000 at 6 232 s since start
-16:36:24 es_cv_resnet34_crop_seed0_fold3 epoch 8 loss 0.034 acc 0.988 lr 5.0e-05 val AUC 0.986 best 0.986 at 3 136 s since start
-16:36:37 es_cv_resnet34_crop_seed0_fold2 epoch 15 loss 0.016 acc 0.997 lr 2.5e-05 val AUC 0.973 best 1.000 at 6 249 s since start
-16:36:41 es_cv_resnet34_crop_seed0_fold3 epoch 9 loss 0.008 acc 1.000 lr 5.0e-05 val AUC 0.991 best 0.991 at 9 153 s since start
-16:36:54 es_cv_resnet34_crop_seed0_fold2 epoch 16 loss 0.016 acc 0.997 lr 2.5e-05 val AUC 0.964 best 1.000 at 6 265 s since start
-16:36:54 es_cv_resnet34_crop_seed0_fold2 early stop at epoch 16
-16:36:55 es_cv_resnet34_crop_seed0_fold2 done, best epoch 6, val AUC 1.000
-16:36:58 es_cv_resnet34_crop_seed0_fold3 epoch 10 loss 0.004 acc 1.000 lr 5.0e-05 val AUC 0.995 best 0.995 at 10 170 s since start
-16:36:59 es_cv_resnet34_crop_seed0_fold4 start on cuda:1, 2573 slices
-16:37:15 es_cv_resnet34_crop_seed0_fold3 epoch 11 loss 0.004 acc 0.999 lr 5.0e-05 val AUC 1.000 best 1.000 at 11 187 s since start
-16:37:16 es_cv_resnet34_crop_seed0_fold4 epoch 1 loss 0.468 acc 0.759 lr 1.0e-04 val AUC 0.842 best 0.842 at 1 16 s since start
-16:37:32 es_cv_resnet34_crop_seed0_fold4 epoch 2 loss 0.242 acc 0.892 lr 1.0e-04 val AUC 0.910 best 0.910 at 2 32 s since start
-16:37:32 es_cv_resnet34_crop_seed0_fold3 epoch 12 loss 0.003 acc 1.000 lr 5.0e-05 val AUC 0.991 best 1.000 at 11 204 s since start
-16:37:48 es_cv_resnet34_crop_seed0_fold4 epoch 3 loss 0.147 acc 0.939 lr 1.0e-04 val AUC 0.910 best 0.910 at 2 49 s since start
-16:37:49 es_cv_resnet34_crop_seed0_fold3 epoch 13 loss 0.002 acc 1.000 lr 5.0e-05 val AUC 1.000 best 1.000 at 11 221 s since start
-16:38:04 es_cv_resnet34_crop_seed0_fold4 epoch 4 loss 0.107 acc 0.959 lr 1.0e-04 val AUC 0.905 best 0.910 at 2 65 s since start
-16:38:06 es_cv_resnet34_crop_seed0_fold3 epoch 14 loss 0.003 acc 1.000 lr 5.0e-05 val AUC 0.991 best 1.000 at 11 238 s since start
-16:38:21 es_cv_resnet34_crop_seed0_fold4 epoch 5 loss 0.102 acc 0.960 lr 1.0e-04 val AUC 0.887 best 0.910 at 2 81 s since start
-16:38:24 es_cv_resnet34_crop_seed0_fold3 epoch 15 loss 0.002 acc 1.000 lr 5.0e-05 val AUC 0.991 best 1.000 at 11 255 s since start
-16:38:37 es_cv_resnet34_crop_seed0_fold4 epoch 6 loss 0.074 acc 0.971 lr 1.0e-04 val AUC 0.919 best 0.919 at 6 98 s since start
-16:38:41 es_cv_resnet34_crop_seed0_fold3 epoch 16 loss 0.002 acc 1.000 lr 2.5e-05 val AUC 0.995 best 1.000 at 11 272 s since start
-16:38:54 es_cv_resnet34_crop_seed0_fold4 epoch 7 loss 0.069 acc 0.973 lr 1.0e-04 val AUC 0.932 best 0.932 at 7 114 s since start
-16:38:58 es_cv_resnet34_crop_seed0_fold3 epoch 17 loss 0.003 acc 0.999 lr 2.5e-05 val AUC 1.000 best 1.000 at 11 289 s since start
-16:39:10 es_cv_resnet34_crop_seed0_fold4 epoch 8 loss 0.046 acc 0.984 lr 1.0e-04 val AUC 0.914 best 0.932 at 7 131 s since start
-16:39:15 es_cv_resnet34_crop_seed0_fold3 epoch 18 loss 0.002 acc 1.000 lr 2.5e-05 val AUC 0.991 best 1.000 at 11 306 s since start
-16:39:26 es_cv_resnet34_crop_seed0_fold4 epoch 9 loss 0.021 acc 0.991 lr 1.0e-04 val AUC 0.828 best 0.932 at 7 147 s since start
-16:39:32 es_cv_resnet34_crop_seed0_fold3 epoch 19 loss 0.003 acc 1.000 lr 2.5e-05 val AUC 0.995 best 1.000 at 11 323 s since start
-16:39:43 es_cv_resnet34_crop_seed0_fold4 epoch 10 loss 0.037 acc 0.986 lr 1.0e-04 val AUC 0.900 best 0.932 at 7 163 s since start
-16:39:49 es_cv_resnet34_crop_seed0_fold3 epoch 20 loss 0.002 acc 1.000 lr 1.3e-05 val AUC 0.995 best 1.000 at 11 340 s since start
-16:39:59 es_cv_resnet34_crop_seed0_fold4 epoch 11 loss 0.059 acc 0.979 lr 1.0e-04 val AUC 0.932 best 0.932 at 7 179 s since start
-16:40:06 es_cv_resnet34_crop_seed0_fold3 epoch 21 loss 0.001 acc 1.000 lr 1.3e-05 val AUC 0.995 best 1.000 at 11 357 s since start
-16:40:06 es_cv_resnet34_crop_seed0_fold3 early stop at epoch 21
-16:40:07 es_cv_resnet34_crop_seed0_fold3 done, best epoch 11, val AUC 1.000
-16:40:12 es_resnet34_scratch_seed0 start on cuda:0, 3170 slices
-16:40:15 es_cv_resnet34_crop_seed0_fold4 epoch 12 loss 0.026 acc 0.993 lr 5.0e-05 val AUC 0.891 best 0.932 at 7 196 s since start
-16:40:32 es_cv_resnet34_crop_seed0_fold4 epoch 13 loss 0.006 acc 0.999 lr 5.0e-05 val AUC 0.932 best 0.932 at 7 212 s since start
-16:40:32 es_resnet34_scratch_seed0 epoch 1 loss 0.306 acc 0.854 lr 1.0e-04 val AUC 0.828 best 0.828 at 1 20 s since start
-16:40:48 es_cv_resnet34_crop_seed0_fold4 epoch 14 loss 0.004 acc 0.999 lr 5.0e-05 val AUC 0.928 best 0.932 at 7 229 s since start
-16:40:52 es_resnet34_scratch_seed0 epoch 2 loss 0.061 acc 0.978 lr 1.0e-04 val AUC 0.837 best 0.837 at 2 40 s since start
-16:41:05 es_cv_resnet34_crop_seed0_fold4 epoch 15 loss 0.005 acc 0.999 lr 5.0e-05 val AUC 0.919 best 0.932 at 7 245 s since start
-16:41:13 es_resnet34_scratch_seed0 epoch 3 loss 0.055 acc 0.983 lr 1.0e-04 val AUC 0.887 best 0.887 at 3 61 s since start
-16:41:21 es_cv_resnet34_crop_seed0_fold4 epoch 16 loss 0.005 acc 0.999 lr 2.5e-05 val AUC 0.937 best 0.937 at 16 262 s since start
-16:41:33 es_resnet34_scratch_seed0 epoch 4 loss 0.067 acc 0.979 lr 1.0e-04 val AUC 0.828 best 0.887 at 3 81 s since start
-16:41:38 es_cv_resnet34_crop_seed0_fold4 epoch 17 loss 0.002 acc 1.000 lr 2.5e-05 val AUC 0.937 best 0.937 at 16 278 s since start
-16:41:53 es_resnet34_scratch_seed0 epoch 5 loss 0.007 acc 0.999 lr 1.0e-04 val AUC 0.855 best 0.887 at 3 102 s since start
-16:41:54 es_cv_resnet34_crop_seed0_fold4 epoch 18 loss 0.002 acc 1.000 lr 2.5e-05 val AUC 0.923 best 0.937 at 16 295 s since start
-16:42:11 es_cv_resnet34_crop_seed0_fold4 epoch 19 loss 0.001 acc 1.000 lr 2.5e-05 val AUC 0.923 best 0.937 at 16 311 s since start
-16:42:14 es_resnet34_scratch_seed0 epoch 6 loss 0.001 acc 1.000 lr 1.0e-04 val AUC 0.855 best 0.887 at 3 122 s since start
-16:42:27 es_cv_resnet34_crop_seed0_fold4 epoch 20 loss 0.001 acc 1.000 lr 2.5e-05 val AUC 0.919 best 0.937 at 16 328 s since start
-16:42:34 es_resnet34_scratch_seed0 epoch 7 loss 0.004 acc 1.000 lr 1.0e-04 val AUC 0.851 best 0.887 at 3 142 s since start
-16:42:44 es_cv_resnet34_crop_seed0_fold4 epoch 21 loss 0.001 acc 1.000 lr 1.3e-05 val AUC 0.914 best 0.937 at 16 344 s since start
-16:42:55 es_resnet34_scratch_seed0 epoch 8 loss 0.017 acc 0.996 lr 5.0e-05 val AUC 0.878 best 0.887 at 3 163 s since start
-16:43:00 es_cv_resnet34_crop_seed0_fold4 epoch 22 loss 0.001 acc 1.000 lr 1.3e-05 val AUC 0.941 best 0.941 at 22 361 s since start
-16:43:15 es_resnet34_scratch_seed0 epoch 9 loss 0.005 acc 0.999 lr 5.0e-05 val AUC 0.837 best 0.887 at 3 183 s since start
-16:43:17 es_cv_resnet34_crop_seed0_fold4 epoch 23 loss 0.001 acc 1.000 lr 1.3e-05 val AUC 0.932 best 0.941 at 22 377 s since start
-16:43:33 es_cv_resnet34_crop_seed0_fold4 epoch 24 loss 0.001 acc 1.000 lr 1.3e-05 val AUC 0.937 best 0.941 at 22 394 s since start
-16:43:35 es_resnet34_scratch_seed0 epoch 10 loss 0.002 acc 1.000 lr 5.0e-05 val AUC 0.864 best 0.887 at 3 204 s since start
-16:43:50 es_cv_resnet34_crop_seed0_fold4 epoch 25 loss 0.001 acc 1.000 lr 1.3e-05 val AUC 0.941 best 0.941 at 22 410 s since start
-16:43:56 es_resnet34_scratch_seed0 epoch 11 loss 0.001 acc 1.000 lr 5.0e-05 val AUC 0.873 best 0.887 at 3 224 s since start
-16:44:06 es_cv_resnet34_crop_seed0_fold4 epoch 26 loss 0.001 acc 1.000 lr 1.3e-05 val AUC 0.932 best 0.941 at 22 427 s since start
-16:44:16 es_resnet34_scratch_seed0 epoch 12 loss 0.001 acc 1.000 lr 2.5e-05 val AUC 0.792 best 0.887 at 3 245 s since start
-16:44:22 es_cv_resnet34_crop_seed0_fold4 epoch 27 loss 0.001 acc 1.000 lr 6.3e-06 val AUC 0.937 best 0.941 at 22 443 s since start
-16:44:37 es_resnet34_scratch_seed0 epoch 13 loss 0.001 acc 1.000 lr 2.5e-05 val AUC 0.828 best 0.887 at 3 265 s since start
-16:44:37 es_resnet34_scratch_seed0 early stop at epoch 13
-16:44:39 es_cv_resnet34_crop_seed0_fold4 epoch 28 loss 0.001 acc 1.000 lr 6.3e-06 val AUC 0.928 best 0.941 at 22 460 s since start
-16:44:41 es_resnet34_scratch_seed0 done, best epoch 3, val AUC 0.887
-16:44:46 es_resnet34_scratch_seed1 start on cuda:0, 3170 slices
-16:44:56 es_cv_resnet34_crop_seed0_fold4 epoch 29 loss 0.001 acc 1.000 lr 6.3e-06 val AUC 0.941 best 0.941 at 22 476 s since start
-16:45:06 es_resnet34_scratch_seed1 epoch 1 loss 0.316 acc 0.848 lr 1.0e-04 val AUC 0.706 best 0.706 at 1 20 s since start
-16:45:12 es_cv_resnet34_crop_seed0_fold4 epoch 30 loss 0.001 acc 1.000 lr 6.3e-06 val AUC 0.928 best 0.941 at 22 493 s since start
-16:45:26 es_resnet34_scratch_seed1 epoch 2 loss 0.079 acc 0.972 lr 1.0e-04 val AUC 0.769 best 0.769 at 2 40 s since start
-16:45:29 es_cv_resnet34_crop_seed0_fold4 epoch 31 loss 0.001 acc 1.000 lr 3.1e-06 val AUC 0.928 best 0.941 at 22 509 s since start
-16:45:45 es_cv_resnet34_crop_seed0_fold4 epoch 32 loss 0.001 acc 1.000 lr 3.1e-06 val AUC 0.923 best 0.941 at 22 526 s since start
-16:45:45 es_cv_resnet34_crop_seed0_fold4 early stop at epoch 32
-16:45:46 es_cv_resnet34_crop_seed0_fold4 done, best epoch 22, val AUC 0.941
-16:45:46 es_resnet34_scratch_seed1 epoch 3 loss 0.030 acc 0.993 lr 1.0e-04 val AUC 0.819 best 0.819 at 3 61 s since start
-16:45:51 es_resnet34_scratch_seed2 start on cuda:1, 3170 slices
-16:46:07 es_resnet34_scratch_seed1 epoch 4 loss 0.121 acc 0.964 lr 1.0e-04 val AUC 0.706 best 0.819 at 3 81 s since start
-16:46:11 es_resnet34_scratch_seed2 epoch 1 loss 0.332 acc 0.845 lr 1.0e-04 val AUC 0.950 best 0.950 at 1 20 s since start
-16:46:27 es_resnet34_scratch_seed1 epoch 5 loss 0.049 acc 0.987 lr 1.0e-04 val AUC 0.787 best 0.819 at 3 102 s since start
-16:46:31 es_resnet34_scratch_seed2 epoch 2 loss 0.078 acc 0.983 lr 1.0e-04 val AUC 0.860 best 0.950 at 1 40 s since start
-16:46:48 es_resnet34_scratch_seed1 epoch 6 loss 0.042 acc 0.997 lr 1.0e-04 val AUC 0.887 best 0.887 at 6 122 s since start
-16:46:51 es_resnet34_scratch_seed2 epoch 3 loss 0.032 acc 0.989 lr 1.0e-04 val AUC 0.882 best 0.950 at 1 59 s since start
-16:47:08 es_resnet34_scratch_seed1 epoch 7 loss 0.033 acc 0.992 lr 1.0e-04 val AUC 0.706 best 0.887 at 6 142 s since start
-16:47:11 es_resnet34_scratch_seed2 epoch 4 loss 0.010 acc 0.997 lr 1.0e-04 val AUC 0.991 best 0.991 at 4 79 s since start
-16:47:29 es_resnet34_scratch_seed1 epoch 8 loss 0.045 acc 0.986 lr 1.0e-04 val AUC 0.810 best 0.887 at 6 163 s since start
-16:47:31 es_resnet34_scratch_seed2 epoch 5 loss 0.037 acc 0.988 lr 1.0e-04 val AUC 0.805 best 0.991 at 4 99 s since start
-16:47:49 es_resnet34_scratch_seed1 epoch 9 loss 0.004 acc 0.998 lr 1.0e-04 val AUC 0.860 best 0.887 at 6 183 s since start
-16:47:50 es_resnet34_scratch_seed2 epoch 6 loss 0.032 acc 0.989 lr 1.0e-04 val AUC 0.846 best 0.991 at 4 119 s since start
-16:48:09 es_resnet34_scratch_seed1 epoch 10 loss 0.002 acc 1.000 lr 1.0e-04 val AUC 0.787 best 0.887 at 6 204 s since start
-16:48:10 es_resnet34_scratch_seed2 epoch 7 loss 0.057 acc 0.982 lr 1.0e-04 val AUC 0.905 best 0.991 at 4 139 s since start
-16:48:30 es_resnet34_scratch_seed1 epoch 11 loss 0.001 acc 1.000 lr 5.0e-05 val AUC 0.792 best 0.887 at 6 224 s since start
-16:48:30 es_resnet34_scratch_seed2 epoch 8 loss 0.010 acc 0.998 lr 1.0e-04 val AUC 0.910 best 0.991 at 4 159 s since start
-16:48:50 es_resnet34_scratch_seed2 epoch 9 loss 0.001 acc 1.000 lr 5.0e-05 val AUC 0.896 best 0.991 at 4 178 s since start
-16:48:50 es_resnet34_scratch_seed1 epoch 12 loss 0.018 acc 1.000 lr 5.0e-05 val AUC 0.814 best 0.887 at 6 244 s since start
-16:49:09 es_resnet34_scratch_seed2 epoch 10 loss 0.044 acc 1.000 lr 5.0e-05 val AUC 0.937 best 0.991 at 4 198 s since start
-16:49:10 es_resnet34_scratch_seed1 epoch 13 loss 0.041 acc 0.988 lr 5.0e-05 val AUC 0.801 best 0.887 at 6 265 s since start
-16:49:29 es_resnet34_scratch_seed2 epoch 11 loss 0.054 acc 0.985 lr 5.0e-05 val AUC 0.869 best 0.991 at 4 218 s since start
-16:49:31 es_resnet34_scratch_seed1 epoch 14 loss 0.003 acc 0.999 lr 5.0e-05 val AUC 0.833 best 0.887 at 6 285 s since start
-16:49:49 es_resnet34_scratch_seed2 epoch 12 loss 0.008 acc 0.999 lr 5.0e-05 val AUC 0.837 best 0.991 at 4 238 s since start
-16:49:51 es_resnet34_scratch_seed1 epoch 15 loss 0.003 acc 1.000 lr 2.5e-05 val AUC 0.814 best 0.887 at 6 305 s since start
-16:50:09 es_resnet34_scratch_seed2 epoch 13 loss 0.019 acc 0.996 lr 2.5e-05 val AUC 0.792 best 0.991 at 4 258 s since start
-16:50:12 es_resnet34_scratch_seed1 epoch 16 loss 0.006 acc 0.998 lr 2.5e-05 val AUC 0.828 best 0.887 at 6 326 s since start
-16:50:12 es_resnet34_scratch_seed1 early stop at epoch 16
-16:50:16 es_resnet34_scratch_seed1 done, best epoch 6, val AUC 0.887
-16:50:29 es_resnet34_scratch_seed2 epoch 14 loss 0.042 acc 0.996 lr 2.5e-05 val AUC 0.824 best 0.991 at 4 278 s since start
-16:50:29 es_resnet34_scratch_seed2 early stop at epoch 14
-16:50:33 es_resnet34_scratch_seed2 done, best epoch 4, val AUC 0.991
-16:50:37 resnet34 soft voting, mean of seeds, AUC 95% CI [0.53926308 0.80262419]
-16:50:38 resnet34_crop soft voting, mean of seeds, AUC 95% CI [0.73066105 0.91200917]
-16:50:39 resnet34_scratch soft voting, mean of seeds, AUC 95% CI [0.57317883 0.82670833]
+15:46:51 building the cache
+15:52:08 3170 slices with tumor on Train (paper: 2028), 2 GPUs, 4 CPUs
+15:52:19 es_resnet34_seed1 start on cuda:0, 3170 slices
+15:52:19 es_resnet34_seed0 start on cuda:1, 3170 slices
+15:52:38 es_resnet34_seed0 epoch 1 loss 0.124 acc 0.946 lr 1.0e-04 val AUC 0.828 best 0.828 at 1 18 s since start
+15:52:38 es_resnet34_seed1 epoch 1 loss 0.139 acc 0.948 lr 1.0e-04 val AUC 0.878 best 0.878 at 1 18 s since start
+15:52:55 es_resnet34_seed0 epoch 2 loss 0.012 acc 0.997 lr 1.0e-04 val AUC 0.828 best 0.828 at 2 36 s since start
+15:52:55 es_resnet34_seed1 epoch 2 loss 0.032 acc 0.988 lr 1.0e-04 val AUC 0.873 best 0.878 at 1 36 s since start
+15:53:12 es_resnet34_seed0 epoch 3 loss 0.039 acc 0.989 lr 1.0e-04 val AUC 0.756 best 0.828 at 2 53 s since start
+15:53:12 es_resnet34_seed1 epoch 3 loss 0.005 acc 0.999 lr 1.0e-04 val AUC 0.833 best 0.878 at 1 53 s since start
+15:53:30 es_resnet34_seed0 epoch 4 loss 0.018 acc 0.994 lr 1.0e-04 val AUC 0.851 best 0.851 at 4 71 s since start
+15:53:30 es_resnet34_seed1 epoch 4 loss 0.007 acc 0.998 lr 1.0e-04 val AUC 0.837 best 0.878 at 1 71 s since start
+15:53:48 es_resnet34_seed0 epoch 5 loss 0.006 acc 0.998 lr 1.0e-04 val AUC 0.842 best 0.851 at 4 89 s since start
+15:53:49 es_resnet34_seed1 epoch 5 loss 0.004 acc 0.999 lr 1.0e-04 val AUC 0.851 best 0.878 at 1 90 s since start
+15:54:07 es_resnet34_seed0 epoch 6 loss 0.002 acc 1.000 lr 1.0e-04 val AUC 0.842 best 0.851 at 4 108 s since start
+15:54:08 es_resnet34_seed1 epoch 6 loss 0.045 acc 0.997 lr 5.0e-05 val AUC 0.842 best 0.878 at 1 109 s since start
+15:54:27 es_resnet34_seed0 epoch 7 loss 0.015 acc 0.998 lr 1.0e-04 val AUC 0.860 best 0.860 at 7 128 s since start
+15:54:29 es_resnet34_seed1 epoch 7 loss 0.037 acc 0.993 lr 5.0e-05 val AUC 0.860 best 0.878 at 1 130 s since start
+15:54:45 es_resnet34_seed0 epoch 8 loss 0.061 acc 0.980 lr 1.0e-04 val AUC 0.710 best 0.860 at 7 146 s since start
+15:54:48 es_resnet34_seed1 epoch 8 loss 0.008 acc 0.998 lr 5.0e-05 val AUC 0.792 best 0.878 at 1 148 s since start
+15:55:04 es_resnet34_seed0 epoch 9 loss 0.054 acc 0.983 lr 1.0e-04 val AUC 0.882 best 0.882 at 9 164 s since start
+15:55:06 es_resnet34_seed1 epoch 9 loss 0.001 acc 1.000 lr 5.0e-05 val AUC 0.824 best 0.878 at 1 167 s since start
+15:55:23 es_resnet34_seed0 epoch 10 loss 0.003 acc 0.999 lr 1.0e-04 val AUC 0.873 best 0.882 at 9 183 s since start
+15:55:26 es_resnet34_seed1 epoch 10 loss 0.001 acc 1.000 lr 2.5e-05 val AUC 0.814 best 0.878 at 1 187 s since start
+15:55:42 es_resnet34_seed0 epoch 11 loss 0.003 acc 1.000 lr 1.0e-04 val AUC 0.864 best 0.882 at 9 203 s since start
+15:55:46 es_resnet34_seed1 epoch 11 loss 0.015 acc 1.000 lr 2.5e-05 val AUC 0.814 best 0.878 at 1 207 s since start
+15:55:46 es_resnet34_seed1 early stop at epoch 11
+15:55:50 es_resnet34_seed1 done, best epoch 1, val AUC 0.878
+15:55:55 es_resnet34_seed2 start on cuda:0, 3170 slices
+15:56:00 es_resnet34_seed0 epoch 12 loss 0.009 acc 0.998 lr 1.0e-04 val AUC 0.860 best 0.882 at 9 221 s since start
+15:56:13 es_resnet34_seed2 epoch 1 loss 0.142 acc 0.938 lr 1.0e-04 val AUC 0.729 best 0.729 at 1 19 s since start
+15:56:19 es_resnet34_seed0 epoch 13 loss 0.006 acc 1.000 lr 1.0e-04 val AUC 0.787 best 0.882 at 9 240 s since start
+15:56:33 es_resnet34_seed2 epoch 2 loss 0.067 acc 0.988 lr 1.0e-04 val AUC 0.846 best 0.846 at 2 38 s since start
+15:56:38 es_resnet34_seed0 epoch 14 loss 0.016 acc 0.997 lr 5.0e-05 val AUC 0.900 best 0.900 at 14 259 s since start
+15:56:53 es_resnet34_seed2 epoch 3 loss 0.044 acc 0.986 lr 1.0e-04 val AUC 0.814 best 0.846 at 2 58 s since start
+15:56:57 es_resnet34_seed0 epoch 15 loss 0.002 acc 1.000 lr 5.0e-05 val AUC 0.896 best 0.900 at 14 278 s since start
+15:57:11 es_resnet34_seed2 epoch 4 loss 0.003 acc 1.000 lr 1.0e-04 val AUC 0.842 best 0.846 at 2 77 s since start
+15:57:15 es_resnet34_seed0 epoch 16 loss 0.008 acc 1.000 lr 5.0e-05 val AUC 0.887 best 0.900 at 14 296 s since start
+15:57:30 es_resnet34_seed2 epoch 5 loss 0.012 acc 1.000 lr 1.0e-04 val AUC 0.738 best 0.846 at 2 96 s since start
+15:57:34 es_resnet34_seed0 epoch 17 loss 0.011 acc 0.996 lr 5.0e-05 val AUC 0.910 best 0.910 at 17 315 s since start
+15:57:50 es_resnet34_seed2 epoch 6 loss 0.051 acc 0.985 lr 1.0e-04 val AUC 0.860 best 0.860 at 6 115 s since start
+15:57:53 es_resnet34_seed0 epoch 18 loss 0.063 acc 0.999 lr 5.0e-05 val AUC 0.955 best 0.955 at 18 334 s since start
+15:58:09 es_resnet34_seed2 epoch 7 loss 0.018 acc 0.995 lr 1.0e-04 val AUC 0.869 best 0.869 at 7 135 s since start
+15:58:12 es_resnet34_seed0 epoch 19 loss 0.006 acc 0.997 lr 5.0e-05 val AUC 0.846 best 0.955 at 18 353 s since start
+15:58:28 es_resnet34_seed2 epoch 8 loss 0.005 acc 0.999 lr 1.0e-04 val AUC 0.837 best 0.869 at 7 154 s since start
+15:58:30 es_resnet34_seed0 epoch 20 loss 0.001 acc 1.000 lr 5.0e-05 val AUC 0.900 best 0.955 at 18 371 s since start
+15:58:47 es_resnet34_seed2 epoch 9 loss 0.019 acc 1.000 lr 1.0e-04 val AUC 0.833 best 0.869 at 7 173 s since start
+15:58:49 es_resnet34_seed0 epoch 21 loss 0.001 acc 1.000 lr 5.0e-05 val AUC 0.919 best 0.955 at 18 390 s since start
+15:59:07 es_resnet34_seed2 epoch 10 loss 0.091 acc 0.989 lr 1.0e-04 val AUC 0.891 best 0.891 at 10 192 s since start
+15:59:07 es_resnet34_seed0 epoch 22 loss 0.007 acc 1.000 lr 5.0e-05 val AUC 0.810 best 0.955 at 18 408 s since start
+15:59:26 es_resnet34_seed2 epoch 11 loss 0.052 acc 0.987 lr 1.0e-04 val AUC 0.819 best 0.891 at 10 211 s since start
+15:59:26 es_resnet34_seed0 epoch 23 loss 0.011 acc 0.996 lr 2.5e-05 val AUC 0.819 best 0.955 at 18 427 s since start
+15:59:45 es_resnet34_seed0 epoch 24 loss 0.003 acc 1.000 lr 2.5e-05 val AUC 0.851 best 0.955 at 18 446 s since start
+15:59:45 es_resnet34_seed2 epoch 12 loss 0.005 acc 1.000 lr 1.0e-04 val AUC 0.765 best 0.891 at 10 231 s since start
+16:00:03 es_resnet34_seed0 epoch 25 loss 0.044 acc 0.999 lr 2.5e-05 val AUC 0.910 best 0.955 at 18 464 s since start
+16:00:04 es_resnet34_seed2 epoch 13 loss 0.012 acc 0.997 lr 1.0e-04 val AUC 0.778 best 0.891 at 10 250 s since start
+16:00:22 es_resnet34_seed0 epoch 26 loss 0.002 acc 0.999 lr 2.5e-05 val AUC 0.914 best 0.955 at 18 483 s since start
+16:00:24 es_resnet34_seed2 epoch 14 loss 0.038 acc 0.998 lr 1.0e-04 val AUC 0.796 best 0.891 at 10 269 s since start
+16:00:40 es_resnet34_seed0 epoch 27 loss 0.001 acc 1.000 lr 1.3e-05 val AUC 0.914 best 0.955 at 18 501 s since start
+16:00:43 es_resnet34_seed2 epoch 15 loss 0.007 acc 0.999 lr 5.0e-05 val AUC 0.774 best 0.891 at 10 288 s since start
+16:00:59 es_resnet34_seed0 epoch 28 loss 0.001 acc 1.000 lr 1.3e-05 val AUC 0.928 best 0.955 at 18 520 s since start
+16:00:59 es_resnet34_seed0 early stop at epoch 28
+16:01:02 es_resnet34_seed2 epoch 16 loss 0.001 acc 1.000 lr 5.0e-05 val AUC 0.774 best 0.891 at 10 308 s since start
+16:01:03 es_resnet34_seed0 done, best epoch 18, val AUC 0.955
+16:01:08 es_cv_resnet34_seed0_fold0 start on cuda:1, 2373 slices
+16:01:21 es_resnet34_seed2 epoch 17 loss 0.003 acc 1.000 lr 5.0e-05 val AUC 0.787 best 0.891 at 10 327 s since start
+16:01:22 es_cv_resnet34_seed0_fold0 epoch 1 loss 0.137 acc 0.945 lr 1.0e-04 val AUC 0.733 best 0.733 at 1 14 s since start
+16:01:36 es_cv_resnet34_seed0_fold0 epoch 2 loss 0.034 acc 0.987 lr 1.0e-04 val AUC 0.792 best 0.792 at 2 29 s since start
+16:01:40 es_resnet34_seed2 epoch 18 loss 0.005 acc 1.000 lr 5.0e-05 val AUC 0.760 best 0.891 at 10 346 s since start
+16:01:51 es_cv_resnet34_seed0_fold0 epoch 3 loss 0.008 acc 0.997 lr 1.0e-04 val AUC 0.910 best 0.910 at 3 43 s since start
+16:02:00 es_resnet34_seed2 epoch 19 loss 0.004 acc 1.000 lr 2.5e-05 val AUC 0.760 best 0.891 at 10 365 s since start
+16:02:06 es_cv_resnet34_seed0_fold0 epoch 4 loss 0.013 acc 0.998 lr 1.0e-04 val AUC 0.937 best 0.937 at 4 59 s since start
+16:02:19 es_resnet34_seed2 epoch 20 loss 0.001 acc 1.000 lr 2.5e-05 val AUC 0.715 best 0.891 at 10 384 s since start
+16:02:19 es_resnet34_seed2 early stop at epoch 20
+16:02:21 es_cv_resnet34_seed0_fold0 epoch 5 loss 0.041 acc 0.984 lr 1.0e-04 val AUC 0.819 best 0.937 at 4 73 s since start
+16:02:23 es_resnet34_seed2 done, best epoch 10, val AUC 0.891
+16:02:28 es_cv_resnet34_seed0_fold1 start on cuda:0, 2552 slices
+16:02:35 es_cv_resnet34_seed0_fold0 epoch 6 loss 0.003 acc 1.000 lr 1.0e-04 val AUC 0.851 best 0.937 at 4 87 s since start
+16:02:43 es_cv_resnet34_seed0_fold1 epoch 1 loss 0.108 acc 0.961 lr 1.0e-04 val AUC 0.801 best 0.801 at 1 16 s since start
+16:02:50 es_cv_resnet34_seed0_fold0 epoch 7 loss 0.009 acc 1.000 lr 1.0e-04 val AUC 0.805 best 0.937 at 4 102 s since start
+16:03:00 es_cv_resnet34_seed0_fold1 epoch 2 loss 0.005 acc 1.000 lr 1.0e-04 val AUC 0.873 best 0.873 at 2 32 s since start
+16:03:05 es_cv_resnet34_seed0_fold0 epoch 8 loss 0.044 acc 0.984 lr 1.0e-04 val AUC 0.891 best 0.937 at 4 117 s since start
+16:03:16 es_cv_resnet34_seed0_fold1 epoch 3 loss 0.001 acc 1.000 lr 1.0e-04 val AUC 0.887 best 0.887 at 3 49 s since start
+16:03:19 es_cv_resnet34_seed0_fold0 epoch 9 loss 0.007 acc 0.998 lr 5.0e-05 val AUC 0.887 best 0.937 at 4 132 s since start
+16:03:32 es_cv_resnet34_seed0_fold1 epoch 4 loss 0.000 acc 1.000 lr 1.0e-04 val AUC 0.864 best 0.887 at 3 64 s since start
+16:03:34 es_cv_resnet34_seed0_fold0 epoch 10 loss 0.003 acc 1.000 lr 5.0e-05 val AUC 0.891 best 0.937 at 4 146 s since start
+16:03:48 es_cv_resnet34_seed0_fold1 epoch 5 loss 0.000 acc 1.000 lr 1.0e-04 val AUC 0.860 best 0.887 at 3 80 s since start
+16:03:48 es_cv_resnet34_seed0_fold0 epoch 11 loss 0.004 acc 0.999 lr 5.0e-05 val AUC 0.891 best 0.937 at 4 160 s since start
+16:04:03 es_cv_resnet34_seed0_fold0 epoch 12 loss 0.001 acc 1.000 lr 5.0e-05 val AUC 0.887 best 0.937 at 4 175 s since start
+16:04:03 es_cv_resnet34_seed0_fold1 epoch 6 loss 0.000 acc 1.000 lr 1.0e-04 val AUC 0.869 best 0.887 at 3 96 s since start
+16:04:17 es_cv_resnet34_seed0_fold0 epoch 13 loss 0.001 acc 1.000 lr 2.5e-05 val AUC 0.887 best 0.937 at 4 190 s since start
+16:04:20 es_cv_resnet34_seed0_fold1 epoch 7 loss 0.000 acc 1.000 lr 1.0e-04 val AUC 0.887 best 0.887 at 3 112 s since start
+16:04:32 es_cv_resnet34_seed0_fold0 epoch 14 loss 0.001 acc 1.000 lr 2.5e-05 val AUC 0.873 best 0.937 at 4 204 s since start
+16:04:32 es_cv_resnet34_seed0_fold0 early stop at epoch 14
+16:04:33 es_cv_resnet34_seed0_fold0 done, best epoch 4, val AUC 0.937
+16:04:36 es_cv_resnet34_seed0_fold1 epoch 8 loss 0.000 acc 1.000 lr 5.0e-05 val AUC 0.887 best 0.887 at 3 128 s since start
+16:04:38 es_cv_resnet34_seed0_fold2 start on cuda:1, 2597 slices
+16:04:52 es_cv_resnet34_seed0_fold1 epoch 9 loss 0.000 acc 1.000 lr 5.0e-05 val AUC 0.851 best 0.887 at 3 144 s since start
+16:04:53 es_cv_resnet34_seed0_fold2 epoch 1 loss 0.116 acc 0.952 lr 1.0e-04 val AUC 0.932 best 0.932 at 1 15 s since start
+16:05:07 es_cv_resnet34_seed0_fold1 epoch 10 loss 0.000 acc 1.000 lr 5.0e-05 val AUC 0.878 best 0.887 at 3 160 s since start
+16:05:09 es_cv_resnet34_seed0_fold2 epoch 2 loss 0.012 acc 0.996 lr 1.0e-04 val AUC 0.796 best 0.932 at 1 31 s since start
+16:05:23 es_cv_resnet34_seed0_fold1 epoch 11 loss 0.001 acc 1.000 lr 5.0e-05 val AUC 0.833 best 0.887 at 3 175 s since start
+16:05:24 es_cv_resnet34_seed0_fold2 epoch 3 loss 0.049 acc 0.980 lr 1.0e-04 val AUC 0.783 best 0.932 at 1 46 s since start
+16:05:39 es_cv_resnet34_seed0_fold1 epoch 12 loss 0.001 acc 1.000 lr 2.5e-05 val AUC 0.837 best 0.887 at 3 192 s since start
+16:05:40 es_cv_resnet34_seed0_fold2 epoch 4 loss 0.002 acc 1.000 lr 1.0e-04 val AUC 0.805 best 0.932 at 1 62 s since start
+16:05:55 es_cv_resnet34_seed0_fold1 epoch 13 loss 0.001 acc 1.000 lr 2.5e-05 val AUC 0.851 best 0.887 at 3 208 s since start
+16:05:55 es_cv_resnet34_seed0_fold1 early stop at epoch 13
+16:05:55 es_cv_resnet34_seed0_fold2 epoch 5 loss 0.001 acc 1.000 lr 1.0e-04 val AUC 0.810 best 0.932 at 1 77 s since start
+16:05:56 es_cv_resnet34_seed0_fold1 done, best epoch 3, val AUC 0.887
+16:06:01 es_cv_resnet34_seed0_fold3 start on cuda:0, 2585 slices
+16:06:11 es_cv_resnet34_seed0_fold2 epoch 6 loss 0.001 acc 1.000 lr 5.0e-05 val AUC 0.819 best 0.932 at 1 93 s since start
+16:06:17 es_cv_resnet34_seed0_fold3 epoch 1 loss 0.124 acc 0.948 lr 1.0e-04 val AUC 0.846 best 0.846 at 1 16 s since start
+16:06:27 es_cv_resnet34_seed0_fold2 epoch 7 loss 0.006 acc 0.999 lr 5.0e-05 val AUC 0.824 best 0.932 at 1 109 s since start
+16:06:34 es_cv_resnet34_seed0_fold3 epoch 2 loss 0.021 acc 0.993 lr 1.0e-04 val AUC 0.869 best 0.869 at 2 33 s since start
+16:06:43 es_cv_resnet34_seed0_fold2 epoch 8 loss 0.021 acc 0.995 lr 5.0e-05 val AUC 0.824 best 0.932 at 1 125 s since start
+16:06:50 es_cv_resnet34_seed0_fold3 epoch 3 loss 0.015 acc 0.995 lr 1.0e-04 val AUC 0.860 best 0.869 at 2 49 s since start
+16:06:59 es_cv_resnet34_seed0_fold2 epoch 9 loss 0.001 acc 1.000 lr 5.0e-05 val AUC 0.774 best 0.932 at 1 141 s since start
+16:07:06 es_cv_resnet34_seed0_fold3 epoch 4 loss 0.008 acc 0.997 lr 1.0e-04 val AUC 0.869 best 0.869 at 2 65 s since start
+16:07:14 es_cv_resnet34_seed0_fold2 epoch 10 loss 0.001 acc 1.000 lr 2.5e-05 val AUC 0.774 best 0.932 at 1 156 s since start
+16:07:22 es_cv_resnet34_seed0_fold3 epoch 5 loss 0.002 acc 0.999 lr 1.0e-04 val AUC 0.828 best 0.869 at 2 80 s since start
+16:07:30 es_cv_resnet34_seed0_fold2 epoch 11 loss 0.000 acc 1.000 lr 2.5e-05 val AUC 0.778 best 0.932 at 1 172 s since start
+16:07:30 es_cv_resnet34_seed0_fold2 early stop at epoch 11
+16:07:31 es_cv_resnet34_seed0_fold2 done, best epoch 1, val AUC 0.932
+16:07:36 es_cv_resnet34_seed0_fold4 start on cuda:1, 2573 slices
+16:07:38 es_cv_resnet34_seed0_fold3 epoch 6 loss 0.004 acc 1.000 lr 1.0e-04 val AUC 0.873 best 0.873 at 6 97 s since start
+16:07:51 es_cv_resnet34_seed0_fold4 epoch 1 loss 0.106 acc 0.956 lr 1.0e-04 val AUC 0.810 best 0.810 at 1 16 s since start
+16:07:54 es_cv_resnet34_seed0_fold3 epoch 7 loss 0.001 acc 1.000 lr 1.0e-04 val AUC 0.864 best 0.873 at 6 113 s since start
+16:08:07 es_cv_resnet34_seed0_fold4 epoch 2 loss 0.020 acc 0.994 lr 1.0e-04 val AUC 0.819 best 0.819 at 2 31 s since start
+16:08:11 es_cv_resnet34_seed0_fold3 epoch 8 loss 0.000 acc 1.000 lr 1.0e-04 val AUC 0.882 best 0.882 at 8 129 s since start
+16:08:22 es_cv_resnet34_seed0_fold4 epoch 3 loss 0.018 acc 0.993 lr 1.0e-04 val AUC 0.670 best 0.819 at 2 46 s since start
+16:08:27 es_cv_resnet34_seed0_fold3 epoch 9 loss 0.000 acc 1.000 lr 1.0e-04 val AUC 0.887 best 0.887 at 9 145 s since start
+16:08:37 es_cv_resnet34_seed0_fold4 epoch 4 loss 0.018 acc 0.995 lr 1.0e-04 val AUC 0.742 best 0.819 at 2 62 s since start
+16:08:43 es_cv_resnet34_seed0_fold3 epoch 10 loss 0.000 acc 1.000 lr 1.0e-04 val AUC 0.873 best 0.887 at 9 161 s since start
+16:08:53 es_cv_resnet34_seed0_fold4 epoch 5 loss 0.015 acc 0.995 lr 1.0e-04 val AUC 0.783 best 0.819 at 2 77 s since start
+16:08:59 es_cv_resnet34_seed0_fold3 epoch 11 loss 0.000 acc 1.000 lr 1.0e-04 val AUC 0.869 best 0.887 at 9 177 s since start
+16:09:08 es_cv_resnet34_seed0_fold4 epoch 6 loss 0.002 acc 1.000 lr 1.0e-04 val AUC 0.801 best 0.819 at 2 93 s since start
+16:09:15 es_cv_resnet34_seed0_fold3 epoch 12 loss 0.000 acc 1.000 lr 1.0e-04 val AUC 0.878 best 0.887 at 9 194 s since start
+16:09:24 es_cv_resnet34_seed0_fold4 epoch 7 loss 0.001 acc 1.000 lr 5.0e-05 val AUC 0.814 best 0.819 at 2 108 s since start
+16:09:31 es_cv_resnet34_seed0_fold3 epoch 13 loss 0.000 acc 1.000 lr 1.0e-04 val AUC 0.873 best 0.887 at 9 210 s since start
+16:09:39 es_cv_resnet34_seed0_fold4 epoch 8 loss 0.001 acc 1.000 lr 5.0e-05 val AUC 0.828 best 0.828 at 8 124 s since start
+16:09:47 es_cv_resnet34_seed0_fold3 epoch 14 loss 0.000 acc 1.000 lr 5.0e-05 val AUC 0.869 best 0.887 at 9 226 s since start
+16:09:55 es_cv_resnet34_seed0_fold4 epoch 9 loss 0.000 acc 1.000 lr 5.0e-05 val AUC 0.819 best 0.828 at 8 139 s since start
+16:10:03 es_cv_resnet34_seed0_fold3 epoch 15 loss 0.000 acc 1.000 lr 5.0e-05 val AUC 0.882 best 0.887 at 9 242 s since start
+16:10:10 es_cv_resnet34_seed0_fold4 epoch 10 loss 0.000 acc 1.000 lr 5.0e-05 val AUC 0.819 best 0.828 at 8 154 s since start
+16:10:19 es_cv_resnet34_seed0_fold3 epoch 16 loss 0.000 acc 1.000 lr 5.0e-05 val AUC 0.873 best 0.887 at 9 258 s since start
+16:10:26 es_cv_resnet34_seed0_fold4 epoch 11 loss 0.000 acc 1.000 lr 5.0e-05 val AUC 0.814 best 0.828 at 8 170 s since start
+16:10:35 es_cv_resnet34_seed0_fold3 epoch 17 loss 0.000 acc 1.000 lr 5.0e-05 val AUC 0.873 best 0.887 at 9 274 s since start
+16:10:42 es_cv_resnet34_seed0_fold4 epoch 12 loss 0.000 acc 1.000 lr 5.0e-05 val AUC 0.819 best 0.828 at 8 186 s since start
+16:10:51 es_cv_resnet34_seed0_fold3 epoch 18 loss 0.000 acc 1.000 lr 2.5e-05 val AUC 0.873 best 0.887 at 9 290 s since start
+16:10:57 es_cv_resnet34_seed0_fold4 epoch 13 loss 0.000 acc 1.000 lr 2.5e-05 val AUC 0.824 best 0.828 at 8 201 s since start
+16:11:07 es_cv_resnet34_seed0_fold3 epoch 19 loss 0.000 acc 1.000 lr 2.5e-05 val AUC 0.873 best 0.887 at 9 306 s since start
+16:11:07 es_cv_resnet34_seed0_fold3 early stop at epoch 19
+16:11:08 es_cv_resnet34_seed0_fold3 done, best epoch 9, val AUC 0.887
+16:11:13 es_cv_resnet34_seed0_fold4 epoch 14 loss 0.000 acc 1.000 lr 2.5e-05 val AUC 0.819 best 0.828 at 8 218 s since start
+16:11:14 es_resnet34_crop_seed0 start on cuda:0, 3170 slices
+16:11:29 es_cv_resnet34_seed0_fold4 epoch 15 loss 0.000 acc 1.000 lr 2.5e-05 val AUC 0.837 best 0.837 at 15 233 s since start
+16:11:33 es_resnet34_crop_seed0 epoch 1 loss 0.470 acc 0.752 lr 1.0e-04 val AUC 0.932 best 0.932 at 1 19 s since start
+16:11:45 es_cv_resnet34_seed0_fold4 epoch 16 loss 0.000 acc 1.000 lr 2.5e-05 val AUC 0.842 best 0.842 at 16 250 s since start
+16:11:53 es_resnet34_crop_seed0 epoch 2 loss 0.269 acc 0.883 lr 1.0e-04 val AUC 0.986 best 0.986 at 2 39 s since start
+16:12:01 es_cv_resnet34_seed0_fold4 epoch 17 loss 0.000 acc 1.000 lr 2.5e-05 val AUC 0.842 best 0.842 at 16 266 s since start
+16:12:12 es_resnet34_crop_seed0 epoch 3 loss 0.204 acc 0.915 lr 1.0e-04 val AUC 0.928 best 0.986 at 2 59 s since start
+16:12:17 es_cv_resnet34_seed0_fold4 epoch 18 loss 0.000 acc 1.000 lr 2.5e-05 val AUC 0.805 best 0.842 at 16 281 s since start
+16:12:31 es_resnet34_crop_seed0 epoch 4 loss 0.146 acc 0.943 lr 1.0e-04 val AUC 0.991 best 0.991 at 4 77 s since start
+16:12:32 es_cv_resnet34_seed0_fold4 epoch 19 loss 0.000 acc 1.000 lr 2.5e-05 val AUC 0.778 best 0.842 at 16 296 s since start
+16:12:47 es_cv_resnet34_seed0_fold4 epoch 20 loss 0.000 acc 1.000 lr 2.5e-05 val AUC 0.796 best 0.842 at 16 312 s since start
+16:12:50 es_resnet34_crop_seed0 epoch 5 loss 0.096 acc 0.962 lr 1.0e-04 val AUC 0.982 best 0.991 at 4 96 s since start
+16:13:03 es_cv_resnet34_seed0_fold4 epoch 21 loss 0.000 acc 1.000 lr 1.3e-05 val AUC 0.792 best 0.842 at 16 327 s since start
+16:13:10 es_resnet34_crop_seed0 epoch 6 loss 0.067 acc 0.976 lr 1.0e-04 val AUC 0.937 best 0.991 at 4 116 s since start
+16:13:19 es_cv_resnet34_seed0_fold4 epoch 22 loss 0.000 acc 1.000 lr 1.3e-05 val AUC 0.792 best 0.842 at 16 343 s since start
+16:13:29 es_resnet34_crop_seed0 epoch 7 loss 0.076 acc 0.971 lr 1.0e-04 val AUC 0.973 best 0.991 at 4 136 s since start
+16:13:34 es_cv_resnet34_seed0_fold4 epoch 23 loss 0.000 acc 1.000 lr 1.3e-05 val AUC 0.792 best 0.842 at 16 359 s since start
+16:13:48 es_resnet34_crop_seed0 epoch 8 loss 0.057 acc 0.980 lr 1.0e-04 val AUC 1.000 best 1.000 at 8 154 s since start
+16:13:50 es_cv_resnet34_seed0_fold4 epoch 24 loss 0.000 acc 1.000 lr 1.3e-05 val AUC 0.787 best 0.842 at 16 374 s since start
+16:14:05 es_cv_resnet34_seed0_fold4 epoch 25 loss 0.000 acc 1.000 lr 6.3e-06 val AUC 0.787 best 0.842 at 16 389 s since start
+16:14:07 es_resnet34_crop_seed0 epoch 9 loss 0.128 acc 0.954 lr 1.0e-04 val AUC 0.910 best 1.000 at 8 173 s since start
+16:14:21 es_cv_resnet34_seed0_fold4 epoch 26 loss 0.000 acc 1.000 lr 6.3e-06 val AUC 0.787 best 0.842 at 16 405 s since start
+16:14:21 es_cv_resnet34_seed0_fold4 early stop at epoch 26
+16:14:22 es_cv_resnet34_seed0_fold4 done, best epoch 16, val AUC 0.842
+16:14:26 es_resnet34_crop_seed1 start on cuda:1, 3170 slices
+16:14:27 es_resnet34_crop_seed0 epoch 10 loss 0.042 acc 0.985 lr 1.0e-04 val AUC 0.964 best 1.000 at 8 193 s since start
+16:14:45 es_resnet34_crop_seed1 epoch 1 loss 0.460 acc 0.774 lr 1.0e-04 val AUC 0.955 best 0.955 at 1 19 s since start
+16:14:46 es_resnet34_crop_seed0 epoch 11 loss 0.033 acc 0.991 lr 1.0e-04 val AUC 0.964 best 1.000 at 8 212 s since start
+16:15:03 es_resnet34_crop_seed1 epoch 2 loss 0.241 acc 0.899 lr 1.0e-04 val AUC 0.973 best 0.973 at 2 37 s since start
+16:15:05 es_resnet34_crop_seed0 epoch 12 loss 0.123 acc 0.958 lr 1.0e-04 val AUC 0.991 best 1.000 at 8 232 s since start
+16:15:22 es_resnet34_crop_seed1 epoch 3 loss 0.159 acc 0.931 lr 1.0e-04 val AUC 0.905 best 0.973 at 2 55 s since start
+16:15:25 es_resnet34_crop_seed0 epoch 13 loss 0.053 acc 0.982 lr 5.0e-05 val AUC 0.977 best 1.000 at 8 251 s since start
+16:15:40 es_resnet34_crop_seed1 epoch 4 loss 0.114 acc 0.954 lr 1.0e-04 val AUC 0.955 best 0.973 at 2 74 s since start
+16:15:44 es_resnet34_crop_seed0 epoch 14 loss 0.007 acc 1.000 lr 5.0e-05 val AUC 0.986 best 1.000 at 8 270 s since start
+16:15:59 es_resnet34_crop_seed1 epoch 5 loss 0.066 acc 0.976 lr 1.0e-04 val AUC 0.955 best 0.973 at 2 93 s since start
+16:16:03 es_resnet34_crop_seed0 epoch 15 loss 0.007 acc 0.998 lr 5.0e-05 val AUC 0.986 best 1.000 at 8 289 s since start
+16:16:18 es_resnet34_crop_seed1 epoch 6 loss 0.120 acc 0.965 lr 1.0e-04 val AUC 0.959 best 0.973 at 2 111 s since start
+16:16:22 es_resnet34_crop_seed0 epoch 16 loss 0.007 acc 1.000 lr 5.0e-05 val AUC 0.991 best 1.000 at 8 308 s since start
+16:16:36 es_resnet34_crop_seed1 epoch 7 loss 0.053 acc 0.984 lr 5.0e-05 val AUC 0.977 best 0.977 at 7 130 s since start
+16:16:41 es_resnet34_crop_seed0 epoch 17 loss 0.018 acc 0.997 lr 2.5e-05 val AUC 0.995 best 1.000 at 8 328 s since start
+16:16:55 es_resnet34_crop_seed1 epoch 8 loss 0.017 acc 0.995 lr 5.0e-05 val AUC 0.959 best 0.977 at 7 148 s since start
+16:17:01 es_resnet34_crop_seed0 epoch 18 loss 0.062 acc 0.996 lr 2.5e-05 val AUC 0.995 best 1.000 at 8 347 s since start
+16:17:01 es_resnet34_crop_seed0 early stop at epoch 18
+16:17:05 es_resnet34_crop_seed0 done, best epoch 8, val AUC 1.000
+16:17:09 es_resnet34_crop_seed2 start on cuda:0, 3170 slices
+16:17:13 es_resnet34_crop_seed1 epoch 9 loss 0.008 acc 0.998 lr 5.0e-05 val AUC 0.982 best 0.982 at 9 167 s since start
+16:17:28 es_resnet34_crop_seed2 epoch 1 loss 0.483 acc 0.757 lr 1.0e-04 val AUC 1.000 best 1.000 at 1 19 s since start
+16:17:32 es_resnet34_crop_seed1 epoch 10 loss 0.005 acc 0.999 lr 5.0e-05 val AUC 0.977 best 0.982 at 9 186 s since start
+16:17:48 es_resnet34_crop_seed2 epoch 2 loss 0.284 acc 0.885 lr 1.0e-04 val AUC 0.950 best 1.000 at 1 39 s since start
+16:17:51 es_resnet34_crop_seed1 epoch 11 loss 0.003 acc 1.000 lr 5.0e-05 val AUC 0.982 best 0.982 at 9 205 s since start
+16:18:08 es_resnet34_crop_seed2 epoch 3 loss 0.179 acc 0.926 lr 1.0e-04 val AUC 0.995 best 1.000 at 1 58 s since start
+16:18:10 es_resnet34_crop_seed1 epoch 12 loss 0.011 acc 0.998 lr 5.0e-05 val AUC 0.968 best 0.982 at 9 224 s since start
+16:18:26 es_resnet34_crop_seed2 epoch 4 loss 0.148 acc 0.941 lr 1.0e-04 val AUC 0.959 best 1.000 at 1 77 s since start
+16:18:28 es_resnet34_crop_seed1 epoch 13 loss 0.035 acc 0.989 lr 5.0e-05 val AUC 0.955 best 0.982 at 9 242 s since start
+16:18:45 es_resnet34_crop_seed2 epoch 5 loss 0.099 acc 0.962 lr 1.0e-04 val AUC 0.959 best 1.000 at 1 96 s since start
+16:18:47 es_resnet34_crop_seed1 epoch 14 loss 0.008 acc 0.999 lr 2.5e-05 val AUC 0.964 best 0.982 at 9 261 s since start
+16:19:05 es_resnet34_crop_seed2 epoch 6 loss 0.071 acc 0.980 lr 5.0e-05 val AUC 0.973 best 1.000 at 1 116 s since start
+16:19:06 es_resnet34_crop_seed1 epoch 15 loss 0.013 acc 0.998 lr 2.5e-05 val AUC 0.973 best 0.982 at 9 280 s since start
+16:19:24 es_resnet34_crop_seed2 epoch 7 loss 0.055 acc 0.983 lr 5.0e-05 val AUC 0.973 best 1.000 at 1 135 s since start
+16:19:25 es_resnet34_crop_seed1 epoch 16 loss 0.022 acc 0.994 lr 2.5e-05 val AUC 0.955 best 0.982 at 9 298 s since start
+16:19:43 es_resnet34_crop_seed1 epoch 17 loss 0.008 acc 0.997 lr 2.5e-05 val AUC 0.964 best 0.982 at 9 317 s since start
+16:19:43 es_resnet34_crop_seed2 epoch 8 loss 0.043 acc 0.987 lr 5.0e-05 val AUC 0.986 best 1.000 at 1 154 s since start
+16:20:02 es_resnet34_crop_seed1 epoch 18 loss 0.004 acc 0.999 lr 1.3e-05 val AUC 0.964 best 0.982 at 9 335 s since start
+16:20:02 es_resnet34_crop_seed2 epoch 9 loss 0.017 acc 0.995 lr 5.0e-05 val AUC 0.955 best 1.000 at 1 173 s since start
+16:20:20 es_resnet34_crop_seed1 epoch 19 loss 0.003 acc 0.999 lr 1.3e-05 val AUC 0.964 best 0.982 at 9 354 s since start
+16:20:20 es_resnet34_crop_seed1 early stop at epoch 19
+16:20:22 es_resnet34_crop_seed2 epoch 10 loss 0.038 acc 0.997 lr 2.5e-05 val AUC 0.973 best 1.000 at 1 193 s since start
+16:20:24 es_resnet34_crop_seed1 done, best epoch 9, val AUC 0.982
+16:20:29 es_cv_resnet34_crop_seed0_fold0 start on cuda:1, 2373 slices
+16:20:41 es_resnet34_crop_seed2 epoch 11 loss 0.008 acc 0.998 lr 2.5e-05 val AUC 0.973 best 1.000 at 1 212 s since start
+16:20:41 es_resnet34_crop_seed2 early stop at epoch 11
+16:20:44 es_cv_resnet34_crop_seed0_fold0 epoch 1 loss 0.488 acc 0.754 lr 1.0e-04 val AUC 0.941 best 0.941 at 1 14 s since start
+16:20:45 es_resnet34_crop_seed2 done, best epoch 1, val AUC 1.000
+16:20:50 es_cv_resnet34_crop_seed0_fold1 start on cuda:0, 2552 slices
+16:20:58 es_cv_resnet34_crop_seed0_fold0 epoch 2 loss 0.263 acc 0.887 lr 1.0e-04 val AUC 0.950 best 0.950 at 2 29 s since start
+16:21:06 es_cv_resnet34_crop_seed0_fold1 epoch 1 loss 0.461 acc 0.764 lr 1.0e-04 val AUC 0.937 best 0.937 at 1 16 s since start
+16:21:13 es_cv_resnet34_crop_seed0_fold0 epoch 3 loss 0.194 acc 0.914 lr 1.0e-04 val AUC 0.977 best 0.977 at 3 43 s since start
+16:21:23 es_cv_resnet34_crop_seed0_fold1 epoch 2 loss 0.236 acc 0.894 lr 1.0e-04 val AUC 0.959 best 0.959 at 2 32 s since start
+16:21:28 es_cv_resnet34_crop_seed0_fold0 epoch 4 loss 0.116 acc 0.952 lr 1.0e-04 val AUC 0.932 best 0.977 at 3 59 s since start
+16:21:39 es_cv_resnet34_crop_seed0_fold1 epoch 3 loss 0.158 acc 0.933 lr 1.0e-04 val AUC 0.950 best 0.959 at 2 49 s since start
+16:21:42 es_cv_resnet34_crop_seed0_fold0 epoch 5 loss 0.083 acc 0.968 lr 1.0e-04 val AUC 0.968 best 0.977 at 3 73 s since start
+16:21:55 es_cv_resnet34_crop_seed0_fold1 epoch 4 loss 0.106 acc 0.960 lr 1.0e-04 val AUC 0.905 best 0.959 at 2 64 s since start
+16:21:57 es_cv_resnet34_crop_seed0_fold0 epoch 6 loss 0.053 acc 0.982 lr 1.0e-04 val AUC 0.991 best 0.991 at 6 87 s since start
+16:22:10 es_cv_resnet34_crop_seed0_fold1 epoch 5 loss 0.131 acc 0.952 lr 1.0e-04 val AUC 0.905 best 0.959 at 2 80 s since start
+16:22:11 es_cv_resnet34_crop_seed0_fold0 epoch 7 loss 0.078 acc 0.975 lr 1.0e-04 val AUC 0.982 best 0.991 at 6 102 s since start
+16:22:25 es_cv_resnet34_crop_seed0_fold0 epoch 8 loss 0.133 acc 0.948 lr 1.0e-04 val AUC 0.950 best 0.991 at 6 116 s since start
+16:22:26 es_cv_resnet34_crop_seed0_fold1 epoch 6 loss 0.062 acc 0.979 lr 1.0e-04 val AUC 0.923 best 0.959 at 2 96 s since start
+16:22:40 es_cv_resnet34_crop_seed0_fold0 epoch 9 loss 0.092 acc 0.966 lr 1.0e-04 val AUC 0.946 best 0.991 at 6 131 s since start
+16:22:42 es_cv_resnet34_crop_seed0_fold1 epoch 7 loss 0.031 acc 0.989 lr 5.0e-05 val AUC 0.955 best 0.959 at 2 112 s since start
+16:22:55 es_cv_resnet34_crop_seed0_fold0 epoch 10 loss 0.034 acc 0.990 lr 1.0e-04 val AUC 0.964 best 0.991 at 6 146 s since start
+16:22:59 es_cv_resnet34_crop_seed0_fold1 epoch 8 loss 0.011 acc 0.999 lr 5.0e-05 val AUC 0.946 best 0.959 at 2 128 s since start
+16:23:09 es_cv_resnet34_crop_seed0_fold0 epoch 11 loss 0.056 acc 0.984 lr 5.0e-05 val AUC 0.964 best 0.991 at 6 160 s since start
+16:23:14 es_cv_resnet34_crop_seed0_fold1 epoch 9 loss 0.005 acc 0.999 lr 5.0e-05 val AUC 0.937 best 0.959 at 2 144 s since start
+16:23:23 es_cv_resnet34_crop_seed0_fold0 epoch 12 loss 0.012 acc 0.997 lr 5.0e-05 val AUC 0.968 best 0.991 at 6 174 s since start
+16:23:31 es_cv_resnet34_crop_seed0_fold1 epoch 10 loss 0.018 acc 0.995 lr 5.0e-05 val AUC 0.928 best 0.959 at 2 160 s since start
+16:23:38 es_cv_resnet34_crop_seed0_fold0 epoch 13 loss 0.006 acc 1.000 lr 5.0e-05 val AUC 0.959 best 0.991 at 6 189 s since start
+16:23:46 es_cv_resnet34_crop_seed0_fold1 epoch 11 loss 0.008 acc 0.999 lr 2.5e-05 val AUC 0.941 best 0.959 at 2 176 s since start
+16:23:52 es_cv_resnet34_crop_seed0_fold0 epoch 14 loss 0.010 acc 0.998 lr 5.0e-05 val AUC 0.959 best 0.991 at 6 203 s since start
+16:24:03 es_cv_resnet34_crop_seed0_fold1 epoch 12 loss 0.005 acc 0.999 lr 2.5e-05 val AUC 0.937 best 0.959 at 2 192 s since start
+16:24:03 es_cv_resnet34_crop_seed0_fold1 early stop at epoch 12
+16:24:04 es_cv_resnet34_crop_seed0_fold1 done, best epoch 2, val AUC 0.959
+16:24:07 es_cv_resnet34_crop_seed0_fold0 epoch 15 loss 0.012 acc 0.998 lr 2.5e-05 val AUC 0.964 best 0.991 at 6 218 s since start
+16:24:08 es_cv_resnet34_crop_seed0_fold2 start on cuda:0, 2597 slices
+16:24:22 es_cv_resnet34_crop_seed0_fold0 epoch 16 loss 0.012 acc 0.997 lr 2.5e-05 val AUC 0.964 best 0.991 at 6 233 s since start
+16:24:22 es_cv_resnet34_crop_seed0_fold0 early stop at epoch 16
+16:24:23 es_cv_resnet34_crop_seed0_fold0 done, best epoch 6, val AUC 0.991
+16:24:25 es_cv_resnet34_crop_seed0_fold2 epoch 1 loss 0.497 acc 0.737 lr 1.0e-04 val AUC 0.910 best 0.910 at 1 16 s since start
+16:24:28 es_cv_resnet34_crop_seed0_fold3 start on cuda:1, 2585 slices
+16:24:41 es_cv_resnet34_crop_seed0_fold2 epoch 2 loss 0.252 acc 0.891 lr 1.0e-04 val AUC 0.977 best 0.977 at 2 33 s since start
+16:24:43 es_cv_resnet34_crop_seed0_fold3 epoch 1 loss 0.460 acc 0.762 lr 1.0e-04 val AUC 0.950 best 0.950 at 1 16 s since start
+16:24:58 es_cv_resnet34_crop_seed0_fold2 epoch 3 loss 0.188 acc 0.922 lr 1.0e-04 val AUC 0.878 best 0.977 at 2 49 s since start
+16:24:59 es_cv_resnet34_crop_seed0_fold3 epoch 2 loss 0.236 acc 0.892 lr 1.0e-04 val AUC 1.000 best 1.000 at 2 31 s since start
+16:25:13 es_cv_resnet34_crop_seed0_fold2 epoch 4 loss 0.100 acc 0.960 lr 1.0e-04 val AUC 0.905 best 0.977 at 2 65 s since start
+16:25:14 es_cv_resnet34_crop_seed0_fold3 epoch 3 loss 0.155 acc 0.937 lr 1.0e-04 val AUC 1.000 best 1.000 at 2 47 s since start
+16:25:29 es_cv_resnet34_crop_seed0_fold2 epoch 5 loss 0.097 acc 0.965 lr 1.0e-04 val AUC 0.923 best 0.977 at 2 81 s since start
+16:25:30 es_cv_resnet34_crop_seed0_fold3 epoch 4 loss 0.111 acc 0.955 lr 1.0e-04 val AUC 0.991 best 1.000 at 2 62 s since start
+16:25:45 es_cv_resnet34_crop_seed0_fold3 epoch 5 loss 0.076 acc 0.972 lr 1.0e-04 val AUC 0.986 best 1.000 at 2 78 s since start
+16:25:46 es_cv_resnet34_crop_seed0_fold2 epoch 6 loss 0.081 acc 0.972 lr 1.0e-04 val AUC 0.955 best 0.977 at 2 97 s since start
+16:26:01 es_cv_resnet34_crop_seed0_fold3 epoch 6 loss 0.088 acc 0.963 lr 1.0e-04 val AUC 0.995 best 1.000 at 2 93 s since start
+16:26:02 es_cv_resnet34_crop_seed0_fold2 epoch 7 loss 0.062 acc 0.983 lr 5.0e-05 val AUC 0.973 best 0.977 at 2 114 s since start
+16:26:17 es_cv_resnet34_crop_seed0_fold3 epoch 7 loss 0.031 acc 0.992 lr 5.0e-05 val AUC 1.000 best 1.000 at 2 109 s since start
+16:26:18 es_cv_resnet34_crop_seed0_fold2 epoch 8 loss 0.037 acc 0.988 lr 5.0e-05 val AUC 0.982 best 0.982 at 8 130 s since start
+16:26:32 es_cv_resnet34_crop_seed0_fold3 epoch 8 loss 0.013 acc 0.997 lr 5.0e-05 val AUC 1.000 best 1.000 at 2 124 s since start
+16:26:34 es_cv_resnet34_crop_seed0_fold2 epoch 9 loss 0.010 acc 0.998 lr 5.0e-05 val AUC 0.973 best 0.982 at 8 146 s since start
+16:26:48 es_cv_resnet34_crop_seed0_fold3 epoch 9 loss 0.006 acc 1.000 lr 5.0e-05 val AUC 1.000 best 1.000 at 2 140 s since start
+16:26:50 es_cv_resnet34_crop_seed0_fold2 epoch 10 loss 0.009 acc 0.999 lr 5.0e-05 val AUC 0.973 best 0.982 at 8 162 s since start
+16:27:03 es_cv_resnet34_crop_seed0_fold3 epoch 10 loss 0.008 acc 0.998 lr 5.0e-05 val AUC 1.000 best 1.000 at 2 156 s since start
+16:27:07 es_cv_resnet34_crop_seed0_fold2 epoch 11 loss 0.004 acc 0.999 lr 5.0e-05 val AUC 0.982 best 0.982 at 11 178 s since start
+16:27:19 es_cv_resnet34_crop_seed0_fold3 epoch 11 loss 0.003 acc 1.000 lr 2.5e-05 val AUC 1.000 best 1.000 at 2 171 s since start
+16:27:23 es_cv_resnet34_crop_seed0_fold2 epoch 12 loss 0.017 acc 0.999 lr 5.0e-05 val AUC 0.973 best 0.982 at 11 195 s since start
+16:27:35 es_cv_resnet34_crop_seed0_fold3 epoch 12 loss 0.002 acc 1.000 lr 2.5e-05 val AUC 1.000 best 1.000 at 2 187 s since start
+16:27:35 es_cv_resnet34_crop_seed0_fold3 early stop at epoch 12
+16:27:36 es_cv_resnet34_crop_seed0_fold3 done, best epoch 2, val AUC 1.000
+16:27:39 es_cv_resnet34_crop_seed0_fold2 epoch 13 loss 0.018 acc 0.996 lr 2.5e-05 val AUC 0.968 best 0.982 at 11 211 s since start
+16:27:40 es_cv_resnet34_crop_seed0_fold4 start on cuda:1, 2573 slices
+16:27:55 es_cv_resnet34_crop_seed0_fold2 epoch 14 loss 0.022 acc 0.994 lr 2.5e-05 val AUC 0.973 best 0.982 at 11 227 s since start
+16:27:56 es_cv_resnet34_crop_seed0_fold4 epoch 1 loss 0.470 acc 0.756 lr 1.0e-04 val AUC 0.900 best 0.900 at 1 15 s since start
+16:28:11 es_cv_resnet34_crop_seed0_fold4 epoch 2 loss 0.245 acc 0.888 lr 1.0e-04 val AUC 0.900 best 0.900 at 1 31 s since start
+16:28:11 es_cv_resnet34_crop_seed0_fold2 epoch 15 loss 0.006 acc 1.000 lr 2.5e-05 val AUC 0.973 best 0.982 at 11 243 s since start
+16:28:26 es_cv_resnet34_crop_seed0_fold4 epoch 3 loss 0.161 acc 0.932 lr 1.0e-04 val AUC 0.882 best 0.900 at 1 46 s since start
+16:28:28 es_cv_resnet34_crop_seed0_fold2 epoch 16 loss 0.003 acc 1.000 lr 2.5e-05 val AUC 0.973 best 0.982 at 11 259 s since start
+16:28:42 es_cv_resnet34_crop_seed0_fold4 epoch 4 loss 0.109 acc 0.955 lr 1.0e-04 val AUC 0.900 best 0.900 at 1 61 s since start
+16:28:44 es_cv_resnet34_crop_seed0_fold2 epoch 17 loss 0.008 acc 1.000 lr 1.3e-05 val AUC 0.964 best 0.982 at 11 275 s since start
+16:28:57 es_cv_resnet34_crop_seed0_fold4 epoch 5 loss 0.105 acc 0.960 lr 1.0e-04 val AUC 0.928 best 0.928 at 5 77 s since start
+16:29:00 es_cv_resnet34_crop_seed0_fold2 epoch 18 loss 0.005 acc 0.999 lr 1.3e-05 val AUC 0.973 best 0.982 at 11 292 s since start
+16:29:13 es_cv_resnet34_crop_seed0_fold4 epoch 6 loss 0.064 acc 0.973 lr 1.0e-04 val AUC 0.937 best 0.937 at 6 92 s since start
+16:29:16 es_cv_resnet34_crop_seed0_fold2 epoch 19 loss 0.002 acc 1.000 lr 1.3e-05 val AUC 0.977 best 0.982 at 11 308 s since start
+16:29:28 es_cv_resnet34_crop_seed0_fold4 epoch 7 loss 0.058 acc 0.981 lr 1.0e-04 val AUC 0.923 best 0.937 at 6 108 s since start
+16:29:32 es_cv_resnet34_crop_seed0_fold2 epoch 20 loss 0.002 acc 1.000 lr 1.3e-05 val AUC 0.977 best 0.982 at 11 324 s since start
+16:29:44 es_cv_resnet34_crop_seed0_fold4 epoch 8 loss 0.041 acc 0.987 lr 1.0e-04 val AUC 0.923 best 0.937 at 6 123 s since start
+16:29:48 es_cv_resnet34_crop_seed0_fold2 epoch 21 loss 0.002 acc 1.000 lr 6.3e-06 val AUC 0.977 best 0.982 at 11 340 s since start
+16:29:48 es_cv_resnet34_crop_seed0_fold2 early stop at epoch 21
+16:29:49 es_cv_resnet34_crop_seed0_fold2 done, best epoch 11, val AUC 0.982
+16:29:54 es_resnet34_scratch_seed0 start on cuda:0, 3170 slices
+16:29:59 es_cv_resnet34_crop_seed0_fold4 epoch 9 loss 0.043 acc 0.986 lr 1.0e-04 val AUC 0.955 best 0.955 at 9 139 s since start
+16:30:14 es_resnet34_scratch_seed0 epoch 1 loss 0.316 acc 0.848 lr 1.0e-04 val AUC 0.842 best 0.842 at 1 19 s since start
+16:30:15 es_cv_resnet34_crop_seed0_fold4 epoch 10 loss 0.056 acc 0.978 lr 1.0e-04 val AUC 0.932 best 0.955 at 9 155 s since start
+16:30:31 es_cv_resnet34_crop_seed0_fold4 epoch 11 loss 0.028 acc 0.992 lr 1.0e-04 val AUC 0.964 best 0.964 at 11 171 s since start
+16:30:34 es_resnet34_scratch_seed0 epoch 2 loss 0.048 acc 0.985 lr 1.0e-04 val AUC 0.928 best 0.928 at 2 40 s since start
+16:30:47 es_cv_resnet34_crop_seed0_fold4 epoch 12 loss 0.025 acc 0.994 lr 1.0e-04 val AUC 0.910 best 0.964 at 11 186 s since start
+16:30:53 es_resnet34_scratch_seed0 epoch 3 loss 0.066 acc 0.975 lr 1.0e-04 val AUC 0.905 best 0.928 at 2 59 s since start
+16:31:02 es_cv_resnet34_crop_seed0_fold4 epoch 13 loss 0.007 acc 0.998 lr 1.0e-04 val AUC 0.959 best 0.964 at 11 202 s since start
+16:31:12 es_resnet34_scratch_seed0 epoch 4 loss 0.011 acc 0.996 lr 1.0e-04 val AUC 0.842 best 0.928 at 2 78 s since start
+16:31:18 es_cv_resnet34_crop_seed0_fold4 epoch 14 loss 0.025 acc 0.990 lr 1.0e-04 val AUC 0.914 best 0.964 at 11 217 s since start
+16:31:32 es_resnet34_scratch_seed0 epoch 5 loss 0.005 acc 0.999 lr 1.0e-04 val AUC 0.833 best 0.928 at 2 97 s since start
+16:31:33 es_cv_resnet34_crop_seed0_fold4 epoch 15 loss 0.071 acc 0.977 lr 1.0e-04 val AUC 0.946 best 0.964 at 11 233 s since start
+16:31:49 es_cv_resnet34_crop_seed0_fold4 epoch 16 loss 0.026 acc 0.991 lr 5.0e-05 val AUC 0.928 best 0.964 at 11 249 s since start
+16:31:52 es_resnet34_scratch_seed0 epoch 6 loss 0.011 acc 0.997 lr 1.0e-04 val AUC 0.824 best 0.928 at 2 117 s since start
+16:32:05 es_cv_resnet34_crop_seed0_fold4 epoch 17 loss 0.008 acc 0.999 lr 5.0e-05 val AUC 0.959 best 0.964 at 11 264 s since start
+16:32:11 es_resnet34_scratch_seed0 epoch 7 loss 0.008 acc 0.998 lr 5.0e-05 val AUC 0.855 best 0.928 at 2 136 s since start
+16:32:20 es_cv_resnet34_crop_seed0_fold4 epoch 18 loss 0.009 acc 0.998 lr 5.0e-05 val AUC 0.946 best 0.964 at 11 280 s since start
+16:32:30 es_resnet34_scratch_seed0 epoch 8 loss 0.002 acc 1.000 lr 5.0e-05 val AUC 0.824 best 0.928 at 2 155 s since start
+16:32:36 es_cv_resnet34_crop_seed0_fold4 epoch 19 loss 0.011 acc 0.997 lr 5.0e-05 val AUC 0.896 best 0.964 at 11 295 s since start
+16:32:50 es_resnet34_scratch_seed0 epoch 9 loss 0.008 acc 0.998 lr 5.0e-05 val AUC 0.801 best 0.928 at 2 175 s since start
+16:32:51 es_cv_resnet34_crop_seed0_fold4 epoch 20 loss 0.004 acc 0.999 lr 2.5e-05 val AUC 0.923 best 0.964 at 11 311 s since start
+16:33:07 es_cv_resnet34_crop_seed0_fold4 epoch 21 loss 0.002 acc 1.000 lr 2.5e-05 val AUC 0.928 best 0.964 at 11 327 s since start
+16:33:07 es_cv_resnet34_crop_seed0_fold4 early stop at epoch 21
+16:33:08 es_cv_resnet34_crop_seed0_fold4 done, best epoch 11, val AUC 0.964
+16:33:09 es_resnet34_scratch_seed0 epoch 10 loss 0.001 acc 1.000 lr 5.0e-05 val AUC 0.819 best 0.928 at 2 195 s since start
+16:33:13 es_resnet34_scratch_seed1 start on cuda:1, 3170 slices
+16:33:28 es_resnet34_scratch_seed0 epoch 11 loss 0.002 acc 1.000 lr 2.5e-05 val AUC 0.810 best 0.928 at 2 214 s since start
+16:33:31 es_resnet34_scratch_seed1 epoch 1 loss 0.313 acc 0.853 lr 1.0e-04 val AUC 0.710 best 0.710 at 1 18 s since start
+16:33:47 es_resnet34_scratch_seed0 epoch 12 loss 0.012 acc 0.997 lr 2.5e-05 val AUC 0.783 best 0.928 at 2 233 s since start
+16:33:47 es_resnet34_scratch_seed0 early stop at epoch 12
+16:33:50 es_resnet34_scratch_seed1 epoch 2 loss 0.041 acc 0.984 lr 1.0e-04 val AUC 0.810 best 0.810 at 2 37 s since start
+16:33:51 es_resnet34_scratch_seed0 done, best epoch 2, val AUC 0.928
+16:33:56 es_resnet34_scratch_seed2 start on cuda:0, 3170 slices
+16:34:09 es_resnet34_scratch_seed1 epoch 3 loss 0.030 acc 0.988 lr 1.0e-04 val AUC 0.742 best 0.810 at 2 56 s since start
+16:34:16 es_resnet34_scratch_seed2 epoch 1 loss 0.321 acc 0.848 lr 1.0e-04 val AUC 0.851 best 0.851 at 1 20 s since start
+16:34:28 es_resnet34_scratch_seed1 epoch 4 loss 0.035 acc 0.986 lr 1.0e-04 val AUC 0.828 best 0.828 at 4 75 s since start
+16:34:36 es_resnet34_scratch_seed2 epoch 2 loss 0.073 acc 0.984 lr 1.0e-04 val AUC 0.801 best 0.851 at 1 40 s since start
+16:34:47 es_resnet34_scratch_seed1 epoch 5 loss 0.017 acc 0.997 lr 1.0e-04 val AUC 0.887 best 0.887 at 5 94 s since start
+16:34:55 es_resnet34_scratch_seed2 epoch 3 loss 0.048 acc 0.985 lr 1.0e-04 val AUC 0.833 best 0.851 at 1 59 s since start
+16:35:05 es_resnet34_scratch_seed1 epoch 6 loss 0.048 acc 0.997 lr 1.0e-04 val AUC 0.851 best 0.887 at 5 113 s since start
+16:35:14 es_resnet34_scratch_seed2 epoch 4 loss 0.004 acc 0.999 lr 1.0e-04 val AUC 0.851 best 0.851 at 1 78 s since start
+16:35:24 es_resnet34_scratch_seed1 epoch 7 loss 0.017 acc 0.994 lr 1.0e-04 val AUC 0.760 best 0.887 at 5 131 s since start
+16:35:34 es_resnet34_scratch_seed2 epoch 5 loss 0.004 acc 0.999 lr 1.0e-04 val AUC 0.833 best 0.851 at 1 98 s since start
+16:35:44 es_resnet34_scratch_seed1 epoch 8 loss 0.011 acc 0.997 lr 1.0e-04 val AUC 0.810 best 0.887 at 5 151 s since start
+16:35:54 es_resnet34_scratch_seed2 epoch 6 loss 0.020 acc 0.996 lr 5.0e-05 val AUC 0.891 best 0.891 at 6 118 s since start
+16:36:02 es_resnet34_scratch_seed1 epoch 9 loss 0.004 acc 0.999 lr 1.0e-04 val AUC 0.819 best 0.887 at 5 169 s since start
+16:36:13 es_resnet34_scratch_seed2 epoch 7 loss 0.006 acc 0.998 lr 5.0e-05 val AUC 0.905 best 0.905 at 7 137 s since start
+16:36:21 es_resnet34_scratch_seed1 epoch 10 loss 0.002 acc 1.000 lr 5.0e-05 val AUC 0.814 best 0.887 at 5 188 s since start
+16:36:32 es_resnet34_scratch_seed2 epoch 8 loss 0.014 acc 0.997 lr 5.0e-05 val AUC 0.805 best 0.905 at 7 156 s since start
+16:36:40 es_resnet34_scratch_seed1 epoch 11 loss 0.002 acc 0.999 lr 5.0e-05 val AUC 0.810 best 0.887 at 5 207 s since start
+16:36:52 es_resnet34_scratch_seed2 epoch 9 loss 0.007 acc 1.000 lr 5.0e-05 val AUC 0.869 best 0.905 at 7 175 s since start
+16:36:59 es_resnet34_scratch_seed1 epoch 12 loss 0.014 acc 0.997 lr 5.0e-05 val AUC 0.801 best 0.887 at 5 226 s since start
+16:37:11 es_resnet34_scratch_seed2 epoch 10 loss 0.067 acc 0.991 lr 5.0e-05 val AUC 0.932 best 0.932 at 10 195 s since start
+16:37:17 es_resnet34_scratch_seed1 epoch 13 loss 0.023 acc 0.992 lr 5.0e-05 val AUC 0.837 best 0.887 at 5 244 s since start
+16:37:30 es_resnet34_scratch_seed2 epoch 11 loss 0.056 acc 0.983 lr 5.0e-05 val AUC 0.814 best 0.932 at 10 214 s since start
+16:37:36 es_resnet34_scratch_seed1 epoch 14 loss 0.001 acc 1.000 lr 2.5e-05 val AUC 0.846 best 0.887 at 5 263 s since start
+16:37:50 es_resnet34_scratch_seed2 epoch 12 loss 0.016 acc 0.999 lr 5.0e-05 val AUC 0.783 best 0.932 at 10 233 s since start
+16:37:55 es_resnet34_scratch_seed1 epoch 15 loss 0.001 acc 1.000 lr 2.5e-05 val AUC 0.837 best 0.887 at 5 282 s since start
+16:37:55 es_resnet34_scratch_seed1 early stop at epoch 15
+16:37:59 es_resnet34_scratch_seed1 done, best epoch 5, val AUC 0.887
+16:38:09 es_resnet34_scratch_seed2 epoch 13 loss 0.051 acc 0.984 lr 5.0e-05 val AUC 0.914 best 0.932 at 10 253 s since start
+16:38:29 es_resnet34_scratch_seed2 epoch 14 loss 0.036 acc 0.997 lr 5.0e-05 val AUC 0.851 best 0.932 at 10 272 s since start
+16:38:48 es_resnet34_scratch_seed2 epoch 15 loss 0.018 acc 0.997 lr 2.5e-05 val AUC 0.864 best 0.932 at 10 292 s since start
+16:39:07 es_resnet34_scratch_seed2 epoch 16 loss 0.009 acc 0.998 lr 2.5e-05 val AUC 0.905 best 0.932 at 10 311 s since start
+16:39:26 es_resnet34_scratch_seed2 epoch 17 loss 0.005 acc 0.999 lr 2.5e-05 val AUC 0.932 best 0.932 at 10 330 s since start
+16:39:46 es_resnet34_scratch_seed2 epoch 18 loss 0.002 acc 1.000 lr 2.5e-05 val AUC 0.914 best 0.932 at 10 350 s since start
+16:40:05 es_resnet34_scratch_seed2 epoch 19 loss 0.002 acc 0.999 lr 1.3e-05 val AUC 0.900 best 0.932 at 10 369 s since start
+16:40:25 es_resnet34_scratch_seed2 epoch 20 loss 0.001 acc 1.000 lr 1.3e-05 val AUC 0.896 best 0.932 at 10 388 s since start
+16:40:25 es_resnet34_scratch_seed2 early stop at epoch 20
+16:40:29 es_resnet34_scratch_seed2 done, best epoch 10, val AUC 0.932
+16:40:32 resnet34 soft voting, mean of seeds, AUC 95% CI [0.53926308 0.80262419]
+16:40:33 resnet34_crop soft voting, mean of seeds, AUC 95% CI [0.73467653 0.9191875 ]
+16:40:34 resnet34_scratch soft voting, mean of seeds, AUC 95% CI [0.56761366 0.81164132]
