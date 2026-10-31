@@ -144,8 +144,12 @@ def draw_mesh(ax, mesh: trimesh.Trimesh, values: Optional[np.ndarray] = None, cm
         colors = cmap(Normalize(vmin, vmax)(face_values))
     elevation, azimuth = np.radians(view)
     light = np.array([np.cos(elevation) * np.cos(azimuth), np.cos(elevation) * np.sin(azimuth), np.sin(elevation)])
-    colors[:, :3] *= (0.62 + 0.38 * np.abs(mesh.face_normals @ light))[:, None]
-    ax.add_collection3d(Poly3DCollection(mesh.vertices[mesh.faces], facecolors=colors, linewidths=0))
+    facing = mesh.face_normals @ light
+    colors[:, :3] *= (0.62 + 0.38 * np.abs(facing))[:, None]
+    # Matplotlib sorts faces by depth only roughly, so hide the far side of closed surfaces to stop it showing through.
+    visible = facing * np.sign(mesh.volume) > 0 if mesh.is_watertight else np.ones(len(mesh.faces), dtype=bool)
+    ax.add_collection3d(Poly3DCollection(mesh.vertices[mesh.faces[visible]], facecolors=colors[visible],
+                                         edgecolors=colors[visible], linewidths=0.15))
     low, high = mesh.bounds
     centre, half = (low + high) / 2, (high - low).max() / 2
     ax.set(xlim=(centre[0] - half, centre[0] + half), ylim=(centre[1] - half, centre[1] + half),
