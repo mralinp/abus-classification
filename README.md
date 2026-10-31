@@ -124,7 +124,7 @@ Each also reports the [challenge benchmark](notebooks/challenge-benchmark.ipynb)
 | ⬜ | TDSC-ABUS T4, KTH [5] | STU-Net and 2.5D DenseNet201 with voting ([#33](https://github.com/mralinp/abus-classification/issues/33)) |
 | ✅ | Zhou et al. 2021 [6] | Multi-task V-Net: joint segmentation and classification; test AUC 0.67, Dice 0.73 (paper, on its own data: 0.787, 0.778), with ablations; patches centred on ground-truth masks |
 | ⬜ | Yu et al. 2024 [8] | 2D-input networks with soft and hard voting across slices |
-| ⬜ | [Breast cancer classification in ABUS using multiview CNN with transfer learning](https://pubmed.ncbi.nlm.nih.gov/32059918/) | Multiview 2D CNN |
+| ✅ | [Breast cancer classification in ABUS using multiview CNN with transfer learning](https://pubmed.ncbi.nlm.nih.gov/32059918/) | Multiview Inception-v3; CNN A test AUC 0.74 over 3 seeds (paper, on its own data: 0.947), details in [`4-wang2020.ipynb`](notebooks/4-wang2020.ipynb) |
 | ⬜ | [Fully automatic classification of ABUS according to BI-RADS using a deep CNN](https://pubmed.ncbi.nlm.nih.gov/35147776/) | 2D deep CNN |
 | ⬜ | Unified comparison table and statistical tests across all reproduced methods | — |
 
