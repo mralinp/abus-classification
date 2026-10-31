@@ -31,7 +31,8 @@ from torch.nn import functional as F
 
 from abus_classification.data.lesion_cache import ROOT, TDSC_PATH
 from abus_classification.papers.yu2024.model import YuResNet
-from abus_classification.protocol import DEVICE, auc_ci, folds, metrics, run_on_gpus
+from abus_classification.protocol import DEVICE, auc_ci, folds, metrics, run_on_gpus, save_atomic
+from abus_classification.protocol import log as protocol_log
 
 CACHE, SIZE = ROOT / "data" / "yu2024.npz", 224
 MODES = {"resnet34": dict(images="whole", pretrained=True),
@@ -91,17 +92,7 @@ def predict(net, x, batch=128):
 
 
 def log(out_dir, text):
-    """To stdout and to a file in the kernel's output, stamped; spawned workers may not reach the kernel's own log."""
-    line = f"{time.strftime('%H:%M:%S')} {text}"
-    print(line, flush=True)
-    with open(Path(out_dir) / "yu2024_progress.log", "a") as f:
-        f.write(line + "\n")
-
-
-def save_atomic(state, path):
-    """A stop during the write leaves the previous checkpoint intact."""
-    torch.save(state, f"{path}.tmp")
-    os.replace(f"{path}.tmp", path)
+    protocol_log(Path(out_dir) / "yu2024_progress.log", text)
 
 
 def train_run(data, mode, seed, fit, test, name, out_dir=".", epochs=100, batch=32, lr=1e-4, make=None, val=None, patience=10, deadline=None):

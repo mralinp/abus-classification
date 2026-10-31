@@ -8,4 +8,5 @@ metrics, folds), `features`, `models`, `transformers`, `preprocessing`, `utils`.
     zhou2021           iterative feature-refining multi-task V-Net
     wang2020           multiview Inception-v3 on coronal and transverse patches
     yu2024             2D ResNet34 on tumor slices with hard and soft voting
+    hejduk2022         step-wise dCNNs and a sliding window over slices
 """

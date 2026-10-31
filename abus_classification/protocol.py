@@ -3,6 +3,8 @@
 Train on Train+Validation (130 volumes), report on the official Test split (70), malignant = positive class.
 """
 import multiprocessing
+import os
+import time
 from concurrent.futures import ProcessPoolExecutor
 
 import numpy as np
@@ -47,3 +49,17 @@ def run_on_gpus(fn, jobs):
             queue.put(gpu)
         with ProcessPoolExecutor(workers, mp_context=ctx, initializer=_claim_gpu, initargs=(queue,)) as pool:
             return list(pool.map(fn, jobs))
+
+
+def log(path, text):
+    """To stdout and to a file in the kernel's output, stamped; spawned workers may not reach the kernel's own log."""
+    line = f"{time.strftime('%H:%M:%S')} {text}"
+    print(line, flush=True)
+    with open(path, "a") as f:
+        f.write(line + "\n")
+
+
+def save_atomic(state, path):
+    """A stop during the write leaves the previous checkpoint intact."""
+    torch.save(state, f"{path}.tmp")
+    os.replace(f"{path}.tmp", path)
