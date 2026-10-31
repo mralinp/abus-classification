@@ -11,18 +11,27 @@ Not given and assumed: ImageNet weights (`resnet34_scratch` runs without); whole
 uses the slice's lesion box, as its discussion of "smaller slices" may mean); 224 x 224 ignoring aspect ratio; Adam, lr 1e-4,
 batch 32, cross-entropy, no augmentation; the last epoch is used. A hard-voting tie counts as malignant (paper: undefined).
 Voting weights come from the ground-truth masks, as in the paper, so a real system would need a segmentation first.
+
+The paper's fixed 100 epochs overfit: training accuracy passes 99% by epoch 2 on whole slices, so `early_stopping=True`, the
+default, is our own addition. It fits Train only and picks the epoch by soft-voting AUC on the official Validation split,
+with the learning rate halved on a plateau. `early_stopping=False` gives the paper's schedule (`results/yu2024/yu2024_*`).
+Each epoch saves a checkpoint that a restarted run resumes from; a run past `deadline` stops cleanly and resumes later.
 """
+import os
+import time
 from pathlib import Path
 
 import numpy as np
 import pandas as pd
 import torch
+from joblib import Parallel, delayed
+from sklearn.metrics import roc_auc_score
 from tdsc_abus2023_pytorch import TDSC, DataSplits
 from torch.nn import functional as F
 
 from abus_classification.data.lesion_cache import ROOT, TDSC_PATH
 from abus_classification.papers.yu2024.model import YuResNet
-from abus_classification.protocol import DEVICE, auc_ci, folds, metrics
+from abus_classification.protocol import DEVICE, auc_ci, folds, metrics, run_on_gpus
 
 CACHE, SIZE = ROOT / "data" / "yu2024.npz", 224
 MODES = {"resnet34": dict(images="whole", pretrained=True),
@@ -48,20 +57,20 @@ def tumor_slices(vol, mask, size=SIZE):
     return np.stack(whole), np.stack(crop), np.array(voxels)
 
 
+def case_slices(split, i):
+    vol, mask, label, _ = TDSC(path=TDSC_PATH, split=split, download=False)[i]
+    return (*tumor_slices(np.asarray(vol), mask), int(label == 0))    # label 0 = malignant
+
+
 def build_cache():
-    rows, case = {k: [] for k in ("whole", "crop", "voxels", "case")}, 0
-    y, split_of = [], []
-    for code, split in enumerate((DataSplits.TRAIN, DataSplits.VALIDATION, DataSplits.TEST)):
-        ds = TDSC(path=TDSC_PATH, split=split, download=False)
-        for i in range(len(ds)):
-            vol, mask, label, _ = ds[i]
-            whole, crop, voxels = tumor_slices(np.asarray(vol), mask)
-            for key, v in zip(rows, (whole, crop, voxels, np.full(len(voxels), case))):
-                rows[key].append(v)
-            y.append(int(label == 0)), split_of.append(code)          # label 0 = malignant
-            case += 1
+    """All CPU cores, one volume per task."""
+    splits = (DataSplits.TRAIN, DataSplits.VALIDATION, DataSplits.TEST)
+    tasks = [(code, split, i) for code, split in enumerate(splits) for i in range(len(TDSC(path=TDSC_PATH, split=split, download=False)))]
+    done = Parallel(n_jobs=os.cpu_count())(delayed(case_slices)(split, i) for _, split, i in tasks)
+    whole, crop, voxels, y = zip(*done)
     CACHE.parent.mkdir(parents=True, exist_ok=True)
-    np.savez_compressed(CACHE, **{k: np.concatenate(v) for k, v in rows.items()}, y=np.array(y), split=np.array(split_of))
+    np.savez_compressed(CACHE, whole=np.concatenate(whole), crop=np.concatenate(crop), voxels=np.concatenate(voxels),
+                        case=np.repeat(np.arange(len(done)), [len(v) for v in voxels]), y=np.array(y), split=np.array([t[0] for t in tasks]))
 
 
 def votes(p, voxels, case):
@@ -81,8 +90,26 @@ def predict(net, x, batch=128):
     return np.concatenate(out)
 
 
-def train_run(data, mode, seed, fit, test, name, out_dir=".", epochs=100, batch=32, lr=1e-4, make=None):
-    """Train on the slices of cases `fit`, return p(malignant) for the slices of cases `test`. A finished run is loaded."""
+def log(out_dir, text):
+    """To stdout and to a file in the kernel's output, stamped; spawned workers may not reach the kernel's own log."""
+    line = f"{time.strftime('%H:%M:%S')} {text}"
+    print(line, flush=True)
+    with open(Path(out_dir) / "yu2024_progress.log", "a") as f:
+        f.write(line + "\n")
+
+
+def save_atomic(state, path):
+    """A stop during the write leaves the previous checkpoint intact."""
+    torch.save(state, f"{path}.tmp")
+    os.replace(f"{path}.tmp", path)
+
+
+def train_run(data, mode, seed, fit, test, name, out_dir=".", epochs=100, batch=32, lr=1e-4, make=None, val=None, patience=10, deadline=None):
+    """Train on the slices of cases `fit`, return p(malignant) for the slices of cases `test`.
+
+    With `val`, keep the epoch with the best soft-voting AUC there, halve lr on a 3-epoch plateau and stop after `patience`.
+    A finished run is loaded and a stopped one resumes. Past `deadline` (time.time()) it returns None with its checkpoint saved.
+    """
     out = Path(out_dir) / f"yu2024_{name}.npz"
     if out.exists():
         return np.load(out)["prob"]
@@ -91,8 +118,24 @@ def train_run(data, mode, seed, fit, test, name, out_dir=".", epochs=100, batch=
     idx = np.flatnonzero(np.isin(case, fit))
     x, target = torch.as_tensor(images[idx], device=DEVICE), torch.as_tensor(data["y"][case[idx]], device=DEVICE)
     net = (make or (lambda: YuResNet(MODES[mode]["pretrained"])))().to(DEVICE)
-    opt, history = torch.optim.Adam(net.parameters(), lr=lr), []
-    for epoch in range(1, epochs + 1):
+    opt = torch.optim.Adam(net.parameters(), lr=lr)
+    plateau = torch.optim.lr_scheduler.ReduceLROnPlateau(opt, "max", factor=0.5, patience=3)
+    if val is not None:
+        val_slices = np.isin(case, val)
+        val_x, val_case, val_voxels = torch.as_tensor(images[val_slices]), case[val_slices], data["voxels"][val_slices]
+    state = dict(epoch=0, best=None, best_auc=-1.0, best_epoch=0, since=0, history=[])
+    checkpoint = out.with_suffix(".ckpt")
+    if checkpoint.exists():
+        saved = torch.load(checkpoint, map_location=DEVICE, weights_only=False)
+        net.load_state_dict(saved["net"]), opt.load_state_dict(saved["opt"]), plateau.load_state_dict(saved["plateau"])
+        np.random.set_state(saved["numpy"]), state.update(saved["state"])
+        log(out_dir, f"{name} resumed after epoch {state['epoch']}")
+    log(out_dir, f"{name} start on {DEVICE}:{torch.cuda.current_device() if DEVICE == 'cuda' else 0}, {len(idx)} slices")
+    started = time.time()
+    for epoch in range(state["epoch"] + 1, epochs + 1):
+        if deadline is not None and time.time() > deadline:
+            log(out_dir, f"{name} stopped at the deadline after epoch {state['epoch']}")
+            return None
         net.train()
         order, losses, hits = np.random.permutation(len(idx)), [], 0
         for start in range(0, len(order), batch):
@@ -104,12 +147,32 @@ def train_run(data, mode, seed, fit, test, name, out_dir=".", epochs=100, batch=
             opt.zero_grad(), loss.backward(), opt.step()
             losses.append(loss.item())
             hits += (logits.argmax(1) == target[pick]).sum().item()
-        history.append(dict(epoch=epoch, loss=float(np.mean(losses)), acc=hits / len(idx)))
-        print(f"{name} epoch {epoch} loss {history[-1]['loss']:.3f} acc {history[-1]['acc']:.3f}", flush=True)
+        h = dict(epoch=epoch, loss=float(np.mean(losses)), acc=hits / len(idx), lr=opt.param_groups[0]["lr"])
+        stop = False
+        if val is not None:
+            cases, _, soft = votes(predict(net, val_x), val_voxels, val_case)
+            h["val_auc"] = roc_auc_score(data["y"][cases], soft)
+            plateau.step(h["val_auc"])
+            state["since"] += 1
+            if h["val_auc"] > state["best_auc"]:
+                state.update(best={k: v.cpu().clone() for k, v in net.state_dict().items()}, best_auc=h["val_auc"], best_epoch=epoch, since=0)
+            stop = state["since"] >= patience
+        state["history"].append(h)
+        state["epoch"] = epoch
+        save_atomic(dict(net=net.state_dict(), opt=opt.state_dict(), plateau=plateau.state_dict(), numpy=np.random.get_state(), state=state), checkpoint)
+        pd.DataFrame(state["history"]).to_csv(out.with_name(out.stem + "_history.csv"), index=False)
+        log(out_dir, f"{name} epoch {epoch} loss {h['loss']:.3f} acc {h['acc']:.3f} lr {h['lr']:.1e} val AUC {h.get('val_auc', float('nan')):.3f} "
+                     f"best {state['best_auc']:.3f} at {state['best_epoch']} {time.time() - started:.0f} s since start")
+        if stop:
+            log(out_dir, f"{name} early stop at epoch {epoch}")
+            break
+    if state["best"] is not None:
+        net.load_state_dict(state["best"])
     prob = predict(net, torch.as_tensor(images[np.isin(case, test)]))
-    pd.DataFrame(history).to_csv(out.with_name(out.stem + "_history.csv"), index=False)
     torch.save(net.state_dict(), out.with_suffix(".pt"))
-    np.savez_compressed(out, prob=prob)
+    np.savez_compressed(out, prob=prob, best_epoch=state["best_epoch"], val_auc=state["best_auc"])
+    checkpoint.unlink(missing_ok=True)
+    log(out_dir, f"{name} done, best epoch {state['best_epoch']}, val AUC {state['best_auc']:.3f}")
     return prob
 
 
@@ -128,36 +191,56 @@ def evaluate(data, prob, test):
     return {"slices": row(data["y"][case], prob), "hard": row(y, hard), "soft": row(y, soft)}, y, hard, soft
 
 
-def cv(data, mode, out_dir=".", epochs=100, seed=0):
-    """The paper's protocol: five folds on Train, the mean of the folds' metrics."""
-    y, train = data["y"], np.flatnonzero(data["split"] == 0)
-    results = []
-    for k, (fit, test) in enumerate(folds(y, train, seed)):
-        prob = train_run(data, mode, seed, fit, test, f"cv_{mode}_seed{seed}_fold{k}", out_dir, epochs)
-        results.append(evaluate(data, prob, test)[0])
-    return {f"{mode} {kind} cv": pd.DataFrame([r[kind] for r in results]).mean().to_dict() for kind in results[0]}
+def plan(data, modes, seeds, early_stopping=True):
+    """Every training: three seeds per mode on the official split, then the paper's five folds on Train for pretrained modes."""
+    y, split = data["y"], data["split"]
+    train, validation, test = [np.flatnonzero(split == k) for k in range(3)]
+    tag, val = ("es_", validation) if early_stopping else ("", None)
+    fit = train if early_stopping else np.r_[train, validation]
+    runs = []
+    for mode in modes:
+        runs += [dict(mode=mode, seed=s, fit=fit, test=test, name=f"{tag}{mode}_seed{s}", val=val, key=f"{mode} seed {s}") for s in seeds]
+        if MODES[mode]["pretrained"]:
+            runs += [dict(mode=mode, seed=0, fit=a, test=b, name=f"{tag}cv_{mode}_seed0_fold{k}", val=val, key=f"{mode} fold {k}")
+                     for k, (a, b) in enumerate(folds(y, train, 0))]
+    return runs
 
 
-def main(modes=tuple(MODES), seeds=(0, 1, 2), out_dir=".", epochs=100):
+def run_job(job):
+    """One training in a GPU worker. The cache is read per process, and only the images it needs stay on the GPU."""
+    data = dict(np.load(CACHE))
+    train_run(data, job["mode"], job["seed"], job["fit"], job["test"], job["name"], job["out_dir"], job["epochs"], val=job["val"], deadline=job["deadline"])
+
+
+def main(modes=tuple(MODES), seeds=(0, 1, 2), out_dir=".", epochs=100, early_stopping=True, hours=None):
+    """`hours` limits the run, so that a kernel ends cleanly and keeps its output before the platform stops it."""
+    deadline = None if hours is None else time.time() + hours * 3600
     if not CACHE.exists():
+        log(out_dir, "building the cache")
         build_cache()
     data = dict(np.load(CACHE))
-    fit, test = np.flatnonzero(data["split"] != 2), np.flatnonzero(data["split"] == 2)
-    print(f"{(data['split'][data['case']] == 0).sum()} slices with tumor on Train (paper: 2028)", flush=True)
-    rows = {}
-    for mode in modes:
-        soft = []
-        for seed in seeds:
-            prob = train_run(data, mode, seed, fit, test, f"{mode}_seed{seed}", out_dir, epochs)
-            result, y, _, s = evaluate(data, prob, test)
-            rows.update({f"{mode} {kind} seed {seed}": v for kind, v in result.items()})
-            soft.append(s)
-            pd.DataFrame(rows).T.round(4).to_csv(Path(out_dir) / "yu2024_results.csv")      # keep finished runs
-        print(mode, "soft voting, mean of seeds, AUC 95%% CI %.3f-%.3f" % tuple(auc_ci(y, np.mean(soft, 0))), flush=True)
-        rows[f"{mode} soft mean of seeds"] = row(y, np.mean(soft, 0))
-        if MODES[mode]["pretrained"]:
-            rows.update(cv(data, mode, out_dir, epochs))
-        table = pd.DataFrame(rows).T.round(4)
-        table.to_csv(Path(out_dir) / "yu2024_results.csv")
+    log(out_dir, f"{(data['split'][data['case']] == 0).sum()} slices with tumor on Train (paper: 2028), {torch.cuda.device_count()} GPUs, {os.cpu_count()} CPUs")
+    runs = plan(data, modes, seeds, early_stopping)
+    run_on_gpus(run_job, [{**r, "out_dir": out_dir, "epochs": epochs, "deadline": deadline} for r in runs])
+    tag, rows, fold_rows, soft = "es_" if early_stopping else "", {}, {}, {}
+    for r in runs:
+        path = Path(out_dir) / f"yu2024_{r['name']}.npz"
+        if not path.exists():
+            log(out_dir, f"{r['name']} not finished")
+            continue
+        result, y, _, s = evaluate(data, np.load(path)["prob"], r["test"])
+        if "fold" in r["key"]:
+            fold_rows.setdefault(r["mode"], []).append(result)
+        else:
+            rows.update({f"{r['mode']} {kind} seed {r['seed']}": v for kind, v in result.items()})
+            soft.setdefault(r["mode"], []).append(s)
+    for mode, s in soft.items():
+        y = data["y"][data["split"] == 2]
+        log(out_dir, f"{mode} soft voting, mean of seeds, AUC 95% CI {auc_ci(y, np.mean(s, 0))}")
+        rows[f"{mode} soft mean of seeds"] = row(y, np.mean(s, 0))
+    for mode, results in fold_rows.items():
+        rows.update({f"{mode} {kind} cv": pd.DataFrame([f[kind] for f in results]).mean().to_dict() for kind in results[0]})
+    table = pd.DataFrame(rows).T.round(4)
+    table.to_csv(Path(out_dir) / f"yu2024_{tag}results.csv")
     print(table.to_string())
     return table
