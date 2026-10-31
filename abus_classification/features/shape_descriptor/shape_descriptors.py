@@ -59,6 +59,17 @@ def compute_eigendecomposition(L: csr_matrix, M: csr_matrix, k: int = 50) -> Tup
     idx = np.argsort(eigenvalues)
     return eigenvalues[idx], eigenvectors[:, idx]
 
+def lb_spectrum(mesh: trimesh.Trimesh, k: int = 50, scale_invariant: bool = True) -> np.ndarray:
+    """
+    First k Laplace-Beltrami eigenvalues of a closed mesh, sorted, the zero mode included.
+
+    With scale_invariant, they are multiplied by the surface area. Scaling a shape by c
+    divides lambda by c^2 and multiplies the area by c^2, so lambda * area ignores size.
+    """
+    L, M = compute_laplace_beltrami_operator(mesh)
+    eigenvalues, _ = compute_eigendecomposition(L, M, k=k)
+    return eigenvalues * mesh.area if scale_invariant else eigenvalues
+
 def compute_hks(eigenvalues: np.ndarray, eigenvectors: np.ndarray, time_points: Optional[np.ndarray] = None) -> np.ndarray:
     """
     Compute the Heat Kernel Signature (HKS)
