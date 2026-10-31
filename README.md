@@ -5,16 +5,23 @@
 Automated 3D breast ultrasound (ABUS) images the whole breast in a single sweep, but reading the
 resulting volumes is slow, and telling malignant lesions from benign ones remains hard.
 
-In previous work [7] we showed that the **Laplace–Beltrami spectrum of a lesion's surface** is an
-effective feature for classifying breast masses in 3D ABUS. That paper established *that* it works,
-not *why*. This project supplies the missing mathematics, toward a follow-up paper:
+This repository is a research reference for **studying, implementing and evaluating published ABUS
+methods on TDSC-ABUS 2023**. We select relevant and influential papers, reconstruct their methods,
+run experiments on a shared benchmark, and publish the evidence needed for other researchers to
+understand, verify and extend the work.
 
-1. **Reproduce the strongest published results** on the public TDSC-ABUS 2023 dataset under one
-   evaluation protocol, so every comparison is fair.
-2. **Develop the mathematical foundations** of Laplace–Beltrami shape representation for tumors: what
-   the spectrum provably captures about a lesion's shape, what it cannot, how stable it is, and how it
-   relates to spherical harmonic decompositions.
-3. **Derive better descriptors from that theory** and test whether they improve on the baselines.
+Our current focus is paper reproduction and evaluation. Each study connects an implementation in
+`abus_classification`, an explanatory notebook, Kaggle GPU kernels, stored results and a detailed
+reproduction guide. Those records explain what we did, how and why, including assumptions,
+differences from the paper, unexpected behavior and follow-up experiments. Original authors are
+welcome to review the implementation and contribute corrections; review status is recorded explicitly.
+
+**Phase 3** will study Laplace–Beltrami shape representations and their classification performance,
+using the reproduced methods as baselines. Our previous paper [7] motivates that investigation;
+its finalized source, including the CNN code, is currently awaited from the first author.
+
+Start with the [research index](https://github.com/mralinp/abus-classification/blob/main/docs/papers.md) and [research workflow](https://github.com/mralinp/abus-classification/blob/main/docs/research-workflow.md).
+The index distinguishes current reproductions, planned studies and historical thesis experiments.
 
 The work is carried out at the Iran Image Processing Lab (IIPL) by Ali Naderiparizi and Sepideh Barekatrezaei,
 under the supervision of Dr. Ehsan Kozegar and Dr. Mohsen Soryani (main supervisor). Code is released under
@@ -27,6 +34,8 @@ the MIT license.
 ## Results so far
 
 All results below use the **official TDSC-ABUS test split** (70 lesions: 40 malignant, 30 benign).
+Published challenge scores are labeled separately from our evaluations. A completed run does not
+imply original-author verification or an exact reproduction of the original protocol.
 Always answering "malignant" scores 57.1% accuracy on it.
 
 | Method | Features / model | Test AUC | Test accuracy | Notes |
@@ -34,12 +43,10 @@ Always answering "malignant" scores 57.1% accuracy on it.
 | Tan et al. 2012, reproduced here | 11 radiomic features, RBF SVM | **0.86** (95% CI 0.77–0.94) | **78.6%** | CV AUC 0.83 ± 0.03 |
 | Tan et al. 2012 without spiculation, reproduced here | 8 features, RBF SVM | 0.79 | 75.7% | CV AUC 0.74 |
 | Tan et al. 2013, reproduced here | 14 features, LDA | 0.82 | 72.9% | CV AUC 0.82 |
-| Barekatrezaei et al. 2026, reproduced here | Laplace–Beltrami spectra + dual-path CNN, voting | 0.85–0.86 | 71.4–77.1% | 3 seeds; stacking reaches only 0.68–0.82, see below |
 | Zhou et al. 2021, reproduced here | Multi-task V-Net, CMSVNetIter | 0.67 (95% CI 0.53–0.79) | 62.9% | mean of 3 seeds; Dice 0.73 |
 | Wang et al. 2020, reproduced here | Multiview Inception-v3 (CNN A), official boxes | 0.755 (95% CI 0.63–0.86) | 65.7% | mean of 3 seeds; transverse view alone reaches 0.80 |
 | Yu et al. 2024, reproduced here | ResNet34 on lesion crops, soft voting | 0.81 (mean of seeds 0.825, 95% CI 0.72–0.92) | 70.0% | 3 seeds; whole slices reach 0.75 |
 | TDSC-ABUS challenge winner (T1, SZU) | 3D ResNet | 0.889 | 75.7% | reported in the challenge paper |
-| Barekatrezaei et al. 2026 — our previous work [7] | Laplace–Beltrami spectra + dual-path CNN | 0.935 | 84.3% | reported in [7] |
 
 > **Comparing across rows.** The reproductions here compute features from the ground-truth lesion
 > masks, and the CNN patches are centred on those masks. Challenge entries had to locate and segment lesions themselves, so their task was harder.
@@ -62,21 +69,19 @@ Always answering "malignant" scores 57.1% accuracy on it.
 | --- | --- |
 | ![Coronal plane, coronal spiculation map and transversal plane with the posterior region for a malignant and a benign lesion](docs/assets/tan-features-example.png) | ![ROC curves on the TDSC-ABUS test split for the reproduced Tan 2012 and Tan 2013 classifiers](docs/assets/tan-roc-test-split.png) |
 
-**Barekatrezaei et al. 2026** (details in
-[`2-barekatrezaei2026.ipynb`](https://github.com/mralinp/abus-classification/blob/main/notebooks/2-barekatrezaei2026.ipynb);
-remaining work in [#28](https://github.com/mralinp/abus-classification/issues/28)):
-
-- **Stacking does not reproduce yet.** The paper's stacked ensemble reports AUC 0.935; ours reaches 0.68–0.82,
-  depending on seed and stacker. Voting (0.85–0.86) is close to the paper's 0.873.
-- **The ablations do not reproduce either.** Removing the Laplace–Beltrami features does not hurt here, and the raw
-  eigenvalues act mostly as a proxy for lesion size. We are waiting for the original code to compare the pipelines.
+**Barekatrezaei et al. 2026 — awaiting finalized author source.** The first author's finalized
+source, including the CNN implementation, is pending. Provisional comparisons are omitted from
+this README while fidelity is unresolved. Existing runs, differences and diagnostics remain in the
+[notebook](https://github.com/mralinp/abus-classification/blob/main/notebooks/2-barekatrezaei2026.ipynb) and
+[reproduction record](https://github.com/mralinp/abus-classification/blob/main/docs/reproductions/barekatrezaei2026.md); they are not a finalized assessment
+of the paper. See [#28](https://github.com/mralinp/abus-classification/issues/28).
 
 **Zhou et al. 2021** (details in
 [`3-zhou2021.ipynb`](https://github.com/mralinp/abus-classification/blob/main/notebooks/3-zhou2021.ipynb)):
 
-- **Below the paper, but not clearly so.** The paper reports AUC 0.787, accuracy 74.1% and Dice 0.778 from four-fold
-  cross-validation on private data. Ours is AUC 0.67, accuracy 62.9% and Dice 0.73, and the paper's AUC lies inside our
-  confidence interval.
+- **Different data and evaluation.** The paper reports AUC 0.787, accuracy 74.1% and Dice 0.778 from four-fold
+  cross-validation on private data. Our TDSC-ABUS evaluation gives AUC 0.67, accuracy 62.9% and Dice 0.73.
+  These protocols do not establish a direct replication of the paper's score.
 - **Refinement helps segmentation, as in the paper.** The paper's classification gain does not show here: on one seed,
   the full method scores AUC 0.65 against 0.74 without refinement, with overlapping confidence intervals.
 - **The classification head under-fits.** Its loss barely falls during training and training AUC only reaches about
@@ -85,8 +90,8 @@ remaining work in [#28](https://github.com/mralinp/abus-classification/issues/28
 **Wang et al. 2020** (details in
 [`4-wang2020.ipynb`](https://github.com/mralinp/abus-classification/blob/main/notebooks/4-wang2020.ipynb)):
 
-- **Far below the paper.** The paper reports AUC 0.947 with five-fold cross-validation on private data; ours is 0.755, and the
-  paper's value is above our confidence interval.
+- **Different data and evaluation.** The paper reports AUC 0.947 with five-fold cross-validation on private data;
+  our TDSC-ABUS Test AUC is 0.755. The dataset and protocol difference limits conclusions about the original result.
 - **The multiview gain does not show.** The transverse view alone scores highest (0.80), and ImageNet weights give no visible
   gain; all confidence intervals overlap.
 - **Validation overstates the result.** Best validation AUC averages 0.94 for CNN A on 30 lesions, against 0.74 on test.
@@ -94,9 +99,10 @@ remaining work in [#28](https://github.com/mralinp/abus-classification/issues/28
 **Yu et al. 2024** (details in
 [`6-yu2024.ipynb`](https://github.com/mralinp/abus-classification/blob/main/notebooks/6-yu2024.ipynb)):
 
-- **Far below the paper, on its own data and protocol.** The paper reports soft voting AUC 0.986 from five-fold cross-validation on
-  the TDSC Train split; the same protocol gives 0.85 here. The paper's numbers are also inconsistent: its voting rows list AUC equal
-  to accuracy, and its hard voting sensitivity and specificity imply accuracy 0.937, not 0.907.
+- **Unresolved comparison on the paper's data and protocol.** The paper reports soft voting AUC 0.986 from five-fold
+  cross-validation on the TDSC Train split; our reconstruction gives 0.85 under that split protocol. Several implementation
+  details remain assumptions. Its voting rows list AUC equal to accuracy, and its hard voting sensitivity and specificity
+  imply accuracy 0.937 rather than 0.907; these are questions for author clarification.
 - **Soft voting helps only a little over hard voting.** It adds about 0.02 AUC, without a paired test yet.
 - **Training memorises quickly.** Training accuracy reaches about 100%, by epoch 2 on whole slices. The likely cause is volumes
   being memorised; this is not yet tested.
@@ -115,7 +121,8 @@ remaining work in [#28](https://github.com/mralinp/abus-classification/issues/28
 
 ## Roadmap
 
-Status: ✅ done · 🔄 in progress · ⬜ planned
+Status: ✅ recorded work completed within its stated scope · 🔄 in progress · ⬜ planned.
+These symbols do not indicate original-author verification; see the [research index](https://github.com/mralinp/abus-classification/blob/main/docs/papers.md).
 
 ### Phase 0 — Foundations ✅
 
@@ -136,15 +143,19 @@ Status: ✅ done · 🔄 in progress · ⬜ planned
 
 ### Phase 2 — Reproduce the strongest published results 🔄
 
-Every method is re-run under one protocol: train on Train + Validation (130 lesions), report AUC with
-a bootstrap confidence interval and accuracy on the official Test split, and compare pairs with
-DeLong's test. Each is evaluated twice — from ground-truth masks and from predicted segmentations.
-Each also reports the [challenge benchmark](notebooks/challenge-benchmark.ipynb) on the published leaderboard
+The shared target protocol fits Train + Validation (130 volumes) and evaluates the official Test split
+(70), with malignant as the positive class, three seeds and AUC confidence intervals. Original-paper
+protocols and variants are reported separately. For example, holding out Validation for early stopping
+fits only Train (100); it must not be described as the same training protocol. Each volume's slices and patches stay
+together when creating splits. Pairwise statistical comparisons and evaluation using
+predicted segmentations remain planned where not explicitly reported.
+
+Each study also reports the [challenge benchmark](notebooks/challenge-benchmark.ipynb) on the published leaderboard
 (`abus_classification/challenge.py`). So far that covers classification only ([#34](https://github.com/mralinp/abus-classification/issues/34)).
 
 | | Paper | Authors | Approach and PR |
 | --- | --- | --- | --- |
-| 🔄 | *[Breast mass classification in 3D ABUS based on Laplace-Beltrami spectra and dual path CNN](https://doi.org/10.1016/j.eswa.2025.129973)* [7], our previous work | Barekatrezaei et al. 2026 | Laplace–Beltrami spectra + dual-path CNN, stacked ensemble; voting AUC 0.85–0.86, stacking does not reproduce yet ([#28](https://github.com/mralinp/abus-classification/issues/28)). [`2-barekatrezaei2026.ipynb`](https://github.com/mralinp/abus-classification/blob/main/notebooks/2-barekatrezaei2026.ipynb), PR [#27](https://github.com/mralinp/abus-classification/pull/27) |
+| 🔄 | *[Breast mass classification in 3D ABUS based on Laplace-Beltrami spectra and dual path CNN](https://doi.org/10.1016/j.eswa.2025.129973)* [7], our previous work | Barekatrezaei et al. 2026 | Awaiting finalized source, including the CNN code, from the first author; provisional findings retained in the notebook and [reproduction record](https://github.com/mralinp/abus-classification/blob/main/docs/reproductions/barekatrezaei2026.md) ([#28](https://github.com/mralinp/abus-classification/issues/28)). [`2-barekatrezaei2026.ipynb`](https://github.com/mralinp/abus-classification/blob/main/notebooks/2-barekatrezaei2026.ipynb), PR [#27](https://github.com/mralinp/abus-classification/pull/27) |
 | ⬜ | *[Tumor detection, segmentation and classification challenge on automated 3D breast ultrasound: the TDSC-ABUS challenge](https://arxiv.org/abs/2501.15588)* [5], team T1 (SZU) | Luo et al. 2025 | 3D ResNet, U-Net and anchor-free detector; not started ([#30](https://github.com/mralinp/abus-classification/issues/30)) |
 | ⬜ | *[Tumor detection, segmentation and classification challenge on automated 3D breast ultrasound: the TDSC-ABUS challenge](https://arxiv.org/abs/2501.15588)* [5], team T2 (POSTECH) | Luo et al. 2025 | Multi-task residual nnU-Net; not started ([#31](https://github.com/mralinp/abus-classification/issues/31)) |
 | ⬜ | *[Tumor detection, segmentation and classification challenge on automated 3D breast ultrasound: the TDSC-ABUS challenge](https://arxiv.org/abs/2501.15588)* [5], team T3 (HU) | Luo et al. 2025 | nnU-Net, nnDetection and patch-based 3D ResNet-18; not started ([#32](https://github.com/mralinp/abus-classification/issues/32)) |
@@ -157,8 +168,8 @@ Each also reports the [challenge benchmark](notebooks/challenge-benchmark.ipynb)
 
 ### Phase 3 — Mathematical foundations of Laplace–Beltrami shape representation ⬜
 
-Our previous work [7] showed that Laplace–Beltrami spectra of the lesion surface separate malignant
-from benign lesions well, but did not explain why. This phase supplies the mathematics: which
+Our previous work [7] motivates studying Laplace–Beltrami spectra of lesion surfaces. After the
+benchmark studies, this phase will test their classification performance and investigate the mathematics: which
 properties of a tumor's shape the spectrum provably captures, which it cannot, how stable it is under
 the imperfections of real ultrasound segmentations, and how it relates to spherical harmonic
 decompositions. Every claim is paired with an empirical check on TDSC-ABUS, and the theory is used to
@@ -286,7 +297,7 @@ uv run python -m abus_classification.papers.zhou2021 --epochs 100
 
 | Path | Contents |
 | --- | --- |
-| `abus_classification/papers/` | One subpackage per reproduced paper (`barekatrezaei2026`, `zhou2021`) |
+| `abus_classification/papers/` | Paper implementations (`barekatrezaei2026`, `zhou2021`, `wang2020`, `yu2024`); completion and source verification vary |
 | `abus_classification/protocol.py` | Shared evaluation protocol: device, metrics, folds, bootstrap CI |
 | `abus_classification/challenge.py` | TDSC-ABUS 2023 challenge evaluation (Dice, HD, ACC, AUC, FROC) and published leaderboard |
 | `abus_classification/data/` | Lesion cache: patches, radiomic and Laplace–Beltrami features per volume |
@@ -296,7 +307,9 @@ uv run python -m abus_classification.papers.zhou2021 --epochs 100
 | `abus_classification/features/texture/` | Grey-level co-occurrence texture features |
 | `abus_classification/models/` | U-Net, V-Net, SE-FNet, multi-task V-Net |
 | `abus_classification/utils/` | Meshing, voxel spacing and resampling, image utilities |
-| `notebooks/` | Experiments — start with `0-visualization.ipynb` and `1-tao2013.ipynb`; one notebook per reproduced paper |
+| `notebooks/` | Current study notebooks and historical thesis experiments; see the [research index](https://github.com/mralinp/abus-classification/blob/main/docs/papers.md) |
+| `docs/papers.md` | Study index: implementations, notebooks, kernels, results and documentation gaps |
+| `docs/reproductions/` | Detailed records of what ran, how, why, deviations and remaining verification |
 | `kaggle/` | Kaggle kernel scripts for the training runs |
 | `results/` | Stored results of those runs, per paper |
 | `test/` | Unit tests |
