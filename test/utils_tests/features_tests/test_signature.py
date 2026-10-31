@@ -1,3 +1,7 @@
+import itertools
+
+import scipy.sparse as sp
+from abus_classification.features.shape_descriptor.shape_descriptors import heat_trace_coefficients
 from scipy.spatial.transform import Rotation
 from abus_classification import lb_invariance
 from scipy.sparse.linalg import eigsh
@@ -131,3 +135,79 @@ def test_voxel_pipeline_keeps_the_spectrum_of_a_moved_ball():
     lam, _, area, *_ = lb_invariance.measure(moved > 0.5, 1.0, "smoothed")
     # A sphere has lambda * area = l(l + 1) * 4 pi: 8 pi three times.
     np.testing.assert_allclose(lam[1:4] * area, 8 * np.pi, rtol=0.03)
+
+
+def test_heat_trace_recovers_area_and_euler_number_of_the_sphere():
+    lam = np.concatenate([[l * (l + 1)] * (2 * l + 1) for l in range(40)])   # analytic spectrum
+    c0, chi, c2 = heat_trace_coefficients(lam, 4 * np.pi)
+    assert abs(c0 - 1) < 1e-3 and abs(chi - 2) < 0.01
+    assert abs(c2 - (4 * np.pi) ** 2 / (60 * np.pi)) < 0.05  # int K^2 dA = 4 pi
+
+
+def test_heat_trace_tells_a_torus_from_a_sphere_on_fine_meshes():
+    sphere = trimesh.creation.icosphere(subdivisions=6)
+    torus = trimesh.creation.torus(major_radius=2, minor_radius=1, major_sections=256, minor_sections=128)
+    assert abs(heat_trace_coefficients(lb_spectrum(sphere, 100, False), sphere.area)[1] - 2) < 0.1
+    assert abs(heat_trace_coefficients(lb_spectrum(torus, 100, False), torus.area)[1]) < 0.15
+
+
+# Mirror-gluing patterns of 7 tiles: three involutions of GL(3, 2), acting on the points and on the lines of the Fano
+# plane. These actions are almost conjugate, so by Sunada's theorem the glued surfaces share a spectrum.
+SUNADA_POINTS = ([3, 1, 5, 0, 4, 2, 6], [0, 3, 4, 1, 2, 5, 6], [0, 2, 1, 3, 4, 6, 5])
+SUNADA_LINES = ([3, 1, 5, 0, 4, 2, 6], [0, 3, 4, 1, 2, 5, 6], [2, 1, 0, 3, 6, 5, 4])
+
+
+def sunada_surface(gluing, n=12):
+    """L and M of a closed flat surface: 14 copies of one triangle, two sheets joined wherever a side has no partner."""
+    corners = np.array([[0, 0, 0], [1, 0, 0], [0.3, 0.8, 0]], dtype=float)
+    bary = [(i, j, n - i - j) for i in range(n + 1) for j in range(n + 1 - i)]
+    index = {b: k for k, b in enumerate(bary)}
+    faces = []
+    for i in range(n):
+        for j in range(n - i):
+            faces.append((index[i, j, n - i - j], index[i + 1, j, n - i - j - 1], index[i, j + 1, n - i - j - 1]))
+            if i + j < n - 1:
+                faces.append((index[i + 1, j, n - i - j - 1], index[i + 1, j + 1, n - i - j - 2],
+                              index[i, j + 1, n - i - j - 1]))
+    tile = trimesh.Trimesh((np.array(bary) / n) @ corners, faces, process=False)
+    L, M = compute_laplace_beltrami_operator(tile)
+    size = len(bary)
+    parent = np.arange(14 * size)
+
+    def find(x):
+        while parent[x] != x:
+            parent[x] = parent[parent[x]]
+            x = parent[x]
+        return x
+
+    for side, partner in enumerate(gluing):
+        on_side = [k for k, b in enumerate(bary) if b[side] == 0]
+        for tile_a, tile_b in enumerate(partner):
+            for k in on_side:
+                if tile_a == tile_b:
+                    parent[find(2 * tile_a * size + k)] = find((2 * tile_a + 1) * size + k)
+                else:
+                    for sheet in (0, 1):
+                        parent[find((2 * tile_a + sheet) * size + k)] = find((2 * tile_b + sheet) * size + k)
+    _, label = np.unique([find(x) for x in range(14 * size)], return_inverse=True)
+    coo, count = L.tocoo(), label.max() + 1
+    rows = np.concatenate([label[c * size + coo.row] for c in range(14)])
+    cols = np.concatenate([label[c * size + coo.col] for c in range(14)])
+    glued_l = sp.csr_matrix((np.tile(coo.data, 14), (rows, cols)), shape=(count, count))
+    mass = np.bincount(label, np.tile(M.diagonal(), 14), minlength=count)
+    return glued_l, sp.diags(mass).tocsr()
+
+
+def test_sunada_pair_shares_a_spectrum_but_is_not_isometric():
+    (L1, M1), (L2, M2) = sunada_surface(SUNADA_POINTS), sunada_surface(SUNADA_LINES)
+    lam1, phi1 = compute_eigendecomposition(L1, M1, 40)
+    lam2, phi2 = compute_eigendecomposition(L2, M2, 40)
+    np.testing.assert_allclose(lam1[1:], lam2[1:], rtol=1e-10)
+
+    relabelled = any(all([s[p[i]] for i in range(7)] == [q[s[i]] for i in range(7)]
+                         for p, q in zip(SUNADA_POINTS, SUNADA_LINES)) for s in itertools.permutations(range(7)))
+    assert not relabelled
+    # The heat kernel diagonal over the surface is an isometry invariant, and its values differ.
+    t = 1 / lam1[3]
+    h1, h2 = (np.sort((np.exp(-lam * t) * phi ** 2).sum(1)) for lam, phi in ((lam1, phi1), (lam2, phi2)))
+    assert np.abs(h1 - h2).max() / h1.mean() > 0.01
