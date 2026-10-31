@@ -7,5 +7,6 @@ ap = argparse.ArgumentParser(description="Reproduce Yu et al. (Applied Sciences 
 ap.add_argument("--modes", nargs="+", default=list(MODES), choices=list(MODES))
 ap.add_argument("--seeds", type=int, nargs="+", default=[0, 1, 2])
 ap.add_argument("--out-dir", default=".")
+ap.add_argument("--paper-schedule", action="store_true", help="fixed 100 epochs, no validation")
 a = ap.parse_args()
-main(a.modes, a.seeds, a.out_dir)
+main(a.modes, a.seeds, a.out_dir, early_stopping=not a.paper_schedule)
