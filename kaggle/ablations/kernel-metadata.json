@@ -1,1 +1,1 @@
-{"id":"simayousef/eswa2025-ablations","title":"eswa2025-ablations","code_file":"run.py","language":"python","kernel_type":"script","is_private":true,"enable_gpu":true,"enable_internet":true,"dataset_sources":[],"kernel_sources":["simayousef/eswa2025-reproduction"]}
+{"id":"mralinp/eswa2025-ablations","title":"eswa2025-ablations","code_file":"run.py","language":"python","kernel_type":"script","is_private":true,"enable_gpu":true,"enable_internet":true,"dataset_sources":[],"kernel_sources":["eswa2025-reproduction"]}

@@ -55,6 +55,8 @@ Notebooks load stored results from `results/`; they must not need a multi-hour r
   malignant = positive class, AUC with bootstrap CI, 3 seeds.
 - Kaggle runs save what the benchmark needs: test probabilities and, if the method produces them, full-volume masks and
   detection boxes.
-- Heavy training runs on Kaggle GPU kernels (`kaggle/<name>/`, private datasets `simayousef/tdsc-abus2023-*`);
+- Heavy training runs on Kaggle GPU kernels (`kaggle/<name>/`, private datasets `tdsc-abus2023-*`, account `mralinp`, pushed with `python kaggle/push.py <name>`);
   the feature cache `data/eswa2025.npz` is the output of the `eswa2025-reproduction` kernel.
 - Write the user's name as "Ali Naderiparizi" in citations.
+- Only name `mralinp` as the Kaggle account. Committed kernel metadata lists sources without an owner; other owners go in
+  `~/.kaggle/owners.json`, never in the repo.
