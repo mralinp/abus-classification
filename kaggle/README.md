@@ -18,3 +18,7 @@ Results are in `results/zhou2021/`.
 ## Wang 2020
 
 `wang2020/`: builds the patches from the private datasets, then trains CNN A, CNN B, the single views and CNN A from scratch (3 seeds each). Finished runs are never trained again. Results are in `results/wang2020/`.
+
+## Yu 2024
+
+`yu2024/`: runs on the `mralinp` account. Builds the slices from the private datasets, trains ResNet34 on whole slices, lesion crops and from scratch (3 seeds each), and repeats the paper's five-fold CV on Train. Finished runs are never trained again. Results are in `results/yu2024/`.
