@@ -49,6 +49,26 @@ Each notebook must contain, so a reader can check the implementation is correct:
 
 Notebooks load stored results from `results/`; they must not need a multi-hour run to open.
 
+## One document per paper and job
+
+Every paper gets `docs/reproductions/<author><year>.md`, and every other job (a benchmark, a comparison, a shared cache)
+gets `docs/reproductions/<name>.md`. **A PR that adds or changes a paper or job, its code, its Kaggle kernel or its stored
+results includes the document, new or updated in that same PR.** A PR without it is not ready to merge.
+
+The notebook shows the evidence; the document tells someone how to rerun the work and get the same results. Link to the
+notebook instead of copying its tables. Each document contains:
+
+1. **Implementation**: what was built and where (modules, entry points, tests), how the data flows through it, and the
+   decisions and deviations that matter, with a link to the notebook's table for the full list.
+2. **Requirements**: data and caches needed, where they come from, and the hardware.
+3. **Reproducing the results**: the exact commands, in order, from a clean checkout to the stored results, including every
+   Kaggle kernel: its name, what it reads and writes, the branch it clones, the settings used, and how long it took.
+4. **Expected results**: the numbers a rerun should give, with seed variation, and where they are stored (`results/<name>/`).
+5. **Status**: whether the stored results come from the current code, what has not been run, and any commit, parameter or
+   environment that differs from the instructions.
+
+Only state commands and run times that were actually used. Write "not run yet" for anything that was not.
+
 ## Conventions
 
 - Protocol for all methods: train on Train+Validation (130 volumes), report on the official Test split (70),
