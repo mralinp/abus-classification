@@ -39,7 +39,7 @@ class DriveSync:
 
     def __enter__(self):
         for args in (("mkdir", self.target), ("touch", f"{self.target}/.write-check"), ("lsf", f"{self.target}/.write-check"),
-                     ("copy", self.target, self.local, "--exclude", "*.pt", "--exclude", ".write-check")):
+                     ("copy", self.target, self.local, "--exclude", ".write-check")):
             done = self.rclone(*args)
             if done.returncode != 0:
                 raise RuntimeError(f"Drive is not usable, rclone {args[0]} failed: {done.stderr[-300:]}")

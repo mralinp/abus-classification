@@ -1,4 +1,4 @@
-import os, shutil, subprocess, sys
+import glob, os, shutil, subprocess, sys
 OUT = "/kaggle/working"
 sh = lambda c: subprocess.run(c, shell=True, check=True)
 
@@ -13,6 +13,8 @@ def setup():
         if "DATA" in dirs and os.path.basename(root) in ("Train", "Validation", "Test"):
             os.symlink(root, f"/tmp/tdsc/{os.path.basename(root)}")
     assert len(os.listdir("/tmp/tdsc")) == 3, "missing a split"
+    os.makedirs(f"{OUT}/repo/data", exist_ok=True)
+    os.symlink(glob.glob("/kaggle/input/**/hejduk2022.npz", recursive=True)[0], f"{OUT}/repo/data/hejduk2022.npz")   # building it takes 7.6 h
 
 
 if __name__ == "__main__":
@@ -25,6 +27,6 @@ if __name__ == "__main__":
     from abus_classification.papers.hejduk2022 import main
     from abus_classification.utils.drive import DriveSync, configure_rclone
     configure_rclone(UserSecretsClient().get_secret("RCLONE_CONF"))
-    with DriveSync("abus-checkpoints/hejduk2022-early-stopping", OUT):    # fails here, in minutes, if Drive does not work
-        main(out_dir=OUT, stride=20, slice_step=5, hours=10)                                # ends before the 12 h session limit, so the output is kept
+    with DriveSync("abus-checkpoints/hejduk2022-kaiming", OUT):    # fails here, in minutes, if Drive does not work
+        main(seeds=(0,), out_dir=OUT, lr=1e-3, hours=3, scan=False)                         # a test of whether the models learn, before any scan
     shutil.rmtree(f"{OUT}/repo")

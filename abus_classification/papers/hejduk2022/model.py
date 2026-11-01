@@ -22,8 +22,8 @@ class HejdukCNN(nn.Module):
         self.fc = nn.Sequential(nn.Flatten(), nn.Linear(size, dense), nn.ReLU(), nn.Dropout(0.5),
                                 nn.Linear(dense, dense), nn.ReLU(), nn.Dropout(0.5), nn.Linear(dense, 2))
         for m in self.modules():
-            if isinstance(m, (nn.Conv2d, nn.Linear)):      # TensorFlow's default initialisation
-                nn.init.xavier_uniform_(m.weight), nn.init.zeros_(m.bias)
+            if isinstance(m, (nn.Conv2d, nn.Linear)):      # Xavier, TensorFlow's default, leaves p at 0.5 at every lr tried
+                nn.init.kaiming_normal_(m.weight, nonlinearity="relu"), nn.init.zeros_(m.bias)
 
     def forward(self, x):
         return self.fc(self.features(x))

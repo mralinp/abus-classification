@@ -12,12 +12,15 @@ crops are centred on the ground-truth mask (paper: drawn by a radiologist), five
 fixed epochs on Train + Validation, reported on the official Test split (paper: own split, 128 images and 22 volumes).
 The Table 1 image counts are drawn afresh each epoch (paper: fixed augmented copies), which keeps the paper's step count.
 Not given and assumed: 181 is the height along depth; VGG-16 filters and 4096-unit dense layers; pixels scaled to [0, 1];
-augmentation ranges; Xavier initialisation (TensorFlow's default); tissue is a pixel >= 10, background a crop under 10%
+augmentation ranges; tissue is a pixel >= 10, background a crop under 10%
 tissue, normal a crop over 90% tissue that misses the lesion. Boxes for the challenge benchmark are our own addition.
 
 `early_stopping=True`, the default, is our addition to the paper's fixed epochs, so that overfitting shows early: models fit
 Train, the epoch is picked by crop AUC on the official Validation split, and lr halves on a plateau. Models train one per
 GPU. Training saves a checkpoint each epoch and the scan each volume; a restarted run resumes, and `hours` ends it cleanly.
+
+Kaiming initialisation (paper silent) and, in the Kaggle kernel, lr 1e-3 (paper 1e-6) are our deviations: with Xavier, TensorFlow's
+default, the first run's probabilities all stayed within 0.4997-0.5003 and one batch could not be overfitted at lr 1e-6 to 1e-2.
 """
 import os
 import time
@@ -208,13 +211,14 @@ def train_model(data, model, seed, out_dir=".", lr=1e-6, batch=16, epochs=None, 
     net = make().to(DEVICE)
     if path.exists():
         net.load_state_dict(torch.load(path, map_location=DEVICE))
+        path.with_suffix(".ckpt").unlink(missing_ok=True)      # a stale one from Drive; 0.9 GB of Kaggle's 20 GB output
         return net
     torch.manual_seed(seed), np.random.seed(seed)
     idx, y = training_set(data, model, (0,) if early_stopping else (0, 1))
     crops, target = torch.as_tensor(data["crops"][idx], device=DEVICE), torch.as_tensor(y, device=DEVICE)
     weight = torch.as_tensor(class_weights(y), dtype=torch.float32, device=DEVICE)
     opt = torch.optim.SGD(net.parameters(), lr=lr, momentum=0.9, nesterov=True)
-    plateau = torch.optim.lr_scheduler.ReduceLROnPlateau(opt, "max", factor=0.5, patience=3)
+    plateau = torch.optim.lr_scheduler.ReduceLROnPlateau(opt, "max", factor=0.5, patience=3, min_lr=lr / 100)
     if early_stopping:
         val_idx, val_y = training_set(data, model, (1,))
         val_crops = torch.as_tensor(data["crops"][val_idx])
@@ -260,7 +264,7 @@ def train_model(data, model, seed, out_dir=".", lr=1e-6, batch=16, epochs=None, 
             break
     if state["best"] is not None:
         net.load_state_dict(state["best"])
-    torch.save(net.state_dict(), path)
+    save_atomic(net.state_dict(), path)                        # a partial .pt would now survive a restart through Drive
     checkpoint.unlink(missing_ok=True)
     log(out_dir, f"{name} done, best epoch {state['best_epoch']}, val AUC {state['best_auc']:.3f}")
     return net
@@ -322,15 +326,16 @@ def row(y, p):
     return {**metrics(y, p), "Kappa": cohen_kappa_score(y, p >= 0.5)}
 
 
-def main(seeds=(0, 1, 2), out_dir=".", lr=1e-6, stride=10, slice_step=1, early_stopping=True, hours=None):
-    """`hours` limits the run, so that a kernel ends cleanly and keeps its output before the platform stops it."""
+def main(seeds=(0, 1, 2), out_dir=".", lr=1e-6, stride=10, slice_step=1, early_stopping=True, hours=None, scan=True):
+    """`hours` limits the run, so that a kernel ends cleanly and keeps its output before the platform stops it. `scan=False` only trains."""
     common = dict(out_dir=out_dir, lr=lr, early_stopping=early_stopping, deadline=None if hours is None else time.time() + hours * 3600)
     if not CACHE.exists():
         log(out_dir, "building the cache")
         build_cache()
     log(out_dir, f"cache ready, {torch.cuda.device_count()} GPUs, {os.cpu_count()} CPUs")
     run_on_gpus(train_job, [dict(model=m, seed=s, **common) for s in seeds for m in MODELS])
-    run_on_gpus(scan_job, [dict(seed=s, stride=stride, slice_step=slice_step, **common) for s in seeds])
+    if scan:
+        run_on_gpus(scan_job, [dict(seed=s, stride=stride, slice_step=slice_step, **common) for s in seeds])
     data = dict(np.load(CACHE))
     tag = ("_es" if early_stopping else "") + ("" if lr == 1e-6 else f"_lr{lr:g}")
     rows, runs = {}, []

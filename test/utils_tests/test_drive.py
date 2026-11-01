@@ -23,7 +23,7 @@ def test_checks_downloads_then_uploads_on_a_timer_and_at_exit(rclone, tmp_path):
         time.sleep(0.3)
     lines = rclone.read_text().splitlines()
     assert [l.split()[0] for l in lines[:3]] == ["mkdir", "touch", "lsf"]
-    assert lines[3].startswith(f"copy gdrive:runs/a {tmp_path}") and "*.pt" in lines[3]
+    assert lines[3].startswith(f"copy gdrive:runs/a {tmp_path}") and ".pt" not in lines[3]    # a restart keeps finished models
     uploads = [l for l in lines if l.startswith(f"copy {tmp_path} gdrive:runs/a")]
     assert len(uploads) >= 2 and "repo/**" in uploads[0] and "*.tmp" in uploads[0]
 

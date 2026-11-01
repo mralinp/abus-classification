@@ -162,6 +162,31 @@ def test_early_stopping_uses_validation_and_stops(tmp_path, monkeypatch):
     assert not (tmp_path / "hejduk2022_model3_es_lr0.5_seed0.ckpt").exists() and (tmp_path / "hejduk2022_progress.log").exists()
 
 
+def test_finished_model_beats_a_stale_checkpoint_left_on_drive(tmp_path, monkeypatch):
+    data = tiny_setup(monkeypatch)
+    net = train_model(data, 3, 0, tmp_path, lr=0.5, batch=4, epochs=1, make=TinyMean)
+    saved = tmp_path / "hejduk2022_model3_lr0.5_seed0.pt"
+    stale = saved.with_suffix(".ckpt")
+    stale.write_bytes(b"not a checkpoint: loading it would raise")
+    before = saved.read_bytes()
+    again = train_model(data, 3, 0, tmp_path, lr=0.5, batch=4, epochs=1, make=TinyMean)
+    assert saved.read_bytes() == before and not stale.exists()
+    assert all(torch.equal(a.cpu(), b.cpu()) for a, b in zip(net.state_dict().values(), again.state_dict().values()))
+
+
+def test_scheduler_stops_at_a_hundredth_of_the_lr(tmp_path, monkeypatch):
+    data = tiny_setup(monkeypatch)
+    train_model(data, 3, 0, tmp_path, lr=0.5, batch=4, make=TinyMean, early_stopping=True, patience=99)
+    rates = [float(l.split(",")[3]) for l in (tmp_path / "hejduk2022_model3_es_lr0.5_seed0_history.csv").read_text().splitlines()[1:]]
+    assert rates[0] == 0.5 and abs(min(rates) - 0.005) < 1e-9
+
+
+def test_initial_logits_carry_signal():
+    torch.manual_seed(0)
+    logits = HejdukCNN().eval()(torch.rand(4, 1, HEIGHT, WIDTH))
+    assert (logits[:, 1] - logits[:, 0]).abs().max() > 0.01      # Xavier gave about 1e-4 at this depth
+
+
 def test_stops_at_the_deadline_and_resumes(tmp_path, monkeypatch):
     data = tiny_setup(monkeypatch)
     assert train_model(data, 3, 0, tmp_path, lr=0.5, batch=4, make=TinyMean, deadline=0) is None
