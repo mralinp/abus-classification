@@ -1,6 +1,6 @@
 # Classification with every feature set
 
-Evidence: [`notebooks/lb-classification.ipynb`](../../notebooks/lb-classification.ipynb). Train+Validation only; the Test split is untouched.
+Evidence: [`notebooks/lb-classification.ipynb`](../../notebooks/lb-classification.ipynb). Train+Validation only. Test was untouched when this was run; it was then used once in `lb-feature-evaluation`.
 
 ## Implementation
 
@@ -43,4 +43,4 @@ A second run gave identical `groups.csv` and `selection.json`.
 
 ## Status
 
-The stored results come from the current code. Not run: any model on the Test split, and any of this on predicted masks.
+The stored results come from the current code. Not run here: any model on the Test split, which `lb-feature-evaluation` does, and any of this on predicted masks.

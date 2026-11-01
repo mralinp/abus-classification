@@ -1,0 +1,3058 @@
+{
+ "primary": [
+  "Best overall by the rule",
+  "Best LB-only by the rule"
+ ],
+ "sets": {
+  "LB selected features": [
+   "WKS local: log p95, band 7",
+   "Tips: log tips, tau 0.021",
+   "Heat trace: log trace, tau 0.004"
+  ],
+  "LB selected groups": [
+   "Tips: log tips, tau 0.004",
+   "Tips: log tips, tau 0.007",
+   "Tips: log tips, tau 0.012",
+   "Tips: log tips, tau 0.021",
+   "Tips: log tips, tau 0.037",
+   "Tips: log tips, tau 0.065",
+   "Tips: log tips, tau 0.114",
+   "Tips: log tips, tau 0.200",
+   "Hersch ratio: lambda_1 * area / 8 pi",
+   "Heat trace: log trace, tau 0.004",
+   "Heat trace: log trace, tau 0.007",
+   "Heat trace: log trace, tau 0.012",
+   "Heat trace: log trace, tau 0.021",
+   "Heat trace: log trace, tau 0.037",
+   "Heat trace: log trace, tau 0.065",
+   "Heat trace: log trace, tau 0.114",
+   "Heat trace: log trace, tau 0.200",
+   "WKS local: log spread, band 1",
+   "WKS local: log p95, band 1",
+   "WKS local: log spread, band 2",
+   "WKS local: log p95, band 2",
+   "WKS local: log spread, band 3",
+   "WKS local: log p95, band 3",
+   "WKS local: log spread, band 4",
+   "WKS local: log p95, band 4",
+   "WKS local: log spread, band 5",
+   "WKS local: log p95, band 5",
+   "WKS local: log spread, band 6",
+   "WKS local: log p95, band 6",
+   "WKS local: log spread, band 7",
+   "WKS local: log p95, band 7",
+   "WKS local: log spread, band 8",
+   "WKS local: log p95, band 8",
+   "GPS: log distance p10",
+   "GPS: log distance p25",
+   "GPS: log distance p50",
+   "GPS: log distance p75",
+   "GPS: log distance p90",
+   "GPS: log distance p95",
+   "GPS: log distance p99"
+  ],
+  "All LB": [
+   "Hersch ratio: lambda_1 * area / 8 pi",
+   "Shape-DNA: log s_1",
+   "Shape-DNA: log s_2",
+   "Shape-DNA: log s_3",
+   "Shape-DNA: log s_4",
+   "Shape-DNA: log s_5",
+   "Shape-DNA: log s_6",
+   "Shape-DNA: log s_7",
+   "Shape-DNA: log s_8",
+   "Shape-DNA: log s_9",
+   "Shape-DNA: log s_10",
+   "Shape-DNA: log s_11",
+   "Shape-DNA: log s_12",
+   "Shape-DNA: log s_13",
+   "Shape-DNA: log s_14",
+   "Shape-DNA: log s_15",
+   "Shape-DNA: log s_16",
+   "Shape-DNA: log s_17",
+   "Shape-DNA: log s_18",
+   "Shape-DNA: log s_19",
+   "Shape-DNA: log s_20",
+   "Heat trace: log trace, tau 0.004",
+   "Heat trace: log trace, tau 0.007",
+   "Heat trace: log trace, tau 0.012",
+   "Heat trace: log trace, tau 0.021",
+   "Heat trace: log trace, tau 0.037",
+   "Heat trace: log trace, tau 0.065",
+   "Heat trace: log trace, tau 0.114",
+   "Heat trace: log trace, tau 0.200",
+   "HKS local: log spread, tau 0.004",
+   "HKS local: log p95, tau 0.004",
+   "HKS local: log spread, tau 0.007",
+   "HKS local: log p95, tau 0.007",
+   "HKS local: log spread, tau 0.012",
+   "HKS local: log p95, tau 0.012",
+   "HKS local: log spread, tau 0.021",
+   "HKS local: log p95, tau 0.021",
+   "HKS local: log spread, tau 0.037",
+   "HKS local: log p95, tau 0.037",
+   "HKS local: log spread, tau 0.065",
+   "HKS local: log p95, tau 0.065",
+   "HKS local: log spread, tau 0.114",
+   "HKS local: log p95, tau 0.114",
+   "HKS local: log spread, tau 0.200",
+   "HKS local: log p95, tau 0.200",
+   "WKS local: log spread, band 1",
+   "WKS local: log p95, band 1",
+   "WKS local: log spread, band 2",
+   "WKS local: log p95, band 2",
+   "WKS local: log spread, band 3",
+   "WKS local: log p95, band 3",
+   "WKS local: log spread, band 4",
+   "WKS local: log p95, band 4",
+   "WKS local: log spread, band 5",
+   "WKS local: log p95, band 5",
+   "WKS local: log spread, band 6",
+   "WKS local: log p95, band 6",
+   "WKS local: log spread, band 7",
+   "WKS local: log p95, band 7",
+   "WKS local: log spread, band 8",
+   "WKS local: log p95, band 8",
+   "Tips: log tips, tau 0.004",
+   "Tips: log tips, tau 0.007",
+   "Tips: log tips, tau 0.012",
+   "Tips: log tips, tau 0.021",
+   "Tips: log tips, tau 0.037",
+   "Tips: log tips, tau 0.065",
+   "Tips: log tips, tau 0.114",
+   "Tips: log tips, tau 0.200",
+   "GPS: log distance p10",
+   "GPS: log distance p25",
+   "GPS: log distance p50",
+   "GPS: log distance p75",
+   "GPS: log distance p90",
+   "GPS: log distance p95",
+   "GPS: log distance p99",
+   "Harmonics: log power, degree 1",
+   "Harmonics: log power, degree 2",
+   "Harmonics: log power, degree 3",
+   "Harmonics: log power, degree 4",
+   "Harmonics: log power, degree 5",
+   "Harmonics: log power, degree 6",
+   "Harmonics: log power, degree 7",
+   "Harmonics: log power, degree 8",
+   "Harmonics: log power, degree 9",
+   "Harmonics: log power, degree 10",
+   "Harmonics: log power, degree 11",
+   "Harmonics: log power, degree 12",
+   "Harmonics: log power, degree 13",
+   "Harmonics: log power, degree 14",
+   "Harmonics: log power, degree 15"
+  ],
+  "Size + LB selected features": [
+   "Size: log volume",
+   "Size: log area",
+   "WKS local: log p95, band 7",
+   "Tips: log tips, tau 0.021",
+   "Heat trace: log trace, tau 0.004"
+  ],
+  "Size + all LB": [
+   "Size: log volume",
+   "Size: log area",
+   "Hersch ratio: lambda_1 * area / 8 pi",
+   "Shape-DNA: log s_1",
+   "Shape-DNA: log s_2",
+   "Shape-DNA: log s_3",
+   "Shape-DNA: log s_4",
+   "Shape-DNA: log s_5",
+   "Shape-DNA: log s_6",
+   "Shape-DNA: log s_7",
+   "Shape-DNA: log s_8",
+   "Shape-DNA: log s_9",
+   "Shape-DNA: log s_10",
+   "Shape-DNA: log s_11",
+   "Shape-DNA: log s_12",
+   "Shape-DNA: log s_13",
+   "Shape-DNA: log s_14",
+   "Shape-DNA: log s_15",
+   "Shape-DNA: log s_16",
+   "Shape-DNA: log s_17",
+   "Shape-DNA: log s_18",
+   "Shape-DNA: log s_19",
+   "Shape-DNA: log s_20",
+   "Heat trace: log trace, tau 0.004",
+   "Heat trace: log trace, tau 0.007",
+   "Heat trace: log trace, tau 0.012",
+   "Heat trace: log trace, tau 0.021",
+   "Heat trace: log trace, tau 0.037",
+   "Heat trace: log trace, tau 0.065",
+   "Heat trace: log trace, tau 0.114",
+   "Heat trace: log trace, tau 0.200",
+   "HKS local: log spread, tau 0.004",
+   "HKS local: log p95, tau 0.004",
+   "HKS local: log spread, tau 0.007",
+   "HKS local: log p95, tau 0.007",
+   "HKS local: log spread, tau 0.012",
+   "HKS local: log p95, tau 0.012",
+   "HKS local: log spread, tau 0.021",
+   "HKS local: log p95, tau 0.021",
+   "HKS local: log spread, tau 0.037",
+   "HKS local: log p95, tau 0.037",
+   "HKS local: log spread, tau 0.065",
+   "HKS local: log p95, tau 0.065",
+   "HKS local: log spread, tau 0.114",
+   "HKS local: log p95, tau 0.114",
+   "HKS local: log spread, tau 0.200",
+   "HKS local: log p95, tau 0.200",
+   "WKS local: log spread, band 1",
+   "WKS local: log p95, band 1",
+   "WKS local: log spread, band 2",
+   "WKS local: log p95, band 2",
+   "WKS local: log spread, band 3",
+   "WKS local: log p95, band 3",
+   "WKS local: log spread, band 4",
+   "WKS local: log p95, band 4",
+   "WKS local: log spread, band 5",
+   "WKS local: log p95, band 5",
+   "WKS local: log spread, band 6",
+   "WKS local: log p95, band 6",
+   "WKS local: log spread, band 7",
+   "WKS local: log p95, band 7",
+   "WKS local: log spread, band 8",
+   "WKS local: log p95, band 8",
+   "Tips: log tips, tau 0.004",
+   "Tips: log tips, tau 0.007",
+   "Tips: log tips, tau 0.012",
+   "Tips: log tips, tau 0.021",
+   "Tips: log tips, tau 0.037",
+   "Tips: log tips, tau 0.065",
+   "Tips: log tips, tau 0.114",
+   "Tips: log tips, tau 0.200",
+   "GPS: log distance p10",
+   "GPS: log distance p25",
+   "GPS: log distance p50",
+   "GPS: log distance p75",
+   "GPS: log distance p90",
+   "GPS: log distance p95",
+   "GPS: log distance p99",
+   "Harmonics: log power, degree 1",
+   "Harmonics: log power, degree 2",
+   "Harmonics: log power, degree 3",
+   "Harmonics: log power, degree 4",
+   "Harmonics: log power, degree 5",
+   "Harmonics: log power, degree 6",
+   "Harmonics: log power, degree 7",
+   "Harmonics: log power, degree 8",
+   "Harmonics: log power, degree 9",
+   "Harmonics: log power, degree 10",
+   "Harmonics: log power, degree 11",
+   "Harmonics: log power, degree 12",
+   "Harmonics: log power, degree 13",
+   "Harmonics: log power, degree 14",
+   "Harmonics: log power, degree 15"
+  ],
+  "Size + spiculation": [
+   "Size: log volume",
+   "Size: log area",
+   "Spiculation: SPmean",
+   "Spiculation: SP90",
+   "Spiculation: SP75",
+   "Spiculation: SPcyl_mean",
+   "Spiculation: SPcyl_upper_mean",
+   "Spiculation: SPcyl_max_slice_mean"
+  ],
+  "Size + spiculation + Hersch ratio": [
+   "Size: log volume",
+   "Size: log area",
+   "Spiculation: SPmean",
+   "Spiculation: SP90",
+   "Spiculation: SP75",
+   "Spiculation: SPcyl_mean",
+   "Spiculation: SPcyl_upper_mean",
+   "Spiculation: SPcyl_max_slice_mean",
+   "Hersch ratio: lambda_1 * area / 8 pi"
+  ],
+  "All classical": [
+   "Size: log volume",
+   "Size: log area",
+   "Spiculation: SPmean",
+   "Spiculation: SP90",
+   "Spiculation: SP75",
+   "Spiculation: SPcyl_mean",
+   "Spiculation: SPcyl_upper_mean",
+   "Spiculation: SPcyl_max_slice_mean",
+   "Intensity: VI",
+   "Intensity: H",
+   "Intensity: AI",
+   "Intensity: IBV",
+   "Intensity: MC",
+   "Intensity: PAB",
+   "Classical shape: VHWR",
+   "Classical shape: SH",
+   "Classical shape: CP",
+   "Classical shape: DF",
+   "Classical shape: DICE",
+   "Elongation and sphericity: log elongation",
+   "Elongation and sphericity: log sphericity"
+  ],
+  "All classical + LB selected features": [
+   "Size: log volume",
+   "Size: log area",
+   "Spiculation: SPmean",
+   "Spiculation: SP90",
+   "Spiculation: SP75",
+   "Spiculation: SPcyl_mean",
+   "Spiculation: SPcyl_upper_mean",
+   "Spiculation: SPcyl_max_slice_mean",
+   "Intensity: VI",
+   "Intensity: H",
+   "Intensity: AI",
+   "Intensity: IBV",
+   "Intensity: MC",
+   "Intensity: PAB",
+   "Classical shape: VHWR",
+   "Classical shape: SH",
+   "Classical shape: CP",
+   "Classical shape: DF",
+   "Classical shape: DICE",
+   "Elongation and sphericity: log elongation",
+   "Elongation and sphericity: log sphericity",
+   "WKS local: log p95, band 7",
+   "Tips: log tips, tau 0.021",
+   "Heat trace: log trace, tau 0.004"
+  ],
+  "All classical + all LB": [
+   "Size: log volume",
+   "Size: log area",
+   "Spiculation: SPmean",
+   "Spiculation: SP90",
+   "Spiculation: SP75",
+   "Spiculation: SPcyl_mean",
+   "Spiculation: SPcyl_upper_mean",
+   "Spiculation: SPcyl_max_slice_mean",
+   "Intensity: VI",
+   "Intensity: H",
+   "Intensity: AI",
+   "Intensity: IBV",
+   "Intensity: MC",
+   "Intensity: PAB",
+   "Classical shape: VHWR",
+   "Classical shape: SH",
+   "Classical shape: CP",
+   "Classical shape: DF",
+   "Classical shape: DICE",
+   "Elongation and sphericity: log elongation",
+   "Elongation and sphericity: log sphericity",
+   "Hersch ratio: lambda_1 * area / 8 pi",
+   "Shape-DNA: log s_1",
+   "Shape-DNA: log s_2",
+   "Shape-DNA: log s_3",
+   "Shape-DNA: log s_4",
+   "Shape-DNA: log s_5",
+   "Shape-DNA: log s_6",
+   "Shape-DNA: log s_7",
+   "Shape-DNA: log s_8",
+   "Shape-DNA: log s_9",
+   "Shape-DNA: log s_10",
+   "Shape-DNA: log s_11",
+   "Shape-DNA: log s_12",
+   "Shape-DNA: log s_13",
+   "Shape-DNA: log s_14",
+   "Shape-DNA: log s_15",
+   "Shape-DNA: log s_16",
+   "Shape-DNA: log s_17",
+   "Shape-DNA: log s_18",
+   "Shape-DNA: log s_19",
+   "Shape-DNA: log s_20",
+   "Heat trace: log trace, tau 0.004",
+   "Heat trace: log trace, tau 0.007",
+   "Heat trace: log trace, tau 0.012",
+   "Heat trace: log trace, tau 0.021",
+   "Heat trace: log trace, tau 0.037",
+   "Heat trace: log trace, tau 0.065",
+   "Heat trace: log trace, tau 0.114",
+   "Heat trace: log trace, tau 0.200",
+   "HKS local: log spread, tau 0.004",
+   "HKS local: log p95, tau 0.004",
+   "HKS local: log spread, tau 0.007",
+   "HKS local: log p95, tau 0.007",
+   "HKS local: log spread, tau 0.012",
+   "HKS local: log p95, tau 0.012",
+   "HKS local: log spread, tau 0.021",
+   "HKS local: log p95, tau 0.021",
+   "HKS local: log spread, tau 0.037",
+   "HKS local: log p95, tau 0.037",
+   "HKS local: log spread, tau 0.065",
+   "HKS local: log p95, tau 0.065",
+   "HKS local: log spread, tau 0.114",
+   "HKS local: log p95, tau 0.114",
+   "HKS local: log spread, tau 0.200",
+   "HKS local: log p95, tau 0.200",
+   "WKS local: log spread, band 1",
+   "WKS local: log p95, band 1",
+   "WKS local: log spread, band 2",
+   "WKS local: log p95, band 2",
+   "WKS local: log spread, band 3",
+   "WKS local: log p95, band 3",
+   "WKS local: log spread, band 4",
+   "WKS local: log p95, band 4",
+   "WKS local: log spread, band 5",
+   "WKS local: log p95, band 5",
+   "WKS local: log spread, band 6",
+   "WKS local: log p95, band 6",
+   "WKS local: log spread, band 7",
+   "WKS local: log p95, band 7",
+   "WKS local: log spread, band 8",
+   "WKS local: log p95, band 8",
+   "Tips: log tips, tau 0.004",
+   "Tips: log tips, tau 0.007",
+   "Tips: log tips, tau 0.012",
+   "Tips: log tips, tau 0.021",
+   "Tips: log tips, tau 0.037",
+   "Tips: log tips, tau 0.065",
+   "Tips: log tips, tau 0.114",
+   "Tips: log tips, tau 0.200",
+   "GPS: log distance p10",
+   "GPS: log distance p25",
+   "GPS: log distance p50",
+   "GPS: log distance p75",
+   "GPS: log distance p90",
+   "GPS: log distance p95",
+   "GPS: log distance p99",
+   "Harmonics: log power, degree 1",
+   "Harmonics: log power, degree 2",
+   "Harmonics: log power, degree 3",
+   "Harmonics: log power, degree 4",
+   "Harmonics: log power, degree 5",
+   "Harmonics: log power, degree 6",
+   "Harmonics: log power, degree 7",
+   "Harmonics: log power, degree 8",
+   "Harmonics: log power, degree 9",
+   "Harmonics: log power, degree 10",
+   "Harmonics: log power, degree 11",
+   "Harmonics: log power, degree 12",
+   "Harmonics: log power, degree 13",
+   "Harmonics: log power, degree 14",
+   "Harmonics: log power, degree 15"
+  ]
+ },
+ "grid": [
+  {
+   "set": "LB selected features",
+   "classifier": "Logistic C=0.01",
+   "k": null
+  },
+  {
+   "set": "LB selected features",
+   "classifier": "Logistic C=0.1",
+   "k": null
+  },
+  {
+   "set": "LB selected features",
+   "classifier": "Logistic C=1",
+   "k": null
+  },
+  {
+   "set": "LB selected features",
+   "classifier": "Logistic L1 C=0.1",
+   "k": null
+  },
+  {
+   "set": "LB selected features",
+   "classifier": "Logistic L1 C=0.5",
+   "k": null
+  },
+  {
+   "set": "LB selected features",
+   "classifier": "LDA shrinkage",
+   "k": null
+  },
+  {
+   "set": "LB selected features",
+   "classifier": "Naive Bayes",
+   "k": null
+  },
+  {
+   "set": "LB selected features",
+   "classifier": "SVM linear C=0.01",
+   "k": null
+  },
+  {
+   "set": "LB selected features",
+   "classifier": "SVM linear C=0.1",
+   "k": null
+  },
+  {
+   "set": "LB selected features",
+   "classifier": "SVM RBF C=1",
+   "k": null
+  },
+  {
+   "set": "LB selected features",
+   "classifier": "SVM RBF C=10",
+   "k": null
+  },
+  {
+   "set": "LB selected features",
+   "classifier": "kNN 5",
+   "k": null
+  },
+  {
+   "set": "LB selected features",
+   "classifier": "kNN 15",
+   "k": null
+  },
+  {
+   "set": "LB selected features",
+   "classifier": "Random forest",
+   "k": null
+  },
+  {
+   "set": "LB selected features",
+   "classifier": "Extra trees",
+   "k": null
+  },
+  {
+   "set": "LB selected features",
+   "classifier": "Gradient boosting",
+   "k": null
+  },
+  {
+   "set": "LB selected features",
+   "classifier": "Small neural net",
+   "k": null
+  },
+  {
+   "set": "LB selected groups",
+   "classifier": "Logistic C=0.01",
+   "k": null
+  },
+  {
+   "set": "LB selected groups",
+   "classifier": "Logistic C=0.01",
+   "k": 5
+  },
+  {
+   "set": "LB selected groups",
+   "classifier": "Logistic C=0.01",
+   "k": 10
+  },
+  {
+   "set": "LB selected groups",
+   "classifier": "Logistic C=0.01",
+   "k": 20
+  },
+  {
+   "set": "LB selected groups",
+   "classifier": "Logistic C=0.1",
+   "k": null
+  },
+  {
+   "set": "LB selected groups",
+   "classifier": "Logistic C=0.1",
+   "k": 5
+  },
+  {
+   "set": "LB selected groups",
+   "classifier": "Logistic C=0.1",
+   "k": 10
+  },
+  {
+   "set": "LB selected groups",
+   "classifier": "Logistic C=0.1",
+   "k": 20
+  },
+  {
+   "set": "LB selected groups",
+   "classifier": "Logistic C=1",
+   "k": null
+  },
+  {
+   "set": "LB selected groups",
+   "classifier": "Logistic C=1",
+   "k": 5
+  },
+  {
+   "set": "LB selected groups",
+   "classifier": "Logistic C=1",
+   "k": 10
+  },
+  {
+   "set": "LB selected groups",
+   "classifier": "Logistic C=1",
+   "k": 20
+  },
+  {
+   "set": "LB selected groups",
+   "classifier": "Logistic L1 C=0.1",
+   "k": null
+  },
+  {
+   "set": "LB selected groups",
+   "classifier": "Logistic L1 C=0.1",
+   "k": 5
+  },
+  {
+   "set": "LB selected groups",
+   "classifier": "Logistic L1 C=0.1",
+   "k": 10
+  },
+  {
+   "set": "LB selected groups",
+   "classifier": "Logistic L1 C=0.1",
+   "k": 20
+  },
+  {
+   "set": "LB selected groups",
+   "classifier": "Logistic L1 C=0.5",
+   "k": null
+  },
+  {
+   "set": "LB selected groups",
+   "classifier": "Logistic L1 C=0.5",
+   "k": 5
+  },
+  {
+   "set": "LB selected groups",
+   "classifier": "Logistic L1 C=0.5",
+   "k": 10
+  },
+  {
+   "set": "LB selected groups",
+   "classifier": "Logistic L1 C=0.5",
+   "k": 20
+  },
+  {
+   "set": "LB selected groups",
+   "classifier": "LDA shrinkage",
+   "k": null
+  },
+  {
+   "set": "LB selected groups",
+   "classifier": "LDA shrinkage",
+   "k": 5
+  },
+  {
+   "set": "LB selected groups",
+   "classifier": "LDA shrinkage",
+   "k": 10
+  },
+  {
+   "set": "LB selected groups",
+   "classifier": "LDA shrinkage",
+   "k": 20
+  },
+  {
+   "set": "LB selected groups",
+   "classifier": "Naive Bayes",
+   "k": null
+  },
+  {
+   "set": "LB selected groups",
+   "classifier": "Naive Bayes",
+   "k": 5
+  },
+  {
+   "set": "LB selected groups",
+   "classifier": "Naive Bayes",
+   "k": 10
+  },
+  {
+   "set": "LB selected groups",
+   "classifier": "Naive Bayes",
+   "k": 20
+  },
+  {
+   "set": "LB selected groups",
+   "classifier": "SVM linear C=0.01",
+   "k": null
+  },
+  {
+   "set": "LB selected groups",
+   "classifier": "SVM linear C=0.01",
+   "k": 5
+  },
+  {
+   "set": "LB selected groups",
+   "classifier": "SVM linear C=0.01",
+   "k": 10
+  },
+  {
+   "set": "LB selected groups",
+   "classifier": "SVM linear C=0.01",
+   "k": 20
+  },
+  {
+   "set": "LB selected groups",
+   "classifier": "SVM linear C=0.1",
+   "k": null
+  },
+  {
+   "set": "LB selected groups",
+   "classifier": "SVM linear C=0.1",
+   "k": 5
+  },
+  {
+   "set": "LB selected groups",
+   "classifier": "SVM linear C=0.1",
+   "k": 10
+  },
+  {
+   "set": "LB selected groups",
+   "classifier": "SVM linear C=0.1",
+   "k": 20
+  },
+  {
+   "set": "LB selected groups",
+   "classifier": "SVM RBF C=1",
+   "k": null
+  },
+  {
+   "set": "LB selected groups",
+   "classifier": "SVM RBF C=1",
+   "k": 5
+  },
+  {
+   "set": "LB selected groups",
+   "classifier": "SVM RBF C=1",
+   "k": 10
+  },
+  {
+   "set": "LB selected groups",
+   "classifier": "SVM RBF C=1",
+   "k": 20
+  },
+  {
+   "set": "LB selected groups",
+   "classifier": "SVM RBF C=10",
+   "k": null
+  },
+  {
+   "set": "LB selected groups",
+   "classifier": "SVM RBF C=10",
+   "k": 5
+  },
+  {
+   "set": "LB selected groups",
+   "classifier": "SVM RBF C=10",
+   "k": 10
+  },
+  {
+   "set": "LB selected groups",
+   "classifier": "SVM RBF C=10",
+   "k": 20
+  },
+  {
+   "set": "LB selected groups",
+   "classifier": "kNN 5",
+   "k": null
+  },
+  {
+   "set": "LB selected groups",
+   "classifier": "kNN 5",
+   "k": 5
+  },
+  {
+   "set": "LB selected groups",
+   "classifier": "kNN 5",
+   "k": 10
+  },
+  {
+   "set": "LB selected groups",
+   "classifier": "kNN 5",
+   "k": 20
+  },
+  {
+   "set": "LB selected groups",
+   "classifier": "kNN 15",
+   "k": null
+  },
+  {
+   "set": "LB selected groups",
+   "classifier": "kNN 15",
+   "k": 5
+  },
+  {
+   "set": "LB selected groups",
+   "classifier": "kNN 15",
+   "k": 10
+  },
+  {
+   "set": "LB selected groups",
+   "classifier": "kNN 15",
+   "k": 20
+  },
+  {
+   "set": "LB selected groups",
+   "classifier": "Random forest",
+   "k": null
+  },
+  {
+   "set": "LB selected groups",
+   "classifier": "Random forest",
+   "k": 5
+  },
+  {
+   "set": "LB selected groups",
+   "classifier": "Random forest",
+   "k": 10
+  },
+  {
+   "set": "LB selected groups",
+   "classifier": "Random forest",
+   "k": 20
+  },
+  {
+   "set": "LB selected groups",
+   "classifier": "Extra trees",
+   "k": null
+  },
+  {
+   "set": "LB selected groups",
+   "classifier": "Extra trees",
+   "k": 5
+  },
+  {
+   "set": "LB selected groups",
+   "classifier": "Extra trees",
+   "k": 10
+  },
+  {
+   "set": "LB selected groups",
+   "classifier": "Extra trees",
+   "k": 20
+  },
+  {
+   "set": "LB selected groups",
+   "classifier": "Gradient boosting",
+   "k": null
+  },
+  {
+   "set": "LB selected groups",
+   "classifier": "Gradient boosting",
+   "k": 5
+  },
+  {
+   "set": "LB selected groups",
+   "classifier": "Gradient boosting",
+   "k": 10
+  },
+  {
+   "set": "LB selected groups",
+   "classifier": "Gradient boosting",
+   "k": 20
+  },
+  {
+   "set": "LB selected groups",
+   "classifier": "Small neural net",
+   "k": null
+  },
+  {
+   "set": "LB selected groups",
+   "classifier": "Small neural net",
+   "k": 5
+  },
+  {
+   "set": "LB selected groups",
+   "classifier": "Small neural net",
+   "k": 10
+  },
+  {
+   "set": "LB selected groups",
+   "classifier": "Small neural net",
+   "k": 20
+  },
+  {
+   "set": "All LB",
+   "classifier": "Logistic C=0.01",
+   "k": null
+  },
+  {
+   "set": "All LB",
+   "classifier": "Logistic C=0.01",
+   "k": 5
+  },
+  {
+   "set": "All LB",
+   "classifier": "Logistic C=0.01",
+   "k": 10
+  },
+  {
+   "set": "All LB",
+   "classifier": "Logistic C=0.01",
+   "k": 20
+  },
+  {
+   "set": "All LB",
+   "classifier": "Logistic C=0.1",
+   "k": null
+  },
+  {
+   "set": "All LB",
+   "classifier": "Logistic C=0.1",
+   "k": 5
+  },
+  {
+   "set": "All LB",
+   "classifier": "Logistic C=0.1",
+   "k": 10
+  },
+  {
+   "set": "All LB",
+   "classifier": "Logistic C=0.1",
+   "k": 20
+  },
+  {
+   "set": "All LB",
+   "classifier": "Logistic C=1",
+   "k": null
+  },
+  {
+   "set": "All LB",
+   "classifier": "Logistic C=1",
+   "k": 5
+  },
+  {
+   "set": "All LB",
+   "classifier": "Logistic C=1",
+   "k": 10
+  },
+  {
+   "set": "All LB",
+   "classifier": "Logistic C=1",
+   "k": 20
+  },
+  {
+   "set": "All LB",
+   "classifier": "Logistic L1 C=0.1",
+   "k": null
+  },
+  {
+   "set": "All LB",
+   "classifier": "Logistic L1 C=0.1",
+   "k": 5
+  },
+  {
+   "set": "All LB",
+   "classifier": "Logistic L1 C=0.1",
+   "k": 10
+  },
+  {
+   "set": "All LB",
+   "classifier": "Logistic L1 C=0.1",
+   "k": 20
+  },
+  {
+   "set": "All LB",
+   "classifier": "Logistic L1 C=0.5",
+   "k": null
+  },
+  {
+   "set": "All LB",
+   "classifier": "Logistic L1 C=0.5",
+   "k": 5
+  },
+  {
+   "set": "All LB",
+   "classifier": "Logistic L1 C=0.5",
+   "k": 10
+  },
+  {
+   "set": "All LB",
+   "classifier": "Logistic L1 C=0.5",
+   "k": 20
+  },
+  {
+   "set": "All LB",
+   "classifier": "LDA shrinkage",
+   "k": null
+  },
+  {
+   "set": "All LB",
+   "classifier": "LDA shrinkage",
+   "k": 5
+  },
+  {
+   "set": "All LB",
+   "classifier": "LDA shrinkage",
+   "k": 10
+  },
+  {
+   "set": "All LB",
+   "classifier": "LDA shrinkage",
+   "k": 20
+  },
+  {
+   "set": "All LB",
+   "classifier": "Naive Bayes",
+   "k": null
+  },
+  {
+   "set": "All LB",
+   "classifier": "Naive Bayes",
+   "k": 5
+  },
+  {
+   "set": "All LB",
+   "classifier": "Naive Bayes",
+   "k": 10
+  },
+  {
+   "set": "All LB",
+   "classifier": "Naive Bayes",
+   "k": 20
+  },
+  {
+   "set": "All LB",
+   "classifier": "SVM linear C=0.01",
+   "k": null
+  },
+  {
+   "set": "All LB",
+   "classifier": "SVM linear C=0.01",
+   "k": 5
+  },
+  {
+   "set": "All LB",
+   "classifier": "SVM linear C=0.01",
+   "k": 10
+  },
+  {
+   "set": "All LB",
+   "classifier": "SVM linear C=0.01",
+   "k": 20
+  },
+  {
+   "set": "All LB",
+   "classifier": "SVM linear C=0.1",
+   "k": null
+  },
+  {
+   "set": "All LB",
+   "classifier": "SVM linear C=0.1",
+   "k": 5
+  },
+  {
+   "set": "All LB",
+   "classifier": "SVM linear C=0.1",
+   "k": 10
+  },
+  {
+   "set": "All LB",
+   "classifier": "SVM linear C=0.1",
+   "k": 20
+  },
+  {
+   "set": "All LB",
+   "classifier": "SVM RBF C=1",
+   "k": null
+  },
+  {
+   "set": "All LB",
+   "classifier": "SVM RBF C=1",
+   "k": 5
+  },
+  {
+   "set": "All LB",
+   "classifier": "SVM RBF C=1",
+   "k": 10
+  },
+  {
+   "set": "All LB",
+   "classifier": "SVM RBF C=1",
+   "k": 20
+  },
+  {
+   "set": "All LB",
+   "classifier": "SVM RBF C=10",
+   "k": null
+  },
+  {
+   "set": "All LB",
+   "classifier": "SVM RBF C=10",
+   "k": 5
+  },
+  {
+   "set": "All LB",
+   "classifier": "SVM RBF C=10",
+   "k": 10
+  },
+  {
+   "set": "All LB",
+   "classifier": "SVM RBF C=10",
+   "k": 20
+  },
+  {
+   "set": "All LB",
+   "classifier": "kNN 5",
+   "k": null
+  },
+  {
+   "set": "All LB",
+   "classifier": "kNN 5",
+   "k": 5
+  },
+  {
+   "set": "All LB",
+   "classifier": "kNN 5",
+   "k": 10
+  },
+  {
+   "set": "All LB",
+   "classifier": "kNN 5",
+   "k": 20
+  },
+  {
+   "set": "All LB",
+   "classifier": "kNN 15",
+   "k": null
+  },
+  {
+   "set": "All LB",
+   "classifier": "kNN 15",
+   "k": 5
+  },
+  {
+   "set": "All LB",
+   "classifier": "kNN 15",
+   "k": 10
+  },
+  {
+   "set": "All LB",
+   "classifier": "kNN 15",
+   "k": 20
+  },
+  {
+   "set": "All LB",
+   "classifier": "Random forest",
+   "k": null
+  },
+  {
+   "set": "All LB",
+   "classifier": "Random forest",
+   "k": 5
+  },
+  {
+   "set": "All LB",
+   "classifier": "Random forest",
+   "k": 10
+  },
+  {
+   "set": "All LB",
+   "classifier": "Random forest",
+   "k": 20
+  },
+  {
+   "set": "All LB",
+   "classifier": "Extra trees",
+   "k": null
+  },
+  {
+   "set": "All LB",
+   "classifier": "Extra trees",
+   "k": 5
+  },
+  {
+   "set": "All LB",
+   "classifier": "Extra trees",
+   "k": 10
+  },
+  {
+   "set": "All LB",
+   "classifier": "Extra trees",
+   "k": 20
+  },
+  {
+   "set": "All LB",
+   "classifier": "Gradient boosting",
+   "k": null
+  },
+  {
+   "set": "All LB",
+   "classifier": "Gradient boosting",
+   "k": 5
+  },
+  {
+   "set": "All LB",
+   "classifier": "Gradient boosting",
+   "k": 10
+  },
+  {
+   "set": "All LB",
+   "classifier": "Gradient boosting",
+   "k": 20
+  },
+  {
+   "set": "All LB",
+   "classifier": "Small neural net",
+   "k": null
+  },
+  {
+   "set": "All LB",
+   "classifier": "Small neural net",
+   "k": 5
+  },
+  {
+   "set": "All LB",
+   "classifier": "Small neural net",
+   "k": 10
+  },
+  {
+   "set": "All LB",
+   "classifier": "Small neural net",
+   "k": 20
+  },
+  {
+   "set": "Size + LB selected features",
+   "classifier": "Logistic C=0.01",
+   "k": null
+  },
+  {
+   "set": "Size + LB selected features",
+   "classifier": "Logistic C=0.1",
+   "k": null
+  },
+  {
+   "set": "Size + LB selected features",
+   "classifier": "Logistic C=1",
+   "k": null
+  },
+  {
+   "set": "Size + LB selected features",
+   "classifier": "Logistic L1 C=0.1",
+   "k": null
+  },
+  {
+   "set": "Size + LB selected features",
+   "classifier": "Logistic L1 C=0.5",
+   "k": null
+  },
+  {
+   "set": "Size + LB selected features",
+   "classifier": "LDA shrinkage",
+   "k": null
+  },
+  {
+   "set": "Size + LB selected features",
+   "classifier": "Naive Bayes",
+   "k": null
+  },
+  {
+   "set": "Size + LB selected features",
+   "classifier": "SVM linear C=0.01",
+   "k": null
+  },
+  {
+   "set": "Size + LB selected features",
+   "classifier": "SVM linear C=0.1",
+   "k": null
+  },
+  {
+   "set": "Size + LB selected features",
+   "classifier": "SVM RBF C=1",
+   "k": null
+  },
+  {
+   "set": "Size + LB selected features",
+   "classifier": "SVM RBF C=10",
+   "k": null
+  },
+  {
+   "set": "Size + LB selected features",
+   "classifier": "kNN 5",
+   "k": null
+  },
+  {
+   "set": "Size + LB selected features",
+   "classifier": "kNN 15",
+   "k": null
+  },
+  {
+   "set": "Size + LB selected features",
+   "classifier": "Random forest",
+   "k": null
+  },
+  {
+   "set": "Size + LB selected features",
+   "classifier": "Extra trees",
+   "k": null
+  },
+  {
+   "set": "Size + LB selected features",
+   "classifier": "Gradient boosting",
+   "k": null
+  },
+  {
+   "set": "Size + LB selected features",
+   "classifier": "Small neural net",
+   "k": null
+  },
+  {
+   "set": "Size + all LB",
+   "classifier": "Logistic C=0.01",
+   "k": null
+  },
+  {
+   "set": "Size + all LB",
+   "classifier": "Logistic C=0.01",
+   "k": 5
+  },
+  {
+   "set": "Size + all LB",
+   "classifier": "Logistic C=0.01",
+   "k": 10
+  },
+  {
+   "set": "Size + all LB",
+   "classifier": "Logistic C=0.01",
+   "k": 20
+  },
+  {
+   "set": "Size + all LB",
+   "classifier": "Logistic C=0.1",
+   "k": null
+  },
+  {
+   "set": "Size + all LB",
+   "classifier": "Logistic C=0.1",
+   "k": 5
+  },
+  {
+   "set": "Size + all LB",
+   "classifier": "Logistic C=0.1",
+   "k": 10
+  },
+  {
+   "set": "Size + all LB",
+   "classifier": "Logistic C=0.1",
+   "k": 20
+  },
+  {
+   "set": "Size + all LB",
+   "classifier": "Logistic C=1",
+   "k": null
+  },
+  {
+   "set": "Size + all LB",
+   "classifier": "Logistic C=1",
+   "k": 5
+  },
+  {
+   "set": "Size + all LB",
+   "classifier": "Logistic C=1",
+   "k": 10
+  },
+  {
+   "set": "Size + all LB",
+   "classifier": "Logistic C=1",
+   "k": 20
+  },
+  {
+   "set": "Size + all LB",
+   "classifier": "Logistic L1 C=0.1",
+   "k": null
+  },
+  {
+   "set": "Size + all LB",
+   "classifier": "Logistic L1 C=0.1",
+   "k": 5
+  },
+  {
+   "set": "Size + all LB",
+   "classifier": "Logistic L1 C=0.1",
+   "k": 10
+  },
+  {
+   "set": "Size + all LB",
+   "classifier": "Logistic L1 C=0.1",
+   "k": 20
+  },
+  {
+   "set": "Size + all LB",
+   "classifier": "Logistic L1 C=0.5",
+   "k": null
+  },
+  {
+   "set": "Size + all LB",
+   "classifier": "Logistic L1 C=0.5",
+   "k": 5
+  },
+  {
+   "set": "Size + all LB",
+   "classifier": "Logistic L1 C=0.5",
+   "k": 10
+  },
+  {
+   "set": "Size + all LB",
+   "classifier": "Logistic L1 C=0.5",
+   "k": 20
+  },
+  {
+   "set": "Size + all LB",
+   "classifier": "LDA shrinkage",
+   "k": null
+  },
+  {
+   "set": "Size + all LB",
+   "classifier": "LDA shrinkage",
+   "k": 5
+  },
+  {
+   "set": "Size + all LB",
+   "classifier": "LDA shrinkage",
+   "k": 10
+  },
+  {
+   "set": "Size + all LB",
+   "classifier": "LDA shrinkage",
+   "k": 20
+  },
+  {
+   "set": "Size + all LB",
+   "classifier": "Naive Bayes",
+   "k": null
+  },
+  {
+   "set": "Size + all LB",
+   "classifier": "Naive Bayes",
+   "k": 5
+  },
+  {
+   "set": "Size + all LB",
+   "classifier": "Naive Bayes",
+   "k": 10
+  },
+  {
+   "set": "Size + all LB",
+   "classifier": "Naive Bayes",
+   "k": 20
+  },
+  {
+   "set": "Size + all LB",
+   "classifier": "SVM linear C=0.01",
+   "k": null
+  },
+  {
+   "set": "Size + all LB",
+   "classifier": "SVM linear C=0.01",
+   "k": 5
+  },
+  {
+   "set": "Size + all LB",
+   "classifier": "SVM linear C=0.01",
+   "k": 10
+  },
+  {
+   "set": "Size + all LB",
+   "classifier": "SVM linear C=0.01",
+   "k": 20
+  },
+  {
+   "set": "Size + all LB",
+   "classifier": "SVM linear C=0.1",
+   "k": null
+  },
+  {
+   "set": "Size + all LB",
+   "classifier": "SVM linear C=0.1",
+   "k": 5
+  },
+  {
+   "set": "Size + all LB",
+   "classifier": "SVM linear C=0.1",
+   "k": 10
+  },
+  {
+   "set": "Size + all LB",
+   "classifier": "SVM linear C=0.1",
+   "k": 20
+  },
+  {
+   "set": "Size + all LB",
+   "classifier": "SVM RBF C=1",
+   "k": null
+  },
+  {
+   "set": "Size + all LB",
+   "classifier": "SVM RBF C=1",
+   "k": 5
+  },
+  {
+   "set": "Size + all LB",
+   "classifier": "SVM RBF C=1",
+   "k": 10
+  },
+  {
+   "set": "Size + all LB",
+   "classifier": "SVM RBF C=1",
+   "k": 20
+  },
+  {
+   "set": "Size + all LB",
+   "classifier": "SVM RBF C=10",
+   "k": null
+  },
+  {
+   "set": "Size + all LB",
+   "classifier": "SVM RBF C=10",
+   "k": 5
+  },
+  {
+   "set": "Size + all LB",
+   "classifier": "SVM RBF C=10",
+   "k": 10
+  },
+  {
+   "set": "Size + all LB",
+   "classifier": "SVM RBF C=10",
+   "k": 20
+  },
+  {
+   "set": "Size + all LB",
+   "classifier": "kNN 5",
+   "k": null
+  },
+  {
+   "set": "Size + all LB",
+   "classifier": "kNN 5",
+   "k": 5
+  },
+  {
+   "set": "Size + all LB",
+   "classifier": "kNN 5",
+   "k": 10
+  },
+  {
+   "set": "Size + all LB",
+   "classifier": "kNN 5",
+   "k": 20
+  },
+  {
+   "set": "Size + all LB",
+   "classifier": "kNN 15",
+   "k": null
+  },
+  {
+   "set": "Size + all LB",
+   "classifier": "kNN 15",
+   "k": 5
+  },
+  {
+   "set": "Size + all LB",
+   "classifier": "kNN 15",
+   "k": 10
+  },
+  {
+   "set": "Size + all LB",
+   "classifier": "kNN 15",
+   "k": 20
+  },
+  {
+   "set": "Size + all LB",
+   "classifier": "Random forest",
+   "k": null
+  },
+  {
+   "set": "Size + all LB",
+   "classifier": "Random forest",
+   "k": 5
+  },
+  {
+   "set": "Size + all LB",
+   "classifier": "Random forest",
+   "k": 10
+  },
+  {
+   "set": "Size + all LB",
+   "classifier": "Random forest",
+   "k": 20
+  },
+  {
+   "set": "Size + all LB",
+   "classifier": "Extra trees",
+   "k": null
+  },
+  {
+   "set": "Size + all LB",
+   "classifier": "Extra trees",
+   "k": 5
+  },
+  {
+   "set": "Size + all LB",
+   "classifier": "Extra trees",
+   "k": 10
+  },
+  {
+   "set": "Size + all LB",
+   "classifier": "Extra trees",
+   "k": 20
+  },
+  {
+   "set": "Size + all LB",
+   "classifier": "Gradient boosting",
+   "k": null
+  },
+  {
+   "set": "Size + all LB",
+   "classifier": "Gradient boosting",
+   "k": 5
+  },
+  {
+   "set": "Size + all LB",
+   "classifier": "Gradient boosting",
+   "k": 10
+  },
+  {
+   "set": "Size + all LB",
+   "classifier": "Gradient boosting",
+   "k": 20
+  },
+  {
+   "set": "Size + all LB",
+   "classifier": "Small neural net",
+   "k": null
+  },
+  {
+   "set": "Size + all LB",
+   "classifier": "Small neural net",
+   "k": 5
+  },
+  {
+   "set": "Size + all LB",
+   "classifier": "Small neural net",
+   "k": 10
+  },
+  {
+   "set": "Size + all LB",
+   "classifier": "Small neural net",
+   "k": 20
+  },
+  {
+   "set": "Size + spiculation",
+   "classifier": "Logistic C=0.01",
+   "k": null
+  },
+  {
+   "set": "Size + spiculation",
+   "classifier": "Logistic C=0.01",
+   "k": 5
+  },
+  {
+   "set": "Size + spiculation",
+   "classifier": "Logistic C=0.1",
+   "k": null
+  },
+  {
+   "set": "Size + spiculation",
+   "classifier": "Logistic C=0.1",
+   "k": 5
+  },
+  {
+   "set": "Size + spiculation",
+   "classifier": "Logistic C=1",
+   "k": null
+  },
+  {
+   "set": "Size + spiculation",
+   "classifier": "Logistic C=1",
+   "k": 5
+  },
+  {
+   "set": "Size + spiculation",
+   "classifier": "Logistic L1 C=0.1",
+   "k": null
+  },
+  {
+   "set": "Size + spiculation",
+   "classifier": "Logistic L1 C=0.1",
+   "k": 5
+  },
+  {
+   "set": "Size + spiculation",
+   "classifier": "Logistic L1 C=0.5",
+   "k": null
+  },
+  {
+   "set": "Size + spiculation",
+   "classifier": "Logistic L1 C=0.5",
+   "k": 5
+  },
+  {
+   "set": "Size + spiculation",
+   "classifier": "LDA shrinkage",
+   "k": null
+  },
+  {
+   "set": "Size + spiculation",
+   "classifier": "LDA shrinkage",
+   "k": 5
+  },
+  {
+   "set": "Size + spiculation",
+   "classifier": "Naive Bayes",
+   "k": null
+  },
+  {
+   "set": "Size + spiculation",
+   "classifier": "Naive Bayes",
+   "k": 5
+  },
+  {
+   "set": "Size + spiculation",
+   "classifier": "SVM linear C=0.01",
+   "k": null
+  },
+  {
+   "set": "Size + spiculation",
+   "classifier": "SVM linear C=0.01",
+   "k": 5
+  },
+  {
+   "set": "Size + spiculation",
+   "classifier": "SVM linear C=0.1",
+   "k": null
+  },
+  {
+   "set": "Size + spiculation",
+   "classifier": "SVM linear C=0.1",
+   "k": 5
+  },
+  {
+   "set": "Size + spiculation",
+   "classifier": "SVM RBF C=1",
+   "k": null
+  },
+  {
+   "set": "Size + spiculation",
+   "classifier": "SVM RBF C=1",
+   "k": 5
+  },
+  {
+   "set": "Size + spiculation",
+   "classifier": "SVM RBF C=10",
+   "k": null
+  },
+  {
+   "set": "Size + spiculation",
+   "classifier": "SVM RBF C=10",
+   "k": 5
+  },
+  {
+   "set": "Size + spiculation",
+   "classifier": "kNN 5",
+   "k": null
+  },
+  {
+   "set": "Size + spiculation",
+   "classifier": "kNN 5",
+   "k": 5
+  },
+  {
+   "set": "Size + spiculation",
+   "classifier": "kNN 15",
+   "k": null
+  },
+  {
+   "set": "Size + spiculation",
+   "classifier": "kNN 15",
+   "k": 5
+  },
+  {
+   "set": "Size + spiculation",
+   "classifier": "Random forest",
+   "k": null
+  },
+  {
+   "set": "Size + spiculation",
+   "classifier": "Random forest",
+   "k": 5
+  },
+  {
+   "set": "Size + spiculation",
+   "classifier": "Extra trees",
+   "k": null
+  },
+  {
+   "set": "Size + spiculation",
+   "classifier": "Extra trees",
+   "k": 5
+  },
+  {
+   "set": "Size + spiculation",
+   "classifier": "Gradient boosting",
+   "k": null
+  },
+  {
+   "set": "Size + spiculation",
+   "classifier": "Gradient boosting",
+   "k": 5
+  },
+  {
+   "set": "Size + spiculation",
+   "classifier": "Small neural net",
+   "k": null
+  },
+  {
+   "set": "Size + spiculation",
+   "classifier": "Small neural net",
+   "k": 5
+  },
+  {
+   "set": "Size + spiculation + Hersch ratio",
+   "classifier": "Logistic C=0.01",
+   "k": null
+  },
+  {
+   "set": "Size + spiculation + Hersch ratio",
+   "classifier": "Logistic C=0.01",
+   "k": 5
+  },
+  {
+   "set": "Size + spiculation + Hersch ratio",
+   "classifier": "Logistic C=0.1",
+   "k": null
+  },
+  {
+   "set": "Size + spiculation + Hersch ratio",
+   "classifier": "Logistic C=0.1",
+   "k": 5
+  },
+  {
+   "set": "Size + spiculation + Hersch ratio",
+   "classifier": "Logistic C=1",
+   "k": null
+  },
+  {
+   "set": "Size + spiculation + Hersch ratio",
+   "classifier": "Logistic C=1",
+   "k": 5
+  },
+  {
+   "set": "Size + spiculation + Hersch ratio",
+   "classifier": "Logistic L1 C=0.1",
+   "k": null
+  },
+  {
+   "set": "Size + spiculation + Hersch ratio",
+   "classifier": "Logistic L1 C=0.1",
+   "k": 5
+  },
+  {
+   "set": "Size + spiculation + Hersch ratio",
+   "classifier": "Logistic L1 C=0.5",
+   "k": null
+  },
+  {
+   "set": "Size + spiculation + Hersch ratio",
+   "classifier": "Logistic L1 C=0.5",
+   "k": 5
+  },
+  {
+   "set": "Size + spiculation + Hersch ratio",
+   "classifier": "LDA shrinkage",
+   "k": null
+  },
+  {
+   "set": "Size + spiculation + Hersch ratio",
+   "classifier": "LDA shrinkage",
+   "k": 5
+  },
+  {
+   "set": "Size + spiculation + Hersch ratio",
+   "classifier": "Naive Bayes",
+   "k": null
+  },
+  {
+   "set": "Size + spiculation + Hersch ratio",
+   "classifier": "Naive Bayes",
+   "k": 5
+  },
+  {
+   "set": "Size + spiculation + Hersch ratio",
+   "classifier": "SVM linear C=0.01",
+   "k": null
+  },
+  {
+   "set": "Size + spiculation + Hersch ratio",
+   "classifier": "SVM linear C=0.01",
+   "k": 5
+  },
+  {
+   "set": "Size + spiculation + Hersch ratio",
+   "classifier": "SVM linear C=0.1",
+   "k": null
+  },
+  {
+   "set": "Size + spiculation + Hersch ratio",
+   "classifier": "SVM linear C=0.1",
+   "k": 5
+  },
+  {
+   "set": "Size + spiculation + Hersch ratio",
+   "classifier": "SVM RBF C=1",
+   "k": null
+  },
+  {
+   "set": "Size + spiculation + Hersch ratio",
+   "classifier": "SVM RBF C=1",
+   "k": 5
+  },
+  {
+   "set": "Size + spiculation + Hersch ratio",
+   "classifier": "SVM RBF C=10",
+   "k": null
+  },
+  {
+   "set": "Size + spiculation + Hersch ratio",
+   "classifier": "SVM RBF C=10",
+   "k": 5
+  },
+  {
+   "set": "Size + spiculation + Hersch ratio",
+   "classifier": "kNN 5",
+   "k": null
+  },
+  {
+   "set": "Size + spiculation + Hersch ratio",
+   "classifier": "kNN 5",
+   "k": 5
+  },
+  {
+   "set": "Size + spiculation + Hersch ratio",
+   "classifier": "kNN 15",
+   "k": null
+  },
+  {
+   "set": "Size + spiculation + Hersch ratio",
+   "classifier": "kNN 15",
+   "k": 5
+  },
+  {
+   "set": "Size + spiculation + Hersch ratio",
+   "classifier": "Random forest",
+   "k": null
+  },
+  {
+   "set": "Size + spiculation + Hersch ratio",
+   "classifier": "Random forest",
+   "k": 5
+  },
+  {
+   "set": "Size + spiculation + Hersch ratio",
+   "classifier": "Extra trees",
+   "k": null
+  },
+  {
+   "set": "Size + spiculation + Hersch ratio",
+   "classifier": "Extra trees",
+   "k": 5
+  },
+  {
+   "set": "Size + spiculation + Hersch ratio",
+   "classifier": "Gradient boosting",
+   "k": null
+  },
+  {
+   "set": "Size + spiculation + Hersch ratio",
+   "classifier": "Gradient boosting",
+   "k": 5
+  },
+  {
+   "set": "Size + spiculation + Hersch ratio",
+   "classifier": "Small neural net",
+   "k": null
+  },
+  {
+   "set": "Size + spiculation + Hersch ratio",
+   "classifier": "Small neural net",
+   "k": 5
+  },
+  {
+   "set": "All classical",
+   "classifier": "Logistic C=0.01",
+   "k": null
+  },
+  {
+   "set": "All classical",
+   "classifier": "Logistic C=0.01",
+   "k": 5
+  },
+  {
+   "set": "All classical",
+   "classifier": "Logistic C=0.01",
+   "k": 10
+  },
+  {
+   "set": "All classical",
+   "classifier": "Logistic C=0.01",
+   "k": 20
+  },
+  {
+   "set": "All classical",
+   "classifier": "Logistic C=0.1",
+   "k": null
+  },
+  {
+   "set": "All classical",
+   "classifier": "Logistic C=0.1",
+   "k": 5
+  },
+  {
+   "set": "All classical",
+   "classifier": "Logistic C=0.1",
+   "k": 10
+  },
+  {
+   "set": "All classical",
+   "classifier": "Logistic C=0.1",
+   "k": 20
+  },
+  {
+   "set": "All classical",
+   "classifier": "Logistic C=1",
+   "k": null
+  },
+  {
+   "set": "All classical",
+   "classifier": "Logistic C=1",
+   "k": 5
+  },
+  {
+   "set": "All classical",
+   "classifier": "Logistic C=1",
+   "k": 10
+  },
+  {
+   "set": "All classical",
+   "classifier": "Logistic C=1",
+   "k": 20
+  },
+  {
+   "set": "All classical",
+   "classifier": "Logistic L1 C=0.1",
+   "k": null
+  },
+  {
+   "set": "All classical",
+   "classifier": "Logistic L1 C=0.1",
+   "k": 5
+  },
+  {
+   "set": "All classical",
+   "classifier": "Logistic L1 C=0.1",
+   "k": 10
+  },
+  {
+   "set": "All classical",
+   "classifier": "Logistic L1 C=0.1",
+   "k": 20
+  },
+  {
+   "set": "All classical",
+   "classifier": "Logistic L1 C=0.5",
+   "k": null
+  },
+  {
+   "set": "All classical",
+   "classifier": "Logistic L1 C=0.5",
+   "k": 5
+  },
+  {
+   "set": "All classical",
+   "classifier": "Logistic L1 C=0.5",
+   "k": 10
+  },
+  {
+   "set": "All classical",
+   "classifier": "Logistic L1 C=0.5",
+   "k": 20
+  },
+  {
+   "set": "All classical",
+   "classifier": "LDA shrinkage",
+   "k": null
+  },
+  {
+   "set": "All classical",
+   "classifier": "LDA shrinkage",
+   "k": 5
+  },
+  {
+   "set": "All classical",
+   "classifier": "LDA shrinkage",
+   "k": 10
+  },
+  {
+   "set": "All classical",
+   "classifier": "LDA shrinkage",
+   "k": 20
+  },
+  {
+   "set": "All classical",
+   "classifier": "Naive Bayes",
+   "k": null
+  },
+  {
+   "set": "All classical",
+   "classifier": "Naive Bayes",
+   "k": 5
+  },
+  {
+   "set": "All classical",
+   "classifier": "Naive Bayes",
+   "k": 10
+  },
+  {
+   "set": "All classical",
+   "classifier": "Naive Bayes",
+   "k": 20
+  },
+  {
+   "set": "All classical",
+   "classifier": "SVM linear C=0.01",
+   "k": null
+  },
+  {
+   "set": "All classical",
+   "classifier": "SVM linear C=0.01",
+   "k": 5
+  },
+  {
+   "set": "All classical",
+   "classifier": "SVM linear C=0.01",
+   "k": 10
+  },
+  {
+   "set": "All classical",
+   "classifier": "SVM linear C=0.01",
+   "k": 20
+  },
+  {
+   "set": "All classical",
+   "classifier": "SVM linear C=0.1",
+   "k": null
+  },
+  {
+   "set": "All classical",
+   "classifier": "SVM linear C=0.1",
+   "k": 5
+  },
+  {
+   "set": "All classical",
+   "classifier": "SVM linear C=0.1",
+   "k": 10
+  },
+  {
+   "set": "All classical",
+   "classifier": "SVM linear C=0.1",
+   "k": 20
+  },
+  {
+   "set": "All classical",
+   "classifier": "SVM RBF C=1",
+   "k": null
+  },
+  {
+   "set": "All classical",
+   "classifier": "SVM RBF C=1",
+   "k": 5
+  },
+  {
+   "set": "All classical",
+   "classifier": "SVM RBF C=1",
+   "k": 10
+  },
+  {
+   "set": "All classical",
+   "classifier": "SVM RBF C=1",
+   "k": 20
+  },
+  {
+   "set": "All classical",
+   "classifier": "SVM RBF C=10",
+   "k": null
+  },
+  {
+   "set": "All classical",
+   "classifier": "SVM RBF C=10",
+   "k": 5
+  },
+  {
+   "set": "All classical",
+   "classifier": "SVM RBF C=10",
+   "k": 10
+  },
+  {
+   "set": "All classical",
+   "classifier": "SVM RBF C=10",
+   "k": 20
+  },
+  {
+   "set": "All classical",
+   "classifier": "kNN 5",
+   "k": null
+  },
+  {
+   "set": "All classical",
+   "classifier": "kNN 5",
+   "k": 5
+  },
+  {
+   "set": "All classical",
+   "classifier": "kNN 5",
+   "k": 10
+  },
+  {
+   "set": "All classical",
+   "classifier": "kNN 5",
+   "k": 20
+  },
+  {
+   "set": "All classical",
+   "classifier": "kNN 15",
+   "k": null
+  },
+  {
+   "set": "All classical",
+   "classifier": "kNN 15",
+   "k": 5
+  },
+  {
+   "set": "All classical",
+   "classifier": "kNN 15",
+   "k": 10
+  },
+  {
+   "set": "All classical",
+   "classifier": "kNN 15",
+   "k": 20
+  },
+  {
+   "set": "All classical",
+   "classifier": "Random forest",
+   "k": null
+  },
+  {
+   "set": "All classical",
+   "classifier": "Random forest",
+   "k": 5
+  },
+  {
+   "set": "All classical",
+   "classifier": "Random forest",
+   "k": 10
+  },
+  {
+   "set": "All classical",
+   "classifier": "Random forest",
+   "k": 20
+  },
+  {
+   "set": "All classical",
+   "classifier": "Extra trees",
+   "k": null
+  },
+  {
+   "set": "All classical",
+   "classifier": "Extra trees",
+   "k": 5
+  },
+  {
+   "set": "All classical",
+   "classifier": "Extra trees",
+   "k": 10
+  },
+  {
+   "set": "All classical",
+   "classifier": "Extra trees",
+   "k": 20
+  },
+  {
+   "set": "All classical",
+   "classifier": "Gradient boosting",
+   "k": null
+  },
+  {
+   "set": "All classical",
+   "classifier": "Gradient boosting",
+   "k": 5
+  },
+  {
+   "set": "All classical",
+   "classifier": "Gradient boosting",
+   "k": 10
+  },
+  {
+   "set": "All classical",
+   "classifier": "Gradient boosting",
+   "k": 20
+  },
+  {
+   "set": "All classical",
+   "classifier": "Small neural net",
+   "k": null
+  },
+  {
+   "set": "All classical",
+   "classifier": "Small neural net",
+   "k": 5
+  },
+  {
+   "set": "All classical",
+   "classifier": "Small neural net",
+   "k": 10
+  },
+  {
+   "set": "All classical",
+   "classifier": "Small neural net",
+   "k": 20
+  },
+  {
+   "set": "All classical + LB selected features",
+   "classifier": "Logistic C=0.01",
+   "k": null
+  },
+  {
+   "set": "All classical + LB selected features",
+   "classifier": "Logistic C=0.01",
+   "k": 5
+  },
+  {
+   "set": "All classical + LB selected features",
+   "classifier": "Logistic C=0.01",
+   "k": 10
+  },
+  {
+   "set": "All classical + LB selected features",
+   "classifier": "Logistic C=0.01",
+   "k": 20
+  },
+  {
+   "set": "All classical + LB selected features",
+   "classifier": "Logistic C=0.1",
+   "k": null
+  },
+  {
+   "set": "All classical + LB selected features",
+   "classifier": "Logistic C=0.1",
+   "k": 5
+  },
+  {
+   "set": "All classical + LB selected features",
+   "classifier": "Logistic C=0.1",
+   "k": 10
+  },
+  {
+   "set": "All classical + LB selected features",
+   "classifier": "Logistic C=0.1",
+   "k": 20
+  },
+  {
+   "set": "All classical + LB selected features",
+   "classifier": "Logistic C=1",
+   "k": null
+  },
+  {
+   "set": "All classical + LB selected features",
+   "classifier": "Logistic C=1",
+   "k": 5
+  },
+  {
+   "set": "All classical + LB selected features",
+   "classifier": "Logistic C=1",
+   "k": 10
+  },
+  {
+   "set": "All classical + LB selected features",
+   "classifier": "Logistic C=1",
+   "k": 20
+  },
+  {
+   "set": "All classical + LB selected features",
+   "classifier": "Logistic L1 C=0.1",
+   "k": null
+  },
+  {
+   "set": "All classical + LB selected features",
+   "classifier": "Logistic L1 C=0.1",
+   "k": 5
+  },
+  {
+   "set": "All classical + LB selected features",
+   "classifier": "Logistic L1 C=0.1",
+   "k": 10
+  },
+  {
+   "set": "All classical + LB selected features",
+   "classifier": "Logistic L1 C=0.1",
+   "k": 20
+  },
+  {
+   "set": "All classical + LB selected features",
+   "classifier": "Logistic L1 C=0.5",
+   "k": null
+  },
+  {
+   "set": "All classical + LB selected features",
+   "classifier": "Logistic L1 C=0.5",
+   "k": 5
+  },
+  {
+   "set": "All classical + LB selected features",
+   "classifier": "Logistic L1 C=0.5",
+   "k": 10
+  },
+  {
+   "set": "All classical + LB selected features",
+   "classifier": "Logistic L1 C=0.5",
+   "k": 20
+  },
+  {
+   "set": "All classical + LB selected features",
+   "classifier": "LDA shrinkage",
+   "k": null
+  },
+  {
+   "set": "All classical + LB selected features",
+   "classifier": "LDA shrinkage",
+   "k": 5
+  },
+  {
+   "set": "All classical + LB selected features",
+   "classifier": "LDA shrinkage",
+   "k": 10
+  },
+  {
+   "set": "All classical + LB selected features",
+   "classifier": "LDA shrinkage",
+   "k": 20
+  },
+  {
+   "set": "All classical + LB selected features",
+   "classifier": "Naive Bayes",
+   "k": null
+  },
+  {
+   "set": "All classical + LB selected features",
+   "classifier": "Naive Bayes",
+   "k": 5
+  },
+  {
+   "set": "All classical + LB selected features",
+   "classifier": "Naive Bayes",
+   "k": 10
+  },
+  {
+   "set": "All classical + LB selected features",
+   "classifier": "Naive Bayes",
+   "k": 20
+  },
+  {
+   "set": "All classical + LB selected features",
+   "classifier": "SVM linear C=0.01",
+   "k": null
+  },
+  {
+   "set": "All classical + LB selected features",
+   "classifier": "SVM linear C=0.01",
+   "k": 5
+  },
+  {
+   "set": "All classical + LB selected features",
+   "classifier": "SVM linear C=0.01",
+   "k": 10
+  },
+  {
+   "set": "All classical + LB selected features",
+   "classifier": "SVM linear C=0.01",
+   "k": 20
+  },
+  {
+   "set": "All classical + LB selected features",
+   "classifier": "SVM linear C=0.1",
+   "k": null
+  },
+  {
+   "set": "All classical + LB selected features",
+   "classifier": "SVM linear C=0.1",
+   "k": 5
+  },
+  {
+   "set": "All classical + LB selected features",
+   "classifier": "SVM linear C=0.1",
+   "k": 10
+  },
+  {
+   "set": "All classical + LB selected features",
+   "classifier": "SVM linear C=0.1",
+   "k": 20
+  },
+  {
+   "set": "All classical + LB selected features",
+   "classifier": "SVM RBF C=1",
+   "k": null
+  },
+  {
+   "set": "All classical + LB selected features",
+   "classifier": "SVM RBF C=1",
+   "k": 5
+  },
+  {
+   "set": "All classical + LB selected features",
+   "classifier": "SVM RBF C=1",
+   "k": 10
+  },
+  {
+   "set": "All classical + LB selected features",
+   "classifier": "SVM RBF C=1",
+   "k": 20
+  },
+  {
+   "set": "All classical + LB selected features",
+   "classifier": "SVM RBF C=10",
+   "k": null
+  },
+  {
+   "set": "All classical + LB selected features",
+   "classifier": "SVM RBF C=10",
+   "k": 5
+  },
+  {
+   "set": "All classical + LB selected features",
+   "classifier": "SVM RBF C=10",
+   "k": 10
+  },
+  {
+   "set": "All classical + LB selected features",
+   "classifier": "SVM RBF C=10",
+   "k": 20
+  },
+  {
+   "set": "All classical + LB selected features",
+   "classifier": "kNN 5",
+   "k": null
+  },
+  {
+   "set": "All classical + LB selected features",
+   "classifier": "kNN 5",
+   "k": 5
+  },
+  {
+   "set": "All classical + LB selected features",
+   "classifier": "kNN 5",
+   "k": 10
+  },
+  {
+   "set": "All classical + LB selected features",
+   "classifier": "kNN 5",
+   "k": 20
+  },
+  {
+   "set": "All classical + LB selected features",
+   "classifier": "kNN 15",
+   "k": null
+  },
+  {
+   "set": "All classical + LB selected features",
+   "classifier": "kNN 15",
+   "k": 5
+  },
+  {
+   "set": "All classical + LB selected features",
+   "classifier": "kNN 15",
+   "k": 10
+  },
+  {
+   "set": "All classical + LB selected features",
+   "classifier": "kNN 15",
+   "k": 20
+  },
+  {
+   "set": "All classical + LB selected features",
+   "classifier": "Random forest",
+   "k": null
+  },
+  {
+   "set": "All classical + LB selected features",
+   "classifier": "Random forest",
+   "k": 5
+  },
+  {
+   "set": "All classical + LB selected features",
+   "classifier": "Random forest",
+   "k": 10
+  },
+  {
+   "set": "All classical + LB selected features",
+   "classifier": "Random forest",
+   "k": 20
+  },
+  {
+   "set": "All classical + LB selected features",
+   "classifier": "Extra trees",
+   "k": null
+  },
+  {
+   "set": "All classical + LB selected features",
+   "classifier": "Extra trees",
+   "k": 5
+  },
+  {
+   "set": "All classical + LB selected features",
+   "classifier": "Extra trees",
+   "k": 10
+  },
+  {
+   "set": "All classical + LB selected features",
+   "classifier": "Extra trees",
+   "k": 20
+  },
+  {
+   "set": "All classical + LB selected features",
+   "classifier": "Gradient boosting",
+   "k": null
+  },
+  {
+   "set": "All classical + LB selected features",
+   "classifier": "Gradient boosting",
+   "k": 5
+  },
+  {
+   "set": "All classical + LB selected features",
+   "classifier": "Gradient boosting",
+   "k": 10
+  },
+  {
+   "set": "All classical + LB selected features",
+   "classifier": "Gradient boosting",
+   "k": 20
+  },
+  {
+   "set": "All classical + LB selected features",
+   "classifier": "Small neural net",
+   "k": null
+  },
+  {
+   "set": "All classical + LB selected features",
+   "classifier": "Small neural net",
+   "k": 5
+  },
+  {
+   "set": "All classical + LB selected features",
+   "classifier": "Small neural net",
+   "k": 10
+  },
+  {
+   "set": "All classical + LB selected features",
+   "classifier": "Small neural net",
+   "k": 20
+  },
+  {
+   "set": "All classical + all LB",
+   "classifier": "Logistic C=0.01",
+   "k": null
+  },
+  {
+   "set": "All classical + all LB",
+   "classifier": "Logistic C=0.01",
+   "k": 5
+  },
+  {
+   "set": "All classical + all LB",
+   "classifier": "Logistic C=0.01",
+   "k": 10
+  },
+  {
+   "set": "All classical + all LB",
+   "classifier": "Logistic C=0.01",
+   "k": 20
+  },
+  {
+   "set": "All classical + all LB",
+   "classifier": "Logistic C=0.1",
+   "k": null
+  },
+  {
+   "set": "All classical + all LB",
+   "classifier": "Logistic C=0.1",
+   "k": 5
+  },
+  {
+   "set": "All classical + all LB",
+   "classifier": "Logistic C=0.1",
+   "k": 10
+  },
+  {
+   "set": "All classical + all LB",
+   "classifier": "Logistic C=0.1",
+   "k": 20
+  },
+  {
+   "set": "All classical + all LB",
+   "classifier": "Logistic C=1",
+   "k": null
+  },
+  {
+   "set": "All classical + all LB",
+   "classifier": "Logistic C=1",
+   "k": 5
+  },
+  {
+   "set": "All classical + all LB",
+   "classifier": "Logistic C=1",
+   "k": 10
+  },
+  {
+   "set": "All classical + all LB",
+   "classifier": "Logistic C=1",
+   "k": 20
+  },
+  {
+   "set": "All classical + all LB",
+   "classifier": "Logistic L1 C=0.1",
+   "k": null
+  },
+  {
+   "set": "All classical + all LB",
+   "classifier": "Logistic L1 C=0.1",
+   "k": 5
+  },
+  {
+   "set": "All classical + all LB",
+   "classifier": "Logistic L1 C=0.1",
+   "k": 10
+  },
+  {
+   "set": "All classical + all LB",
+   "classifier": "Logistic L1 C=0.1",
+   "k": 20
+  },
+  {
+   "set": "All classical + all LB",
+   "classifier": "Logistic L1 C=0.5",
+   "k": null
+  },
+  {
+   "set": "All classical + all LB",
+   "classifier": "Logistic L1 C=0.5",
+   "k": 5
+  },
+  {
+   "set": "All classical + all LB",
+   "classifier": "Logistic L1 C=0.5",
+   "k": 10
+  },
+  {
+   "set": "All classical + all LB",
+   "classifier": "Logistic L1 C=0.5",
+   "k": 20
+  },
+  {
+   "set": "All classical + all LB",
+   "classifier": "LDA shrinkage",
+   "k": null
+  },
+  {
+   "set": "All classical + all LB",
+   "classifier": "LDA shrinkage",
+   "k": 5
+  },
+  {
+   "set": "All classical + all LB",
+   "classifier": "LDA shrinkage",
+   "k": 10
+  },
+  {
+   "set": "All classical + all LB",
+   "classifier": "LDA shrinkage",
+   "k": 20
+  },
+  {
+   "set": "All classical + all LB",
+   "classifier": "Naive Bayes",
+   "k": null
+  },
+  {
+   "set": "All classical + all LB",
+   "classifier": "Naive Bayes",
+   "k": 5
+  },
+  {
+   "set": "All classical + all LB",
+   "classifier": "Naive Bayes",
+   "k": 10
+  },
+  {
+   "set": "All classical + all LB",
+   "classifier": "Naive Bayes",
+   "k": 20
+  },
+  {
+   "set": "All classical + all LB",
+   "classifier": "SVM linear C=0.01",
+   "k": null
+  },
+  {
+   "set": "All classical + all LB",
+   "classifier": "SVM linear C=0.01",
+   "k": 5
+  },
+  {
+   "set": "All classical + all LB",
+   "classifier": "SVM linear C=0.01",
+   "k": 10
+  },
+  {
+   "set": "All classical + all LB",
+   "classifier": "SVM linear C=0.01",
+   "k": 20
+  },
+  {
+   "set": "All classical + all LB",
+   "classifier": "SVM linear C=0.1",
+   "k": null
+  },
+  {
+   "set": "All classical + all LB",
+   "classifier": "SVM linear C=0.1",
+   "k": 5
+  },
+  {
+   "set": "All classical + all LB",
+   "classifier": "SVM linear C=0.1",
+   "k": 10
+  },
+  {
+   "set": "All classical + all LB",
+   "classifier": "SVM linear C=0.1",
+   "k": 20
+  },
+  {
+   "set": "All classical + all LB",
+   "classifier": "SVM RBF C=1",
+   "k": null
+  },
+  {
+   "set": "All classical + all LB",
+   "classifier": "SVM RBF C=1",
+   "k": 5
+  },
+  {
+   "set": "All classical + all LB",
+   "classifier": "SVM RBF C=1",
+   "k": 10
+  },
+  {
+   "set": "All classical + all LB",
+   "classifier": "SVM RBF C=1",
+   "k": 20
+  },
+  {
+   "set": "All classical + all LB",
+   "classifier": "SVM RBF C=10",
+   "k": null
+  },
+  {
+   "set": "All classical + all LB",
+   "classifier": "SVM RBF C=10",
+   "k": 5
+  },
+  {
+   "set": "All classical + all LB",
+   "classifier": "SVM RBF C=10",
+   "k": 10
+  },
+  {
+   "set": "All classical + all LB",
+   "classifier": "SVM RBF C=10",
+   "k": 20
+  },
+  {
+   "set": "All classical + all LB",
+   "classifier": "kNN 5",
+   "k": null
+  },
+  {
+   "set": "All classical + all LB",
+   "classifier": "kNN 5",
+   "k": 5
+  },
+  {
+   "set": "All classical + all LB",
+   "classifier": "kNN 5",
+   "k": 10
+  },
+  {
+   "set": "All classical + all LB",
+   "classifier": "kNN 5",
+   "k": 20
+  },
+  {
+   "set": "All classical + all LB",
+   "classifier": "kNN 15",
+   "k": null
+  },
+  {
+   "set": "All classical + all LB",
+   "classifier": "kNN 15",
+   "k": 5
+  },
+  {
+   "set": "All classical + all LB",
+   "classifier": "kNN 15",
+   "k": 10
+  },
+  {
+   "set": "All classical + all LB",
+   "classifier": "kNN 15",
+   "k": 20
+  },
+  {
+   "set": "All classical + all LB",
+   "classifier": "Random forest",
+   "k": null
+  },
+  {
+   "set": "All classical + all LB",
+   "classifier": "Random forest",
+   "k": 5
+  },
+  {
+   "set": "All classical + all LB",
+   "classifier": "Random forest",
+   "k": 10
+  },
+  {
+   "set": "All classical + all LB",
+   "classifier": "Random forest",
+   "k": 20
+  },
+  {
+   "set": "All classical + all LB",
+   "classifier": "Extra trees",
+   "k": null
+  },
+  {
+   "set": "All classical + all LB",
+   "classifier": "Extra trees",
+   "k": 5
+  },
+  {
+   "set": "All classical + all LB",
+   "classifier": "Extra trees",
+   "k": 10
+  },
+  {
+   "set": "All classical + all LB",
+   "classifier": "Extra trees",
+   "k": 20
+  },
+  {
+   "set": "All classical + all LB",
+   "classifier": "Gradient boosting",
+   "k": null
+  },
+  {
+   "set": "All classical + all LB",
+   "classifier": "Gradient boosting",
+   "k": 5
+  },
+  {
+   "set": "All classical + all LB",
+   "classifier": "Gradient boosting",
+   "k": 10
+  },
+  {
+   "set": "All classical + all LB",
+   "classifier": "Gradient boosting",
+   "k": 20
+  },
+  {
+   "set": "All classical + all LB",
+   "classifier": "Small neural net",
+   "k": null
+  },
+  {
+   "set": "All classical + all LB",
+   "classifier": "Small neural net",
+   "k": 5
+  },
+  {
+   "set": "All classical + all LB",
+   "classifier": "Small neural net",
+   "k": 10
+  },
+  {
+   "set": "All classical + all LB",
+   "classifier": "Small neural net",
+   "k": 20
+  }
+ ],
+ "named": {
+  "Best overall by the rule": {
+   "set": "All classical + LB selected features",
+   "classifier": "Logistic C=0.1",
+   "k": null
+  },
+  "Best LB-only by the rule": {
+   "set": "LB selected features",
+   "classifier": "Logistic C=1",
+   "k": null
+  },
+  "Logistic: LB selected features": {
+   "set": "LB selected features",
+   "classifier": "Logistic C=1",
+   "k": null
+  },
+  "Logistic: LB selected groups": {
+   "set": "LB selected groups",
+   "classifier": "Logistic C=1",
+   "k": null
+  },
+  "Logistic: All LB": {
+   "set": "All LB",
+   "classifier": "Logistic C=1",
+   "k": null
+  },
+  "Logistic: Size + LB selected features": {
+   "set": "Size + LB selected features",
+   "classifier": "Logistic C=1",
+   "k": null
+  },
+  "Logistic: Size + all LB": {
+   "set": "Size + all LB",
+   "classifier": "Logistic C=1",
+   "k": null
+  },
+  "Logistic: Size + spiculation": {
+   "set": "Size + spiculation",
+   "classifier": "Logistic C=1",
+   "k": null
+  },
+  "Logistic: Size + spiculation + Hersch ratio": {
+   "set": "Size + spiculation + Hersch ratio",
+   "classifier": "Logistic C=1",
+   "k": null
+  },
+  "Logistic: All classical": {
+   "set": "All classical",
+   "classifier": "Logistic C=1",
+   "k": null
+  },
+  "Logistic: All classical + LB selected features": {
+   "set": "All classical + LB selected features",
+   "classifier": "Logistic C=1",
+   "k": null
+  },
+  "Logistic: All classical + all LB": {
+   "set": "All classical + all LB",
+   "classifier": "Logistic C=1",
+   "k": null
+  }
+ },
+ "nested": {
+  "Any features": {
+   "AUC": 0.8025454545454545,
+   "ACC": 0.7461538461538462
+  },
+  "LB features only": {
+   "AUC": 0.6818181818181819,
+   "ACC": 0.6538461538461539
+  }
+ }
+}
