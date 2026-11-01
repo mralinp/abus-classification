@@ -1,0 +1,113 @@
+feature,selected,positive,mean
+Spiculation: SP90,0.714,0.714,0.286415906043074
+Elongation and sphericity: log elongation,0.686,0.0,-0.1555114870999119
+"Tips: log tips, tau 0.021",0.572,0.572,0.08825382351044238
+Intensity: H,0.57,0.57,0.10516097788802363
+Spiculation: SPcyl_max_slice_mean,0.532,0.532,0.14079053080660345
+Size: log area,0.486,0.486,0.11672959132472563
+Size: log volume,0.434,0.434,0.10926841561407782
+Spiculation: SPcyl_upper_mean,0.384,0.384,0.0923479515223613
+"Tips: log tips, tau 0.012",0.334,0.334,0.039110985080179024
+Intensity: AI,0.332,0.332,0.03938126143092205
+Classical shape: VHWR,0.296,0.296,0.03311769792430137
+Hersch ratio: lambda_1 * area / 8 pi,0.294,0.294,0.04994531378905328
+Shape-DNA: log s_17,0.29,0.29,0.034416222501597704
+Shape-DNA: log s_18,0.25,0.25,0.02646778163618702
+Spiculation: SP75,0.228,0.228,0.07772950132310207
+"Harmonics: log power, degree 5",0.226,0.0,-0.021376334697643707
+"Tips: log tips, tau 0.065",0.182,0.182,0.02014333946538277
+Intensity: MC,0.164,0.164,0.0153687289309988
+GPS: log distance p10,0.158,0.158,0.014708011305396881
+Shape-DNA: log s_7,0.15,0.0,-0.019324221042768187
+Shape-DNA: log s_10,0.138,0.138,0.012718264726142708
+Intensity: VI,0.12,0.12,0.01445078676715947
+Spiculation: SPcyl_mean,0.114,0.114,0.023554867844454843
+Classical shape: SH,0.11,0.11,0.012221071497254125
+Classical shape: DF,0.102,0.102,0.005250617656704506
+"Tips: log tips, tau 0.007",0.078,0.078,0.005296563832313135
+Shape-DNA: log s_1,0.074,0.074,0.00871574900636335
+"Harmonics: log power, degree 6",0.066,0.066,0.004662418991035041
+"Harmonics: log power, degree 2",0.062,0.062,0.005255241115162276
+Classical shape: CP,0.062,0.062,0.007662410735738713
+Shape-DNA: log s_2,0.056,0.0,-0.0053264284579634565
+Shape-DNA: log s_12,0.046,0.046,0.0036558101882179493
+Intensity: IBV,0.042,0.042,0.004753042530522335
+"WKS local: log p95, band 6",0.038,0.038,0.003381234992979237
+Intensity: PAB,0.036,0.036,0.001519350352171548
+Shape-DNA: log s_9,0.036,0.036,0.002538356071359429
+"WKS local: log p95, band 1",0.036,0.0,-0.003125778768490207
+"Tips: log tips, tau 0.114",0.034,0.034,0.0025021076336693253
+Shape-DNA: log s_11,0.032,0.032,0.0023578786354307084
+Shape-DNA: log s_3,0.03,0.0,-0.004392939625870226
+Spiculation: SPmean,0.03,0.03,0.006517567074705037
+Shape-DNA: log s_20,0.028,0.028,0.0017077484465112425
+"WKS local: log p95, band 2",0.028,0.028,0.0019801407182117904
+Shape-DNA: log s_19,0.026,0.026,0.0012229323278810755
+Shape-DNA: log s_8,0.026,0.0,-0.0018309053166186632
+"Harmonics: log power, degree 13",0.022,0.022,0.002060412515290866
+"WKS local: log p95, band 8",0.022,0.022,0.0016122738683555294
+"WKS local: log p95, band 5",0.02,0.02,0.0015785191108481041
+Shape-DNA: log s_15,0.02,0.0,-0.0019813481090161164
+"HKS local: log spread, tau 0.200",0.018,0.0,-0.0009992084207757059
+"WKS local: log p95, band 7",0.016,0.016,0.0023643089461983595
+"Harmonics: log power, degree 12",0.016,0.016,0.001615281905893067
+"Harmonics: log power, degree 14",0.016,0.016,0.0015283002722967687
+Shape-DNA: log s_14,0.016,0.004,-0.0005740045223774122
+GPS: log distance p50,0.014,0.0,-0.00045649526373278974
+"Harmonics: log power, degree 15",0.012,0.012,0.0014255586927589177
+"Harmonics: log power, degree 7",0.01,0.0,-0.0011851313704778015
+"WKS local: log spread, band 6",0.01,0.01,0.0005073245520506472
+Shape-DNA: log s_16,0.01,0.01,0.0005158121282863954
+"Tips: log tips, tau 0.037",0.01,0.01,0.0002766883107114186
+"WKS local: log spread, band 5",0.008,0.008,0.00035523838801945117
+"Harmonics: log power, degree 4",0.008,0.008,0.00041093732610929457
+Shape-DNA: log s_13,0.008,0.004,3.405415693766628e-05
+"Harmonics: log power, degree 10",0.008,0.008,0.0003448546085150192
+"Harmonics: log power, degree 9",0.006,0.006,0.0005025323398664286
+"Harmonics: log power, degree 8",0.006,0.004,0.00030552165503453356
+"HKS local: log p95, tau 0.200",0.006,0.0,-0.0007837321600153856
+"Heat trace: log trace, tau 0.200",0.006,0.0,-0.00044984623840064775
+GPS: log distance p99,0.004,0.0,-0.00034262504170730985
+Shape-DNA: log s_6,0.004,0.004,0.0002145880244200835
+"HKS local: log spread, tau 0.004",0.004,0.0,-8.239628805516673e-05
+GPS: log distance p25,0.004,0.004,0.00046834903196353686
+"Tips: log tips, tau 0.200",0.004,0.0,-0.0003708883021470202
+"WKS local: log spread, band 7",0.002,0.002,8.645765045486159e-05
+"Tips: log tips, tau 0.004",0.002,0.0,-0.00020927299896808093
+"Heat trace: log trace, tau 0.004",0.002,0.0,-0.00020882014420180945
+"WKS local: log spread, band 3",0.002,0.0,-0.00013707517857445452
+"WKS local: log spread, band 4",0.002,0.0,-8.647793713463577e-07
+"HKS local: log spread, tau 0.007",0.002,0.0,-7.328073395743984e-05
+Shape-DNA: log s_5,0.002,0.0,-3.598247269593525e-05
+"Harmonics: log power, degree 11",0.002,0.002,0.00017384453217067736
+Shape-DNA: log s_4,0.002,0.002,9.061626854965356e-05
+"HKS local: log p95, tau 0.021",0.002,0.002,0.00023975076972375034
+GPS: log distance p90,0.0,0.0,0.0
+GPS: log distance p75,0.0,0.0,0.0
+"HKS local: log p95, tau 0.012",0.0,0.0,0.0
+GPS: log distance p95,0.0,0.0,0.0
+"Harmonics: log power, degree 1",0.0,0.0,0.0
+Elongation and sphericity: log sphericity,0.0,0.0,0.0
+Classical shape: DICE,0.0,0.0,0.0
+"Harmonics: log power, degree 3",0.0,0.0,0.0
+"Heat trace: log trace, tau 0.037",0.0,0.0,0.0
+"Heat trace: log trace, tau 0.007",0.0,0.0,0.0
+"Heat trace: log trace, tau 0.012",0.0,0.0,0.0
+"HKS local: log spread, tau 0.037",0.0,0.0,0.0
+"HKS local: log p95, tau 0.037",0.0,0.0,0.0
+"HKS local: log spread, tau 0.065",0.0,0.0,0.0
+"HKS local: log p95, tau 0.065",0.0,0.0,0.0
+"HKS local: log spread, tau 0.114",0.0,0.0,0.0
+"HKS local: log p95, tau 0.114",0.0,0.0,0.0
+"HKS local: log spread, tau 0.012",0.0,0.0,0.0
+"WKS local: log spread, band 1",0.0,0.0,0.0
+"HKS local: log p95, tau 0.007",0.0,0.0,0.0
+"WKS local: log spread, band 2",0.0,0.0,0.0
+"WKS local: log p95, band 3",0.0,0.0,0.0
+"WKS local: log p95, band 4",0.0,0.0,0.0
+"HKS local: log p95, tau 0.004",0.0,0.0,0.0
+"WKS local: log spread, band 8",0.0,0.0,0.0
+"Heat trace: log trace, tau 0.114",0.0,0.0,0.0
+"Heat trace: log trace, tau 0.065",0.0,0.0,0.0
+"Heat trace: log trace, tau 0.021",0.0,0.0,0.0
+"HKS local: log spread, tau 0.021",0.0,0.0,0.0

@@ -186,6 +186,19 @@ of the paper. See [#28](https://github.com/mralinp/abus-classification/issues/28
 | --- |
 | ![Histogram of tips by class beside the observed best AUC gain against its permutation distribution](docs/assets/lb-descriptors-signal.png) |
 
+**Classification with every feature set** (details in
+[`lb-classification.ipynb`](https://github.com/mralinp/abus-classification/blob/main/notebooks/lb-classification.ipynb)). These are Train + Validation estimates; Test is untouched:
+
+- **Fair performance is about 0.81.** With feature selection inside cross-validation, AUC is 0.81, against 0.58 at the 95th percentile with shuffled labels (p < 0.01). Testing many combinations without nesting gives higher numbers that should not be trusted.
+- **Spiculation is the core.** It is chosen in 99% of folds and is the only group whose removal clearly hurts. It uses image gradients, so this is not purely a shape result.
+- **Spectral features alone are weak, but one adds to spiculation.** All spectral groups together reach 0.67. The Hersch ratio λ₁·Area/8π adds 0.045 on top of size and spiculation (interval 0.006 to 0.089). With 11 additions tried, this is promising, not established.
+- **More features is not better.** All 112 features score 0.81, below the 21 classical ones at 0.84.
+- **Predictions can be explained.** A four-feature linear model splits each prediction into readable contributions. Its own 0.87 AUC is optimistic, since its features were picked on these lesions.
+
+| Each feature group alone | Explaining single lesions |
+| --- | --- |
+| ![Bar chart of cross-validated AUC for 13 feature groups, classical above spectral](docs/assets/lb-groups.png) | ![Four real lesions with protrusions marked, each beside the contribution of four features to its prediction](docs/assets/lb-3d-explanations.png) |
+
 | Predicted and true tumors, Zhou et al. 2021 | Ablations against the paper |
 | --- | --- |
 | ![Coronal planes of five test lesions from worst to best Dice, with predicted and ground-truth contours](docs/assets/zhou-segmentation-overlays.png) | ![Bar charts of classification AUC and segmentation Dice for each ablation model, ours against the paper](docs/assets/zhou-ablations.png) |
@@ -413,7 +426,7 @@ uv run python -m abus_classification.papers.zhou2021 --epochs 100
 | --- | --- |
 | `abus_classification/papers/` | Paper implementations (`barekatrezaei2026`, `zhou2021`, `wang2020`, `yu2024`); completion and source verification vary |
 | `abus_classification/protocol.py` | Shared evaluation protocol: device, metrics, folds, bootstrap CI |
-| `abus_classification/lb_invariance.py`, `lb_spectrum_content.py`, `lb_roundness.py`, `lb_stability.py`, `lb_spharm.py`, `lb_descriptors.py` | Laplace–Beltrami experiments on TDSC-ABUS lesions: invariance, what the spectrum determines, roundness, stability, spherical harmonics, spectral descriptors |
+| `abus_classification/lb_invariance.py`, `lb_spectrum_content.py`, `lb_roundness.py`, `lb_stability.py`, `lb_spharm.py`, `lb_descriptors.py`, `lb_classification.py` | Laplace–Beltrami experiments on TDSC-ABUS lesions: invariance, what the spectrum determines, roundness, stability, spherical harmonics, spectral descriptors, classification |
 | `abus_classification/challenge.py` | TDSC-ABUS 2023 challenge evaluation (Dice, HD, ACC, AUC, FROC) and published leaderboard |
 | `abus_classification/data/` | Lesion cache: patches, radiomic and Laplace–Beltrami features per volume |
 | `abus_classification/features/tan/` | Tan et al. (2012, 2013) features, including coronal spiculation |
