@@ -5,6 +5,10 @@ from scipy.sparse import csr_matrix
 import scipy.sparse as sp
 from typing import Tuple, Optional
 
+TAUS = np.geomspace(0.004, 0.2, 8)      # heat kernel times, as t / area
+ENERGY_RANGE, WAVE_PICKS = (20.0, 2500.0), np.linspace(5, 95, 8).astype(int)   # log(lambda * area) grid and picked columns
+
+
 def compute_laplace_beltrami_operator(mesh: trimesh.Trimesh) -> Tuple[csr_matrix, csr_matrix]:
     """
     Compute the Laplace-Beltrami operator using the cotangent weights scheme.
@@ -181,3 +185,50 @@ def compute_agps(eigenvalues: np.ndarray, eigenvectors: np.ndarray, k: int = 10)
         agps[:, k+i] = eigenvectors[:, i+1] * np.sqrt(eigenvalues[i+1])
     
     return agps
+
+
+def weighted_quantiles(values: np.ndarray, weights: np.ndarray, q: np.ndarray) -> np.ndarray:
+    """Quantiles of values on a surface, where each value counts for its vertex area."""
+    order = np.argsort(values)
+    return np.interp(q, np.cumsum(weights[order]) / weights.sum(), values[order])
+
+
+def local_maxima(values: np.ndarray, mesh: trimesh.Trimesh) -> np.ndarray:
+    """Vertices whose value is higher than at all their neighbours."""
+    a, b = mesh.edges_unique.T
+    higher = np.ones(len(values), dtype=bool)
+    higher[a[values[a] <= values[b]]] = False
+    higher[b[values[b] <= values[a]]] = False
+    return np.flatnonzero(higher)
+
+
+def spectral_summaries(mesh: trimesh.Trimesh, k: int = 200, seed: int = 0) -> dict:
+    """
+    Fixed-length, scale-free and pose-free summaries of the Laplace-Beltrami descriptors of one closed surface.
+
+    With s = lambda * area, every signature below is a function of s and of phi * sqrt(area), so scaling a shape leaves it
+    unchanged. dna is s itself. hks and wks give the mean, standard deviation and 95th percentile over the surface at fixed
+    scale-free times and energies. The mean of hks is the heat trace, so it depends on the eigenvalues alone; its spread and
+    tips, the number of local maxima (protrusions), also use eigenfunctions. gps gives quantiles of distances between random
+    point pairs in the embedding, which do not depend on the eigenfunctions' signs.
+    """
+    L, M = compute_laplace_beltrami_operator(mesh)
+    lam, phi = compute_eigendecomposition(L, M, k=min(k, len(mesh.vertices) - 2))
+    lam, phi = lam * mesh.area, phi * np.sqrt(mesh.area)
+    mass = M.diagonal() / M.diagonal().sum()
+    q = np.array([0.1, 0.25, 0.5, 0.75, 0.9, 0.95, 0.99])
+
+    def summary(values):
+        mean = mass @ values
+        std = np.sqrt(mass @ (values - mean) ** 2)
+        return np.stack([mean, std, np.array([weighted_quantiles(v, mass, np.array([0.95]))[0] for v in values.T])])
+
+    heat = compute_hks(lam, phi, TAUS)
+    grid = np.linspace(np.log(ENERGY_RANGE[0]), np.log(ENERGY_RANGE[1]), 100)
+    wave = compute_wks(lam, phi, grid)[:, WAVE_PICKS]
+    rng = np.random.default_rng(seed)
+    pairs = rng.choice(mass.size, (20000, 2), p=mass)
+    embedding = phi[:, 1:21] / np.sqrt(np.maximum(lam[1:21], 1e-10))
+    distance = np.linalg.norm(embedding[pairs[:, 0]] - embedding[pairs[:, 1]], axis=1)
+    return dict(dna=np.pad(lam, (0, k - len(lam)), constant_values=np.nan)[1:51], hks=summary(heat), wks=summary(wave),
+                gps=np.quantile(distance, q), tips=np.array([len(local_maxima(heat[:, i], mesh)) for i in range(len(TAUS))]))
