@@ -1,3 +1,5 @@
+from sklearn.metrics import roc_auc_score
+from abus_classification import lb_evaluation
 from abus_classification import lb_classification
 from abus_classification.features.shape_descriptor.shape_descriptors import TAUS, spectral_summaries
 from abus_classification.features.shape_descriptor.spharm import map_quality, real_harmonics, spharm_coefficients, spharm_power, sphere_map
@@ -416,3 +418,13 @@ def test_classification_table_excludes_test_and_selection_ignores_noise():
     X = np.c_[signal, rng.normal(size=(130, 5))]
     chosen = lb_classification.forward({"signal": [0], **{f"noise {i}": [i + 1] for i in range(5)}}, X, y, 0)
     assert chosen[0] == "signal"
+
+
+def test_evaluation_probability_matches_each_classifier_decision():
+    rng = np.random.default_rng(0)
+    y = np.r_[np.zeros(40, int), np.ones(40, int)]
+    X = np.c_[y + rng.normal(scale=0.8, size=80), rng.normal(size=(80, 3))]
+    for name in ("Logistic C=1", "SVM linear C=0.1", "SVM RBF C=1", "Random forest"):
+        model = lb_evaluation.make_model(dict(classifier=name, k=2)).fit(X, y)
+        p = lb_evaluation.probability(model, X)
+        assert ((p >= 0.5) == (model.predict(X) == 1)).mean() > 0.97 and roc_auc_score(y, p) > 0.7
