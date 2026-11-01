@@ -428,3 +428,190 @@ def test_evaluation_probability_matches_each_classifier_decision():
         model = lb_evaluation.make_model(dict(classifier=name, k=2)).fit(X, y)
         p = lb_evaluation.probability(model, X)
         assert ((p >= 0.5) == (model.predict(X) == 1)).mean() > 0.97 and roc_auc_score(y, p) > 0.7
+
+
+from abus_classification.features.shape_descriptor.malignancy_signs import (
+    area_budget, beam_orientation, line_field, line_points, line_summary, line_surface_field, mean_curvature, mesh_spectrum, outward_normals, radial_lines,
+    spectral_moments, spectral_roundness, surface_height, surface_peaks, surface_signs)
+
+
+def _bumps(directions, height=0.2, width=0.2, subdivisions=4):
+    sphere = trimesh.creation.icosphere(subdivisions=subdivisions)
+    unit = sphere.vertices / np.linalg.norm(sphere.vertices, axis=1, keepdims=True)
+    gain = sum(height * np.exp(-np.linalg.norm(unit - np.asarray(d) / np.linalg.norm(d), axis=1) ** 2 / (2 * width ** 2)) for d in directions)
+    return trimesh.Trimesh(unit * (1 + gain)[:, None], sphere.faces, process=False)
+
+
+def test_the_cotangent_laplacian_spends_exactly_twice_the_area_on_any_surface():
+    mesh = _bumps([(1, 0, 0), (0, 1, 1)])
+    L, _ = compute_laplace_beltrami_operator(mesh)
+    assert np.isclose(np.trace(mesh.vertices.T @ (L @ mesh.vertices)), 2 * mesh.area)
+    s = mesh_spectrum(mesh, 400)
+    assert 0.98 < spectral_moments(s["lam"], s["c"])[1] / (2 * mesh.area) <= 1.0     # the modes kept hold nearly all of it
+
+
+def test_bending_of_a_sphere_and_a_spheroid_matches_the_integral_of_squared_mean_curvature():
+    sphere = trimesh.creation.icosphere(subdivisions=4)
+    s = mesh_spectrum(sphere, 100)
+    assert np.isclose(spectral_moments(s["lam"], s["c"])[2] / 4, 4 * np.pi, rtol=0.02)
+    assert np.allclose(mean_curvature(s["lam"], s["phi"], s["c"]), 1.0, rtol=0.03)
+    a, b = 1.0, 2.0
+    u = np.linspace(0, np.pi, 20001)
+    w = np.sqrt(a ** 2 * np.cos(u) ** 2 + b ** 2 * np.sin(u) ** 2)
+    exact = 2 * np.pi * np.trapezoid(((a * b / w ** 3 + b / (a * w)) / 2) ** 2 * a * np.sin(u) * w, u)
+    spheroid = trimesh.Trimesh(sphere.vertices * [a, a, b], sphere.faces, process=False)
+    s = mesh_spectrum(spheroid, 300)
+    assert np.isclose(spectral_moments(s["lam"], s["c"])[2] / 4, exact, rtol=0.05)
+
+
+def test_spectral_roundness_is_one_only_for_a_sphere_and_ignores_pose_and_scale():
+    sphere = trimesh.creation.icosphere(subdivisions=4)
+    def roundness(mesh):
+        s = mesh_spectrum(mesh, 150)
+        return spectral_roundness(s["lam"], s["c"])
+    assert roundness(sphere) > 0.999
+    assert roundness(trimesh.Trimesh(sphere.vertices * [1, 1, 1.5], sphere.faces, process=False)) < 0.95
+    bumpy = _bumps([(1, 0, 0), (0, 1, 0), (0, 0, 1), (-1, -1, 0)])
+    moved = trimesh.Trimesh(3.0 * bumpy.vertices @ trimesh.transformations.random_rotation_matrix(np.random.default_rng(0).random(3))[:3, :3] + 5.0, bumpy.faces, process=False)
+    assert roundness(bumpy) < 0.9
+    assert np.isclose(roundness(moved), roundness(bumpy), rtol=1e-6)
+
+
+def test_area_budget_moves_from_low_to_high_degrees_as_the_surface_gets_bumpier():
+    sphere = trimesh.creation.icosphere(subdivisions=4)
+    s = mesh_spectrum(sphere, 200)
+    budget = area_budget(s["lam"], s["c"], sphere.area)
+    assert budget[0] > 0.999 and budget[1:].sum() < 1e-3
+    many = _bumps(trimesh.creation.icosphere(subdivisions=1).vertices, height=0.08, width=0.12)
+    s = mesh_spectrum(many, 200)
+    assert area_budget(s["lam"], s["c"], many.area)[3:].sum() > 0.02
+
+
+def test_peaks_count_the_lobes_and_ignore_small_ripples():
+    directions = [(1, 0, 0), (0, 1, 0), (-1, -1, 1)]
+    mesh = _bumps(directions, height=0.15, width=0.25)
+    assert (outward_normals(mesh) * mesh.vertices).sum(1).min() > 0
+    s = mesh_spectrum(mesh, 200)
+    height = surface_height(mesh, s["phi"], s["c"], body_modes=4)
+    vertices, prominence = surface_peaks(height, mesh)
+    assert (prominence >= 0.05).sum() == 3
+    tops = mesh.vertices[vertices[prominence >= 0.05]]
+    tops /= np.linalg.norm(tops, axis=1, keepdims=True)
+    wanted = np.array(directions) / np.linalg.norm(directions, axis=1, keepdims=True)
+    assert (tops @ wanted.T).max(axis=0).min() > 0.97
+    ripple = 0.01 * np.random.default_rng(0).normal(size=len(height))
+    assert (surface_peaks(height + ripple, mesh)[1] >= 0.05).sum() == 3
+    assert len(surface_peaks(height + ripple, mesh)[0]) > 3 * 5                  # a plain count of maxima is fooled
+
+
+def test_peak_prominence_on_a_path_of_values_by_hand():
+    # A triangle strip, with vertex values along it 0, 3, 1, 5, 2: peaks at 5 (whole range) and 3 (3 falls to the saddle at 1).
+    vertices = np.array([[0, 0, 0], [1, 0, 0], [2, 0, 0], [3, 0, 0], [4, 0, 0], [2, 9, 0], [2, -9, 0]], float)
+    faces = np.array([[i, i + 1, 5] for i in range(4)] + [[i + 1, i, 6] for i in range(4)])
+    mesh = trimesh.Trimesh(vertices, faces, process=False)
+    values = np.array([0, 3, 1, 5, 2, -9, -9], float)
+    peaks, prominence = surface_peaks(values, mesh)
+    assert dict(zip(peaks.tolist(), prominence.tolist())) == {3: 14.0, 1: 2.0}
+
+
+def test_beam_orientation_reads_a_taller_than_wide_shape_and_needs_the_axis():
+    sphere = trimesh.creation.icosphere(subdivisions=3)
+    def orient(scale):
+        s = mesh_spectrum(trimesh.Trimesh(sphere.vertices * scale, sphere.faces, process=False), 40)
+        return beam_orientation(s["c"], 1)
+    assert np.isclose(orient([1, 1, 1])[0], 1 / 3, rtol=0.01)
+    tall, wide = orient([1, 2, 1]), orient([2, 1, 1])
+    assert tall[0] > 0.5 and tall[1] > 85
+    assert wide[0] < 0.2 and wide[1] < 5
+    assert not np.isclose(tall[0], wide[0])                                       # the spectrum alone cannot tell these two apart
+
+
+def _lines_image(kind, shape=(101, 11, 101), pixel=0.6, radius_mm=8.0):
+    # Bright lines around a disc in coronal planes (rows, cols); axis 1 is the beam.
+    rows, cols = np.mgrid[:shape[0], :shape[2]].astype(float)
+    r, a = np.hypot(rows - 50, cols - 50) * pixel, np.arctan2(cols - 50, rows - 50)
+    if kind == "radial":
+        plane = np.cos(18 * a) > 0.8
+    elif kind == "wrapping":
+        plane = np.cos(2 * np.pi * r / 4.0) > 0.8
+    elif kind == "noise":
+        plane = None
+    volume = np.zeros(shape, np.float32)
+    rng = np.random.default_rng(0)
+    for k in range(shape[1]):
+        volume[:, k] = ndimage.gaussian_filter(rng.normal(size=(shape[0], shape[2])), 1.2) if plane is None else ndimage.gaussian_filter((plane & (r > radius_mm)).astype(np.float32), 0.8)
+    mask = np.zeros(shape, bool)
+    mask[:, 3:8] = (r < radius_mm)[:, None]
+    return volume, mask, (pixel,) * 3
+
+
+@pytest.mark.parametrize("kind, low, high", [("radial", 0.1, 1), ("wrapping", -1, -0.1), ("noise", -0.03, 0.03)])
+def test_radial_lines_tell_lines_running_out_from_lines_wrapping_around(kind, low, high):
+    volume, mask, spacing = _lines_image(kind)
+    theta, strength = line_field(volume, spacing, 1)
+    lines = radial_lines(theta, strength, mask, spacing, 1)
+    assert low < line_summary(lines, 5)["radial"] < high
+
+
+def test_radial_lines_cancel_a_shared_orientation_and_reach_the_surface():
+    volume, mask, spacing = _lines_image("noise")
+    stripes = np.cos(2 * np.pi * np.arange(volume.shape[2]) * spacing[2] / 3.0)[None, None] * np.ones(volume.shape, np.float32)
+    theta, strength = line_field(stripes, spacing, 1)
+    assert abs(line_summary(radial_lines(theta, strength, mask, spacing, 1), 5)["radial"]) < 0.01
+    volume, mask, spacing = _lines_image("radial")
+    theta, strength = line_field(volume, spacing, 1)
+    lines = radial_lines(theta, strength, mask, spacing, 1)
+    sphere = trimesh.creation.icosphere(subdivisions=3, radius=8.0)
+    sphere.vertices += np.array([50, 5, 50]) * 0.6
+    s = mesh_spectrum(sphere, 150)
+    field = line_surface_field(line_points(lines, spacing, 1), lines, sphere, s)
+    equator = np.abs(sphere.vertices[:, 1] - 3.0) < 2.0
+    assert np.nanmin(field[equator]) > 0.1                                         # lines at the equator, none at the caps
+    assert np.isnan(field[np.abs(sphere.vertices[:, 1] - 3.0) > 7.5]).all()
+
+
+def test_surface_signs_ignore_scale_and_stay_finite():
+    mesh = _bumps([(1, 0, 0), (0, 1, 0)])
+    a = surface_signs(mesh, mesh_spectrum(mesh, 120), 1)
+    big = trimesh.Trimesh(4.0 * mesh.vertices, mesh.faces, process=False)
+    b = surface_signs(big, mesh_spectrum(big, 120), 1)
+    for key in a:
+        assert np.allclose(a[key], b[key], rtol=1e-6)
+
+
+def test_sham_lesions_stay_in_the_crop_and_clear_the_lesion_and_its_shell():
+    from abus_classification.lb_malignancy import sham_masks
+    mask = np.zeros((300, 30, 300), bool)
+    mask[140:160, 10:20, 140:160] = True
+    shams = sham_masks(mask, (0.6, 0.6, 0.6))
+    assert len(shams) == 4
+    for sham in shams:
+        assert sham.sum() == mask.sum()
+        distance = ndimage.distance_transform_edt(~sham, sampling=0.6)
+        assert distance[mask].min() >= 20.0                                        # 10 mm shells around each do not touch
+    assert len(sham_masks(np.roll(mask, 70, axis=0), (0.6, 0.6, 0.6))) == 3        # no room on one side
+
+
+def test_one_feature_per_family_is_chosen_only_from_the_lesions_given():
+    import pandas as pd
+    from abus_classification.lb_malignancy import family_picks
+    rng = np.random.default_rng(0)
+    y = rng.integers(0, 2, 200)
+    part = np.arange(100)
+    good_here = np.where(np.arange(200) < 100, y + 0.2 * rng.normal(size=200), rng.normal(size=200))
+    good_elsewhere = np.where(np.arange(200) >= 100, y + 0.2 * rng.normal(size=200), rng.normal(size=200))
+    rows = pd.DataFrame({"y": y, "Size: log volume": rng.normal(size=200), "F: here": good_here, "F: elsewhere": good_elsewhere})
+    assert family_picks(rows, {"F": ["F: here", "F: elsewhere"]}, ["F"], part) == ["F: here"]
+    assert family_picks(rows, {"F": ["F: here", "F: elsewhere"]}, ["F"], part + 100) == ["F: elsewhere"]
+
+
+def test_stored_model_scores_exactly_as_the_fitted_one():
+    import pandas as pd
+    from abus_classification.lb_classification import linear
+    from abus_classification.lb_malignancy import decision, fit_model
+    rng = np.random.default_rng(0)
+    rows = pd.DataFrame({"a": rng.normal(size=80), "b": rng.normal(5, 3, 80)})
+    rows["y"] = (rows.a + rows.b / 3 + rng.normal(size=80) > 1.5).astype(int)
+    fresh = pd.DataFrame({"a": rng.normal(size=20), "b": rng.normal(5, 3, 20)})
+    fitted = linear().fit(rows[["a", "b"]].values, rows.y.values)
+    assert np.allclose(decision(fit_model(rows, ["a", "b"]), fresh), fitted.decision_function(fresh[["a", "b"]].values))

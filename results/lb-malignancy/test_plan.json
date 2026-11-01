@@ -1,0 +1,590 @@
+{
+ "primary": "Hybrid: size, radial lines, tilt",
+ "threshold": "p >= 0.5",
+ "models": {
+  "Hybrid: size, radial lines, tilt": {
+   "columns": [
+    "Size: log volume",
+    "Radial lines: mean",
+    "Orientation: tilt"
+   ],
+   "mean": [
+    6.593210793283183,
+    0.0022776377068701404,
+    10.520157867330362
+   ],
+   "scale": [
+    1.4440992655707479,
+    0.024387833955875727,
+    12.242394168812883
+   ],
+   "coefficients": [
+    1.0951497441498421,
+    1.051261417268302,
+    0.6870980274022681
+   ],
+   "intercept": 0.47111129505735094
+  },
+  "Size": {
+   "columns": [
+    "Size: log volume",
+    "Size: log area"
+   ],
+   "mean": [
+    6.593210793283183,
+    6.363489129123872
+   ],
+   "scale": [
+    1.4440992655707479,
+    0.9490372540274624
+   ],
+   "coefficients": [
+    0.38996516696823974,
+    0.46766853045742995
+   ],
+   "intercept": 0.3604304344711949
+  },
+  "Size + spiculation": {
+   "columns": [
+    "Size: log volume",
+    "Size: log area",
+    "Spiculation: SPmean",
+    "Spiculation: SP90",
+    "Spiculation: SP75",
+    "Spiculation: SPcyl_mean",
+    "Spiculation: SPcyl_upper_mean",
+    "Spiculation: SPcyl_max_slice_mean"
+   ],
+   "mean": [
+    6.593210793283183,
+    6.363489129123872,
+    0.5120588348820232,
+    2.880224038545902,
+    1.7391917928623466,
+    0.6067464885015327,
+    0.7874099630934115,
+    3.563230825502139
+   ],
+   "scale": [
+    1.4440992655707479,
+    0.9490372540274624,
+    1.1408381323344527,
+    1.3028453170878749,
+    1.262116232612491,
+    1.205421968933134,
+    1.3621053946130792,
+    1.703557118855749
+   ],
+   "coefficients": [
+    0.6060542611863984,
+    0.11350003365903287,
+    -0.3511735202020515,
+    0.588930694047704,
+    0.4381050022157718,
+    -0.11506902602293913,
+    0.7707693681540361,
+    0.0911506235034627
+   ],
+   "intercept": 0.542459566426546
+  },
+  "Hybrid + fine budget (LB)": {
+   "columns": [
+    "Size: log volume",
+    "Radial lines: mean",
+    "Orientation: tilt",
+    "Irregularity: log budget, degrees 8-13"
+   ],
+   "mean": [
+    6.593210793283183,
+    0.0022776377068701404,
+    10.520157867330362,
+    -2.8098250761422787
+   ],
+   "scale": [
+    1.4440992655707479,
+    0.024387833955875727,
+    12.242394168812883,
+    0.28161422776423833
+   ],
+   "coefficients": [
+    1.1063187414529194,
+    0.9726875158395099,
+    0.6547952089472397,
+    0.3557549885934013
+   ],
+   "intercept": 0.47782174512760783
+  },
+  "Hybrid, lines over 4-30 mm": {
+   "columns": [
+    "Size: log volume",
+    "Wider shell: lines over 4-30 mm",
+    "Orientation: tilt"
+   ],
+   "mean": [
+    6.593210793283183,
+    0.008352005641191252,
+    10.520157867330362
+   ],
+   "scale": [
+    1.4440992655707479,
+    0.018966184996255072,
+    12.242394168812883
+   ],
+   "coefficients": [
+    0.9517191982292983,
+    1.1813294985983676,
+    0.7435354509534201
+   ],
+   "intercept": 0.5192328315293887
+  },
+  "Size + spiculation + tilt": {
+   "columns": [
+    "Size: log volume",
+    "Size: log area",
+    "Spiculation: SPmean",
+    "Spiculation: SP90",
+    "Spiculation: SP75",
+    "Spiculation: SPcyl_mean",
+    "Spiculation: SPcyl_upper_mean",
+    "Spiculation: SPcyl_max_slice_mean",
+    "Orientation: tilt"
+   ],
+   "mean": [
+    6.593210793283183,
+    6.363489129123872,
+    0.5120588348820232,
+    2.880224038545902,
+    1.7391917928623466,
+    0.6067464885015327,
+    0.7874099630934115,
+    3.563230825502139,
+    10.520157867330362
+   ],
+   "scale": [
+    1.4440992655707479,
+    0.9490372540274624,
+    1.1408381323344527,
+    1.3028453170878749,
+    1.262116232612491,
+    1.205421968933134,
+    1.3621053946130792,
+    1.703557118855749,
+    12.242394168812883
+   ],
+   "coefficients": [
+    0.6914711857704622,
+    0.2673567731142146,
+    -0.3368886525752818,
+    0.5274894933584449,
+    0.27850852461558134,
+    0.13145082510767128,
+    0.7590918993686961,
+    -0.057991819147610306,
+    0.762106026242031
+   ],
+   "intercept": 0.5750076596600237
+  },
+  "Size + radial lines": {
+   "columns": [
+    "Size: log volume",
+    "Size: log area",
+    "Radial lines: mean",
+    "Radial lines: skin side",
+    "Radial lines: strongest tenth",
+    "Radial lines: share outward"
+   ],
+   "mean": [
+    6.593210793283183,
+    6.363489129123872,
+    0.0022776377068701404,
+    0.014156573551193844,
+    0.05792030345384541,
+    0.5031988055816172
+   ],
+   "scale": [
+    1.4440992655707479,
+    0.9490372540274624,
+    0.024387833955875727,
+    0.029048038248874163,
+    0.02713415075416321,
+    0.1818031327714641
+   ],
+   "coefficients": [
+    0.5482172764260032,
+    0.3178756346679785,
+    0.6595268942009659,
+    0.27285975881190416,
+    -0.2356705254810951,
+    0.4543163460951049
+   ],
+   "intercept": 0.4428937439897767
+  },
+  "Size + surface signs (mask and beam)": {
+   "columns": [
+    "Size: log volume",
+    "Size: log area",
+    "Irregularity: log 1/roundness",
+    "Irregularity: log bending",
+    "Irregularity: log budget, degrees 2-3",
+    "Irregularity: log budget, degrees 4-7",
+    "Irregularity: log budget, degrees 8-13",
+    "Lobes: log lobes",
+    "Lobes: log large lobes",
+    "Lobes: log prominence",
+    "Lobes: log roughness",
+    "Lobes: log angularity",
+    "Orientation: logit depth share",
+    "Orientation: tilt"
+   ],
+   "mean": [
+    6.593210793283183,
+    6.363489129123872,
+    1.7879558157660846,
+    1.790657709176222,
+    -2.455115845848457,
+    -2.416686389260381,
+    -2.8098250761422787,
+    2.8535086267481287,
+    1.4173071293940416,
+    0.9019478236311469,
+    -2.6614893785069604,
+    1.6918021282930529,
+    -1.5660467560258062,
+    10.520157867330362
+   ],
+   "scale": [
+    1.4440992655707479,
+    0.9490372540274624,
+    0.23374631013280361,
+    0.21987942436348876,
+    0.7288169862912502,
+    0.34341982690948414,
+    0.28161422776423833,
+    0.2528341834133986,
+    0.4539293817302518,
+    0.2586204036423142,
+    0.15006217552258547,
+    0.06784474417492388,
+    0.5804187933285716,
+    12.242394168812883
+   ],
+   "coefficients": [
+    0.736594310560269,
+    0.4621749828463744,
+    -0.17460602969244882,
+    0.4569240647185368,
+    -0.18408454556946152,
+    -0.18230122912093663,
+    0.34429600968286905,
+    0.7206053621872959,
+    -0.013209062211571514,
+    -1.000863455054839,
+    0.3318562580155685,
+    0.1653365037960379,
+    0.17612170362917814,
+    0.5980152708130645
+   ],
+   "intercept": 0.4303505264225947
+  },
+  "Surface signs alone (mask and beam)": {
+   "columns": [
+    "Irregularity: log 1/roundness",
+    "Irregularity: log bending",
+    "Irregularity: log budget, degrees 2-3",
+    "Irregularity: log budget, degrees 4-7",
+    "Irregularity: log budget, degrees 8-13",
+    "Lobes: log lobes",
+    "Lobes: log large lobes",
+    "Lobes: log prominence",
+    "Lobes: log roughness",
+    "Lobes: log angularity",
+    "Orientation: logit depth share",
+    "Orientation: tilt"
+   ],
+   "mean": [
+    1.7879558157660846,
+    1.790657709176222,
+    -2.455115845848457,
+    -2.416686389260381,
+    -2.8098250761422787,
+    2.8535086267481287,
+    1.4173071293940416,
+    0.9019478236311469,
+    -2.6614893785069604,
+    1.6918021282930529,
+    -1.5660467560258062,
+    10.520157867330362
+   ],
+   "scale": [
+    0.23374631013280361,
+    0.21987942436348876,
+    0.7288169862912502,
+    0.34341982690948414,
+    0.28161422776423833,
+    0.2528341834133986,
+    0.4539293817302518,
+    0.2586204036423142,
+    0.15006217552258547,
+    0.06784474417492388,
+    0.5804187933285716,
+    12.242394168812883
+   ],
+   "coefficients": [
+    -0.5400738830844213,
+    0.14572633130361215,
+    -0.09427117512199117,
+    -0.44073051887470266,
+    0.4365939186099106,
+    0.45542249718378547,
+    -0.23733003904486313,
+    0.09304713912714092,
+    0.3182100792043517,
+    0.2697326926399499,
+    0.13279845376472726,
+    0.31869985628534026
+   ],
+   "intercept": 0.3707849333968779
+  },
+  "Radial lines alone": {
+   "columns": [
+    "Radial lines: mean",
+    "Radial lines: skin side",
+    "Radial lines: strongest tenth",
+    "Radial lines: share outward"
+   ],
+   "mean": [
+    0.0022776377068701404,
+    0.014156573551193844,
+    0.05792030345384541,
+    0.5031988055816172
+   ],
+   "scale": [
+    0.024387833955875727,
+    0.029048038248874163,
+    0.02713415075416321,
+    0.1818031327714641
+   ],
+   "coefficients": [
+    0.6877862332697731,
+    0.7727511898865291,
+    -0.9366059908330823,
+    0.49020912818227796
+   ],
+   "intercept": 0.41351178638336866
+  },
+  "Spiculation alone": {
+   "columns": [
+    "Spiculation: SPmean",
+    "Spiculation: SP90",
+    "Spiculation: SP75",
+    "Spiculation: SPcyl_mean",
+    "Spiculation: SPcyl_upper_mean",
+    "Spiculation: SPcyl_max_slice_mean"
+   ],
+   "mean": [
+    0.5120588348820232,
+    2.880224038545902,
+    1.7391917928623466,
+    0.6067464885015327,
+    0.7874099630934115,
+    3.563230825502139
+   ],
+   "scale": [
+    1.1408381323344527,
+    1.3028453170878749,
+    1.262116232612491,
+    1.205421968933134,
+    1.3621053946130792,
+    1.703557118855749
+   ],
+   "coefficients": [
+    -0.287232424107353,
+    0.96577226388493,
+    0.5260885291464736,
+    -0.2458266522058487,
+    0.25853706421709516,
+    0.43183080775288124
+   ],
+   "intercept": 0.5507560703944568
+  },
+  "Size + all designed": {
+   "columns": [
+    "Size: log volume",
+    "Size: log area",
+    "Irregularity: log 1/roundness",
+    "Irregularity: log bending",
+    "Irregularity: log budget, degrees 2-3",
+    "Irregularity: log budget, degrees 4-7",
+    "Irregularity: log budget, degrees 8-13",
+    "Lobes: log lobes",
+    "Lobes: log large lobes",
+    "Lobes: log prominence",
+    "Lobes: log roughness",
+    "Lobes: log angularity",
+    "Orientation: logit depth share",
+    "Orientation: tilt",
+    "Radial lines: mean",
+    "Radial lines: skin side",
+    "Radial lines: strongest tenth",
+    "Radial lines: share outward"
+   ],
+   "mean": [
+    6.593210793283183,
+    6.363489129123872,
+    1.7879558157660846,
+    1.790657709176222,
+    -2.455115845848457,
+    -2.416686389260381,
+    -2.8098250761422787,
+    2.8535086267481287,
+    1.4173071293940416,
+    0.9019478236311469,
+    -2.6614893785069604,
+    1.6918021282930529,
+    -1.5660467560258062,
+    10.520157867330362,
+    0.0022776377068701404,
+    0.014156573551193844,
+    0.05792030345384541,
+    0.5031988055816172
+   ],
+   "scale": [
+    1.4440992655707479,
+    0.9490372540274624,
+    0.23374631013280361,
+    0.21987942436348876,
+    0.7288169862912502,
+    0.34341982690948414,
+    0.28161422776423833,
+    0.2528341834133986,
+    0.4539293817302518,
+    0.2586204036423142,
+    0.15006217552258547,
+    0.06784474417492388,
+    0.5804187933285716,
+    12.242394168812883,
+    0.024387833955875727,
+    0.029048038248874163,
+    0.02713415075416321,
+    0.1818031327714641
+   ],
+   "coefficients": [
+    0.6945996151494152,
+    0.5290168838381458,
+    -0.03957960663818976,
+    0.49455268341316005,
+    -0.2589652705301362,
+    -0.16612519578387575,
+    0.25063006745141536,
+    0.46577457534837363,
+    0.05949494823288351,
+    -0.8528250864132579,
+    0.1960806879604842,
+    0.05843684297904679,
+    0.27007594778824384,
+    0.4773894982298781,
+    0.7171132313383998,
+    0.15968128302529339,
+    -0.10170602868738403,
+    0.24209907058132554
+   ],
+   "intercept": 0.5090771959140095
+  }
+ },
+ "single_features": {
+  "Radial lines: mean": {
+   "direction": "+",
+   "volume_line": [
+    -0.0008758531794259813,
+    0.00047829365466499753
+   ]
+  },
+  "Radial lines: skin side": {
+   "direction": "+",
+   "volume_line": [
+    -0.006327791555806555,
+    0.0031068876377908007
+   ]
+  },
+  "Radial lines: share outward": {
+   "direction": "+",
+   "volume_line": [
+    0.47122284245386914,
+    0.00484983176335322
+   ]
+  },
+  "Spiculation: SP90": {
+   "direction": "+",
+   "volume_line": [
+    1.0142915543149962,
+    0.2830081644184378
+   ]
+  },
+  "Spiculation: SPcyl_upper_mean": {
+   "direction": "+",
+   "volume_line": [
+    0.3055269827000861,
+    0.07308775579938115
+   ]
+  },
+  "Orientation: tilt": {
+   "direction": "+",
+   "volume_line": [
+    21.894808498481964,
+    -1.7252065780665629
+   ]
+  },
+  "Classical shape: VHWR": {
+   "direction": "+",
+   "volume_line": [
+    1.0889015319249615,
+    -0.028004010349964924
+   ]
+  },
+  "Irregularity: log budget, degrees 8-13": {
+   "direction": "+",
+   "volume_line": [
+    -2.830006690991841,
+    0.0030609691518012935
+   ]
+  }
+ },
+ "comparisons": [
+  [
+   "Hybrid: size, radial lines, tilt",
+   "Size + spiculation"
+  ],
+  [
+   "Hybrid: size, radial lines, tilt",
+   "Size"
+  ],
+  [
+   "Hybrid + fine budget (LB)",
+   "Hybrid: size, radial lines, tilt"
+  ],
+  [
+   "Hybrid, lines over 4-30 mm",
+   "Hybrid: size, radial lines, tilt"
+  ],
+  [
+   "Size + spiculation + tilt",
+   "Size + spiculation"
+  ]
+ ],
+ "predicted_masks": {
+  "models": [
+   "Hybrid: size, radial lines, tilt",
+   "Size"
+  ],
+  "misses": "scored lowest",
+  "note": "Zhou 2021 masks, three seeds, Test patches centred on the true lesion"
+ },
+ "already_seen": "Every Test result of lb_evaluation, including size + spiculation at AUC 0.889 and ACC 0.871. No Test label or prediction of these descriptors.",
+ "reading_in_advance": {
+  "hybrid better than size + spiculation": "only if the 95% interval of the AUC gain excludes zero",
+  "LB term useful": "only if the 95% interval of its AUC gain on the hybrid excludes zero",
+  "line signal replicated": "if the lower 95% limit of AUC for the mean line excess, in its Train+Validation direction, is above 0.5, after volume as well",
+  "reach replicated": "if malignant lesions stay above benign ones in every shell from 4 to 30 mm",
+  "sham control passed": "if the 95% interval of lesion minus sham AUC excludes zero"
+ }
+}

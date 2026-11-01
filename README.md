@@ -211,7 +211,7 @@ Models were frozen on Train + Validation from 510 combinations of 17 classifiers
 | Size + spiculation + Hersch ratio, logistic | 0.829 | 0.869 (0.769–0.946) | 1 of 9 |
 
 - **Above 0.80 needs classical features.** LB features alone do not get there, with any classifier the rule could pick. Size + spiculation clears both targets, and uses image gradients.
-- **The earlier spectral gain did not replicate.** The Hersch ratio helped on Train + Validation and changed AUC by −0.020 (−0.086 to 0.042) on Test. No LB feature has yet shown independent value on held-out data.
+- **The earlier spectral gain did not replicate.** The Hersch ratio helped on Train + Validation and changed AUC by −0.020 (−0.086 to 0.042) on Test. At this point, no LB feature had shown independent value on held-out data.
 - **The best of 510 is not a result.** Extra trees reached AUC 0.922 and ACC 0.857 on Test, but it was found by looking at Test. Test has now been used, so further tuning against it would be biased.
 - **Single lesions look different, but the classes overlap.** Both classes contain round and irregular lesions, and single shape measures reach AUC 0.61–0.72.
 
@@ -220,6 +220,38 @@ Models were frozen on Train + Validation from 510 combinations of 17 classifiers
 | ![Scatter of ACC and AUC for challenge teams and our frozen models, with lines at 0.80](docs/assets/lb-evaluation-board.png) | ![Histograms by class for six measures, each with its AUC](docs/assets/lb-class-overlap.png) |
 
 ![Five malignant and five benign real lesions in 3D, ordered by Hersch ratio](docs/assets/lb-3d-classes.png)
+
+**What malignancy means, and what a 3D surface can show** (details in
+[`lb-malignancy.ipynb`](https://github.com/mralinp/abus-classification/blob/main/notebooks/lb-malignancy.ipynb)). Designed on Train + Validation, then scored once on Test from a plan frozen and hashed in advance. Test had already been used once, so this is a second look at that split. True masks unless stated.
+
+Malignancy is a behaviour of cells, invasion and spread, confirmed by histology. Shape is only its footprint, and it fails in both directions: radial scars can look spiculated and be benign, and many triple-negative cancers look circumscribed. So we turned the clinical signs into descriptors, and asked which of them hold up.
+
+| Frozen model, on Test | ACC | AUC (95% CI) | Board rank | On Zhou 2021's masks: ACC, AUC |
+| --- | --- | --- | --- | --- |
+| **Size, radial lines, tilt (primary)** | 0.814 | 0.854 (0.758–0.934) | 1 of 9 | 0.781, 0.820 |
+| Size + spiculation (seen before) | 0.871 | 0.889 (0.792–0.969) | 1 of 9 | Not run |
+| Size + radial lines | 0.786 | 0.902 (0.826–0.959) | 1 of 9 | 0.781, 0.835 |
+| Size | 0.714 | 0.758 (0.635–0.868) | 5 of 9 | 0.662, 0.697 |
+| Surface signs alone | 0.643 | 0.733 (0.608–0.849) | 5 of 9 | 0.433, 0.640 |
+
+Ranks use true masks and classify only, so they are not like-for-like with challenge teams. Predicted-mask patches are centred on the true lesion. The notebook reports all 12 models. Only the primary and size were in the plan for predicted masks; the rest are post hoc.
+
+- **Tissue lines replicated.** Lines in the tissue run out of malignant lesions as far as 25–30 mm, and benign lesions stay near zero, with the same profile on Test as on Train + Validation. AUC after volume is 0.77, against 0.76 for Tan's SP90, and it does not follow size. A sham lesion elsewhere in the scan gives AUC 0.43, against 0.77 at the lesion.
+- **The hybrid did not beat size + spiculation.** It passes 0.80 on both metrics, but its gain is −0.035 (−0.117 to 0.039). Its tilt term failed: AUC 0.49 on Test, against 0.60 on Train + Validation. Without tilt the model has the highest AUC of the 12, but being the best of 12 it is not a result, and it ties size + spiculation.
+- **Spiculation is not just spikes on the mask.** On Train + Validation, surface signs track SP90 at Spearman 0.36 at most, while radial lines reach 0.77. Within a lesion, bumps barely sit where lines run out (0.03–0.08 across splits). Masks may simply leave thin spicules out.
+- **Mask shape is modest and does not survive real segmentation.** Surface signs alone reach AUC 0.63 on Train + Validation and 0.73 on Test, then 0.64 with ACC 0.43 on predicted masks. Those surfaces are much smoother, so the model calls almost every lesion benign.
+- **Lines do survive it.** On Zhou 2021's masks the primary model keeps AUC 0.82 and ACC 0.78, where Zhou's own classification head scores 0.67 and 62.9% on the same lesions.
+- **Laplace–Beltrami's part is small.** The fine area budget, built from the operator applied to the surface's coordinates, is the first LB measure here with signal beyond volume on held-out data: AUC 0.76 (0.63–0.87), one of eight features checked. Its gain on the hybrid is not established (0.034, −0.009 to 0.079), and whether it adds to size + spiculation was not in the plan. The line excess needs no LB, and tilt matches plain surface PCA.
+
+| Each sign on shapes built to show it | Lines around six real lesions |
+| --- | --- |
+| ![Six synthetic shapes coloured by height above their own smooth body](docs/assets/lb-malignancy-shapes.png) | ![Coronal planes of six real lesions with strong tissue lines marked as running outward or along the lesion](docs/assets/lb-malignancy-planes.png) |
+
+![Six real lesions in 3D: height above the body in the top row, and tissue lines carried onto the surface in the bottom row](docs/assets/lb-malignancy-surfaces.png)
+
+![On Test: radial excess of tissue lines by distance from the mask, for malignant and benign lesions, around the lesion and around a sham lesion in the same scan](docs/assets/lb-malignancy-reach-test.png)
+
+![On Test: AUC of all 12 frozen models with intervals beside their cross-validated AUC, and ROC curves of four models](docs/assets/lb-malignancy-test.png)
 
 | Predicted and true tumors, Zhou et al. 2021 | Ablations against the paper |
 | --- | --- |
@@ -295,7 +327,7 @@ derive better-founded descriptors.
 | ✅ | Spectral descriptors | Shape-DNA [9], heat kernel signature [10], wave kernel signature [11], global point signature [12]. Eigenfunction-based summaries show the first signal beyond volume, not yet established. [`lb-descriptors.ipynb`](https://github.com/mralinp/abus-classification/blob/main/notebooks/lb-descriptors.ipynb) |
 | ✅ | Spherical harmonics | Spherical harmonics are the Laplace–Beltrami eigenfunctions of the sphere, so a spherical harmonic decomposition [13, 14] and the lesion's own spectrum are two views of one framework; it needs genus-0 surfaces, so voxel-derived surfaces with handles require topology correction first. All 200 lesions map to the sphere, 19 after topology correction; harmonic power is more reliable than high eigenvalues. [`lb-spherical-harmonics.ipynb`](https://github.com/mralinp/abus-classification/blob/main/notebooks/lb-spherical-harmonics.ipynb) |
 | ✅ | Classification with LB features | All features, combinations and selection across 17 classifiers, in ACC, AUC and the TDSC-ABUS benchmark, frozen on Train + Validation and scored once on Test. LB features alone: AUC 0.69, ACC 0.60. Size + spiculation: AUC 0.89, ACC 0.87. [`lb-feature-evaluation.ipynb`](https://github.com/mralinp/abus-classification/blob/main/notebooks/lb-feature-evaluation.ipynb) |
-| ⬜ | Theory-driven descriptors | Design descriptors from the results above, fuse them with spiculation, intensity and CNN features, and evaluate under the Phase 2 protocol with ablations |
+| 🔄 | Theory-driven descriptors | Design descriptors from the results above, fuse them with spiculation, intensity and CNN features, and evaluate under the Phase 2 protocol with ablations. Designed from the clinical signs of malignancy, fused with size and spiculation, and scored once on Test as a second look: tissue lines replicated, tilt failed, and size + spiculation stays ahead. Intensity and CNN fusion remain. [`lb-malignancy.ipynb`](https://github.com/mralinp/abus-classification/blob/main/notebooks/lb-malignancy.ipynb) |
 
 ![Lesion surfaces reconstructed by marching cubes for a malignant and a benign lesion, drawn at true physical proportions](docs/assets/lesion-surfaces-3d.png)
 
@@ -449,12 +481,12 @@ uv run python -m abus_classification.papers.zhou2021 --epochs 100
 | --- | --- |
 | `abus_classification/papers/` | Paper implementations (`barekatrezaei2026`, `zhou2021`, `wang2020`, `yu2024`); completion and source verification vary |
 | `abus_classification/protocol.py` | Shared evaluation protocol: device, metrics, folds, bootstrap CI |
-| `abus_classification/lb_invariance.py`, `lb_spectrum_content.py`, `lb_roundness.py`, `lb_stability.py`, `lb_spharm.py`, `lb_descriptors.py`, `lb_classification.py`, `lb_evaluation.py` | Laplace–Beltrami experiments on TDSC-ABUS lesions: invariance, what the spectrum determines, roundness, stability, spherical harmonics, spectral descriptors, classification, Test evaluation |
+| `abus_classification/lb_invariance.py`, `lb_spectrum_content.py`, `lb_roundness.py`, `lb_stability.py`, `lb_spharm.py`, `lb_descriptors.py`, `lb_classification.py`, `lb_evaluation.py`, `lb_malignancy.py` | Laplace–Beltrami experiments on TDSC-ABUS lesions: invariance, what the spectrum determines, roundness, stability, spherical harmonics, spectral descriptors, classification, Test evaluation, descriptors from clinical signs |
 | `abus_classification/challenge.py` | TDSC-ABUS 2023 challenge evaluation (Dice, HD, ACC, AUC, FROC) and published leaderboard |
 | `abus_classification/data/` | Lesion cache: patches, radiomic and Laplace–Beltrami features per volume |
 | `abus_classification/features/tan/` | Tan et al. (2012, 2013) features, including coronal spiculation |
 | `abus_classification/features/radiology/` | General radiomic features in physical units |
-| `abus_classification/features/shape_descriptor/` | Laplace–Beltrami operator, spectral signatures, boundary signatures, spherical harmonics |
+| `abus_classification/features/shape_descriptor/` | Laplace–Beltrami operator, spectral signatures, boundary signatures, spherical harmonics, descriptors from clinical signs |
 | `abus_classification/features/texture/` | Grey-level co-occurrence texture features |
 | `abus_classification/models/` | U-Net, V-Net, SE-FNet, multi-task V-Net |
 | `abus_classification/utils/` | Meshing, voxel spacing and resampling, image utilities |

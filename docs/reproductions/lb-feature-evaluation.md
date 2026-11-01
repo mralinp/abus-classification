@@ -42,4 +42,4 @@ Search inside cross-validation on Train+Validation: all features AUC 0.803, ACC 
 
 ## Status
 
-The stored results come from the current code, from one freeze and one evaluation. A first, smaller freeze was replaced before Test was read, when more classifiers and classical features were requested. **Test has now been used once**, so further tuning against it would be biased. Not run: predicted masks, models on signature maps, an external dataset. Ranks use ground-truth masks and are not like-for-like with challenge teams.
+The stored results come from the current code, from one freeze and one evaluation. A first, smaller freeze was replaced before Test was read, when more classifiers and classical features were requested. **Test was used once here**, and a second time later by `lb-malignancy`, from a frozen plan. Further tuning against it would be biased. Not run: predicted masks, models on signature maps, an external dataset. Ranks use ground-truth masks and are not like-for-like with challenge teams.
