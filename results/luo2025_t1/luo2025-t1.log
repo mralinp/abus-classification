@@ -1,0 +1,624 @@
+[{"stream_name":"stdout","time":48.226829071,"data":"drive: ready, gdrive:abus-checkpoints/luo2025-t1\n"}
+,{"stream_name":"stdout","time":48.227417044,"data":"02:01:49 building the cache\n"}
+,{"stream_name":"stdout","time":650.861652472,"data":"drive: uploaded\n"}
+,{"stream_name":"stdout","time":989.919708767,"data":"02:17:30 cache built\n"}
+,{"stream_name":"stdout","time":989.931740463,"data":"02:17:30 2 GPUs, 4 CPUs\n"}
+,{"stream_name":"stdout","time":1003.532762537,"data":"02:17:44 seg_seed0 start, 100 fit, 30 validation, 70 test\n"}
+,{"stream_name":"stdout","time":1003.797583204,"data":"02:17:44 det_seed0 start, 100 fit, 30 validation, 70 test\n"}
+,{"stream_name":"stdout","time":1005.436198482,"data":"02:17:46 det_seed0 resumed after epoch 67\n"}
+,{"stream_name":"stdout","time":1005.502953488,"data":"02:17:46 seg_seed0 resumed after epoch 17\n"}
+,{"stream_name":"stdout","time":1025.798575509,"data":"02:18:06 det_seed0 cuda:0 epoch 68 loss 1.104 lr 6.3e-05 val 0.356 best 0.356 at 68 1510 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":1044.776218023,"data":"02:18:25 det_seed0 cuda:0 epoch 69 loss 1.071 lr 6.3e-05 val 0.347 best 0.356 at 68 1528 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":1064.169204634,"data":"02:18:45 det_seed0 cuda:0 epoch 70 loss 1.113 lr 6.3e-05 val 0.336 best 0.356 at 68 1548 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":1084.106049537,"data":"02:19:05 det_seed0 cuda:0 epoch 71 loss 1.141 lr 6.3e-05 val 0.357 best 0.357 at 71 1568 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":1099.460862456,"data":"02:19:20 seg_seed0 cuda:1 epoch 18 loss 0.766 lr 1.0e-03 val 0.576 best 0.576 at 18 2400 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":1104.574498164,"data":"02:19:25 det_seed0 cuda:0 epoch 72 loss 1.135 lr 6.3e-05 val 0.338 best 0.357 at 71 1588 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":1125.797109981,"data":"02:19:46 det_seed0 cuda:0 epoch 73 loss 1.167 lr 6.3e-05 val 0.357 best 0.357 at 71 1609 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":1147.577411219,"data":"02:20:08 det_seed0 cuda:0 epoch 74 loss 1.180 lr 6.3e-05 val 0.354 best 0.357 at 71 1631 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":1168.968348697,"data":"02:20:30 det_seed0 cuda:0 epoch 75 loss 1.060 lr 6.3e-05 val 0.350 best 0.357 at 71 1652 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":1190.192303826,"data":"02:20:51 det_seed0 cuda:0 epoch 76 loss 1.133 lr 6.3e-05 val 0.343 best 0.357 at 71 1674 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":1199.408313019,"data":"02:21:00 seg_seed0 cuda:1 epoch 19 loss 0.787 lr 1.0e-03 val 0.611 best 0.611 at 19 2499 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":1211.641346695,"data":"02:21:12 det_seed0 cuda:0 epoch 77 loss 1.086 lr 3.1e-05 val 0.349 best 0.357 at 71 1695 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":1233.125806203,"data":"02:21:34 det_seed0 cuda:0 epoch 78 loss 1.062 lr 3.1e-05 val 0.345 best 0.357 at 71 1716 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":1254.575373289,"data":"02:21:55 det_seed0 cuda:0 epoch 79 loss 0.993 lr 3.1e-05 val 0.348 best 0.357 at 71 1738 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":1255.70745693,"data":"drive: uploaded\n"}
+,{"stream_name":"stdout","time":1276.040407037,"data":"02:22:17 det_seed0 cuda:0 epoch 80 loss 0.987 lr 3.1e-05 val 0.339 best 0.357 at 71 1759 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":1297.442151545,"data":"02:22:38 det_seed0 cuda:0 epoch 81 loss 0.883 lr 3.1e-05 val 0.350 best 0.357 at 71 1781 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":1299.468549856,"data":"02:22:40 seg_seed0 cuda:1 epoch 20 loss 0.769 lr 1.0e-03 val 0.453 best 0.611 at 19 2599 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":1318.843708734,"data":"02:22:59 det_seed0 cuda:0 epoch 82 loss 1.034 lr 3.1e-05 val 0.345 best 0.357 at 71 1802 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":1340.253841588,"data":"02:23:21 det_seed0 cuda:0 epoch 83 loss 0.918 lr 1.6e-05 val 0.339 best 0.357 at 71 1823 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":1361.694168492,"data":"02:23:42 det_seed0 cuda:0 epoch 84 loss 1.005 lr 1.6e-05 val 0.341 best 0.357 at 71 1845 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":1383.141455284,"data":"02:24:04 det_seed0 cuda:0 epoch 85 loss 0.989 lr 1.6e-05 val 0.344 best 0.357 at 71 1866 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":1399.57374584,"data":"02:24:20 seg_seed0 cuda:1 epoch 21 loss 0.787 lr 1.0e-03 val 0.596 best 0.611 at 19 2699 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":1404.614121703,"data":"02:24:25 det_seed0 cuda:0 epoch 86 loss 0.849 lr 1.6e-05 val 0.356 best 0.357 at 71 1887 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":1426.096632152,"data":"02:24:47 det_seed0 cuda:0 epoch 87 loss 0.958 lr 1.6e-05 val 0.354 best 0.357 at 71 1909 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":1447.565989637,"data":"02:25:08 det_seed0 cuda:0 epoch 88 loss 0.937 lr 1.6e-05 val 0.339 best 0.357 at 71 1930 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":1469.029096251,"data":"02:25:30 det_seed0 cuda:0 epoch 89 loss 1.104 lr 7.8e-06 val 0.356 best 0.357 at 71 1952 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":1490.519027567,"data":"02:25:51 det_seed0 cuda:0 epoch 90 loss 1.143 lr 7.8e-06 val 0.359 best 0.359 at 90 1973 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":1500.028621498,"data":"02:26:01 seg_seed0 cuda:1 epoch 22 loss 0.781 lr 1.0e-03 val 0.438 best 0.611 at 19 2800 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":1511.9752406,"data":"02:26:13 det_seed0 cuda:0 epoch 91 loss 0.898 lr 7.8e-06 val 0.349 best 0.359 at 90 1995 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":1533.433546245,"data":"02:26:34 det_seed0 cuda:0 epoch 92 loss 0.990 lr 7.8e-06 val 0.349 best 0.359 at 90 2016 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":1554.916044923,"data":"02:26:55 det_seed0 cuda:0 epoch 93 loss 1.053 lr 7.8e-06 val 0.361 best 0.361 at 93 2037 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":1576.390545064,"data":"02:27:17 det_seed0 cuda:0 epoch 94 loss 0.943 lr 7.8e-06 val 0.362 best 0.362 at 94 2059 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":1597.860369677,"data":"02:27:38 det_seed0 cuda:0 epoch 95 loss 0.946 lr 7.8e-06 val 0.358 best 0.362 at 94 2080 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":1600.543588309,"data":"02:27:41 seg_seed0 cuda:1 epoch 23 loss 0.765 lr 1.0e-03 val 0.501 best 0.611 at 19 2900 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":1619.278928656,"data":"02:28:00 det_seed0 cuda:0 epoch 96 loss 0.987 lr 7.8e-06 val 0.347 best 0.362 at 94 2102 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":1640.656632292,"data":"02:28:21 det_seed0 cuda:0 epoch 97 loss 0.996 lr 7.8e-06 val 0.348 best 0.362 at 94 2123 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":1662.062127374,"data":"02:28:43 det_seed0 cuda:0 epoch 98 loss 0.879 lr 7.8e-06 val 0.352 best 0.362 at 94 2144 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":1683.421149118,"data":"02:29:04 det_seed0 cuda:0 epoch 99 loss 0.979 lr 7.8e-06 val 0.353 best 0.362 at 94 2166 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":1700.834308619,"data":"02:29:21 seg_seed0 cuda:1 epoch 24 loss 0.753 lr 1.0e-03 val 0.629 best 0.629 at 24 3000 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":1704.779680973,"data":"02:29:25 det_seed0 cuda:0 epoch 100 loss 0.978 lr 3.9e-06 val 0.358 best 0.362 at 94 2187 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":1726.161160459,"data":"02:29:47 det_seed0 cuda:0 epoch 101 loss 0.924 lr 3.9e-06 val 0.349 best 0.362 at 94 2208 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":1747.54967819,"data":"02:30:08 det_seed0 cuda:0 epoch 102 loss 0.892 lr 3.9e-06 val 0.345 best 0.362 at 94 2230 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":1768.905368009,"data":"02:30:29 det_seed0 cuda:0 epoch 103 loss 0.897 lr 3.9e-06 val 0.358 best 0.362 at 94 2251 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":1790.270454297,"data":"02:30:51 det_seed0 cuda:0 epoch 104 loss 0.953 lr 3.9e-06 val 0.352 best 0.362 at 94 2272 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":1801.1337158,"data":"02:31:02 seg_seed0 cuda:1 epoch 25 loss 0.764 lr 1.0e-03 val 0.628 best 0.629 at 24 3100 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":1811.644311382,"data":"02:31:12 det_seed0 cuda:0 epoch 105 loss 0.888 lr 3.9e-06 val 0.355 best 0.362 at 94 2294 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":1832.992939335,"data":"02:31:34 det_seed0 cuda:0 epoch 106 loss 0.819 lr 2.0e-06 val 0.357 best 0.362 at 94 2315 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":1854.330558001,"data":"02:31:55 det_seed0 cuda:0 epoch 107 loss 1.091 lr 2.0e-06 val 0.358 best 0.362 at 94 2336 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":1875.719675688,"data":"02:32:16 det_seed0 cuda:0 epoch 108 loss 1.026 lr 2.0e-06 val 0.357 best 0.362 at 94 2357 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":1897.068419769,"data":"02:32:38 det_seed0 cuda:0 epoch 109 loss 0.888 lr 2.0e-06 val 0.359 best 0.362 at 94 2379 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":1901.497663197,"data":"02:32:42 seg_seed0 cuda:1 epoch 26 loss 0.728 lr 1.0e-03 val 0.612 best 0.629 at 24 3201 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":1910.909088556,"data":"drive: uploaded\n"}
+,{"stream_name":"stdout","time":1918.414681998,"data":"02:32:59 det_seed0 cuda:0 epoch 110 loss 0.786 lr 2.0e-06 val 0.354 best 0.362 at 94 2400 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":1939.75237994,"data":"02:33:20 det_seed0 cuda:0 epoch 111 loss 0.975 lr 2.0e-06 val 0.357 best 0.362 at 94 2421 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":1961.035819349,"data":"02:33:42 det_seed0 cuda:0 epoch 112 loss 0.874 lr 2.0e-06 val 0.363 best 0.363 at 112 2443 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":1982.281891587,"data":"02:34:03 det_seed0 cuda:0 epoch 113 loss 0.925 lr 2.0e-06 val 0.361 best 0.363 at 112 2464 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":2001.790177082,"data":"02:34:22 seg_seed0 cuda:1 epoch 27 loss 0.745 lr 1.0e-03 val 0.652 best 0.652 at 27 3301 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":2003.54924599,"data":"02:34:24 det_seed0 cuda:0 epoch 114 loss 1.018 lr 2.0e-06 val 0.357 best 0.363 at 112 2485 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":2024.833982377,"data":"02:34:45 det_seed0 cuda:0 epoch 115 loss 1.094 lr 2.0e-06 val 0.352 best 0.363 at 112 2506 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":2046.128543341,"data":"02:35:07 det_seed0 cuda:0 epoch 116 loss 0.894 lr 2.0e-06 val 0.360 best 0.363 at 112 2527 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":2067.398154488,"data":"02:35:28 det_seed0 cuda:0 epoch 117 loss 0.894 lr 2.0e-06 val 0.361 best 0.363 at 112 2549 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":2088.688189288,"data":"02:35:49 det_seed0 cuda:0 epoch 118 loss 0.991 lr 9.8e-07 val 0.360 best 0.363 at 112 2570 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":2102.056853515,"data":"02:36:03 seg_seed0 cuda:1 epoch 28 loss 0.734 lr 1.0e-03 val 0.513 best 0.652 at 27 3401 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":2109.969032746,"data":"02:36:11 det_seed0 cuda:0 epoch 119 loss 1.076 lr 9.8e-07 val 0.360 best 0.363 at 112 2591 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":2131.27380301,"data":"02:36:32 det_seed0 cuda:0 epoch 120 loss 0.936 lr 9.8e-07 val 0.362 best 0.363 at 112 2612 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":2152.582101975,"data":"02:36:53 det_seed0 cuda:0 epoch 121 loss 0.781 lr 9.8e-07 val 0.357 best 0.363 at 112 2634 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":2173.906191185,"data":"02:37:14 det_seed0 cuda:0 epoch 122 loss 0.875 lr 9.8e-07 val 0.350 best 0.363 at 112 2655 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":2195.235223709,"data":"02:37:36 det_seed0 cuda:0 epoch 123 loss 1.018 lr 9.8e-07 val 0.358 best 0.363 at 112 2676 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":2202.413419357,"data":"02:37:43 seg_seed0 cuda:1 epoch 29 loss 0.732 lr 1.0e-03 val 0.632 best 0.652 at 27 3501 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":2216.543179008,"data":"02:37:57 det_seed0 cuda:0 epoch 124 loss 0.903 lr 4.9e-07 val 0.359 best 0.363 at 112 2697 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":2237.854267622,"data":"02:38:18 det_seed0 cuda:0 epoch 125 loss 0.959 lr 4.9e-07 val 0.355 best 0.363 at 112 2719 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":2259.186795225,"data":"02:38:40 det_seed0 cuda:0 epoch 126 loss 0.963 lr 4.9e-07 val 0.353 best 0.363 at 112 2740 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":2280.47739231,"data":"02:39:01 det_seed0 cuda:0 epoch 127 loss 0.957 lr 4.9e-07 val 0.352 best 0.363 at 112 2761 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":2301.740953986,"data":"02:39:22 det_seed0 cuda:0 epoch 128 loss 1.061 lr 4.9e-07 val 0.355 best 0.363 at 112 2782 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":2302.689317034,"data":"02:39:23 seg_seed0 cuda:1 epoch 30 loss 0.727 lr 1.0e-03 val 0.648 best 0.652 at 27 3601 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":2323.00007248,"data":"02:39:44 det_seed0 cuda:0 epoch 129 loss 0.862 lr 4.9e-07 val 0.361 best 0.363 at 112 2804 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":2344.308254431,"data":"02:40:05 det_seed0 cuda:0 epoch 130 loss 0.944 lr 2.4e-07 val 0.361 best 0.363 at 112 2825 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":2365.623643345,"data":"02:40:26 det_seed0 cuda:0 epoch 131 loss 0.851 lr 2.4e-07 val 0.346 best 0.363 at 112 2846 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":2386.962153709,"data":"02:40:47 det_seed0 cuda:0 epoch 132 loss 0.898 lr 2.4e-07 val 0.347 best 0.363 at 112 2867 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":2403.014137373,"data":"02:41:04 seg_seed0 cuda:1 epoch 31 loss 0.735 lr 1.0e-03 val 0.581 best 0.652 at 27 3701 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":2408.271235055,"data":"02:41:09 det_seed0 cuda:0 epoch 133 loss 0.929 lr 2.4e-07 val 0.352 best 0.363 at 112 2889 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":2429.513170104,"data":"02:41:30 det_seed0 cuda:0 epoch 134 loss 1.044 lr 2.4e-07 val 0.361 best 0.363 at 112 2910 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":2450.810089539,"data":"02:41:51 det_seed0 cuda:0 epoch 135 loss 0.841 lr 2.4e-07 val 0.359 best 0.363 at 112 2931 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":2472.181509484,"data":"02:42:13 det_seed0 cuda:0 epoch 136 loss 0.875 lr 1.2e-07 val 0.360 best 0.363 at 112 2952 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":2493.626785132,"data":"02:42:34 det_seed0 cuda:0 epoch 137 loss 1.003 lr 1.2e-07 val 0.360 best 0.363 at 112 2974 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":2503.397701278,"data":"02:42:44 seg_seed0 cuda:1 epoch 32 loss 0.679 lr 1.0e-03 val 0.606 best 0.652 at 27 3802 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":2514.972428457,"data":"02:42:56 det_seed0 cuda:0 epoch 138 loss 1.024 lr 1.2e-07 val 0.357 best 0.363 at 112 2995 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":2536.240481805,"data":"02:43:17 det_seed0 cuda:0 epoch 139 loss 1.047 lr 1.2e-07 val 0.347 best 0.363 at 112 3016 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":2557.495101169,"data":"02:43:38 det_seed0 cuda:0 epoch 140 loss 0.950 lr 1.2e-07 val 0.344 best 0.363 at 112 3038 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":2578.820619109,"data":"02:43:59 det_seed0 cuda:0 epoch 141 loss 0.908 lr 1.2e-07 val 0.347 best 0.363 at 112 3059 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":2600.244861531,"data":"02:44:21 det_seed0 cuda:0 epoch 142 loss 0.994 lr 6.1e-08 val 0.356 best 0.363 at 112 3080 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":2600.254669062,"data":"02:44:21 det_seed0 done, best epoch 112, val 0.363\n"}
+,{"stream_name":"stdout","time":2603.74410154,"data":"02:44:24 seg_seed0 cuda:1 epoch 33 loss 0.501 lr 5.0e-04 val 0.274 best 0.652 at 27 3902 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":2604.320996066,"data":"02:44:25 det_seed0 predictions saved\n"}
+,{"stream_name":"stdout","time":2608.265012235,"data":"02:44:29 det_seed1 start, 100 fit, 30 validation, 70 test\n"}
+,{"stream_name":"stdout","time":2629.700187059,"data":"02:44:50 det_seed1 cuda:0 epoch 1 loss 5.595 lr 1.0e-03 val 0.000 best 0.000 at 1 21 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":2650.694684963,"data":"02:45:11 det_seed1 cuda:0 epoch 2 loss 4.047 lr 1.0e-03 val 0.022 best 0.022 at 2 42 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":2671.769391984,"data":"02:45:32 det_seed1 cuda:0 epoch 3 loss 3.108 lr 1.0e-03 val 0.083 best 0.083 at 3 63 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":2690.246765531,"data":"drive: uploaded\n"}
+,{"stream_name":"stdout","time":2692.879039946,"data":"02:45:53 det_seed1 cuda:0 epoch 4 loss 3.105 lr 1.0e-03 val 0.157 best 0.157 at 4 84 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":2704.088004239,"data":"02:46:05 seg_seed0 cuda:1 epoch 34 loss 0.500 lr 5.0e-04 val 0.315 best 0.652 at 27 4002 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":2714.019602153,"data":"02:46:15 det_seed1 cuda:0 epoch 5 loss 2.765 lr 1.0e-03 val 0.111 best 0.157 at 4 105 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":2735.185186369,"data":"02:46:36 det_seed1 cuda:0 epoch 6 loss 2.817 lr 1.0e-03 val 0.210 best 0.210 at 6 126 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":2756.334122907,"data":"02:46:57 det_seed1 cuda:0 epoch 7 loss 2.869 lr 1.0e-03 val 0.048 best 0.210 at 6 147 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":2777.525785029,"data":"02:47:18 det_seed1 cuda:0 epoch 8 loss 2.983 lr 1.0e-03 val 0.057 best 0.210 at 6 168 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":2798.696311947,"data":"02:47:39 det_seed1 cuda:0 epoch 9 loss 2.851 lr 1.0e-03 val 0.077 best 0.210 at 6 190 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":2804.517543768,"data":"02:47:45 seg_seed0 cuda:1 epoch 35 loss 0.466 lr 5.0e-04 val 0.449 best 0.652 at 27 4102 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":2819.837329815,"data":"02:48:00 det_seed1 cuda:0 epoch 10 loss 2.501 lr 1.0e-03 val 0.162 best 0.210 at 6 211 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":2840.952669507,"data":"02:48:21 det_seed1 cuda:0 epoch 11 loss 2.436 lr 1.0e-03 val 0.133 best 0.210 at 6 232 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":2862.172239466,"data":"02:48:43 det_seed1 cuda:0 epoch 12 loss 2.198 lr 5.0e-04 val 0.095 best 0.210 at 6 253 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":2883.418856431,"data":"02:49:04 det_seed1 cuda:0 epoch 13 loss 2.333 lr 5.0e-04 val 0.227 best 0.227 at 13 274 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":2904.641900344,"data":"02:49:25 det_seed1 cuda:0 epoch 14 loss 2.139 lr 5.0e-04 val 0.210 best 0.227 at 13 295 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":2904.903597998,"data":"02:49:25 seg_seed0 cuda:1 epoch 36 loss 0.450 lr 5.0e-04 val 0.535 best 0.652 at 27 4203 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":2925.878211898,"data":"02:49:46 det_seed1 cuda:0 epoch 15 loss 2.047 lr 5.0e-04 val 0.168 best 0.227 at 13 316 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":2947.110984442,"data":"02:50:08 det_seed1 cuda:0 epoch 16 loss 2.268 lr 5.0e-04 val 0.244 best 0.244 at 16 338 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":2968.339133457,"data":"02:50:29 det_seed1 cuda:0 epoch 17 loss 1.930 lr 5.0e-04 val 0.149 best 0.244 at 16 359 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":2989.54186974,"data":"02:50:50 det_seed1 cuda:0 epoch 18 loss 2.036 lr 5.0e-04 val 0.190 best 0.244 at 16 380 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":3005.286696701,"data":"02:51:06 seg_seed0 cuda:1 epoch 37 loss 0.425 lr 5.0e-04 val 0.487 best 0.652 at 27 4303 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":3010.718363206,"data":"02:51:11 det_seed1 cuda:0 epoch 19 loss 2.196 lr 5.0e-04 val 0.193 best 0.244 at 16 401 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":3031.877047352,"data":"02:51:32 det_seed1 cuda:0 epoch 20 loss 2.252 lr 5.0e-04 val 0.191 best 0.244 at 16 422 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":3053.07587395,"data":"02:51:54 det_seed1 cuda:0 epoch 21 loss 2.176 lr 5.0e-04 val 0.052 best 0.244 at 16 443 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":3074.296263496,"data":"02:52:15 det_seed1 cuda:0 epoch 22 loss 1.942 lr 2.5e-04 val 0.109 best 0.244 at 16 465 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":3095.535560639,"data":"02:52:36 det_seed1 cuda:0 epoch 23 loss 2.170 lr 2.5e-04 val 0.223 best 0.244 at 16 486 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":3105.652576426,"data":"02:52:46 seg_seed0 cuda:1 epoch 38 loss 0.421 lr 5.0e-04 val 0.565 best 0.652 at 27 4403 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":3116.752404106,"data":"02:52:57 det_seed1 cuda:0 epoch 24 loss 1.934 lr 2.5e-04 val 0.184 best 0.244 at 16 507 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":3137.979893237,"data":"02:53:19 det_seed1 cuda:0 epoch 25 loss 1.856 lr 2.5e-04 val 0.190 best 0.244 at 16 528 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":3159.19017034,"data":"02:53:40 det_seed1 cuda:0 epoch 26 loss 1.780 lr 2.5e-04 val 0.236 best 0.244 at 16 549 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":3180.399513351,"data":"02:54:01 det_seed1 cuda:0 epoch 27 loss 1.925 lr 2.5e-04 val 0.199 best 0.244 at 16 570 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":3201.616384069,"data":"02:54:22 det_seed1 cuda:0 epoch 28 loss 1.823 lr 2.5e-04 val 0.261 best 0.261 at 28 592 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":3205.858263671,"data":"02:54:26 seg_seed0 cuda:1 epoch 39 loss 0.400 lr 2.5e-04 val 0.623 best 0.652 at 27 4503 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":3222.847960733,"data":"02:54:43 det_seed1 cuda:0 epoch 29 loss 1.983 lr 2.5e-04 val 0.259 best 0.261 at 28 613 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":3244.072422715,"data":"02:55:05 det_seed1 cuda:0 epoch 30 loss 1.889 lr 2.5e-04 val 0.240 best 0.261 at 28 634 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":3265.287160056,"data":"02:55:26 det_seed1 cuda:0 epoch 31 loss 1.676 lr 2.5e-04 val 0.257 best 0.261 at 28 655 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":3286.507709265,"data":"02:55:47 det_seed1 cuda:0 epoch 32 loss 1.626 lr 2.5e-04 val 0.206 best 0.261 at 28 676 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":3296.258700952,"data":"drive: uploaded\n"}
+,{"stream_name":"stdout","time":3305.886763008,"data":"02:56:06 seg_seed0 cuda:1 epoch 40 loss 0.376 lr 2.5e-04 val 0.600 best 0.652 at 27 4603 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":3307.741642092,"data":"02:56:08 det_seed1 cuda:0 epoch 33 loss 1.668 lr 2.5e-04 val 0.284 best 0.284 at 33 697 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":3328.97858176,"data":"02:56:30 det_seed1 cuda:0 epoch 34 loss 1.584 lr 2.5e-04 val 0.240 best 0.284 at 33 719 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":3350.252832675,"data":"02:56:51 det_seed1 cuda:0 epoch 35 loss 1.672 lr 2.5e-04 val 0.284 best 0.284 at 33 740 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":3371.509044421,"data":"02:57:12 det_seed1 cuda:0 epoch 36 loss 1.611 lr 2.5e-04 val 0.271 best 0.284 at 33 761 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":3392.761667219,"data":"02:57:33 det_seed1 cuda:0 epoch 37 loss 1.480 lr 2.5e-04 val 0.253 best 0.284 at 33 782 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":3405.884487326,"data":"02:57:46 seg_seed0 cuda:1 epoch 41 loss 0.375 lr 2.5e-04 val 0.574 best 0.652 at 27 4703 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":3414.037453047,"data":"02:57:55 det_seed1 cuda:0 epoch 38 loss 1.434 lr 2.5e-04 val 0.160 best 0.284 at 33 803 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":3435.30324563,"data":"02:58:16 det_seed1 cuda:0 epoch 39 loss 1.620 lr 1.3e-04 val 0.245 best 0.284 at 33 825 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":3456.551909315,"data":"02:58:37 det_seed1 cuda:0 epoch 40 loss 1.703 lr 1.3e-04 val 0.258 best 0.284 at 33 846 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":3477.828308347,"data":"02:58:58 det_seed1 cuda:0 epoch 41 loss 1.504 lr 1.3e-04 val 0.310 best 0.310 at 41 867 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":3499.109205329,"data":"02:59:20 det_seed1 cuda:0 epoch 42 loss 1.588 lr 1.3e-04 val 0.257 best 0.310 at 41 888 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":3505.851082233,"data":"02:59:26 seg_seed0 cuda:1 epoch 42 loss 0.334 lr 2.5e-04 val 0.648 best 0.652 at 27 4803 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":3520.404349558,"data":"02:59:41 det_seed1 cuda:0 epoch 43 loss 1.454 lr 1.3e-04 val 0.257 best 0.310 at 41 910 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":3541.746617782,"data":"03:00:02 det_seed1 cuda:0 epoch 44 loss 1.456 lr 1.3e-04 val 0.292 best 0.310 at 41 931 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":3563.119293494,"data":"03:00:24 det_seed1 cuda:0 epoch 45 loss 1.535 lr 1.3e-04 val 0.334 best 0.334 at 45 952 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":3584.470568026,"data":"03:00:45 det_seed1 cuda:0 epoch 46 loss 1.445 lr 1.3e-04 val 0.307 best 0.334 at 45 974 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":3605.810358279,"data":"03:01:06 det_seed1 cuda:0 epoch 47 loss 1.338 lr 1.3e-04 val 0.302 best 0.334 at 45 995 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":3605.943741932,"data":"03:01:06 seg_seed0 cuda:1 epoch 43 loss 0.346 lr 2.5e-04 val 0.614 best 0.652 at 27 4903 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":3627.131520745,"data":"03:01:28 det_seed1 cuda:0 epoch 48 loss 1.387 lr 1.3e-04 val 0.253 best 0.334 at 45 1016 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":3648.633793751,"data":"03:01:49 det_seed1 cuda:0 epoch 49 loss 1.314 lr 1.3e-04 val 0.264 best 0.334 at 45 1037 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":3669.927313659,"data":"03:02:10 det_seed1 cuda:0 epoch 50 loss 1.480 lr 1.3e-04 val 0.296 best 0.334 at 45 1059 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":3691.240623701,"data":"03:02:32 det_seed1 cuda:0 epoch 51 loss 1.427 lr 6.3e-05 val 0.236 best 0.334 at 45 1080 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":3706.061817016,"data":"03:02:47 seg_seed0 cuda:1 epoch 44 loss 0.352 lr 2.5e-04 val 0.639 best 0.652 at 27 5003 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":3712.501812464,"data":"03:02:53 det_seed1 cuda:0 epoch 52 loss 1.231 lr 6.3e-05 val 0.265 best 0.334 at 45 1101 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":3733.807899851,"data":"03:03:14 det_seed1 cuda:0 epoch 53 loss 1.294 lr 6.3e-05 val 0.272 best 0.334 at 45 1122 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":3755.118134304,"data":"03:03:36 det_seed1 cuda:0 epoch 54 loss 1.127 lr 6.3e-05 val 0.310 best 0.334 at 45 1144 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":3776.388428893,"data":"03:03:57 det_seed1 cuda:0 epoch 55 loss 1.126 lr 6.3e-05 val 0.300 best 0.334 at 45 1165 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":3797.673044721,"data":"03:04:18 det_seed1 cuda:0 epoch 56 loss 1.374 lr 6.3e-05 val 0.313 best 0.334 at 45 1186 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":3806.206390509,"data":"03:04:27 seg_seed0 cuda:1 epoch 45 loss 0.357 lr 1.3e-04 val 0.652 best 0.652 at 27 5103 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":3818.9768376,"data":"03:04:40 det_seed1 cuda:0 epoch 57 loss 1.336 lr 3.1e-05 val 0.333 best 0.334 at 45 1207 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":3840.284252624,"data":"03:05:01 det_seed1 cuda:0 epoch 58 loss 1.270 lr 3.1e-05 val 0.320 best 0.334 at 45 1229 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":3861.567906044,"data":"03:05:22 det_seed1 cuda:0 epoch 59 loss 1.347 lr 3.1e-05 val 0.299 best 0.334 at 45 1250 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":3882.862807324,"data":"03:05:43 det_seed1 cuda:0 epoch 60 loss 1.342 lr 3.1e-05 val 0.296 best 0.334 at 45 1271 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":3904.143232861,"data":"03:06:05 det_seed1 cuda:0 epoch 61 loss 1.143 lr 3.1e-05 val 0.301 best 0.334 at 45 1292 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":3906.375105267,"data":"03:06:07 seg_seed0 cuda:1 epoch 46 loss 0.370 lr 1.3e-04 val 0.627 best 0.652 at 27 5203 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":3925.414741879,"data":"03:06:26 det_seed1 cuda:0 epoch 62 loss 1.162 lr 3.1e-05 val 0.294 best 0.334 at 45 1313 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":3946.690523561,"data":"03:06:47 det_seed1 cuda:0 epoch 63 loss 1.159 lr 1.6e-05 val 0.288 best 0.334 at 45 1335 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":3952.01025983,"data":"drive: uploaded\n"}
+,{"stream_name":"stdout","time":3967.971679727,"data":"03:07:09 det_seed1 cuda:0 epoch 64 loss 1.107 lr 1.6e-05 val 0.294 best 0.334 at 45 1356 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":3989.303635829,"data":"03:07:30 det_seed1 cuda:0 epoch 65 loss 1.166 lr 1.6e-05 val 0.302 best 0.334 at 45 1377 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":4006.458497411,"data":"03:07:47 seg_seed0 cuda:1 epoch 47 loss 0.366 lr 1.3e-04 val 0.663 best 0.663 at 47 5302 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":4010.623321485,"data":"03:07:51 det_seed1 cuda:0 epoch 66 loss 1.241 lr 1.6e-05 val 0.297 best 0.334 at 45 1398 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":4031.937288994,"data":"03:08:12 det_seed1 cuda:0 epoch 67 loss 1.045 lr 1.6e-05 val 0.297 best 0.334 at 45 1420 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":4053.237860142,"data":"03:08:34 det_seed1 cuda:0 epoch 68 loss 1.157 lr 1.6e-05 val 0.305 best 0.334 at 45 1441 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":4074.574252227,"data":"03:08:55 det_seed1 cuda:0 epoch 69 loss 1.203 lr 7.8e-06 val 0.295 best 0.334 at 45 1462 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":4095.896569398,"data":"03:09:16 det_seed1 cuda:0 epoch 70 loss 1.104 lr 7.8e-06 val 0.271 best 0.334 at 45 1484 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":4106.568268116,"data":"03:09:27 seg_seed0 cuda:1 epoch 48 loss 0.350 lr 1.3e-04 val 0.603 best 0.663 at 47 5402 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":4106.595499971,"data":"03:09:27 seg_seed0 done, best epoch 47, val 0.663\n"}
+,{"stream_name":"stdout","time":4117.199392246,"data":"03:09:38 det_seed1 cuda:0 epoch 71 loss 0.965 lr 7.8e-06 val 0.303 best 0.334 at 45 1505 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":4138.489314074,"data":"03:09:59 det_seed1 cuda:0 epoch 72 loss 1.039 lr 7.8e-06 val 0.306 best 0.334 at 45 1526 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":4159.813823553,"data":"03:10:20 det_seed1 cuda:0 epoch 73 loss 1.213 lr 7.8e-06 val 0.293 best 0.334 at 45 1547 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":4181.154974663,"data":"03:10:42 det_seed1 cuda:0 epoch 74 loss 1.130 lr 7.8e-06 val 0.301 best 0.334 at 45 1569 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":4202.513921003,"data":"03:11:03 det_seed1 cuda:0 epoch 75 loss 1.202 lr 3.9e-06 val 0.299 best 0.334 at 45 1590 s, 4.1 GiB\n"}
+,{"stream_name":"stdout","time":4202.525802223,"data":"03:11:03 det_seed1 done, best epoch 45, val 0.334\n"}
+,{"stream_name":"stdout","time":4206.605972957,"data":"03:11:07 det_seed1 predictions saved\n"}
+,{"stream_name":"stdout","time":4209.571316256,"data":"03:11:10 seg_seed1 start, 100 fit, 30 validation, 70 test\n"}
+,{"stream_name":"stdout","time":4210.480155656,"data":"03:11:11 seg_seed1 resumed after epoch 3\n"}
+,{"stream_name":"stdout","time":4311.285181654,"data":"03:12:52 seg_seed1 cuda:0 epoch 4 loss 1.039 lr 1.0e-03 val 0.388 best 0.388 at 4 823 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":4406.160350944,"data":"03:14:27 seg_seed0 predictions saved\n"}
+,{"stream_name":"stdout","time":4409.934780947,"data":"03:14:30 det_seed2 start, 100 fit, 30 validation, 70 test\n"}
+,{"stream_name":"stdout","time":4411.90251442,"data":"03:14:32 seg_seed1 cuda:0 epoch 5 loss 0.987 lr 1.0e-03 val 0.320 best 0.388 at 4 924 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":4431.524882818,"data":"03:14:52 det_seed2 cuda:1 epoch 1 loss 4.921 lr 1.0e-03 val 0.000 best 0.000 at 1 21 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":4452.534022508,"data":"03:15:13 det_seed2 cuda:1 epoch 2 loss 3.910 lr 1.0e-03 val 0.004 best 0.004 at 2 42 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":4473.624843262,"data":"03:15:34 det_seed2 cuda:1 epoch 3 loss 3.298 lr 1.0e-03 val 0.053 best 0.053 at 3 63 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":4494.741366033,"data":"03:15:55 det_seed2 cuda:1 epoch 4 loss 3.188 lr 1.0e-03 val 0.170 best 0.170 at 4 84 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":4512.54336684,"data":"03:16:13 seg_seed1 cuda:0 epoch 6 loss 0.938 lr 1.0e-03 val 0.030 best 0.388 at 4 1024 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":4515.897977097,"data":"03:16:16 det_seed2 cuda:1 epoch 5 loss 3.249 lr 1.0e-03 val 0.182 best 0.182 at 5 105 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":4537.053675407,"data":"03:16:38 det_seed2 cuda:1 epoch 6 loss 2.939 lr 1.0e-03 val 0.035 best 0.182 at 5 126 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":4558.214763019,"data":"03:16:59 det_seed2 cuda:1 epoch 7 loss 2.796 lr 1.0e-03 val 0.017 best 0.182 at 5 148 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":4579.37336042,"data":"03:17:20 det_seed2 cuda:1 epoch 8 loss 2.820 lr 1.0e-03 val 0.116 best 0.182 at 5 169 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":4600.514135159,"data":"03:17:41 det_seed2 cuda:1 epoch 9 loss 2.533 lr 1.0e-03 val 0.182 best 0.182 at 9 190 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":4613.187917668,"data":"03:17:54 seg_seed1 cuda:0 epoch 7 loss 0.904 lr 1.0e-03 val 0.000 best 0.388 at 4 1125 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":4621.659620587,"data":"03:18:02 det_seed2 cuda:1 epoch 10 loss 2.473 lr 1.0e-03 val 0.259 best 0.259 at 10 211 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":4642.798561042,"data":"03:18:23 det_seed2 cuda:1 epoch 11 loss 2.413 lr 1.0e-03 val 0.189 best 0.259 at 10 232 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":4663.910657065,"data":"03:18:44 det_seed2 cuda:1 epoch 12 loss 2.528 lr 1.0e-03 val 0.063 best 0.259 at 10 253 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":4685.00597064,"data":"03:19:06 det_seed2 cuda:1 epoch 13 loss 2.632 lr 1.0e-03 val 0.175 best 0.259 at 10 274 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":4706.093578332,"data":"03:19:27 det_seed2 cuda:1 epoch 14 loss 2.436 lr 1.0e-03 val 0.193 best 0.259 at 10 295 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":4713.46819691,"data":"03:19:34 seg_seed1 cuda:0 epoch 8 loss 0.883 lr 1.0e-03 val 0.270 best 0.388 at 4 1225 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":4727.227847845,"data":"03:19:48 det_seed2 cuda:1 epoch 15 loss 2.510 lr 1.0e-03 val 0.158 best 0.259 at 10 316 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":4733.921480651,"data":"drive: uploaded\n"}
+,{"stream_name":"stdout","time":4748.369582306,"data":"03:20:09 det_seed2 cuda:1 epoch 16 loss 2.467 lr 5.0e-04 val 0.116 best 0.259 at 10 337 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":4769.508533903,"data":"03:20:30 det_seed2 cuda:1 epoch 17 loss 2.118 lr 5.0e-04 val 0.206 best 0.259 at 10 358 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":4790.658222969,"data":"03:20:51 det_seed2 cuda:1 epoch 18 loss 2.172 lr 5.0e-04 val 0.164 best 0.259 at 10 379 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":4811.816252894,"data":"03:21:12 det_seed2 cuda:1 epoch 19 loss 2.156 lr 5.0e-04 val 0.273 best 0.273 at 19 401 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":4814.140803099,"data":"03:21:15 seg_seed1 cuda:0 epoch 9 loss 0.826 lr 1.0e-03 val 0.535 best 0.535 at 9 1325 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":4832.967400412,"data":"03:21:34 det_seed2 cuda:1 epoch 20 loss 1.959 lr 5.0e-04 val 0.259 best 0.273 at 19 422 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":4854.35751249,"data":"03:21:55 det_seed2 cuda:1 epoch 21 loss 1.899 lr 5.0e-04 val 0.234 best 0.273 at 19 443 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":4875.487841386,"data":"03:22:16 det_seed2 cuda:1 epoch 22 loss 1.881 lr 5.0e-04 val 0.263 best 0.273 at 19 464 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":4896.596583456,"data":"03:22:37 det_seed2 cuda:1 epoch 23 loss 1.933 lr 5.0e-04 val 0.216 best 0.273 at 19 485 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":4914.785431184,"data":"03:22:55 seg_seed1 cuda:0 epoch 10 loss 0.837 lr 1.0e-03 val 0.489 best 0.535 at 9 1426 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":4917.69135441,"data":"03:22:58 det_seed2 cuda:1 epoch 24 loss 2.022 lr 5.0e-04 val 0.182 best 0.273 at 19 506 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":4938.777115834,"data":"03:23:19 det_seed2 cuda:1 epoch 25 loss 1.895 lr 2.5e-04 val 0.239 best 0.273 at 19 527 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":4959.855818679,"data":"03:23:40 det_seed2 cuda:1 epoch 26 loss 1.969 lr 2.5e-04 val 0.164 best 0.273 at 19 548 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":4980.963097735,"data":"03:24:01 det_seed2 cuda:1 epoch 27 loss 1.881 lr 2.5e-04 val 0.307 best 0.307 at 27 569 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":5002.067712691,"data":"03:24:23 det_seed2 cuda:1 epoch 28 loss 1.777 lr 2.5e-04 val 0.203 best 0.307 at 27 590 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":5015.184024443,"data":"03:24:36 seg_seed1 cuda:0 epoch 11 loss 0.819 lr 1.0e-03 val 0.000 best 0.535 at 9 1526 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":5023.214349418,"data":"03:24:44 det_seed2 cuda:1 epoch 29 loss 1.681 lr 2.5e-04 val 0.310 best 0.310 at 29 611 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":5044.364903985,"data":"03:25:05 det_seed2 cuda:1 epoch 30 loss 1.637 lr 2.5e-04 val 0.331 best 0.331 at 30 632 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":5065.503387668,"data":"03:25:26 det_seed2 cuda:1 epoch 31 loss 1.806 lr 2.5e-04 val 0.296 best 0.331 at 30 653 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":5086.652852832,"data":"03:25:47 det_seed2 cuda:1 epoch 32 loss 1.602 lr 2.5e-04 val 0.263 best 0.331 at 30 675 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":5107.788372185,"data":"03:26:08 det_seed2 cuda:1 epoch 33 loss 1.894 lr 2.5e-04 val 0.297 best 0.331 at 30 696 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":5115.947109388,"data":"03:26:16 seg_seed1 cuda:0 epoch 12 loss 0.826 lr 1.0e-03 val 0.341 best 0.535 at 9 1627 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":5128.902302628,"data":"03:26:29 det_seed2 cuda:1 epoch 34 loss 1.589 lr 2.5e-04 val 0.294 best 0.331 at 30 717 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":5149.9998806,"data":"03:26:51 det_seed2 cuda:1 epoch 35 loss 1.554 lr 2.5e-04 val 0.251 best 0.331 at 30 738 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":5171.077029697,"data":"03:27:12 det_seed2 cuda:1 epoch 36 loss 1.739 lr 1.3e-04 val 0.263 best 0.331 at 30 759 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":5192.166756574,"data":"03:27:33 det_seed2 cuda:1 epoch 37 loss 1.461 lr 1.3e-04 val 0.263 best 0.331 at 30 780 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":5213.26620516,"data":"03:27:54 det_seed2 cuda:1 epoch 38 loss 1.624 lr 1.3e-04 val 0.271 best 0.331 at 30 801 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":5216.389573133,"data":"03:27:57 seg_seed1 cuda:0 epoch 13 loss 0.822 lr 1.0e-03 val 0.504 best 0.535 at 9 1727 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":5234.369646813,"data":"03:28:15 det_seed2 cuda:1 epoch 39 loss 1.510 lr 1.3e-04 val 0.272 best 0.331 at 30 822 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":5255.440661704,"data":"03:28:36 det_seed2 cuda:1 epoch 40 loss 1.406 lr 1.3e-04 val 0.331 best 0.331 at 30 843 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":5276.553605383,"data":"03:28:57 det_seed2 cuda:1 epoch 41 loss 1.655 lr 1.3e-04 val 0.277 best 0.331 at 30 864 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":5297.718992066,"data":"03:29:18 det_seed2 cuda:1 epoch 42 loss 1.461 lr 6.3e-05 val 0.312 best 0.331 at 30 885 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":5316.95002999,"data":"03:29:37 seg_seed1 cuda:0 epoch 14 loss 0.814 lr 1.0e-03 val 0.383 best 0.535 at 9 1827 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":5318.886063305,"data":"03:29:39 det_seed2 cuda:1 epoch 43 loss 1.294 lr 6.3e-05 val 0.304 best 0.331 at 30 906 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":5340.017962281,"data":"03:30:01 det_seed2 cuda:1 epoch 44 loss 1.404 lr 6.3e-05 val 0.272 best 0.331 at 30 927 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":5361.147527711,"data":"03:30:22 det_seed2 cuda:1 epoch 45 loss 1.500 lr 6.3e-05 val 0.282 best 0.331 at 30 948 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":5382.283599296,"data":"03:30:43 det_seed2 cuda:1 epoch 46 loss 1.605 lr 6.3e-05 val 0.297 best 0.331 at 30 969 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":5403.409469302,"data":"03:31:04 det_seed2 cuda:1 epoch 47 loss 1.431 lr 6.3e-05 val 0.252 best 0.331 at 30 991 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":5417.471443539,"data":"03:31:18 seg_seed1 cuda:0 epoch 15 loss 0.814 lr 1.0e-03 val 0.559 best 0.559 at 15 1928 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":5424.507332105,"data":"03:31:25 det_seed2 cuda:1 epoch 48 loss 1.299 lr 3.1e-05 val 0.331 best 0.331 at 30 1012 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":5445.588183156,"data":"03:31:46 det_seed2 cuda:1 epoch 49 loss 1.338 lr 3.1e-05 val 0.296 best 0.331 at 30 1033 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":5466.688017863,"data":"03:32:07 det_seed2 cuda:1 epoch 50 loss 1.487 lr 3.1e-05 val 0.324 best 0.331 at 30 1054 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":5487.791751253,"data":"03:32:28 det_seed2 cuda:1 epoch 51 loss 1.364 lr 3.1e-05 val 0.305 best 0.331 at 30 1075 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":5508.867804666,"data":"03:32:49 det_seed2 cuda:1 epoch 52 loss 1.300 lr 3.1e-05 val 0.299 best 0.331 at 30 1096 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":5517.991964095,"data":"03:32:59 seg_seed1 cuda:0 epoch 16 loss 0.820 lr 1.0e-03 val 0.548 best 0.559 at 15 2028 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":5529.95413049,"data":"03:33:10 det_seed2 cuda:1 epoch 53 loss 1.338 lr 3.1e-05 val 0.297 best 0.331 at 30 1117 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":5551.055411244,"data":"03:33:32 det_seed2 cuda:1 epoch 54 loss 1.348 lr 1.6e-05 val 0.313 best 0.331 at 30 1138 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":5572.187814056,"data":"03:33:53 det_seed2 cuda:1 epoch 55 loss 1.241 lr 1.6e-05 val 0.304 best 0.331 at 30 1159 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":5593.316940026,"data":"03:34:14 det_seed2 cuda:1 epoch 56 loss 1.351 lr 1.6e-05 val 0.295 best 0.331 at 30 1180 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":5614.404678293,"data":"03:34:35 det_seed2 cuda:1 epoch 57 loss 1.352 lr 1.6e-05 val 0.286 best 0.331 at 30 1201 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":5618.521317695,"data":"03:34:39 seg_seed1 cuda:0 epoch 17 loss 0.810 lr 1.0e-03 val 0.544 best 0.559 at 15 2128 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":5635.508246249,"data":"03:34:56 det_seed2 cuda:1 epoch 58 loss 1.396 lr 1.6e-05 val 0.273 best 0.331 at 30 1222 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":5656.621595743,"data":"03:35:17 det_seed2 cuda:1 epoch 59 loss 1.295 lr 1.6e-05 val 0.308 best 0.331 at 30 1243 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":5677.707548429,"data":"03:35:38 det_seed2 cuda:1 epoch 60 loss 1.271 lr 7.8e-06 val 0.325 best 0.331 at 30 1264 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":5677.717629103,"data":"03:35:38 det_seed2 done, best epoch 30, val 0.331\n"}
+,{"stream_name":"stdout","time":5681.736841203,"data":"03:35:42 det_seed2 predictions saved\n"}
+,{"stream_name":"stdout","time":5684.699804062,"data":"03:35:45 seg_seed2 start, 100 fit, 30 validation, 70 test\n"}
+,{"stream_name":"stdout","time":5688.350312442,"data":"drive: uploaded\n"}
+,{"stream_name":"stdout","time":5718.972255174,"data":"03:36:20 seg_seed1 cuda:0 epoch 18 loss 0.791 lr 1.0e-03 val 0.469 best 0.559 at 15 2229 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":5785.018834406,"data":"03:37:26 seg_seed2 cuda:1 epoch 1 loss 1.553 lr 1.0e-03 val 0.000 best 0.000 at 1 100 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":5819.688406719,"data":"03:38:00 seg_seed1 cuda:0 epoch 19 loss 0.824 lr 1.0e-03 val 0.574 best 0.574 at 19 2329 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":5884.782000769,"data":"03:39:05 seg_seed2 cuda:1 epoch 2 loss 1.324 lr 1.0e-03 val 0.000 best 0.000 at 1 199 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":5920.30346148,"data":"03:39:41 seg_seed1 cuda:0 epoch 20 loss 0.811 lr 1.0e-03 val 0.451 best 0.574 at 19 2430 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":5984.508179756,"data":"03:40:45 seg_seed2 cuda:1 epoch 3 loss 1.201 lr 1.0e-03 val 0.000 best 0.000 at 1 299 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":6020.927094337,"data":"03:41:21 seg_seed1 cuda:0 epoch 21 loss 0.762 lr 1.0e-03 val 0.236 best 0.574 at 19 2530 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":6084.298817306,"data":"03:42:25 seg_seed2 cuda:1 epoch 4 loss 1.126 lr 1.0e-03 val 0.000 best 0.000 at 1 399 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":6121.643863877,"data":"03:43:02 seg_seed1 cuda:0 epoch 22 loss 0.753 lr 1.0e-03 val 0.603 best 0.603 at 22 2631 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":6184.042195642,"data":"03:44:05 seg_seed2 cuda:1 epoch 5 loss 1.088 lr 1.0e-03 val 0.000 best 0.000 at 1 498 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":6222.216886357,"data":"03:44:43 seg_seed1 cuda:0 epoch 23 loss 0.602 lr 1.0e-03 val 0.408 best 0.603 at 22 2731 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":6283.814047418,"data":"03:45:44 seg_seed2 cuda:1 epoch 6 loss 1.061 lr 1.0e-03 val 0.000 best 0.000 at 1 598 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":6322.923008569,"data":"03:46:23 seg_seed1 cuda:0 epoch 24 loss 0.581 lr 1.0e-03 val 0.158 best 0.603 at 22 2832 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":6383.648964226,"data":"03:47:24 seg_seed2 cuda:1 epoch 7 loss 1.040 lr 1.0e-03 val 0.254 best 0.254 at 7 697 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":6423.470444452,"data":"03:48:04 seg_seed1 cuda:0 epoch 25 loss 0.586 lr 1.0e-03 val 0.461 best 0.603 at 22 2932 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":6483.41093273,"data":"03:49:04 seg_seed2 cuda:1 epoch 8 loss 0.988 lr 1.0e-03 val 0.013 best 0.254 at 7 797 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":6524.067536249,"data":"03:49:45 seg_seed1 cuda:0 epoch 26 loss 0.482 lr 1.0e-03 val 0.557 best 0.603 at 22 3033 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":6583.229547341,"data":"03:50:44 seg_seed2 cuda:1 epoch 9 loss 0.957 lr 1.0e-03 val 0.466 best 0.466 at 9 897 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":6624.643127406,"data":"03:51:25 seg_seed1 cuda:0 epoch 27 loss 0.513 lr 1.0e-03 val 0.462 best 0.603 at 22 3133 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":6682.962639716,"data":"03:52:23 seg_seed2 cuda:1 epoch 10 loss 0.923 lr 1.0e-03 val 0.387 best 0.466 at 9 996 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":6699.119684613,"data":"drive: uploaded\n"}
+,{"stream_name":"stdout","time":6725.055559106,"data":"03:53:06 seg_seed1 cuda:0 epoch 28 loss 0.529 lr 5.0e-04 val 0.479 best 0.603 at 22 3233 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":6782.71458235,"data":"03:54:03 seg_seed2 cuda:1 epoch 11 loss 0.882 lr 1.0e-03 val 0.305 best 0.466 at 9 1096 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":6825.737571502,"data":"03:54:46 seg_seed1 cuda:0 epoch 29 loss 0.480 lr 5.0e-04 val 0.565 best 0.603 at 22 3334 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":6882.446483025,"data":"03:55:43 seg_seed2 cuda:1 epoch 12 loss 0.884 lr 1.0e-03 val 0.023 best 0.466 at 9 1195 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":6926.428640834,"data":"03:56:27 seg_seed1 cuda:0 epoch 30 loss 0.542 lr 5.0e-04 val 0.564 best 0.603 at 22 3434 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":6982.216240374,"data":"03:57:23 seg_seed2 cuda:1 epoch 13 loss 0.856 lr 1.0e-03 val 0.457 best 0.466 at 9 1295 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":7027.072160103,"data":"03:58:08 seg_seed1 cuda:0 epoch 31 loss 0.481 lr 5.0e-04 val 0.560 best 0.603 at 22 3535 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":7081.953164933,"data":"03:59:02 seg_seed2 cuda:1 epoch 14 loss 0.850 lr 1.0e-03 val 0.151 best 0.466 at 9 1395 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":7127.528423352,"data":"03:59:48 seg_seed1 cuda:0 epoch 32 loss 0.532 lr 5.0e-04 val 0.396 best 0.603 at 22 3635 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":7181.704479598,"data":"04:00:42 seg_seed2 cuda:1 epoch 15 loss 0.846 lr 5.0e-04 val 0.408 best 0.466 at 9 1494 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":7228.251107309,"data":"04:01:29 seg_seed1 cuda:0 epoch 33 loss 0.513 lr 5.0e-04 val 0.463 best 0.603 at 22 3736 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":7281.427939846,"data":"04:02:22 seg_seed2 cuda:1 epoch 16 loss 0.840 lr 5.0e-04 val 0.364 best 0.466 at 9 1594 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":7303.714192169,"data":"drive: uploaded\n"}
+,{"stream_name":"stdout","time":7328.796034325,"data":"04:03:09 seg_seed1 cuda:0 epoch 34 loss 0.462 lr 2.5e-04 val 0.366 best 0.603 at 22 3836 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":7381.218861068,"data":"04:04:02 seg_seed2 cuda:1 epoch 17 loss 0.837 lr 5.0e-04 val 0.518 best 0.518 at 17 1694 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":7429.367739155,"data":"04:04:50 seg_seed1 cuda:0 epoch 35 loss 0.478 lr 2.5e-04 val 0.504 best 0.603 at 22 3937 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":7480.960745336,"data":"04:05:41 seg_seed2 cuda:1 epoch 18 loss 0.812 lr 5.0e-04 val 0.515 best 0.518 at 17 1793 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":7530.078167039,"data":"04:06:31 seg_seed1 cuda:0 epoch 36 loss 0.444 lr 2.5e-04 val 0.439 best 0.603 at 22 4037 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":7580.725682373,"data":"04:07:21 seg_seed2 cuda:1 epoch 19 loss 0.822 lr 5.0e-04 val 0.586 best 0.586 at 19 1893 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":7630.600767892,"data":"04:08:11 seg_seed1 cuda:0 epoch 37 loss 0.501 lr 2.5e-04 val 0.560 best 0.603 at 22 4137 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":7680.475493038,"data":"04:09:01 seg_seed2 cuda:1 epoch 20 loss 0.802 lr 5.0e-04 val 0.438 best 0.586 at 19 1992 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":7731.118860416,"data":"04:09:52 seg_seed1 cuda:0 epoch 38 loss 0.488 lr 2.5e-04 val 0.579 best 0.603 at 22 4238 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":7780.243420624,"data":"04:10:41 seg_seed2 cuda:1 epoch 21 loss 0.823 lr 5.0e-04 val 0.508 best 0.586 at 19 2092 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":7831.806284404,"data":"04:11:32 seg_seed1 cuda:0 epoch 39 loss 0.448 lr 2.5e-04 val 0.556 best 0.603 at 22 4338 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":7880.029347742,"data":"04:12:21 seg_seed2 cuda:1 epoch 22 loss 0.809 lr 5.0e-04 val 0.332 best 0.586 at 19 2192 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":7908.730766738,"data":"drive: uploaded\n"}
+,{"stream_name":"stdout","time":7932.376947656,"data":"04:13:13 seg_seed1 cuda:0 epoch 40 loss 0.465 lr 1.3e-04 val 0.566 best 0.603 at 22 4439 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":7979.82248437,"data":"04:14:00 seg_seed2 cuda:1 epoch 23 loss 0.827 lr 5.0e-04 val 0.475 best 0.586 at 19 2291 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":8032.663088742,"data":"04:14:53 seg_seed1 cuda:0 epoch 41 loss 0.443 lr 1.3e-04 val 0.471 best 0.603 at 22 4539 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":8079.612135247,"data":"04:15:40 seg_seed2 cuda:1 epoch 24 loss 0.792 lr 5.0e-04 val 0.550 best 0.586 at 19 2391 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":8132.995753916,"data":"04:16:34 seg_seed1 cuda:0 epoch 42 loss 0.442 lr 1.3e-04 val 0.602 best 0.603 at 22 4639 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":8133.024065098,"data":"04:16:34 seg_seed1 done, best epoch 22, val 0.603\n"}
+,{"stream_name":"stdout","time":8179.547998485,"data":"04:17:20 seg_seed2 cuda:1 epoch 25 loss 0.791 lr 2.5e-04 val 0.548 best 0.586 at 19 2491 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":8279.604288185,"data":"04:19:00 seg_seed2 cuda:1 epoch 26 loss 0.744 lr 2.5e-04 val 0.530 best 0.586 at 19 2591 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":8379.722192592,"data":"04:20:40 seg_seed2 cuda:1 epoch 27 loss 0.776 lr 2.5e-04 val 0.547 best 0.586 at 19 2691 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":8436.398777769,"data":"04:21:37 seg_seed1 predictions saved\n"}
+,{"stream_name":"stdout","time":8479.970579285,"data":"04:22:21 seg_seed2 cuda:1 epoch 28 loss 0.795 lr 2.5e-04 val 0.525 best 0.586 at 19 2791 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":8515.001664928,"data":"drive: uploaded\n"}
+,{"stream_name":"stdout","time":8579.905786774,"data":"04:24:00 seg_seed2 cuda:1 epoch 29 loss 0.785 lr 2.5e-04 val 0.520 best 0.586 at 19 2890 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":8679.906789935,"data":"04:25:40 seg_seed2 cuda:1 epoch 30 loss 0.774 lr 2.5e-04 val 0.575 best 0.586 at 19 2990 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":8779.801135713,"data":"04:27:20 seg_seed2 cuda:1 epoch 31 loss 0.780 lr 1.3e-04 val 0.468 best 0.586 at 19 3090 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":8879.780191968,"data":"04:29:00 seg_seed2 cuda:1 epoch 32 loss 0.767 lr 1.3e-04 val 0.545 best 0.586 at 19 3190 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":8979.795011989,"data":"04:30:40 seg_seed2 cuda:1 epoch 33 loss 0.750 lr 1.3e-04 val 0.520 best 0.586 at 19 3290 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":9079.686447297,"data":"04:32:20 seg_seed2 cuda:1 epoch 34 loss 0.749 lr 1.3e-04 val 0.569 best 0.586 at 19 3390 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":9169.151425144,"data":"drive: uploaded\n"}
+,{"stream_name":"stdout","time":9179.761214737,"data":"04:34:00 seg_seed2 cuda:1 epoch 35 loss 0.790 lr 1.3e-04 val 0.599 best 0.599 at 35 3489 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":9279.828053088,"data":"04:35:40 seg_seed2 cuda:1 epoch 36 loss 0.778 lr 1.3e-04 val 0.546 best 0.599 at 35 3589 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":9379.827429644,"data":"04:37:20 seg_seed2 cuda:1 epoch 37 loss 0.785 lr 1.3e-04 val 0.617 best 0.617 at 37 3689 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":9479.922371996,"data":"04:39:00 seg_seed2 cuda:1 epoch 38 loss 0.748 lr 1.3e-04 val 0.621 best 0.621 at 38 3789 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":9579.865551037,"data":"04:40:40 seg_seed2 cuda:1 epoch 39 loss 0.779 lr 1.3e-04 val 0.625 best 0.625 at 39 3889 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":9679.944670375,"data":"04:42:20 seg_seed2 cuda:1 epoch 40 loss 0.789 lr 1.3e-04 val 0.535 best 0.625 at 39 3989 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":9774.078753822,"data":"drive: uploaded\n"}
+,{"stream_name":"stdout","time":9780.104605292,"data":"04:44:01 seg_seed2 cuda:1 epoch 41 loss 0.752 lr 1.3e-04 val 0.565 best 0.625 at 39 4089 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":9880.241853036,"data":"04:45:41 seg_seed2 cuda:1 epoch 42 loss 0.748 lr 1.3e-04 val 0.644 best 0.644 at 42 4189 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":9980.221682424,"data":"04:47:21 seg_seed2 cuda:1 epoch 43 loss 0.765 lr 1.3e-04 val 0.602 best 0.644 at 42 4289 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":10080.212148227,"data":"04:49:01 seg_seed2 cuda:1 epoch 44 loss 0.724 lr 1.3e-04 val 0.608 best 0.644 at 42 4389 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":10180.226529766,"data":"04:50:41 seg_seed2 cuda:1 epoch 45 loss 0.741 lr 1.3e-04 val 0.609 best 0.644 at 42 4489 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":10280.389396612,"data":"04:52:21 seg_seed2 cuda:1 epoch 46 loss 0.730 lr 1.3e-04 val 0.532 best 0.644 at 42 4589 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":10380.443481439,"data":"04:54:01 seg_seed2 cuda:1 epoch 47 loss 0.736 lr 1.3e-04 val 0.628 best 0.644 at 42 4689 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":10480.428317127,"data":"04:55:41 seg_seed2 cuda:1 epoch 48 loss 0.760 lr 6.3e-05 val 0.610 best 0.644 at 42 4788 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":10580.331900681,"data":"04:57:21 seg_seed2 cuda:1 epoch 49 loss 0.762 lr 6.3e-05 val 0.640 best 0.644 at 42 4888 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":10680.347256184,"data":"04:59:01 seg_seed2 cuda:1 epoch 50 loss 0.734 lr 6.3e-05 val 0.593 best 0.644 at 42 4988 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":10780.343526133,"data":"05:00:41 seg_seed2 cuda:1 epoch 51 loss 0.742 lr 6.3e-05 val 0.634 best 0.644 at 42 5088 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":10880.415107827,"data":"05:02:21 seg_seed2 cuda:1 epoch 52 loss 0.749 lr 6.3e-05 val 0.601 best 0.644 at 42 5188 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":10973.057746775,"data":"drive: uploaded\n"}
+,{"stream_name":"stdout","time":10980.431448228,"data":"05:04:01 seg_seed2 cuda:1 epoch 53 loss 0.723 lr 6.3e-05 val 0.569 best 0.644 at 42 5288 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":11080.324278624,"data":"05:05:41 seg_seed2 cuda:1 epoch 54 loss 0.755 lr 3.1e-05 val 0.626 best 0.644 at 42 5387 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":11180.168070643,"data":"05:07:21 seg_seed2 cuda:1 epoch 55 loss 0.731 lr 3.1e-05 val 0.634 best 0.644 at 42 5487 s, 6.1 GiB\n"}
+,{"stream_name":"stdout","time":11180.194663681,"data":"05:07:21 seg_seed2 done, best epoch 42, val 0.644\n"}
+,{"stream_name":"stdout","time":11481.812425823,"data":"05:12:22 seg_seed2 predictions saved\n"}
+,{"stream_name":"stdout","time":11493.263403418,"data":"05:12:34 cls_seed0 start, 100 fit, 30 validation, 70 test\n"}
+,{"stream_name":"stdout","time":11493.277752726,"data":"05:12:34 cls_seed1 start, 100 fit, 30 validation, 70 test\n"}
+,{"stream_name":"stdout","time":11580.494501091,"data":"05:14:01 cls_seed0 cuda:0 epoch 1 loss 0.713 lr 1.0e-04 val 0.475 best 0.475 at 1 86 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":11588.724824123,"data":"05:14:09 cls_seed1 cuda:1 epoch 1 loss 0.708 lr 1.0e-04 val 0.471 best 0.471 at 1 94 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":11671.57386834,"data":"05:15:32 cls_seed0 cuda:0 epoch 2 loss 0.673 lr 1.0e-04 val 0.516 best 0.516 at 2 176 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":11682.970175785,"data":"05:15:44 cls_seed1 cuda:1 epoch 2 loss 0.770 lr 1.0e-04 val 0.561 best 0.561 at 2 188 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":11694.249347347,"data":"drive: uploaded\n"}
+,{"stream_name":"stdout","time":11764.520228353,"data":"05:17:05 cls_seed0 cuda:0 epoch 3 loss 0.689 lr 1.0e-04 val 0.443 best 0.516 at 2 268 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":11776.992249991,"data":"05:17:18 cls_seed1 cuda:1 epoch 3 loss 0.671 lr 1.0e-04 val 0.525 best 0.561 at 2 281 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":11858.622582239,"data":"05:18:39 cls_seed0 cuda:0 epoch 4 loss 0.675 lr 1.0e-04 val 0.425 best 0.516 at 2 362 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":11870.873776191,"data":"05:18:51 cls_seed1 cuda:1 epoch 4 loss 0.651 lr 1.0e-04 val 0.489 best 0.561 at 2 374 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":11953.472836129,"data":"05:20:14 cls_seed0 cuda:0 epoch 5 loss 0.703 lr 1.0e-04 val 0.624 best 0.624 at 5 456 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":11964.858608507,"data":"05:20:25 cls_seed1 cuda:1 epoch 5 loss 0.654 lr 1.0e-04 val 0.502 best 0.561 at 2 467 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":12048.457445684,"data":"05:21:49 cls_seed0 cuda:0 epoch 6 loss 0.671 lr 1.0e-04 val 0.629 best 0.629 at 6 550 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":12058.880268802,"data":"05:21:59 cls_seed1 cuda:1 epoch 6 loss 0.624 lr 1.0e-04 val 0.647 best 0.647 at 6 561 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":12143.675458403,"data":"05:23:24 cls_seed0 cuda:0 epoch 7 loss 0.689 lr 1.0e-04 val 0.656 best 0.656 at 7 645 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":12152.916561883,"data":"05:23:33 cls_seed1 cuda:1 epoch 7 loss 0.671 lr 1.0e-04 val 0.692 best 0.692 at 7 654 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":12238.985980684,"data":"05:25:00 cls_seed0 cuda:0 epoch 8 loss 0.672 lr 1.0e-04 val 0.597 best 0.656 at 7 739 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":12246.966407647,"data":"05:25:07 cls_seed1 cuda:1 epoch 8 loss 0.535 lr 1.0e-04 val 0.679 best 0.692 at 7 747 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":12334.260406852,"data":"05:26:35 cls_seed0 cuda:0 epoch 9 loss 0.690 lr 1.0e-04 val 0.471 best 0.656 at 7 834 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":12341.056434038,"data":"05:26:42 cls_seed1 cuda:1 epoch 9 loss 0.635 lr 1.0e-04 val 0.751 best 0.751 at 9 841 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":12429.226572512,"data":"05:28:10 cls_seed0 cuda:0 epoch 10 loss 0.699 lr 1.0e-04 val 0.561 best 0.656 at 7 928 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":12434.915040565,"data":"05:28:15 cls_seed1 cuda:1 epoch 10 loss 0.642 lr 1.0e-04 val 0.597 best 0.751 at 9 934 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":12524.316129362,"data":"05:29:45 cls_seed0 cuda:0 epoch 11 loss 0.632 lr 1.0e-04 val 0.670 best 0.670 at 11 1022 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":12528.811139925,"data":"05:29:49 cls_seed1 cuda:1 epoch 11 loss 0.642 lr 1.0e-04 val 0.760 best 0.760 at 11 1027 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":12619.189583506,"data":"05:31:20 cls_seed0 cuda:0 epoch 12 loss 0.568 lr 1.0e-04 val 0.615 best 0.670 at 11 1117 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":12622.580302695,"data":"05:31:23 cls_seed1 cuda:1 epoch 12 loss 0.648 lr 1.0e-04 val 0.760 best 0.760 at 11 1120 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":12714.485956023,"data":"05:32:55 cls_seed0 cuda:0 epoch 13 loss 0.610 lr 1.0e-04 val 0.751 best 0.751 at 13 1211 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":12716.504068563,"data":"05:32:57 cls_seed1 cuda:1 epoch 13 loss 0.598 lr 1.0e-04 val 0.729 best 0.760 at 11 1213 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":12809.570983675,"data":"05:34:30 cls_seed0 cuda:0 epoch 14 loss 0.649 lr 1.0e-04 val 0.534 best 0.751 at 13 1306 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":12810.314423302,"data":"05:34:31 cls_seed1 cuda:1 epoch 14 loss 0.555 lr 1.0e-04 val 0.588 best 0.760 at 11 1307 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":12893.704257637,"data":"drive: uploaded\n"}
+,{"stream_name":"stdout","time":12904.154092254,"data":"05:36:05 cls_seed1 cuda:1 epoch 15 loss 0.649 lr 1.0e-04 val 0.416 best 0.760 at 11 1400 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":12904.726086753,"data":"05:36:05 cls_seed0 cuda:0 epoch 15 loss 0.604 lr 1.0e-04 val 0.787 best 0.787 at 15 1400 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":12997.926979904,"data":"05:37:38 cls_seed1 cuda:1 epoch 16 loss 0.585 lr 1.0e-04 val 0.756 best 0.760 at 11 1493 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":12999.626494351,"data":"05:37:40 cls_seed0 cuda:0 epoch 16 loss 0.615 lr 1.0e-04 val 0.719 best 0.787 at 15 1494 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":13091.841506642,"data":"05:39:12 cls_seed1 cuda:1 epoch 17 loss 0.521 lr 1.0e-04 val 0.769 best 0.769 at 17 1586 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":13094.595128399,"data":"05:39:15 cls_seed0 cuda:0 epoch 17 loss 0.522 lr 1.0e-04 val 0.493 best 0.787 at 15 1589 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":13185.639971779,"data":"05:40:46 cls_seed1 cuda:1 epoch 18 loss 0.483 lr 1.0e-04 val 0.774 best 0.774 at 18 1679 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":13189.558834944,"data":"05:40:50 cls_seed0 cuda:0 epoch 18 loss 0.514 lr 1.0e-04 val 0.665 best 0.787 at 15 1683 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":13279.575414115,"data":"05:42:20 cls_seed1 cuda:1 epoch 19 loss 0.501 lr 1.0e-04 val 0.466 best 0.774 at 18 1773 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":13284.734349919,"data":"05:42:25 cls_seed0 cuda:0 epoch 19 loss 0.612 lr 1.0e-04 val 0.516 best 0.787 at 15 1778 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":13373.394921272,"data":"05:43:54 cls_seed1 cuda:1 epoch 20 loss 0.450 lr 1.0e-04 val 0.500 best 0.774 at 18 1866 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":13380.176462816,"data":"05:44:01 cls_seed0 cuda:0 epoch 20 loss 0.587 lr 1.0e-04 val 0.593 best 0.787 at 15 1872 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":13467.184079866,"data":"05:45:28 cls_seed1 cuda:1 epoch 21 loss 0.473 lr 1.0e-04 val 0.738 best 0.774 at 18 1959 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":13475.105610103,"data":"05:45:36 cls_seed0 cuda:0 epoch 21 loss 0.621 lr 5.0e-05 val 0.756 best 0.787 at 15 1966 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":13548.858307715,"data":"drive: uploaded\n"}
+,{"stream_name":"stdout","time":13560.857515137,"data":"05:47:01 cls_seed1 cuda:1 epoch 22 loss 0.515 lr 1.0e-04 val 0.729 best 0.774 at 18 2052 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":13570.021996303,"data":"05:47:11 cls_seed0 cuda:0 epoch 22 loss 0.535 lr 5.0e-05 val 0.783 best 0.787 at 15 2061 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":13654.575526597,"data":"05:48:35 cls_seed1 cuda:1 epoch 23 loss 0.593 lr 1.0e-04 val 0.593 best 0.774 at 18 2145 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":13664.991439116,"data":"05:48:46 cls_seed0 cuda:0 epoch 23 loss 0.472 lr 5.0e-05 val 0.792 best 0.792 at 23 2155 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":13748.38107396,"data":"05:50:09 cls_seed1 cuda:1 epoch 24 loss 0.485 lr 5.0e-05 val 0.688 best 0.774 at 18 2238 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":13760.144269025,"data":"05:50:21 cls_seed0 cuda:0 epoch 24 loss 0.472 lr 5.0e-05 val 0.729 best 0.792 at 23 2249 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":13842.268546912,"data":"05:51:43 cls_seed1 cuda:1 epoch 25 loss 0.423 lr 5.0e-05 val 0.824 best 0.824 at 25 2332 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":13855.218167229,"data":"05:51:56 cls_seed0 cuda:0 epoch 25 loss 0.489 lr 5.0e-05 val 0.765 best 0.792 at 23 2344 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":13936.130344917,"data":"05:53:17 cls_seed1 cuda:1 epoch 26 loss 0.459 lr 5.0e-05 val 0.805 best 0.824 at 25 2425 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":13950.238043163,"data":"05:53:31 cls_seed0 cuda:0 epoch 26 loss 0.502 lr 5.0e-05 val 0.796 best 0.796 at 26 2438 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":14029.903033866,"data":"05:54:50 cls_seed1 cuda:1 epoch 27 loss 0.467 lr 5.0e-05 val 0.796 best 0.824 at 25 2518 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":14045.132094587,"data":"05:55:06 cls_seed0 cuda:0 epoch 27 loss 0.454 lr 5.0e-05 val 0.751 best 0.796 at 26 2533 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":14123.731158759,"data":"05:56:24 cls_seed1 cuda:1 epoch 28 loss 0.407 lr 5.0e-05 val 0.697 best 0.824 at 25 2611 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":14140.132416962,"data":"05:56:41 cls_seed0 cuda:0 epoch 28 loss 0.399 lr 5.0e-05 val 0.805 best 0.805 at 28 2627 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":14217.576910341,"data":"05:57:58 cls_seed1 cuda:1 epoch 29 loss 0.356 lr 5.0e-05 val 0.769 best 0.824 at 25 2704 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":14234.95167212,"data":"05:58:15 cls_seed0 cuda:0 epoch 29 loss 0.430 lr 5.0e-05 val 0.710 best 0.805 at 28 2721 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":14311.536412604,"data":"05:59:32 cls_seed1 cuda:1 epoch 30 loss 0.431 lr 5.0e-05 val 0.855 best 0.855 at 30 2798 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":14329.803655649,"data":"05:59:50 cls_seed0 cuda:0 epoch 30 loss 0.427 lr 5.0e-05 val 0.842 best 0.842 at 30 2815 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":14405.294153409,"data":"06:01:06 cls_seed1 cuda:1 epoch 31 loss 0.402 lr 5.0e-05 val 0.729 best 0.855 at 30 2891 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":14424.104732693,"data":"06:01:25 cls_seed0 cuda:0 epoch 31 loss 0.396 lr 5.0e-05 val 0.792 best 0.842 at 30 2909 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":14499.167923846,"data":"06:02:40 cls_seed1 cuda:1 epoch 32 loss 0.374 lr 5.0e-05 val 0.706 best 0.855 at 30 2984 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":14503.197184741,"data":"drive: uploaded\n"}
+,{"stream_name":"stdout","time":14518.623276506,"data":"06:02:59 cls_seed0 cuda:0 epoch 32 loss 0.459 lr 5.0e-05 val 0.805 best 0.842 at 30 3003 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":14592.901787361,"data":"06:04:13 cls_seed1 cuda:1 epoch 33 loss 0.403 lr 5.0e-05 val 0.842 best 0.855 at 30 3077 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":14612.924453017,"data":"06:04:33 cls_seed0 cuda:0 epoch 33 loss 0.391 lr 5.0e-05 val 0.819 best 0.842 at 30 3097 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":14686.721847191,"data":"06:05:47 cls_seed1 cuda:1 epoch 34 loss 0.328 lr 5.0e-05 val 0.783 best 0.855 at 30 3170 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":14707.460937948,"data":"06:06:08 cls_seed0 cuda:0 epoch 34 loss 0.388 lr 5.0e-05 val 0.864 best 0.864 at 34 3191 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":14780.565197961,"data":"06:07:21 cls_seed1 cuda:1 epoch 35 loss 0.329 lr 5.0e-05 val 0.855 best 0.855 at 35 3264 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":14801.807329043,"data":"06:07:42 cls_seed0 cuda:0 epoch 35 loss 0.449 lr 5.0e-05 val 0.887 best 0.887 at 35 3284 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":14874.371799611,"data":"06:08:55 cls_seed1 cuda:1 epoch 36 loss 0.304 lr 2.5e-05 val 0.729 best 0.855 at 35 3357 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":14896.086784073,"data":"06:09:17 cls_seed0 cuda:0 epoch 36 loss 0.378 lr 5.0e-05 val 0.769 best 0.887 at 35 3378 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":14968.242579893,"data":"06:10:29 cls_seed1 cuda:1 epoch 37 loss 0.273 lr 2.5e-05 val 0.765 best 0.855 at 35 3450 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":14990.599131657,"data":"06:10:51 cls_seed0 cuda:0 epoch 37 loss 0.343 lr 5.0e-05 val 0.833 best 0.887 at 35 3472 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":15061.987531473,"data":"06:12:03 cls_seed1 cuda:1 epoch 38 loss 0.310 lr 2.5e-05 val 0.787 best 0.855 at 35 3543 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":15084.740927146,"data":"06:12:25 cls_seed0 cuda:0 epoch 38 loss 0.379 lr 5.0e-05 val 0.765 best 0.887 at 35 3565 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":15155.808848162,"data":"06:13:36 cls_seed1 cuda:1 epoch 39 loss 0.294 lr 2.5e-05 val 0.819 best 0.855 at 35 3636 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":15179.128681569,"data":"06:14:00 cls_seed0 cuda:0 epoch 39 loss 0.347 lr 5.0e-05 val 0.891 best 0.891 at 39 3659 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":15249.804458536,"data":"06:15:10 cls_seed1 cuda:1 epoch 40 loss 0.308 lr 2.5e-05 val 0.805 best 0.855 at 35 3730 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":15273.423311236,"data":"06:15:34 cls_seed0 cuda:0 epoch 40 loss 0.354 lr 5.0e-05 val 0.891 best 0.891 at 39 3753 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":15343.485549049,"data":"06:16:44 cls_seed1 cuda:1 epoch 41 loss 0.295 lr 2.5e-05 val 0.805 best 0.855 at 35 3823 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":15367.763286885,"data":"06:17:08 cls_seed0 cuda:0 epoch 41 loss 0.354 lr 5.0e-05 val 0.706 best 0.891 at 39 3846 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":15437.286746423,"data":"06:18:18 cls_seed1 cuda:1 epoch 42 loss 0.251 lr 1.3e-05 val 0.792 best 0.855 at 35 3916 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":15462.463407072,"data":"06:18:43 cls_seed0 cuda:0 epoch 42 loss 0.413 lr 5.0e-05 val 0.828 best 0.891 at 39 3940 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":15531.094352059,"data":"06:19:52 cls_seed1 cuda:1 epoch 43 loss 0.307 lr 1.3e-05 val 0.796 best 0.855 at 35 4009 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":15557.315877744,"data":"06:20:18 cls_seed0 cuda:0 epoch 43 loss 0.318 lr 5.0e-05 val 0.783 best 0.891 at 39 4035 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":15624.889157722,"data":"06:21:25 cls_seed1 cuda:1 epoch 44 loss 0.272 lr 1.3e-05 val 0.810 best 0.855 at 35 4102 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":15652.126789338,"data":"06:21:53 cls_seed0 cuda:0 epoch 44 loss 0.360 lr 5.0e-05 val 0.855 best 0.891 at 39 4129 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":15718.614696421,"data":"06:22:59 cls_seed1 cuda:1 epoch 45 loss 0.302 lr 1.3e-05 val 0.828 best 0.855 at 35 4195 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":15747.009674251,"data":"06:23:28 cls_seed0 cuda:0 epoch 45 loss 0.318 lr 2.5e-05 val 0.824 best 0.891 at 39 4223 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":15812.36532176,"data":"06:24:33 cls_seed1 cuda:1 epoch 46 loss 0.234 lr 1.3e-05 val 0.783 best 0.855 at 35 4289 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":15841.8957559,"data":"06:25:02 cls_seed0 cuda:0 epoch 46 loss 0.318 lr 2.5e-05 val 0.851 best 0.891 at 39 4317 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":15906.10140865,"data":"06:26:07 cls_seed1 cuda:1 epoch 47 loss 0.208 lr 1.3e-05 val 0.814 best 0.855 at 35 4382 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":15936.790531666,"data":"06:26:37 cls_seed0 cuda:0 epoch 47 loss 0.292 lr 2.5e-05 val 0.878 best 0.891 at 39 4412 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":15999.817083697,"data":"06:27:40 cls_seed1 cuda:1 epoch 48 loss 0.268 lr 6.3e-06 val 0.792 best 0.855 at 35 4475 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":16031.676497505,"data":"06:28:12 cls_seed0 cuda:0 epoch 48 loss 0.278 lr 2.5e-05 val 0.891 best 0.891 at 39 4506 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":16093.64195872,"data":"06:29:14 cls_seed1 cuda:1 epoch 49 loss 0.286 lr 6.3e-06 val 0.855 best 0.855 at 35 4568 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":16126.902031918,"data":"06:29:47 cls_seed0 cuda:0 epoch 49 loss 0.287 lr 2.5e-05 val 0.692 best 0.891 at 39 4601 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":16187.469380228,"data":"06:30:48 cls_seed1 cuda:1 epoch 50 loss 0.289 lr 6.3e-06 val 0.824 best 0.855 at 35 4661 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":16222.017223944,"data":"06:31:23 cls_seed0 cuda:0 epoch 50 loss 0.269 lr 2.5e-05 val 0.792 best 0.891 at 39 4695 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":16281.199968236,"data":"06:32:22 cls_seed1 cuda:1 epoch 51 loss 0.269 lr 6.3e-06 val 0.833 best 0.855 at 35 4754 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":16317.134243582,"data":"06:32:58 cls_seed0 cuda:0 epoch 51 loss 0.303 lr 1.3e-05 val 0.796 best 0.891 at 39 4790 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":16374.89875518,"data":"06:33:55 cls_seed1 cuda:1 epoch 52 loss 0.247 lr 6.3e-06 val 0.828 best 0.855 at 35 4847 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":16412.340479292,"data":"06:34:33 cls_seed0 cuda:0 epoch 52 loss 0.228 lr 1.3e-05 val 0.828 best 0.891 at 39 4884 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":16468.700195245,"data":"06:35:29 cls_seed1 cuda:1 epoch 53 loss 0.271 lr 6.3e-06 val 0.833 best 0.855 at 35 4940 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":16507.64052162,"data":"06:36:08 cls_seed0 cuda:0 epoch 53 loss 0.199 lr 1.3e-05 val 0.819 best 0.891 at 39 4979 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":16562.291537422,"data":"06:37:03 cls_seed1 cuda:1 epoch 54 loss 0.205 lr 3.1e-06 val 0.810 best 0.855 at 35 5033 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":16602.653625402,"data":"06:37:43 cls_seed0 cuda:0 epoch 54 loss 0.208 lr 1.3e-05 val 0.846 best 0.891 at 39 5073 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":16655.944045304,"data":"06:38:36 cls_seed1 cuda:1 epoch 55 loss 0.223 lr 3.1e-06 val 0.805 best 0.855 at 35 5126 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":16697.897642032,"data":"06:39:18 cls_seed0 cuda:0 epoch 55 loss 0.270 lr 1.3e-05 val 0.778 best 0.891 at 39 5168 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":16749.647417788,"data":"06:40:10 cls_seed1 cuda:1 epoch 56 loss 0.240 lr 3.1e-06 val 0.801 best 0.855 at 35 5219 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":16793.189778512,"data":"06:40:54 cls_seed0 cuda:0 epoch 56 loss 0.293 lr 1.3e-05 val 0.842 best 0.891 at 39 5263 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":16843.346236401,"data":"06:41:44 cls_seed1 cuda:1 epoch 57 loss 0.212 lr 3.1e-06 val 0.824 best 0.855 at 35 5312 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":16888.245387299,"data":"06:42:29 cls_seed0 cuda:0 epoch 57 loss 0.305 lr 6.3e-06 val 0.810 best 0.891 at 39 5357 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":16937.003215915,"data":"06:43:18 cls_seed1 cuda:1 epoch 58 loss 0.234 lr 3.1e-06 val 0.824 best 0.855 at 35 5405 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":16937.121833453,"data":"06:43:18 cls_seed1 done, best epoch 35, val 0.855\n"}
+,{"stream_name":"stdout","time":16954.465945033,"data":"06:43:35 cls_seed1 predictions saved\n"}
+,{"stream_name":"stdout","time":16959.118885894,"data":"06:43:40 cls_seed2 start, 100 fit, 30 validation, 70 test\n"}
+,{"stream_name":"stdout","time":16983.431180233,"data":"06:44:04 cls_seed0 cuda:0 epoch 58 loss 0.208 lr 6.3e-06 val 0.819 best 0.891 at 39 5452 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":16983.552008796,"data":"06:44:04 cls_seed0 done, best epoch 39, val 0.891\n"}
+,{"stream_name":"stdout","time":17001.08080969,"data":"06:44:22 cls_seed0 predictions saved\n"}
+,{"stream_name":"stdout","time":17053.379904696,"data":"06:45:14 cls_seed2 cuda:1 epoch 1 loss 0.725 lr 1.0e-04 val 0.543 best 0.543 at 1 93 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":17147.180619632,"data":"06:46:48 cls_seed2 cuda:1 epoch 2 loss 0.660 lr 1.0e-04 val 0.525 best 0.543 at 1 186 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":17241.264514064,"data":"06:48:22 cls_seed2 cuda:1 epoch 3 loss 0.721 lr 1.0e-04 val 0.593 best 0.593 at 3 280 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":17335.306466258,"data":"06:49:56 cls_seed2 cuda:1 epoch 4 loss 0.681 lr 1.0e-04 val 0.661 best 0.661 at 4 373 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":17429.257985609,"data":"06:51:30 cls_seed2 cuda:1 epoch 5 loss 0.663 lr 1.0e-04 val 0.751 best 0.751 at 5 467 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":17523.10177107,"data":"06:53:04 cls_seed2 cuda:1 epoch 6 loss 0.667 lr 1.0e-04 val 0.688 best 0.751 at 5 560 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":17616.951755266,"data":"06:54:37 cls_seed2 cuda:1 epoch 7 loss 0.651 lr 1.0e-04 val 0.706 best 0.751 at 5 653 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":17710.694610783,"data":"06:56:11 cls_seed2 cuda:1 epoch 8 loss 0.620 lr 1.0e-04 val 0.733 best 0.751 at 5 746 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":17804.471273584,"data":"06:57:45 cls_seed2 cuda:1 epoch 9 loss 0.594 lr 1.0e-04 val 0.706 best 0.751 at 5 839 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":17812.284722418,"data":"drive: upload failed: \n"}
+,{"stream_name":"stdout","time":17812.284795595,"data":"    },\n"}
+,{"stream_name":"stdout","time":17812.284800689,"data":"    \"reason\": \"RATE_LIMIT_EXCEEDED\"\n"}
+,{"stream_name":"stdout","time":17812.284803924,"data":"  },\n"}
+,{"stream_name":"stdout","time":17812.284806747,"data":"  {\n"}
+,{"stream_name":"stdout","time":17812.284809518,"data":"    \"@type\": \"type.googleapis.com/google.rpc.Help\",\n"}
+,{"stream_name":"stdout","time":17812.284812672,"data":"    \"links\": [\n"}
+,{"stream_name":"stdout","time":17812.284815631,"data":"      {\n"}
+,{"stream_name":"stdout","time":17812.284818472,"data":"        \"description\": \"Request a higher quota limit.\",\n"}
+,{"stream_name":"stdout","time":17812.284821471,"data":"        \"url\": \"https://cloud.google.com/docs/quotas/help/request_increase\"\n"}
+,{"stream_name":"stdout","time":17812.284838839,"data":"      }\n"}
+,{"stream_name":"stdout","time":17812.284843825,"data":"    ]\n"}
+,{"stream_name":"stdout","time":17812.284848387,"data":"  }\n"}
+,{"stream_name":"stdout","time":17812.284852544,"data":"]\n"}
+,{"stream_name":"stdout","time":17812.284857036,"data":", rateLimitExceeded\n"}
+,{"stream_name":"stdout","time":17812.284861854,"data":"\n"}
+,{"stream_name":"stdout","time":17898.354808812,"data":"06:59:19 cls_seed2 cuda:1 epoch 10 loss 0.560 lr 1.0e-04 val 0.439 best 0.751 at 5 933 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":17992.158743718,"data":"07:00:53 cls_seed2 cuda:1 epoch 11 loss 0.572 lr 5.0e-05 val 0.710 best 0.751 at 5 1026 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":18085.864694946,"data":"07:02:26 cls_seed2 cuda:1 epoch 12 loss 0.613 lr 5.0e-05 val 0.715 best 0.751 at 5 1119 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":18179.645480564,"data":"07:04:00 cls_seed2 cuda:1 epoch 13 loss 0.599 lr 5.0e-05 val 0.692 best 0.751 at 5 1212 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":18273.48758762,"data":"07:05:34 cls_seed2 cuda:1 epoch 14 loss 0.524 lr 5.0e-05 val 0.765 best 0.765 at 14 1305 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":18367.506886456,"data":"07:07:08 cls_seed2 cuda:1 epoch 15 loss 0.537 lr 5.0e-05 val 0.774 best 0.774 at 15 1399 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":18461.371074139,"data":"07:08:42 cls_seed2 cuda:1 epoch 16 loss 0.460 lr 5.0e-05 val 0.783 best 0.783 at 16 1492 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":18555.181634306,"data":"07:10:16 cls_seed2 cuda:1 epoch 17 loss 0.469 lr 5.0e-05 val 0.783 best 0.783 at 16 1585 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":18648.952339193,"data":"07:11:49 cls_seed2 cuda:1 epoch 18 loss 0.451 lr 5.0e-05 val 0.688 best 0.783 at 16 1678 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":18742.732714578,"data":"07:13:23 cls_seed2 cuda:1 epoch 19 loss 0.466 lr 5.0e-05 val 0.593 best 0.783 at 16 1771 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":18836.588679685,"data":"07:14:57 cls_seed2 cuda:1 epoch 20 loss 0.401 lr 5.0e-05 val 0.724 best 0.783 at 16 1865 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":18930.368911411,"data":"07:16:31 cls_seed2 cuda:1 epoch 21 loss 0.404 lr 5.0e-05 val 0.769 best 0.783 at 16 1958 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":19024.354294076,"data":"07:18:05 cls_seed2 cuda:1 epoch 22 loss 0.361 lr 2.5e-05 val 0.715 best 0.783 at 16 2051 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":19118.130593229,"data":"07:19:39 cls_seed2 cuda:1 epoch 23 loss 0.350 lr 2.5e-05 val 0.824 best 0.824 at 23 2144 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":19211.895493593,"data":"07:21:12 cls_seed2 cuda:1 epoch 24 loss 0.303 lr 2.5e-05 val 0.819 best 0.824 at 23 2238 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":19305.741310553,"data":"07:22:46 cls_seed2 cuda:1 epoch 25 loss 0.283 lr 2.5e-05 val 0.833 best 0.833 at 25 2331 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":19399.567026545,"data":"07:24:20 cls_seed2 cuda:1 epoch 26 loss 0.354 lr 2.5e-05 val 0.602 best 0.833 at 25 2424 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":19493.342614143,"data":"07:25:54 cls_seed2 cuda:1 epoch 27 loss 0.316 lr 2.5e-05 val 0.796 best 0.833 at 25 2517 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":19587.094387136,"data":"07:27:28 cls_seed2 cuda:1 epoch 28 loss 0.317 lr 2.5e-05 val 0.774 best 0.833 at 25 2610 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":19680.847362022,"data":"07:29:01 cls_seed2 cuda:1 epoch 29 loss 0.312 lr 2.5e-05 val 0.688 best 0.833 at 25 2703 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":19774.597678656,"data":"07:30:35 cls_seed2 cuda:1 epoch 30 loss 0.297 lr 2.5e-05 val 0.833 best 0.833 at 25 2797 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":19868.39850009,"data":"07:32:09 cls_seed2 cuda:1 epoch 31 loss 0.298 lr 1.3e-05 val 0.787 best 0.833 at 25 2890 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":19962.17813593,"data":"07:33:43 cls_seed2 cuda:1 epoch 32 loss 0.309 lr 1.3e-05 val 0.851 best 0.851 at 32 2983 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":20056.006755554,"data":"07:35:17 cls_seed2 cuda:1 epoch 33 loss 0.186 lr 1.3e-05 val 0.801 best 0.851 at 32 3076 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":20149.732615875,"data":"07:36:50 cls_seed2 cuda:1 epoch 34 loss 0.285 lr 1.3e-05 val 0.842 best 0.851 at 32 3169 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":20243.509205516,"data":"07:38:24 cls_seed2 cuda:1 epoch 35 loss 0.246 lr 1.3e-05 val 0.814 best 0.851 at 32 3263 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":20337.253091858,"data":"07:39:58 cls_seed2 cuda:1 epoch 36 loss 0.244 lr 1.3e-05 val 0.824 best 0.851 at 32 3356 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":20431.027639868,"data":"07:41:32 cls_seed2 cuda:1 epoch 37 loss 0.229 lr 1.3e-05 val 0.819 best 0.851 at 32 3449 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":20524.843696181,"data":"07:43:05 cls_seed2 cuda:1 epoch 38 loss 0.220 lr 6.3e-06 val 0.805 best 0.851 at 32 3542 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":20618.550130534,"data":"07:44:39 cls_seed2 cuda:1 epoch 39 loss 0.341 lr 6.3e-06 val 0.846 best 0.851 at 32 3635 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":20712.320965149,"data":"07:46:13 cls_seed2 cuda:1 epoch 40 loss 0.198 lr 6.3e-06 val 0.824 best 0.851 at 32 3728 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":20806.182243632,"data":"07:47:47 cls_seed2 cuda:1 epoch 41 loss 0.251 lr 6.3e-06 val 0.833 best 0.851 at 32 3822 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":20899.915846823,"data":"07:49:20 cls_seed2 cuda:1 epoch 42 loss 0.224 lr 6.3e-06 val 0.814 best 0.851 at 32 3915 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":20993.675889716,"data":"07:50:54 cls_seed2 cuda:1 epoch 43 loss 0.252 lr 6.3e-06 val 0.833 best 0.851 at 32 4008 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":21087.414261386,"data":"07:52:28 cls_seed2 cuda:1 epoch 44 loss 0.235 lr 3.1e-06 val 0.801 best 0.851 at 32 4101 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":21181.211464426,"data":"07:54:02 cls_seed2 cuda:1 epoch 45 loss 0.255 lr 3.1e-06 val 0.819 best 0.851 at 32 4194 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":21274.917450641,"data":"07:55:35 cls_seed2 cuda:1 epoch 46 loss 0.277 lr 3.1e-06 val 0.828 best 0.851 at 32 4288 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":21368.622708194,"data":"07:57:09 cls_seed2 cuda:1 epoch 47 loss 0.186 lr 3.1e-06 val 0.846 best 0.851 at 32 4381 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":21462.44104328,"data":"07:58:43 cls_seed2 cuda:1 epoch 48 loss 0.176 lr 3.1e-06 val 0.819 best 0.851 at 32 4474 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":21556.258098425,"data":"08:00:17 cls_seed2 cuda:1 epoch 49 loss 0.201 lr 3.1e-06 val 0.814 best 0.851 at 32 4567 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":21650.099750662,"data":"08:01:51 cls_seed2 cuda:1 epoch 50 loss 0.192 lr 3.1e-06 val 0.878 best 0.878 at 50 4660 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":21744.098751525,"data":"08:03:25 cls_seed2 cuda:1 epoch 51 loss 0.200 lr 3.1e-06 val 0.891 best 0.891 at 51 4754 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":21837.891036255,"data":"08:04:58 cls_seed2 cuda:1 epoch 52 loss 0.196 lr 3.1e-06 val 0.851 best 0.891 at 51 4847 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":21931.68866072,"data":"08:06:32 cls_seed2 cuda:1 epoch 53 loss 0.261 lr 3.1e-06 val 0.792 best 0.891 at 51 4940 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":22025.407184852,"data":"08:08:06 cls_seed2 cuda:1 epoch 54 loss 0.227 lr 3.1e-06 val 0.846 best 0.891 at 51 5033 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":22119.224425155,"data":"08:09:40 cls_seed2 cuda:1 epoch 55 loss 0.152 lr 3.1e-06 val 0.814 best 0.891 at 51 5126 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":22213.117190753,"data":"08:11:14 cls_seed2 cuda:1 epoch 56 loss 0.198 lr 3.1e-06 val 0.819 best 0.891 at 51 5220 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":22306.910859521,"data":"08:12:47 cls_seed2 cuda:1 epoch 57 loss 0.157 lr 1.6e-06 val 0.837 best 0.891 at 51 5313 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":22400.793477094,"data":"08:14:21 cls_seed2 cuda:1 epoch 58 loss 0.154 lr 1.6e-06 val 0.828 best 0.891 at 51 5406 s, 8.0 GiB\n"}
+,{"stream_name":"stdout","time":22400.927223928,"data":"08:14:21 cls_seed2 done, best epoch 51, val 0.891\n"}
+,{"stream_name":"stdout","time":22418.300285861,"data":"08:14:39 cls_seed2 predictions saved\n"}
+,{"stream_name":"stdout","time":22465.254803634,"data":"drive: upload failed: \n"}
+,{"stream_name":"stdout","time":22465.254845537,"data":"    },\n"}
+,{"stream_name":"stdout","time":22465.254851534,"data":"    \"reason\": \"RATE_LIMIT_EXCEEDED\"\n"}
+,{"stream_name":"stdout","time":22465.254856968,"data":"  },\n"}
+,{"stream_name":"stdout","time":22465.254860778,"data":"  {\n"}
+,{"stream_name":"stdout","time":22465.254864411,"data":"    \"@type\": \"type.googleapis.com/google.rpc.Help\",\n"}
+,{"stream_name":"stdout","time":22465.254868354,"data":"    \"links\": [\n"}
+,{"stream_name":"stdout","time":22465.254872222,"data":"      {\n"}
+,{"stream_name":"stdout","time":22465.254876216,"data":"        \"description\": \"Request a higher quota limit.\",\n"}
+,{"stream_name":"stdout","time":22465.254880459,"data":"        \"url\": \"https://cloud.google.com/docs/quotas/help/request_increase\"\n"}
+,{"stream_name":"stdout","time":22465.254897112,"data":"      }\n"}
+,{"stream_name":"stdout","time":22465.254900356,"data":"    ]\n"}
+,{"stream_name":"stdout","time":22465.254903505,"data":"  }\n"}
+,{"stream_name":"stdout","time":22465.25490636,"data":"]\n"}
+,{"stream_name":"stdout","time":22465.254909079,"data":", rateLimitExceeded\n"}
+,{"stream_name":"stdout","time":22465.254912028,"data":"\n"}
+,{"stream_name":"stdout","time":23008.645869597,"data":"08:24:29 segmentation scored\n"}
+,{"stream_name":"stdout","time":23010.543650315,"data":"08:24:31 ensemble AUC 95% CI [0.54938342 0.81209525]\n"}
+,{"stream_name":"stdout","time":23010.576764071,"data":"                                  AUC     Acc    Prec    Sens    Spec      F1  AUC_gt_centre     ACC    DICE        HD  empty_cases    FROC\n"}
+,{"stream_name":"stdout","time":23010.576788293,"data":"seed 0                         0.7083  0.6000  0.5968  0.9250  0.1667  0.7255         0.7500  0.6000  0.1562  230.1701      29.0000  0.5793\n"}
+,{"stream_name":"stdout","time":23010.576794573,"data":"seed 1                         0.6658  0.6143  0.6585  0.6750  0.5333  0.6667         0.6492  0.6143  0.0928  245.4053       1.0000  0.4670\n"}
+,{"stream_name":"stdout","time":23010.576799747,"data":"seed 2                         0.6633  0.6000  0.6250  0.7500  0.4000  0.6818         0.6942  0.6000  0.0875  288.7380      13.0000  0.5364\n"}
+,{"stream_name":"stdout","time":23010.576804686,"data":"mean of seeds                  0.6792  0.6048  0.6268  0.7833  0.3667  0.6913         0.6978  0.6048  0.1122  254.7711      14.3333  0.5276\n"}
+,{"stream_name":"stdout","time":23010.576809489,"data":"ensemble, classification only  0.6892  0.6143  0.6182  0.8500  0.3000  0.7158         0.7117  0.6143     NaN       NaN          NaN     NaN\n"}
+,{"stream_name":"stdout","time":23010.577800391,"data":"             T1 reproduced, mean of seeds\n"}
+,{"stream_name":"stdout","time":23010.57782149,"data":"DICE                               0.1122\n"}
+,{"stream_name":"stdout","time":23010.57782673,"data":"HD                               254.7711\n"}
+,{"stream_name":"stdout","time":23010.577831579,"data":"ACC                                0.6048\n"}
+,{"stream_name":"stdout","time":23010.577836635,"data":"AUC                                0.6792\n"}
+,{"stream_name":"stdout","time":23010.5778413,"data":"FROC                               0.5276\n"}
+,{"stream_name":"stdout","time":23010.577845584,"data":"Seg_Score                         0.03052\n"}
+,{"stream_name":"stdout","time":23010.577850506,"data":"Seg_Rank                            15/15\n"}
+,{"stream_name":"stdout","time":23010.577855813,"data":"Cls_Score                          0.3181\n"}
+,{"stream_name":"stdout","time":23010.577860904,"data":"Cls_Rank                              6/9\n"}
+,{"stream_name":"stdout","time":23010.577865782,"data":"Det_Score                        0.299232\n"}
+,{"stream_name":"stdout","time":23010.577870629,"data":"Det_Rank                            10/11\n"}
+,{"stream_name":"stdout","time":23010.5778754,"data":"Overall                            0.3181\n"}
+,{"stream_name":"stdout","time":23010.577879711,"data":"Overall_Rank                          8/8\n"}
+,{"stream_name":"stdout","time":23016.754533854,"data":"drive: uploaded\n"}
+,{"stream_name":"stderr","time":23021.976885442,"data":"/usr/local/lib/python3.13/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":23021.976916621,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":23022.302202812,"data":"/usr/local/lib/python3.13/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":23022.302241792,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":23023.213552,"data":"[NbConvertApp] Converting notebook __script__.ipynb to html\n"}
+,{"stream_name":"stderr","time":23024.223448925,"data":"[NbConvertApp] Writing 279821 bytes to __results__.html\n"}
+]
