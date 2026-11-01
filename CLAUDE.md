@@ -1,5 +1,24 @@
 # abus-classification: working rules
 
+## Research purpose and evidence
+
+Follow the [research workflow](docs/research-workflow.md) and maintain the [study index](docs/papers.md).
+The current work selects, implements and evaluates ABUS papers on TDSC-ABUS 2023; Phase 3 studies
+Laplace–Beltrami descriptors against those baselines. Preserve historical thesis experiments and label
+their provenance before treating them as current benchmark evidence.
+
+Every study records what was done, how and why: paper-specified choices, assumptions, deviations,
+observed training behavior, interventions and their outcomes, and unanswered questions. Keep the
+original-paper protocol, shared benchmark and experimental variants distinct. Preserve unsuccessful
+runs; lower scores alone do not establish that a paper is flawed. Record original-author review
+separately from implementation and run completion. Drafting a review request does not authorize
+sending emails or other messages; send only when the user explicitly instructs it.
+
+Barekatrezaei 2026 is awaiting the first author's finalized source, including CNN code. Existing CNN
+experiments are provisional reconstructions. Keep differences and diagnostics in its notebook and
+reproduction record, and omit provisional performance comparisons from the README until source
+comparison and reruns support an updated assessment.
+
 ## Where code goes
 
 This repo is the library for every ABUS classification paper we reproduce, plus utilities for researchers.
@@ -16,6 +35,11 @@ Everything reusable lives in the `abus_classification` package, never in root sc
 - Root `reproduce_*.py` files are only back-compat shims for the Kaggle kernels; do not add new ones.
 
 ## One branch per paper
+
+Follow the project's Gitflow workflow: make changes on a task branch and integrate through a PR.
+Never commit directly to or merge into `main`. Use the repository's integration branch when one is
+configured; do not invent a `develop` branch. Shared documentation work uses a `docs/<topic>` branch
+and its own PR. Do not merge a PR without the user's instruction.
 
 Implement papers one by one, each on its own branch (`feat/<author><year>`) with its own PR; never put two papers'
 work on one branch. Compare methods afterwards, in a separate comparison step (roadmap: unified comparison table).
@@ -65,14 +89,58 @@ notebook instead of copying its tables. Each document contains:
    Kaggle kernel: its name, what it reads and writes, the branch it clones, the settings used, and how long it took.
 4. **Expected results**: the numbers a rerun should give, with seed variation, and where they are stored (`results/<name>/`).
 5. **Status**: whether the stored results come from the current code, what has not been run, and any commit, parameter or
-   environment that differs from the instructions.
+   environment that differs from the instructions. Record source availability and author-review status separately.
+6. **Deviation and intervention record**: for each change, cite the paper's requirement (or mark it unspecified),
+   the implementation choice, why it was made, evidence that prompted it, the exact run/artifacts, outcome and
+   remaining uncertainty. Early stopping, augmentation and split changes are variants, not silent corrections.
+7. **Author verification**: provide a reviewable implementation/experiment snapshot, precise unresolved questions,
+   and a record of author feedback and resulting corrections. Do not imply verification before feedback exists.
 
 Only state commands and run times that were actually used. Write "not run yet" for anything that was not.
 
+## Landing page on every PR
+
+The landing page is a primary research artifact. `index.md` includes `README.md`, with presentation
+and metadata in `_layouts/project.html`, `_config.yml` and `assets/css/site.css`. Review its impact
+on every PR; update the page in the same PR whenever study status, methods, results, docs or figures
+change. An unrelated code change need not manufacture a page edit, but its PR should state the review outcome.
+
+Keep the introduction, hero text, roadmap, result tables and figure captions aligned with the notebook,
+reproduction record and stored artifacts. Label provisional results and protocol differences consistently.
+Use existing research images where they explain the evidence; verify their provenance, alt text, captions
+and readability. Never invent a figure or treat an available image as validation of a scientific claim.
+
+Check links from both GitHub and the deployed site's `/abus-classification/` base path. Link to GitHub
+for notebooks, source and documents excluded from Jekyll; keep image paths valid on the deployed site.
+For page/presentation changes, build with the locked Jekyll dependencies and inspect desktop and mobile
+rendering, navigation, tables, figures and light/dark readability when tools are available. Report which
+checks ran and any build or visual-review limitation; static checks alone are not a visual review.
+Keep the current design polished and coherent rather than adding disconnected sections or stale figures.
+
+## How we run a paper
+
+Do these in order, for every paper:
+
+1. Mark the paper 🔄 in the `README.md` roadmap.
+2. Implement it on its own branch with its tests, Kaggle kernel, notebook and document. Test it on real volumes locally before using GPU quota.
+3. Open the PR. Keep its text to what the document says, and update both as results arrive.
+4. Push the kernel and wait until it finishes, then store the results and update the notebook, document and README.
+5. Write every open question, unexplained result or deferred piece of work as a GitHub issue with a fitting label (`question`, `bug`, `enhancement`, `documentation`), so nothing depends on memory.
+
+Every Kaggle training run must:
+
+- **Save to Drive.** Sync checkpoints, final trained weights, logs and results to `abus-checkpoints/<name>` with `utils.drive.DriveSync`, which needs the `RCLONE_CONF` secret and so a start from Kaggle's editor. Stop the editor session afterwards, or a second copy trains.
+- **Resume.** Save a checkpoint every epoch, skip finished runs, and stop before the 12 h session limit so the output is kept.
+- **Use all the hardware.** Check for T4 x 2 at the start, run one training per GPU or use both in one model, and parallelise CPU work across all cores.
+- **Log properly.** Write timestamped lines for each epoch to stdout and a progress file: loss, learning rate, validation metric, best so far, time.
+- **Stop early.** Use an LR scheduler and early stopping on a volume-level validation set; record it as a deviation if the paper differs.
+
 ## Conventions
 
-- Protocol for all methods: train on Train+Validation (130 volumes), report on the official Test split (70),
-  malignant = positive class, AUC with bootstrap CI, 3 seeds.
+- Shared target protocol: fit Train+Validation (130 volumes), report on the official Test split (70),
+  malignant = positive class, AUC with bootstrap CI, 3 seeds. Separately label original-paper protocols
+  and variants: early stopping on Validation fits Train only (100). Keep each volume's slices/patches
+  within its split; never select a model using Test results.
 - Kaggle runs save what the benchmark needs: test probabilities and, if the method produces them, full-volume masks and
   detection boxes.
 - Heavy training runs on Kaggle GPU kernels (`kaggle/<name>/`, private datasets `tdsc-abus2023-*`, account `mralinp`, pushed with `python kaggle/push.py <name>`);

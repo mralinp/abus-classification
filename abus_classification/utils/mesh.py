@@ -120,3 +120,40 @@ def lesion_mesh(mask: np.ndarray,
     mesh = get_mesh_from_3d_mask(padded, spacing=spacing, level=0.5, preprocess=False)
     mesh.apply_translation(-pad * np.asarray(spacing, dtype=float))
     return mesh
+
+
+def draw_mesh(ax, mesh: trimesh.Trimesh, values: Optional[np.ndarray] = None, cmap="viridis",
+              vmin: Optional[float] = None, vmax: Optional[float] = None, view=(20, -60)) -> None:
+    """
+    Draw a mesh on a matplotlib 3D axis at true proportions, with simple lighting.
+
+    Parameters:
+        ax: Axis made with projection="3d"
+        mesh: Surface to draw
+        values: Value per vertex, averaged per face for the colour. Plain grey if None.
+    """
+    from matplotlib import colormaps
+    from matplotlib.colors import Normalize
+    from mpl_toolkits.mplot3d.art3d import Poly3DCollection
+
+    if values is None:
+        colors = np.tile([0.72, 0.72, 0.70, 1.0], (len(mesh.faces), 1))
+    else:
+        face_values = np.asarray(values)[mesh.faces].mean(axis=1)
+        cmap = colormaps[cmap] if isinstance(cmap, str) else cmap
+        colors = cmap(Normalize(vmin, vmax)(face_values))
+    elevation, azimuth = np.radians(view)
+    light = np.array([np.cos(elevation) * np.cos(azimuth), np.cos(elevation) * np.sin(azimuth), np.sin(elevation)])
+    facing = mesh.face_normals @ light
+    colors[:, :3] *= (0.62 + 0.38 * np.abs(facing))[:, None]
+    # Matplotlib sorts faces by depth only roughly, so hide the far side of closed surfaces to stop it showing through.
+    visible = facing * np.sign(mesh.volume) > 0 if mesh.is_watertight else np.ones(len(mesh.faces), dtype=bool)
+    ax.add_collection3d(Poly3DCollection(mesh.vertices[mesh.faces[visible]], facecolors=colors[visible],
+                                         edgecolors=colors[visible], linewidths=0.15))
+    low, high = mesh.bounds
+    centre, half = (low + high) / 2, (high - low).max() / 2
+    ax.set(xlim=(centre[0] - half, centre[0] + half), ylim=(centre[1] - half, centre[1] + half),
+           zlim=(centre[2] - half, centre[2] + half))
+    ax.set_box_aspect((1, 1, 1))
+    ax.view_init(*view)
+    ax.set_axis_off()

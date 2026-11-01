@@ -1,0 +1,21 @@
+label,set,classifier,k
+Any features,All classical + all LB,SVM linear C=0.01,0
+LB features only,All LB,SVM linear C=0.1,0
+Any features,Size + spiculation + Hersch ratio,Gradient boosting,0
+LB features only,LB selected features,Logistic C=1,0
+Any features,All classical,SVM linear C=0.01,20
+LB features only,LB selected features,Logistic C=1,0
+Any features,All classical + LB selected features,Logistic C=1,0
+LB features only,LB selected features,Logistic C=1,0
+Any features,Size + spiculation + Hersch ratio,LDA shrinkage,0
+LB features only,LB selected features,Logistic C=1,0
+Any features,All classical + LB selected features,Logistic C=0.1,0
+LB features only,LB selected features,Logistic C=1,0
+Any features,All classical,SVM linear C=0.1,0
+LB features only,All LB,Small neural net,0
+Any features,Size + spiculation + Hersch ratio,Random forest,0
+LB features only,LB selected features,Logistic C=1,0
+Any features,All classical + LB selected features,Logistic C=0.01,20
+LB features only,LB selected features,Logistic C=1,0
+Any features,All classical + all LB,SVM linear C=0.1,0
+LB features only,All LB,LDA shrinkage,0

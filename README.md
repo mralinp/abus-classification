@@ -5,16 +5,23 @@
 Automated 3D breast ultrasound (ABUS) images the whole breast in a single sweep, but reading the
 resulting volumes is slow, and telling malignant lesions from benign ones remains hard.
 
-In previous work [7] we showed that the **Laplace–Beltrami spectrum of a lesion's surface** is an
-effective feature for classifying breast masses in 3D ABUS. That paper established *that* it works,
-not *why*. This project supplies the missing mathematics, toward a follow-up paper:
+This repository is a research reference for **studying, implementing and evaluating published ABUS
+methods on TDSC-ABUS 2023**. We select relevant and influential papers, reconstruct their methods,
+run experiments on a shared benchmark, and publish the evidence needed for other researchers to
+understand, verify and extend the work.
 
-1. **Reproduce the strongest published results** on the public TDSC-ABUS 2023 dataset under one
-   evaluation protocol, so every comparison is fair.
-2. **Develop the mathematical foundations** of Laplace–Beltrami shape representation for tumors: what
-   the spectrum provably captures about a lesion's shape, what it cannot, how stable it is, and how it
-   relates to spherical harmonic decompositions.
-3. **Derive better descriptors from that theory** and test whether they improve on the baselines.
+Our current focus is paper reproduction and evaluation. Each study connects an implementation in
+`abus_classification`, an explanatory notebook, Kaggle GPU kernels, stored results and a detailed
+reproduction guide. Those records explain what we did, how and why, including assumptions,
+differences from the paper, unexpected behavior and follow-up experiments. Original authors are
+welcome to review the implementation and contribute corrections; review status is recorded explicitly.
+
+**Phase 3** will study Laplace–Beltrami shape representations and their classification performance,
+using the reproduced methods as baselines. Our previous paper [7] motivates that investigation;
+its finalized source, including the CNN code, is currently awaited from the first author.
+
+Start with the [research index](https://github.com/mralinp/abus-classification/blob/main/docs/papers.md) and [research workflow](https://github.com/mralinp/abus-classification/blob/main/docs/research-workflow.md).
+The index distinguishes current reproductions, planned studies and historical thesis experiments.
 
 The work is carried out at the Iran Image Processing Lab (IIPL) by Ali Naderiparizi and Sepideh Barekatrezaei,
 under the supervision of Dr. Ehsan Kozegar and Dr. Mohsen Soryani (main supervisor). Code is released under
@@ -27,6 +34,8 @@ the MIT license.
 ## Results so far
 
 All results below use the **official TDSC-ABUS test split** (70 lesions: 40 malignant, 30 benign).
+Published challenge scores are labeled separately from our evaluations. A completed run does not
+imply original-author verification or an exact reproduction of the original protocol.
 Always answering "malignant" scores 57.1% accuracy on it.
 
 | Method | Features / model | Test AUC | Test accuracy | Notes |
@@ -34,12 +43,10 @@ Always answering "malignant" scores 57.1% accuracy on it.
 | Tan et al. 2012, reproduced here | 11 radiomic features, RBF SVM | **0.86** (95% CI 0.77–0.94) | **78.6%** | CV AUC 0.83 ± 0.03 |
 | Tan et al. 2012 without spiculation, reproduced here | 8 features, RBF SVM | 0.79 | 75.7% | CV AUC 0.74 |
 | Tan et al. 2013, reproduced here | 14 features, LDA | 0.82 | 72.9% | CV AUC 0.82 |
-| Barekatrezaei et al. 2026, reproduced here | Laplace–Beltrami spectra + dual-path CNN, voting | 0.85–0.86 | 71.4–77.1% | 3 seeds; stacking reaches only 0.68–0.82, see below |
 | Zhou et al. 2021, reproduced here | Multi-task V-Net, CMSVNetIter | 0.67 (95% CI 0.53–0.79) | 62.9% | mean of 3 seeds; Dice 0.73 |
 | Wang et al. 2020, reproduced here | Multiview Inception-v3 (CNN A), official boxes | 0.755 (95% CI 0.63–0.86) | 65.7% | mean of 3 seeds; transverse view alone reaches 0.80 |
 | Yu et al. 2024, reproduced here | ResNet34 on lesion crops, soft voting | 0.81 (mean of seeds 0.825, 95% CI 0.72–0.92) | 70.0% | 3 seeds; whole slices reach 0.75 |
 | TDSC-ABUS challenge winner (T1, SZU) | 3D ResNet | 0.889 | 75.7% | reported in the challenge paper |
-| Barekatrezaei et al. 2026 — our previous work [7] | Laplace–Beltrami spectra + dual-path CNN | 0.935 | 84.3% | reported in [7] |
 
 > **Comparing across rows.** The reproductions here compute features from the ground-truth lesion
 > masks, and the CNN patches are centred on those masks. Challenge entries had to locate and segment lesions themselves, so their task was harder.
@@ -62,21 +69,19 @@ Always answering "malignant" scores 57.1% accuracy on it.
 | --- | --- |
 | ![Coronal plane, coronal spiculation map and transversal plane with the posterior region for a malignant and a benign lesion](docs/assets/tan-features-example.png) | ![ROC curves on the TDSC-ABUS test split for the reproduced Tan 2012 and Tan 2013 classifiers](docs/assets/tan-roc-test-split.png) |
 
-**Barekatrezaei et al. 2026** (details in
-[`2-barekatrezaei2026.ipynb`](https://github.com/mralinp/abus-classification/blob/main/notebooks/2-barekatrezaei2026.ipynb);
-remaining work in [#28](https://github.com/mralinp/abus-classification/issues/28)):
-
-- **Stacking does not reproduce yet.** The paper's stacked ensemble reports AUC 0.935; ours reaches 0.68–0.82,
-  depending on seed and stacker. Voting (0.85–0.86) is close to the paper's 0.873.
-- **The ablations do not reproduce either.** Removing the Laplace–Beltrami features does not hurt here, and the raw
-  eigenvalues act mostly as a proxy for lesion size. We are waiting for the original code to compare the pipelines.
+**Barekatrezaei et al. 2026 — awaiting finalized author source.** The first author's finalized
+source, including the CNN implementation, is pending. Provisional comparisons are omitted from
+this README while fidelity is unresolved. Existing runs, differences and diagnostics remain in the
+[notebook](https://github.com/mralinp/abus-classification/blob/main/notebooks/2-barekatrezaei2026.ipynb) and
+[reproduction record](https://github.com/mralinp/abus-classification/blob/main/docs/reproductions/barekatrezaei2026.md); they are not a finalized assessment
+of the paper. See [#28](https://github.com/mralinp/abus-classification/issues/28).
 
 **Zhou et al. 2021** (details in
 [`3-zhou2021.ipynb`](https://github.com/mralinp/abus-classification/blob/main/notebooks/3-zhou2021.ipynb)):
 
-- **Below the paper, but not clearly so.** The paper reports AUC 0.787, accuracy 74.1% and Dice 0.778 from four-fold
-  cross-validation on private data. Ours is AUC 0.67, accuracy 62.9% and Dice 0.73, and the paper's AUC lies inside our
-  confidence interval.
+- **Different data and evaluation.** The paper reports AUC 0.787, accuracy 74.1% and Dice 0.778 from four-fold
+  cross-validation on private data. Our TDSC-ABUS evaluation gives AUC 0.67, accuracy 62.9% and Dice 0.73.
+  These protocols do not establish a direct replication of the paper's score.
 - **Refinement helps segmentation, as in the paper.** The paper's classification gain does not show here: on one seed,
   the full method scores AUC 0.65 against 0.74 without refinement, with overlapping confidence intervals.
 - **The classification head under-fits.** Its loss barely falls during training and training AUC only reaches about
@@ -85,8 +90,8 @@ remaining work in [#28](https://github.com/mralinp/abus-classification/issues/28
 **Wang et al. 2020** (details in
 [`4-wang2020.ipynb`](https://github.com/mralinp/abus-classification/blob/main/notebooks/4-wang2020.ipynb)):
 
-- **Far below the paper.** The paper reports AUC 0.947 with five-fold cross-validation on private data; ours is 0.755, and the
-  paper's value is above our confidence interval.
+- **Different data and evaluation.** The paper reports AUC 0.947 with five-fold cross-validation on private data;
+  our TDSC-ABUS Test AUC is 0.755. The dataset and protocol difference limits conclusions about the original result.
 - **The multiview gain does not show.** The transverse view alone scores highest (0.80), and ImageNet weights give no visible
   gain; all confidence intervals overlap.
 - **Validation overstates the result.** Best validation AUC averages 0.94 for CNN A on 30 lesions, against 0.74 on test.
@@ -94,18 +99,159 @@ remaining work in [#28](https://github.com/mralinp/abus-classification/issues/28
 **Yu et al. 2024** (details in
 [`6-yu2024.ipynb`](https://github.com/mralinp/abus-classification/blob/main/notebooks/6-yu2024.ipynb)):
 
-- **Far below the paper, on its own data and protocol.** The paper reports soft voting AUC 0.986 from five-fold cross-validation on
-  the TDSC Train split; the same protocol gives 0.85 here. The paper's numbers are also inconsistent: its voting rows list AUC equal
-  to accuracy, and its hard voting sensitivity and specificity imply accuracy 0.937, not 0.907.
+- **Unresolved comparison on the paper's data and protocol.** The paper reports soft voting AUC 0.986 from five-fold
+  cross-validation on the TDSC Train split; our reconstruction gives 0.85 under that split protocol. Several implementation
+  details remain assumptions. Its voting rows list AUC equal to accuracy, and its hard voting sensitivity and specificity
+  imply accuracy 0.937 rather than 0.907; these are questions for author clarification.
 - **Soft voting helps only a little over hard voting.** It adds about 0.02 AUC, without a paired test yet.
 - **Training memorises quickly.** Training accuracy reaches about 100%, by epoch 2 on whole slices. The likely cause is volumes
   being memorised; this is not yet tested.
 - **Early stopping did not help, so the paper defaults stay the main result.** We added it because of that memorising, stopping on the
-  official Validation split. Crops stay at ensemble AUC 0.825, whole slices fall from 0.765 to 0.676, and no pretraining rises from 0.687
-  to 0.705; all paired 95% intervals include zero. Five-fold CV also falls, from 0.846 to 0.815 on crops. Validation AUC reaches
-  0.91–0.995 against 0.69–0.80 on Test, so 30 validation volumes are a poor guide.
-- **Challenge benchmark, classification only:** crops rank 4 of 9 (Cls_Score 0.734) with defaults and 3 of 9 (0.767) with early stopping.
-  The AUC is equal, and the gap is one test volume at the 0.5 threshold. This method uses ground-truth masks, so it has no overall rank.
+  official Validation split. Crops move from ensemble AUC 0.825 to 0.832, whole slices fall from 0.765 to 0.676, and no pretraining rises from 0.687
+  to 0.697; all paired 95% intervals include zero. Five-fold CV also falls, from 0.846 to 0.796 on crops. Validation AUC reaches
+  0.91–0.994 against 0.67–0.81 on Test, so 30 validation volumes are a poor guide.
+- **Challenge benchmark, classification only:** crops rank 4 of 9 (Cls_Score 0.734) with defaults and 2 of 9 (0.844) with early stopping.
+  AUC is close, and most of the gap is three test volumes at the 0.5 threshold. A second session with the same settings gave rank 3, so this rank is not stable. This method uses ground-truth masks, so it has no overall rank.
+
+**Laplace–Beltrami invariance** (details in
+[`lb-invariance.ipynb`](https://github.com/mralinp/abus-classification/blob/main/notebooks/lb-invariance.ipynb)):
+
+- **The invariances hold.** Rigid motion, isometry and scale (λₖ·Area) are exact on meshes. Random rigid motions of re-voxelised lesions
+  change λₖ·Area by about 0.2% on smoothed surfaces and 1% on staircase surfaces.
+- **The eigenvalues in our previous work measure size.** They come from the cotangent matrix L without the mass matrix, and eig(L) ≈ λ·Area / n,
+  with n the vertex count (ratio 0.99–1.00 here). The stored values rank lesions almost exactly by vertex count (Spearman −1.00 at k = 99), so they
+  also depend on the voxel grid. In 29 of 200 lesions, an extra mesh piece shifts their indices.
+- **Little signal remains in the low modes once size is removed.** On Train + Validation, cross-validated AUC is 0.59 for λₖ·Area with k = 1–20, 0.71 for
+  volume and 0.72 for the stored values. Adding these modes to volume lowers it to 0.65. Higher modes and lighter smoothing are untested.
+
+![Stored ESWA eigenvalues against mesh vertex count, eig(L) times vertex count against lambda times area, and raw against area-normalised eigenvalues by lesion volume](docs/assets/lb-invariance.png)
+
+**What the Laplace–Beltrami spectrum determines** (details in
+[`lb-spectrum-content.ipynb`](https://github.com/mralinp/abus-classification/blob/main/notebooks/lb-spectrum-content.ipynb)):
+
+- **Area can be read from the spectrum, volume cannot.** Weyl's law recovers lesion area to about 4% from modes around k = 50–100. The Euler number comes back within about 0.1 on fine sphere and torus meshes, but too noisily on lesion meshes to count handles.
+- **Kac's limit is real here.** An isometric dent changes volume but not the spectrum, and a Sunada pair of non-isometric surfaces shares its spectrum to 3e-15.
+- **Area normalisation is not enough in practice.** At a fixed voxel size and smoothing width, λₖ·Area at high modes still follows volume (Spearman up to 0.96).
+- **In a linear model, the spectrum adds nothing to volume on Train + Validation.** With volume removed, AUC is at most 0.49 on every surface up to k = 100. Tan's spiculation, which uses image gradients, keeps 0.69 under the same check. Sphericity also falls to about chance. Non-linear models and size-matched meshing are untested.
+
+**Roundness and lobulation from the spectrum** (details in
+[`lb-roundness.ipynb`](https://github.com/mralinp/abus-classification/blob/main/notebooks/lb-roundness.ipynb)):
+
+- **Matching meshes to lesion size fixes the size leak.** Giving each lesion a grid and smoothing proportional to its size cuts the correlation of λₖ·Area with volume from up to 0.96 to at most 0.21.
+- **Hersch's bound holds, and λ₁·Area / 8π mostly reads elongation.** No genus-0 lesion exceeds the bound; the median ratio is 0.61 and the largest 0.88. Its Spearman correlation with elongation is −0.69.
+- **Lobes split eigenvalues by an exact rule, on near-round shapes only.** A lobe of even degree d first splits level d/2, within about 5% of the first-order prediction, and odd degrees split only at second order. Real lesions are far outside that range.
+- **Little spectral signal remains beyond volume, even when sizes are matched.** On Train + Validation, CV AUC after removing volume is 0.57 for λ₁·Area and at most 0.55 for all-mode sets. Adding λ₁·Area to volume gives 0.72 against 0.71. A plain extent ratio does better: 0.63 after volume, 0.75 with it. Many comparisons were made on 130 lesions.
+
+| Lobes and the levels they split | Real lesions by their distance from the round sphere |
+| --- | --- |
+| ![Spheres with lobes of degree 2, 3, 4, 6 and 8 above bar charts of eigenvalue spread at each level](docs/assets/lb-3d-lobes.png) | ![Ten real lesions coloured by their first eigenfunction, ordered by lambda 1 times area over 8 pi](docs/assets/lb-3d-roundness.png) |
+
+**Stability of the spectrum** (details in
+[`lb-stability.ipynb`](https://github.com/mralinp/abus-classification/blob/main/notebooks/lb-stability.ipynb)):
+
+- **Eigenvalues have a proved limit, with one exception.** The ratio of any eigenvalue to its deformed value is bounded by how much the surface's metric changes, for every mode. Necks escape it: a thin neck barely changes volume and strongly lowers λ₁.
+- **Small percent changes hide low reliability.** High modes move only about 1% under 0.5 mm boundary noise, but lesions differ by about that much too. ICC at that noise is 0.81 at k = 1, 0.44 at k = 20 and 0.13 at k = 100, against 0.99 for volume.
+- **On real predicted masks, a lesion's rank in the spectrum mostly disappears.** With Zhou 2021's masks (mean Dice about 0.73), Spearman between true and predicted is 0.92 for volume, 0.64 for elongation, 0.40 for λ₁·Area and about 0 from k = 20 up. Those patches are centred on the true lesion, so a full pipeline would not do better. The network also rounds shapes: median sphericity rises from 0.38 to 0.62, and 94% of predictions are rounder than their true mask.
+- **Simulated noise does not explain the weak class signal.** AUC stays about flat up to 0.5 mm of noise. So instability is a separate limit, and the annotation error already in the true masks remains unmeasured.
+
+| A real lesion under increasing boundary noise | True and predicted surfaces, Test lesions |
+| --- | --- |
+| ![Two real lesions at clean, 0.25, 0.5 and 1 mm boundary noise, with lambda 1 times area for each](docs/assets/lb-3d-noise.png) | ![Three Test lesions as true and predicted surfaces at low, middle and high Dice](docs/assets/lb-3d-predicted.png) |
+
+![Reliability of lambda times area against mode number at three noise levels](docs/assets/lb-icc.png)
+
+**Spherical harmonics and the spectrum** (details in
+[`lb-spherical-harmonics.ipynb`](https://github.com/mralinp/abus-classification/blob/main/notebooks/lb-spherical-harmonics.ipynb)):
+
+- **The two views connect exactly on near-round shapes.** A lobe of degree d appears at harmonic degrees d ± 1 and first splits eigenvalue level d/2.
+- **Real lesions can be mapped.** All 200 map to the sphere conformally, 19 after topology correction, with almost no flipped triangles. The map is the one in Hersch's proof: its energy is within 5% of 8π, and λ₁·Area stays below it on every lesion. Thin parts shrink and reconstruct worst.
+- **Harmonic power is more reliable than eigenvalues at fine scales.** At 0.5 mm noise, ICC is 0.70 at degree 10 (about mode 120) against 0.13 at k = 100. On predicted masks, rank is 0.48 at degree 10, where eigenvalues from k = 20 keep none. At coarse scales they are about equal. Topology correction may account for part of this.
+- **Reliability does not bring class signal.** On Train + Validation, CV AUC after removing volume is at most 0.56 for harmonic features, against 0.70 for spiculation.
+
+| Rebuilding real lesions from harmonics | Sphere maps of real lesions |
+| --- | --- |
+| ![Three real lesions rebuilt up to degrees 1, 3, 5, 10 and 15, beside the true surface and its remaining error](docs/assets/lb-3d-reconstruction.png) | ![Three real lesions beside their conformal sphere maps, coloured by original height](docs/assets/lb-3d-spheremap.png) |
+
+**Spectral descriptors as classifiers** (details in
+[`lb-descriptors.ipynb`](https://github.com/mralinp/abus-classification/blob/main/notebooks/lb-descriptors.ipynb)):
+
+- **Features using eigenfunctions show the first spectral signal beyond volume.** On Train + Validation, CV AUC after removing volume is 0.64 for the count of heat-kernel maxima ("tips", protrusions at a given scale) and for the WKS 95th percentile, against 0.44–0.47 for Shape-DNA. With volume, they reach about 0.77 against 0.71 for volume alone.
+- **Not yet established.** The best gain over all 9 families beats shuffled features (p = 0.02), but each gain's 95% interval includes zero, and that test does not correct for earlier work on the same 130 lesions. Test has not been used.
+- **Overlaps with spiculation.** Tips add only 0.015 on top of volume and Tan's spiculation (0.80), which remains the strongest feature here.
+- **The means cannot help in principle.** Mean HKS is the heat trace and mean WKS is identically 1, so only their spread and maxima can add to the eigenvalues.
+
+![Local maxima of the heat kernel signature marked on a bumpy sphere and three real lesions at three times](docs/assets/lb-3d-tips.png)
+
+| Protrusions by class, and the gain against shuffled features |
+| --- |
+| ![Histogram of tips by class beside the observed best AUC gain against its permutation distribution](docs/assets/lb-descriptors-signal.png) |
+
+**Classification with every feature set** (details in
+[`lb-classification.ipynb`](https://github.com/mralinp/abus-classification/blob/main/notebooks/lb-classification.ipynb)). These are Train + Validation estimates, made before Test was read; the Test results follow in the next section:
+
+- **Fair performance is about 0.81.** With feature selection inside cross-validation, AUC is 0.81, against 0.58 at the 95th percentile with shuffled labels (p < 0.01). Testing many combinations without nesting gives higher numbers that should not be trusted.
+- **Spiculation is the core.** It is chosen in 99% of folds and is the only group whose removal clearly hurts. It uses image gradients, so this is not purely a shape result.
+- **Spectral features alone are weak, but one adds to spiculation.** All spectral groups together reach 0.67. The Hersch ratio λ₁·Area/8π adds 0.045 on top of size and spiculation (interval 0.006 to 0.089). With 11 additions tried, this is promising, not established.
+- **More features is not better.** All 112 features score 0.81, below the 21 classical ones at 0.84.
+- **Predictions can be explained.** A four-feature linear model splits each prediction into readable contributions. Its own 0.87 AUC is optimistic, since its features were picked on these lesions.
+
+| Each feature group alone | Explaining single lesions |
+| --- | --- |
+| ![Bar chart of cross-validated AUC for 13 feature groups, classical above spectral](docs/assets/lb-groups.png) | ![Four real lesions with protrusions marked, each beside the contribution of four features to its prediction](docs/assets/lb-3d-explanations.png) |
+
+**Laplace–Beltrami features on Test, with the TDSC-ABUS benchmark** (details in
+[`lb-feature-evaluation.ipynb`](https://github.com/mralinp/abus-classification/blob/main/notebooks/lb-feature-evaluation.ipynb)).
+Models were frozen on Train + Validation from 510 combinations of 17 classifiers and 10 feature sets, then scored once on Test. All use ground-truth masks and classify only, so ranks are not like-for-like with challenge teams:
+
+| Frozen model | ACC | AUC (95% CI) | Challenge classification rank |
+| --- | --- | --- | --- |
+| Rule's winner, LB features only | 0.600 | 0.692 (0.565–0.812) | 6 of 9 |
+| Rule's winner, all features: classical + selected LB, logistic | 0.786 | 0.848 (0.743–0.924) | 2 of 9 |
+| Size + spiculation, logistic | 0.871 | 0.889 (0.792–0.969) | 1 of 9 |
+| Size + spiculation + Hersch ratio, logistic | 0.829 | 0.869 (0.769–0.946) | 1 of 9 |
+
+- **Above 0.80 needs classical features.** LB features alone do not get there, with any classifier the rule could pick. Size + spiculation clears both targets, and uses image gradients.
+- **The earlier spectral gain did not replicate.** The Hersch ratio helped on Train + Validation and changed AUC by −0.020 (−0.086 to 0.042) on Test. At this point, no LB feature had shown independent value on held-out data.
+- **The best of 510 is not a result.** Extra trees reached AUC 0.922 and ACC 0.857 on Test, but it was found by looking at Test. Test has now been used, so further tuning against it would be biased.
+- **Single lesions look different, but the classes overlap.** Both classes contain round and irregular lesions, and single shape measures reach AUC 0.61–0.72.
+
+| Results on the challenge board | Class overlap per measure |
+| --- | --- |
+| ![Scatter of ACC and AUC for challenge teams and our frozen models, with lines at 0.80](docs/assets/lb-evaluation-board.png) | ![Histograms by class for six measures, each with its AUC](docs/assets/lb-class-overlap.png) |
+
+![Five malignant and five benign real lesions in 3D, ordered by Hersch ratio](docs/assets/lb-3d-classes.png)
+
+**What malignancy means, and what a 3D surface can show** (details in
+[`lb-malignancy.ipynb`](https://github.com/mralinp/abus-classification/blob/main/notebooks/lb-malignancy.ipynb)). Designed on Train + Validation, then scored once on Test from a plan frozen and hashed in advance. Test had already been used once, so this is a second look at that split. True masks unless stated.
+
+Malignancy is a behaviour of cells, invasion and spread, confirmed by histology. Shape is only its footprint, and it fails in both directions: radial scars can look spiculated and be benign, and many triple-negative cancers look circumscribed. So we turned the clinical signs into descriptors, and asked which of them hold up.
+
+| Frozen model, on Test | ACC | AUC (95% CI) | Board rank | On Zhou 2021's masks: ACC, AUC |
+| --- | --- | --- | --- | --- |
+| **Size, radial lines, tilt (primary)** | 0.814 | 0.854 (0.758–0.934) | 1 of 9 | 0.781, 0.820 |
+| Size + spiculation (seen before) | 0.871 | 0.889 (0.792–0.969) | 1 of 9 | Not run |
+| Size + radial lines | 0.786 | 0.902 (0.826–0.959) | 1 of 9 | 0.781, 0.835 |
+| Size | 0.714 | 0.758 (0.635–0.868) | 5 of 9 | 0.662, 0.697 |
+| Surface signs alone | 0.643 | 0.733 (0.608–0.849) | 5 of 9 | 0.433, 0.640 |
+
+Ranks use true masks and classify only, so they are not like-for-like with challenge teams. Predicted-mask patches are centred on the true lesion. The notebook reports all 12 models. Only the primary and size were in the plan for predicted masks; the rest are post hoc.
+
+- **Tissue lines replicated.** Lines in the tissue run out of malignant lesions as far as 25–30 mm, and benign lesions stay near zero, with the same profile on Test as on Train + Validation. AUC after volume is 0.77, against 0.76 for Tan's SP90, and it does not follow size. A sham lesion elsewhere in the scan gives AUC 0.43, against 0.77 at the lesion.
+- **The hybrid did not beat size + spiculation.** It passes 0.80 on both metrics, but its gain is −0.035 (−0.117 to 0.039). Its tilt term failed: AUC 0.49 on Test, against 0.60 on Train + Validation. Without tilt the model has the highest AUC of the 12, but being the best of 12 it is not a result, and it ties size + spiculation.
+- **Spiculation is not just spikes on the mask.** On Train + Validation, surface signs track SP90 at Spearman 0.36 at most, while radial lines reach 0.77. Within a lesion, bumps barely sit where lines run out (0.03–0.08 across splits). Masks may simply leave thin spicules out.
+- **Mask shape is modest and does not survive real segmentation.** Surface signs alone reach AUC 0.63 on Train + Validation and 0.73 on Test, then 0.64 with ACC 0.43 on predicted masks. Those surfaces are much smoother, so the model calls almost every lesion benign.
+- **Lines do survive it.** On Zhou 2021's masks the primary model keeps AUC 0.82 and ACC 0.78, where Zhou's own classification head scores 0.67 and 62.9% on the same lesions.
+- **Laplace–Beltrami's part is small.** The fine area budget, built from the operator applied to the surface's coordinates, is the first LB measure here with signal beyond volume on held-out data: AUC 0.76 (0.63–0.87), one of eight features checked. Its gain on the hybrid is not established (0.034, −0.009 to 0.079), and whether it adds to size + spiculation was not in the plan. The line excess needs no LB, and tilt matches plain surface PCA.
+
+| Each sign on shapes built to show it | Lines around six real lesions |
+| --- | --- |
+| ![Six synthetic shapes coloured by height above their own smooth body](docs/assets/lb-malignancy-shapes.png) | ![Coronal planes of six real lesions with strong tissue lines marked as running outward or along the lesion](docs/assets/lb-malignancy-planes.png) |
+
+![Six real lesions in 3D: height above the body in the top row, and tissue lines carried onto the surface in the bottom row](docs/assets/lb-malignancy-surfaces.png)
+
+![On Test: radial excess of tissue lines by distance from the mask, for malignant and benign lesions, around the lesion and around a sham lesion in the same scan](docs/assets/lb-malignancy-reach-test.png)
+
+![On Test: AUC of all 12 frozen models with intervals beside their cross-validated AUC, and ROC curves of four models](docs/assets/lb-malignancy-test.png)
 
 | Predicted and true tumors, Zhou et al. 2021 | Ablations against the paper |
 | --- | --- |
@@ -115,7 +261,8 @@ remaining work in [#28](https://github.com/mralinp/abus-classification/issues/28
 
 ## Roadmap
 
-Status: ✅ done · 🔄 in progress · ⬜ planned
+Status: ✅ recorded work completed within its stated scope · 🔄 in progress · ⬜ planned.
+These symbols do not indicate original-author verification; see the [research index](https://github.com/mralinp/abus-classification/blob/main/docs/papers.md).
 
 ### Phase 0 — Foundations ✅
 
@@ -136,16 +283,20 @@ Status: ✅ done · 🔄 in progress · ⬜ planned
 
 ### Phase 2 — Reproduce the strongest published results 🔄
 
-Every method is re-run under one protocol: train on Train + Validation (130 lesions), report AUC with
-a bootstrap confidence interval and accuracy on the official Test split, and compare pairs with
-DeLong's test. Each is evaluated twice — from ground-truth masks and from predicted segmentations.
-Each also reports the [challenge benchmark](notebooks/challenge-benchmark.ipynb) on the published leaderboard
+The shared target protocol fits Train + Validation (130 volumes) and evaluates the official Test split
+(70), with malignant as the positive class, three seeds and AUC confidence intervals. Original-paper
+protocols and variants are reported separately. For example, holding out Validation for early stopping
+fits only Train (100); it must not be described as the same training protocol. Each volume's slices and patches stay
+together when creating splits. Pairwise statistical comparisons and evaluation using
+predicted segmentations remain planned where not explicitly reported.
+
+Each study also reports the [challenge benchmark](https://github.com/mralinp/abus-classification/blob/main/notebooks/challenge-benchmark.ipynb) on the published leaderboard
 (`abus_classification/challenge.py`). So far that covers classification only ([#34](https://github.com/mralinp/abus-classification/issues/34)).
 
 | | Paper | Authors | Approach and PR |
 | --- | --- | --- | --- |
-| 🔄 | *[Breast mass classification in 3D ABUS based on Laplace-Beltrami spectra and dual path CNN](https://doi.org/10.1016/j.eswa.2025.129973)* [7], our previous work | Barekatrezaei et al. 2026 | Laplace–Beltrami spectra + dual-path CNN, stacked ensemble; voting AUC 0.85–0.86, stacking does not reproduce yet ([#28](https://github.com/mralinp/abus-classification/issues/28)). [`2-barekatrezaei2026.ipynb`](https://github.com/mralinp/abus-classification/blob/main/notebooks/2-barekatrezaei2026.ipynb), PR [#27](https://github.com/mralinp/abus-classification/pull/27) |
-| ⬜ | *[Tumor detection, segmentation and classification challenge on automated 3D breast ultrasound: the TDSC-ABUS challenge](https://arxiv.org/abs/2501.15588)* [5], team T1 (SZU) | Luo et al. 2025 | 3D ResNet, U-Net and anchor-free detector; not started ([#30](https://github.com/mralinp/abus-classification/issues/30)) |
+| 🔄 | *[Breast mass classification in 3D ABUS based on Laplace-Beltrami spectra and dual path CNN](https://doi.org/10.1016/j.eswa.2025.129973)* [7], our previous work | Barekatrezaei et al. 2026 | Awaiting finalized source, including the CNN code, from the first author; provisional findings retained in the notebook and [reproduction record](https://github.com/mralinp/abus-classification/blob/main/docs/reproductions/barekatrezaei2026.md) ([#28](https://github.com/mralinp/abus-classification/issues/28)). [`2-barekatrezaei2026.ipynb`](https://github.com/mralinp/abus-classification/blob/main/notebooks/2-barekatrezaei2026.ipynb), PR [#27](https://github.com/mralinp/abus-classification/pull/27) |
+| 🔄 | *[Tumor detection, segmentation and classification challenge on automated 3D breast ultrasound: the TDSC-ABUS challenge](https://arxiv.org/abs/2501.15588)* [5], team T1 (SZU) | Luo et al. 2025 | 3D ResNet, U-Net and anchor-free detector; in progress, implementation and Kaggle run under way ([#30](https://github.com/mralinp/abus-classification/issues/30)) |
 | ⬜ | *[Tumor detection, segmentation and classification challenge on automated 3D breast ultrasound: the TDSC-ABUS challenge](https://arxiv.org/abs/2501.15588)* [5], team T2 (POSTECH) | Luo et al. 2025 | Multi-task residual nnU-Net; not started ([#31](https://github.com/mralinp/abus-classification/issues/31)) |
 | ⬜ | *[Tumor detection, segmentation and classification challenge on automated 3D breast ultrasound: the TDSC-ABUS challenge](https://arxiv.org/abs/2501.15588)* [5], team T3 (HU) | Luo et al. 2025 | nnU-Net, nnDetection and patch-based 3D ResNet-18; not started ([#32](https://github.com/mralinp/abus-classification/issues/32)) |
 | ⬜ | *[Tumor detection, segmentation and classification challenge on automated 3D breast ultrasound: the TDSC-ABUS challenge](https://arxiv.org/abs/2501.15588)* [5], team T4 (KTH) | Luo et al. 2025 | STU-Net and 2.5D DenseNet201 with voting; not started ([#33](https://github.com/mralinp/abus-classification/issues/33)) |
@@ -155,10 +306,11 @@ Each also reports the [challenge benchmark](notebooks/challenge-benchmark.ipynb)
 | 🔄 | *[Fully automatic classification of automated breast ultrasound (ABUS) imaging according to BI-RADS using a deep convolutional neural network](https://doi.org/10.1007/s00330-022-08558-0)* | Hejduk et al. 2022 | Three step-wise 2D CNNs and a sliding window over slices; running on Kaggle, no PR yet |
 | ⬜ | Unified comparison table and statistical tests across all reproduced methods | — | — |
 
-### Phase 3 — Mathematical foundations of Laplace–Beltrami shape representation ⬜
+### Phase 3 — Mathematical foundations of Laplace–Beltrami shape representation 🔄
 
-Our previous work [7] showed that Laplace–Beltrami spectra of the lesion surface separate malignant
-from benign lesions well, but did not explain why. This phase supplies the mathematics: which
+Our previous work [7] motivates studying Laplace–Beltrami spectra of lesion surfaces. Foundational
+invariance work has begun alongside the benchmark studies; full descriptor classification comparisons
+remain pending. This phase investigates which
 properties of a tumor's shape the spectrum provably captures, which it cannot, how stable it is under
 the imperfections of real ultrasound segmentations, and how it relates to spherical harmonic
 decompositions. Every claim is paired with an empirical check on TDSC-ABUS, and the theory is used to
@@ -168,15 +320,56 @@ derive better-founded descriptors.
 | --- | --- | --- |
 | ✅ | Watertight lesion surfaces | `utils.mesh.lesion_mesh`: meshes in millimetres; padding and no morphological closing keep all 200 surfaces closed |
 | ✅ | Discrete Laplace–Beltrami operator | Cotangent scheme with lumped mass matrix, verified against the analytic spectrum of the unit sphere; convergence to the smooth operator depends on mesh conditions studied in [15, 16] |
-| ⬜ | Invariance | Prove and verify invariance to rigid motion and isometric deformation, and normalise for scale (λₖ·Area) so lesions of different size are comparable |
-| ⬜ | What the spectrum determines | Surface area from Weyl's law [17]; area and Euler characteristic from the heat-trace expansion [18]; and its limits, the question posed by Kac [19] |
-| ⬜ | Roundness and irregularity | Hersch's inequality, λ₁·Area ≤ 8π on genus-0 surfaces with equality only for the round sphere [20], makes the first eigenvalue a provable measure of departure from roundness; relate higher eigenvalues to lobulation and spiculation |
-| ⬜ | Stability | Bound how far eigenvalues move under surface perturbation, mesh resolution, voxel anisotropy and segmentation error, and measure it on TDSC-ABUS |
-| 🔄 | Spectral descriptors | Shape-DNA [9], heat kernel signature [10], wave kernel signature [11], global point signature [12] — implemented, classification pending |
-| ⬜ | Spherical harmonics | Spherical harmonics are the Laplace–Beltrami eigenfunctions of the sphere, so a spherical harmonic decomposition [13, 14] and the lesion's own spectrum are two views of one framework; it needs genus-0 surfaces, so voxel-derived surfaces with handles require topology correction first |
-| ⬜ | Theory-driven descriptors | Design descriptors from the results above, fuse them with spiculation, intensity and CNN features, and evaluate under the Phase 2 protocol with ablations |
+| ✅ | Invariance | Proved and verified for rigid motion, isometry and scale (λₖ·Area). On re-voxelised lesions it holds to 0.2–1%. [`lb-invariance.ipynb`](https://github.com/mralinp/abus-classification/blob/main/notebooks/lb-invariance.ipynb) |
+| ✅ | What the spectrum determines | Surface area from Weyl's law [17]; area and Euler characteristic from the heat-trace expansion [18]; and its limits, the question posed by Kac [19]. Area is recoverable to about 4% on lesions; the Euler number only on fine meshes. [`lb-spectrum-content.ipynb`](https://github.com/mralinp/abus-classification/blob/main/notebooks/lb-spectrum-content.ipynb) |
+| ✅ | Roundness and irregularity | Hersch's inequality, λ₁·Area ≤ 8π on genus-0 surfaces with equality only for the round sphere [20], makes the first eigenvalue a provable measure of departure from roundness; relate higher eigenvalues to lobulation and spiculation. Hersch's bound holds on every genus-0 lesion; a selection rule ties lobes to eigenvalue splitting on near-round shapes only. [`lb-roundness.ipynb`](https://github.com/mralinp/abus-classification/blob/main/notebooks/lb-roundness.ipynb) |
+| ✅ | Stability | Bound how far eigenvalues move under surface perturbation, mesh resolution, voxel anisotropy and segmentation error, and measure it on TDSC-ABUS. Eigenvalues are bounded by metric change except at necks; on predicted masks a lesion's spectral rank mostly disappears. [`lb-stability.ipynb`](https://github.com/mralinp/abus-classification/blob/main/notebooks/lb-stability.ipynb) |
+| ✅ | Spectral descriptors | Shape-DNA [9], heat kernel signature [10], wave kernel signature [11], global point signature [12]. Eigenfunction-based summaries show the first signal beyond volume, not yet established. [`lb-descriptors.ipynb`](https://github.com/mralinp/abus-classification/blob/main/notebooks/lb-descriptors.ipynb) |
+| ✅ | Spherical harmonics | Spherical harmonics are the Laplace–Beltrami eigenfunctions of the sphere, so a spherical harmonic decomposition [13, 14] and the lesion's own spectrum are two views of one framework; it needs genus-0 surfaces, so voxel-derived surfaces with handles require topology correction first. All 200 lesions map to the sphere, 19 after topology correction; harmonic power is more reliable than high eigenvalues. [`lb-spherical-harmonics.ipynb`](https://github.com/mralinp/abus-classification/blob/main/notebooks/lb-spherical-harmonics.ipynb) |
+| ✅ | Classification with LB features | All features, combinations and selection across 17 classifiers, in ACC, AUC and the TDSC-ABUS benchmark, frozen on Train + Validation and scored once on Test. LB features alone: AUC 0.69, ACC 0.60. Size + spiculation: AUC 0.89, ACC 0.87. [`lb-feature-evaluation.ipynb`](https://github.com/mralinp/abus-classification/blob/main/notebooks/lb-feature-evaluation.ipynb) |
+| 🔄 | Theory-driven descriptors | Design descriptors from the results above, fuse them with spiculation, intensity and CNN features, and evaluate under the Phase 2 protocol with ablations. Designed from the clinical signs of malignancy, fused with size and spiculation, and scored once on Test as a second look: tissue lines replicated, tilt failed, and size + spiculation stays ahead. Intensity and CNN fusion remain. [`lb-malignancy.ipynb`](https://github.com/mralinp/abus-classification/blob/main/notebooks/lb-malignancy.ipynb) |
 
 ![Lesion surfaces reconstructed by marching cubes for a malignant and a benign lesion, drawn at true physical proportions](docs/assets/lesion-surfaces-3d.png)
+
+#### The feature sets in 3D
+
+[`lb-features-3d.ipynb`](https://github.com/mralinp/abus-classification/blob/main/notebooks/lb-features-3d.ipynb) shows what each one measures, on reference shapes and real TDSC-ABUS lesions chosen by volume percentile. These illustrate one lesion per class and are not evidence of a class difference.
+
+**The real surfaces.** Staircase meshes from binary masks, and the same lesions after light smoothing.
+
+![Six lesions at the 25th, 50th and 75th volume percentiles of each class, as staircase and smoothed surfaces](docs/assets/lb-3d-lesions.png)
+
+**Shape-DNA, the eigenvalues:** the pitches a surface vibrates at, a global description that ignores pose and, multiplied by area, size. Shape appears as the departure from Weyl's line.
+
+![Four shapes above plots of lambda times area minus 4 pi k](docs/assets/lb-3d-shapedna.png)
+
+**Eigenfunctions:** the vibration patterns. Low modes split a shape along its long extents; higher modes make finer patches.
+
+![Eigenfunctions 1, 2, 5, 20 and 60 on a sphere, a bumpy sphere and two lesions](docs/assets/lb-3d-modes.png)
+
+**Heat diffusion:** heat placed at one point spreads over time, and how much returns underlies the heat trace.
+
+![Heat spreading from one point on two lesions at four times](docs/assets/lb-3d-diffusion.png)
+
+**Heat kernel signature:** how much heat stays at each point. It stays longest on tips, so dark regions mark protrusions at the scale set by time.
+
+![Heat kernel signature at three times on a sphere, a bumpy sphere and two lesions](docs/assets/lb-3d-hks.png)
+
+**Wave kernel signature:** a band-pass version that isolates one range of modes.
+
+![Wave kernel signature at low, middle and high energy on a sphere, a bumpy sphere and two lesions](docs/assets/lb-3d-wks.png)
+
+**Global point signature:** a new embedding where distance reflects how the surface connects, not how it sits in space.
+
+![Three shapes beside their first three global point signature coordinates](docs/assets/lb-3d-gps.png)
+
+**Spherical harmonics:** the sphere's own vibration patterns, used as a basis for rebuilding a surface mapped onto the sphere. Unlike the spectrum, they see how a surface sits in space.
+
+![Six spherical harmonics on the unit sphere](docs/assets/lb-3d-harmonics.png)
+
+**What it cannot see:** an isometric dent keeps the spectrum and changes the volume, and Sunada surfaces share a spectrum without being isometric.
+
+![Sphere and dented sphere cut open, and the gluing patterns of a Sunada pair](docs/assets/lb-3d-limits.png)
 
 ### Phase 4 — Paper ⬜
 
@@ -265,7 +458,7 @@ uv run pytest test/features_tests test/utils_tests test/papers_tests   # library
 uv run jupyter lab                                   # after: uv add --group notebooks jupyterlab
 ```
 
-Training runs on Kaggle GPU kernels (see [`kaggle/README.md`](kaggle/README.md)). Notebooks load the stored
+Training runs on Kaggle GPU kernels (see [`kaggle/README.md`](https://github.com/mralinp/abus-classification/blob/main/kaggle/README.md)). Notebooks load the stored
 outputs in `results/`, so they open without a long run. To run a reproduction yourself:
 
 ```bash
@@ -286,17 +479,20 @@ uv run python -m abus_classification.papers.zhou2021 --epochs 100
 
 | Path | Contents |
 | --- | --- |
-| `abus_classification/papers/` | One subpackage per reproduced paper (`barekatrezaei2026`, `zhou2021`) |
+| `abus_classification/papers/` | Paper implementations (`barekatrezaei2026`, `zhou2021`, `wang2020`, `yu2024`); completion and source verification vary |
 | `abus_classification/protocol.py` | Shared evaluation protocol: device, metrics, folds, bootstrap CI |
+| `abus_classification/lb_invariance.py`, `lb_spectrum_content.py`, `lb_roundness.py`, `lb_stability.py`, `lb_spharm.py`, `lb_descriptors.py`, `lb_classification.py`, `lb_evaluation.py`, `lb_malignancy.py` | Laplace–Beltrami experiments on TDSC-ABUS lesions: invariance, what the spectrum determines, roundness, stability, spherical harmonics, spectral descriptors, classification, Test evaluation, descriptors from clinical signs |
 | `abus_classification/challenge.py` | TDSC-ABUS 2023 challenge evaluation (Dice, HD, ACC, AUC, FROC) and published leaderboard |
 | `abus_classification/data/` | Lesion cache: patches, radiomic and Laplace–Beltrami features per volume |
 | `abus_classification/features/tan/` | Tan et al. (2012, 2013) features, including coronal spiculation |
 | `abus_classification/features/radiology/` | General radiomic features in physical units |
-| `abus_classification/features/shape_descriptor/` | Laplace–Beltrami operator, spectral signatures, boundary signatures |
+| `abus_classification/features/shape_descriptor/` | Laplace–Beltrami operator, spectral signatures, boundary signatures, spherical harmonics, descriptors from clinical signs |
 | `abus_classification/features/texture/` | Grey-level co-occurrence texture features |
 | `abus_classification/models/` | U-Net, V-Net, SE-FNet, multi-task V-Net |
 | `abus_classification/utils/` | Meshing, voxel spacing and resampling, image utilities |
-| `notebooks/` | Experiments — start with `0-visualization.ipynb` and `1-tao2013.ipynb`; one notebook per reproduced paper |
+| `notebooks/` | Current study notebooks and historical thesis experiments; see the [research index](https://github.com/mralinp/abus-classification/blob/main/docs/papers.md) |
+| `docs/papers.md` | Study index: implementations, notebooks, kernels, results and documentation gaps |
+| `docs/reproductions/` | Detailed records of what ran, how, why, deviations and remaining verification |
 | `kaggle/` | Kaggle kernel scripts for the training runs |
 | `results/` | Stored results of those runs, per paper |
 | `test/` | Unit tests |
@@ -325,6 +521,9 @@ uv run python -m abus_classification.papers.zhou2021 --epochs 100
 18. H. P. McKean, I. M. Singer. Curvature and the eigenvalues of the Laplacian. *Journal of Differential Geometry* 1(1–2):43–69, 1967. [doi:10.4310/jdg/1214427880](https://doi.org/10.4310/jdg/1214427880)
 19. M. Kac. Can one hear the shape of a drum? *The American Mathematical Monthly* 73(4):1–23, 1966. [doi:10.1080/00029890.1966.11970915](https://doi.org/10.1080/00029890.1966.11970915)
 20. J. Hersch. Quatre propriétés isopérimétriques de membranes sphériques homogènes. *Comptes Rendus de l'Académie des Sciences de Paris* 270:1645–1648, 1970.
+21. M. Karpukhin, N. Nadirashvili, A. V. Penskoi, I. Polterovich. An isoperimetric inequality for Laplace eigenvalues on the sphere. *Journal of Differential Geometry* 118(2):313–333, 2021. [doi:10.4310/jdg/1622743142](https://doi.org/10.4310/jdg/1622743142)
+22. J. Dodziuk. Eigenvalues of the Laplacian on forms. *Proceedings of the American Mathematical Society* 85(3):437–443, 1982. [doi:10.1090/S0002-9939-1982-0656119-2](https://doi.org/10.1090/S0002-9939-1982-0656119-2)
+23. M. Kazhdan, J. Solomon, M. Ben-Chen. Can mean-curvature flow be modified to be non-singular? *Computer Graphics Forum* 31(5):1745–1754, 2012. [doi:10.1111/j.1467-8659.2012.03179.x](https://doi.org/10.1111/j.1467-8659.2012.03179.x)
 
 ---
 
@@ -343,5 +542,5 @@ A paper is in preparation. Until then, please cite this repository:
 
 ## License and contact
 
-Code: [MIT License](LICENSE). The TDSC-ABUS data is subject to the challenge's data use agreement.
+Code: [MIT License](https://github.com/mralinp/abus-classification/blob/main/LICENSE). The TDSC-ABUS data is subject to the challenge's data use agreement.
 Questions and collaboration: <me@alinaderiparizi.com>
