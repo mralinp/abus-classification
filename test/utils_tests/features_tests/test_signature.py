@@ -1,3 +1,4 @@
+from abus_classification import lb_classification
 from abus_classification.features.shape_descriptor.shape_descriptors import TAUS, spectral_summaries
 from abus_classification.features.shape_descriptor.spharm import map_quality, real_harmonics, spharm_coefficients, spharm_power, sphere_map
 from scipy import ndimage
@@ -404,3 +405,14 @@ def test_signature_spread_tells_isospectral_surfaces_apart_where_the_spectrum_ca
         spreads.append(np.sqrt(M.diagonal() @ (heat - M.diagonal() @ heat / M.diagonal().sum()) ** 2))
     np.testing.assert_allclose(lam1[1:], lam2[1:], rtol=1e-10)
     assert abs(spreads[0] / spreads[1] - 1) > 1e-3
+
+
+def test_classification_table_excludes_test_and_selection_ignores_noise():
+    table = lb_classification.tv_table()
+    assert len(table) == 130 and (table.split != "Test").all()
+    rng = np.random.default_rng(0)
+    y = np.r_[np.zeros(60, int), np.ones(70, int)]
+    signal = (y + rng.normal(scale=0.6, size=130))[:, None]
+    X = np.c_[signal, rng.normal(size=(130, 5))]
+    chosen = lb_classification.forward({"signal": [0], **{f"noise {i}": [i + 1] for i in range(5)}}, X, y, 0)
+    assert chosen[0] == "signal"

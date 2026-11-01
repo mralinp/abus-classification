@@ -1,0 +1,79 @@
+a,b,auc
+Size,Spiculation,0.7945696969696969
+Size,Intensity,0.7398181818181819
+Size,Classical shape,0.7474303030303029
+Size,Elongation and sphericity,0.7537575757575757
+Size,Hersch ratio,0.7258060606060607
+Size,Shape-DNA,0.6117212121212121
+Size,Heat trace,0.7215636363636364
+Size,HKS local,0.6998181818181818
+Size,WKS local,0.7336484848484848
+Size,Tips,0.7644848484848484
+Size,GPS,0.7029454545454545
+Size,Harmonics,0.6707878787878788
+Spiculation,Intensity,0.7636000000000001
+Spiculation,Classical shape,0.8211030303030302
+Spiculation,Elongation and sphericity,0.8019030303030303
+Spiculation,Hersch ratio,0.8218545454545454
+Spiculation,Shape-DNA,0.7771030303030304
+Spiculation,Heat trace,0.8143515151515153
+Spiculation,HKS local,0.8167151515151516
+Spiculation,WKS local,0.7737939393939395
+Spiculation,Tips,0.7857333333333333
+Spiculation,GPS,0.7812121212121212
+Spiculation,Harmonics,0.7230060606060607
+Intensity,Classical shape,0.8005212121212122
+Intensity,Elongation and sphericity,0.7742060606060607
+Intensity,Hersch ratio,0.7600848484848485
+Intensity,Shape-DNA,0.6768363636363637
+Intensity,Heat trace,0.7525575757575758
+Intensity,HKS local,0.7443636363636364
+Intensity,WKS local,0.7477454545454546
+Intensity,Tips,0.7624242424242424
+Intensity,GPS,0.7202545454545455
+Intensity,Harmonics,0.6868363636363636
+Classical shape,Elongation and sphericity,0.7561090909090908
+Classical shape,Hersch ratio,0.7390787878787879
+Classical shape,Shape-DNA,0.6380727272727273
+Classical shape,Heat trace,0.7479515151515151
+Classical shape,HKS local,0.7215272727272727
+Classical shape,WKS local,0.7352969696969697
+Classical shape,Tips,0.7664606060606061
+Classical shape,GPS,0.7500121212121211
+Classical shape,Harmonics,0.6872969696969697
+Elongation and sphericity,Hersch ratio,0.6257333333333333
+Elongation and sphericity,Shape-DNA,0.5511272727272727
+Elongation and sphericity,Heat trace,0.6169696969696971
+Elongation and sphericity,HKS local,0.6048242424242425
+Elongation and sphericity,WKS local,0.654739393939394
+Elongation and sphericity,Tips,0.7184000000000001
+Elongation and sphericity,GPS,0.6348969696969697
+Elongation and sphericity,Harmonics,0.5530909090909091
+Hersch ratio,Shape-DNA,0.5097939393939395
+Hersch ratio,Heat trace,0.5947757575757576
+Hersch ratio,HKS local,0.5840242424242424
+Hersch ratio,WKS local,0.6483272727272728
+Hersch ratio,Tips,0.6893333333333334
+Hersch ratio,GPS,0.6279878787878788
+Hersch ratio,Harmonics,0.5306060606060606
+Shape-DNA,Heat trace,0.5029575757575756
+Shape-DNA,HKS local,0.5106060606060605
+Shape-DNA,WKS local,0.5772969696969696
+Shape-DNA,Tips,0.6658303030303031
+Shape-DNA,GPS,0.5178545454545456
+Shape-DNA,Harmonics,0.5202181818181819
+Heat trace,HKS local,0.6027757575757576
+Heat trace,WKS local,0.680060606060606
+Heat trace,Tips,0.6964606060606061
+Heat trace,GPS,0.5812121212121213
+Heat trace,Harmonics,0.5161090909090909
+HKS local,WKS local,0.6634909090909091
+HKS local,Tips,0.7025575757575757
+HKS local,GPS,0.6021212121212121
+HKS local,Harmonics,0.5351393939393939
+WKS local,Tips,0.6627272727272727
+WKS local,GPS,0.6671272727272727
+WKS local,Harmonics,0.6004848484848484
+Tips,GPS,0.6781696969696969
+Tips,Harmonics,0.6542060606060607
+GPS,Harmonics,0.540921212121212
