@@ -1,3 +1,4 @@
+from abus_classification.features.shape_descriptor.shape_descriptors import TAUS, spectral_summaries
 from abus_classification.features.shape_descriptor.spharm import map_quality, real_harmonics, spharm_coefficients, spharm_power, sphere_map
 from scipy import ndimage
 from abus_classification.features.shape_descriptor.shape_descriptors import spectrum_bound
@@ -353,3 +354,53 @@ def test_degree_one_axes_order_ellipsoids_but_compress_their_proportions():
         return axes[0] / axes[2]
     mild, strong = ratio(1.5), ratio(2.5)
     assert 1 < mild < 1.5 and mild < strong < 2.5
+
+
+def bumpy_sphere(bumps=14, seed=3):
+    mesh = trimesh.creation.icosphere(subdivisions=5)
+    centres = np.random.default_rng(seed).normal(size=(bumps, 3))
+    centres /= np.linalg.norm(centres, axis=1, keepdims=True)
+    radius = 1 + 0.45 * np.exp((mesh.vertices @ centres.T - 1) / 0.012).sum(1)
+    return trimesh.Trimesh(mesh.vertices * radius[:, None], mesh.faces, process=False)
+
+
+def test_summaries_ignore_rotation_and_scale():
+    mesh = bumpy_sphere()
+    base = spectral_summaries(mesh, 60)
+    moved = mesh.copy()
+    moved.apply_transform(trimesh.transformations.rotation_matrix(1.0, [1, 2, 3]))
+    moved.apply_scale(3.0)
+    other = spectral_summaries(moved, 60)
+    for key in ("hks", "wks", "gps"):
+        np.testing.assert_allclose(other[key], base[key], rtol=1e-3, atol=1e-6)
+    np.testing.assert_array_equal(other["tips"], base["tips"])
+
+
+def test_mean_heat_signature_is_the_heat_trace():
+    mesh = trimesh.creation.icosphere(subdivisions=4)
+    lam = lb_spectrum(mesh, 200)
+    summary = spectral_summaries(mesh, 200)
+    np.testing.assert_allclose(summary["hks"][0], np.exp(-np.outer(TAUS, lam)).sum(1), rtol=1e-6)
+
+
+def test_heat_maxima_count_protrusions_and_a_sphere_has_no_spread():
+    bumps = spectral_summaries(bumpy_sphere(), 200)
+    assert 10 <= bumps["tips"][-1] <= 16        # 14 bumps, at the longest time
+    sphere = spectral_summaries(trimesh.creation.icosphere(subdivisions=5), 200)
+    assert (sphere["hks"][1] / sphere["hks"][0] < 0.02).all() and (bumps["hks"][1, :5] / bumps["hks"][0, :5] > 0.05).all()
+
+
+def test_mean_wave_signature_is_always_one():
+    # Its weights sum to 1 and phi^2 * area averages 1 over the surface, so only its spread can carry information.
+    np.testing.assert_allclose(spectral_summaries(bumpy_sphere(), 200)["wks"][0], 1, atol=1e-6)
+
+
+def test_signature_spread_tells_isospectral_surfaces_apart_where_the_spectrum_cannot():
+    (L1, M1), (L2, M2) = sunada_surface(SUNADA_POINTS), sunada_surface(SUNADA_LINES)
+    spreads, lam1, lam2 = [], compute_eigendecomposition(L1, M1, 40)[0], compute_eigendecomposition(L2, M2, 40)[0]
+    for L, M in ((L1, M1), (L2, M2)):
+        lam, phi = compute_eigendecomposition(L, M, 40)
+        heat = (np.exp(-lam / lam[3]) * phi ** 2).sum(1)
+        spreads.append(np.sqrt(M.diagonal() @ (heat - M.diagonal() @ heat / M.diagonal().sum()) ** 2))
+    np.testing.assert_allclose(lam1[1:], lam2[1:], rtol=1e-10)
+    assert abs(spreads[0] / spreads[1] - 1) > 1e-3

@@ -172,6 +172,20 @@ of the paper. See [#28](https://github.com/mralinp/abus-classification/issues/28
 | --- | --- |
 | ![Three real lesions rebuilt up to degrees 1, 3, 5, 10 and 15, beside the true surface and its remaining error](docs/assets/lb-3d-reconstruction.png) | ![Three real lesions beside their conformal sphere maps, coloured by original height](docs/assets/lb-3d-spheremap.png) |
 
+**Spectral descriptors as classifiers** (details in
+[`lb-descriptors.ipynb`](https://github.com/mralinp/abus-classification/blob/main/notebooks/lb-descriptors.ipynb)):
+
+- **Features using eigenfunctions show the first spectral signal beyond volume.** On Train + Validation, CV AUC after removing volume is 0.64 for the count of heat-kernel maxima ("tips", protrusions at a given scale) and for the WKS 95th percentile, against 0.44–0.47 for Shape-DNA. With volume, they reach about 0.77 against 0.71 for volume alone.
+- **Not yet established.** The best gain over all 9 families beats shuffled features (p = 0.02), but each gain's 95% interval includes zero, and that test does not correct for earlier work on the same 130 lesions. Test has not been used.
+- **Overlaps with spiculation.** Tips add only 0.015 on top of volume and Tan's spiculation (0.80), which remains the strongest feature here.
+- **The means cannot help in principle.** Mean HKS is the heat trace and mean WKS is identically 1, so only their spread and maxima can add to the eigenvalues.
+
+![Local maxima of the heat kernel signature marked on a bumpy sphere and three real lesions at three times](docs/assets/lb-3d-tips.png)
+
+| Protrusions by class, and the gain against shuffled features |
+| --- |
+| ![Histogram of tips by class beside the observed best AUC gain against its permutation distribution](docs/assets/lb-descriptors-signal.png) |
+
 | Predicted and true tumors, Zhou et al. 2021 | Ablations against the paper |
 | --- | --- |
 | ![Coronal planes of five test lesions from worst to best Dice, with predicted and ground-truth contours](docs/assets/zhou-segmentation-overlays.png) | ![Bar charts of classification AUC and segmentation Dice for each ablation model, ours against the paper](docs/assets/zhou-ablations.png) |
@@ -243,7 +257,7 @@ derive better-founded descriptors.
 | ✅ | What the spectrum determines | Surface area from Weyl's law [17]; area and Euler characteristic from the heat-trace expansion [18]; and its limits, the question posed by Kac [19]. Area is recoverable to about 4% on lesions; the Euler number only on fine meshes. [`lb-spectrum-content.ipynb`](https://github.com/mralinp/abus-classification/blob/main/notebooks/lb-spectrum-content.ipynb) |
 | ✅ | Roundness and irregularity | Hersch's inequality, λ₁·Area ≤ 8π on genus-0 surfaces with equality only for the round sphere [20], makes the first eigenvalue a provable measure of departure from roundness; relate higher eigenvalues to lobulation and spiculation. Hersch's bound holds on every genus-0 lesion; a selection rule ties lobes to eigenvalue splitting on near-round shapes only. [`lb-roundness.ipynb`](https://github.com/mralinp/abus-classification/blob/main/notebooks/lb-roundness.ipynb) |
 | ✅ | Stability | Bound how far eigenvalues move under surface perturbation, mesh resolution, voxel anisotropy and segmentation error, and measure it on TDSC-ABUS. Eigenvalues are bounded by metric change except at necks; on predicted masks a lesion's spectral rank mostly disappears. [`lb-stability.ipynb`](https://github.com/mralinp/abus-classification/blob/main/notebooks/lb-stability.ipynb) |
-| 🔄 | Spectral descriptors | Shape-DNA [9], heat kernel signature [10], wave kernel signature [11], global point signature [12] — implemented, classification pending |
+| ✅ | Spectral descriptors | Shape-DNA [9], heat kernel signature [10], wave kernel signature [11], global point signature [12]. Eigenfunction-based summaries show the first signal beyond volume, not yet established. [`lb-descriptors.ipynb`](https://github.com/mralinp/abus-classification/blob/main/notebooks/lb-descriptors.ipynb) |
 | ✅ | Spherical harmonics | Spherical harmonics are the Laplace–Beltrami eigenfunctions of the sphere, so a spherical harmonic decomposition [13, 14] and the lesion's own spectrum are two views of one framework; it needs genus-0 surfaces, so voxel-derived surfaces with handles require topology correction first. All 200 lesions map to the sphere, 19 after topology correction; harmonic power is more reliable than high eigenvalues. [`lb-spherical-harmonics.ipynb`](https://github.com/mralinp/abus-classification/blob/main/notebooks/lb-spherical-harmonics.ipynb) |
 | ⬜ | Theory-driven descriptors | Design descriptors from the results above, fuse them with spiculation, intensity and CNN features, and evaluate under the Phase 2 protocol with ablations |
 
@@ -399,7 +413,7 @@ uv run python -m abus_classification.papers.zhou2021 --epochs 100
 | --- | --- |
 | `abus_classification/papers/` | Paper implementations (`barekatrezaei2026`, `zhou2021`, `wang2020`, `yu2024`); completion and source verification vary |
 | `abus_classification/protocol.py` | Shared evaluation protocol: device, metrics, folds, bootstrap CI |
-| `abus_classification/lb_invariance.py`, `lb_spectrum_content.py`, `lb_roundness.py`, `lb_stability.py`, `lb_spharm.py` | Laplace–Beltrami experiments on TDSC-ABUS lesions: invariance, what the spectrum determines, roundness, stability, spherical harmonics |
+| `abus_classification/lb_invariance.py`, `lb_spectrum_content.py`, `lb_roundness.py`, `lb_stability.py`, `lb_spharm.py`, `lb_descriptors.py` | Laplace–Beltrami experiments on TDSC-ABUS lesions: invariance, what the spectrum determines, roundness, stability, spherical harmonics, spectral descriptors |
 | `abus_classification/challenge.py` | TDSC-ABUS 2023 challenge evaluation (Dice, HD, ACC, AUC, FROC) and published leaderboard |
 | `abus_classification/data/` | Lesion cache: patches, radiomic and Laplace–Beltrami features per volume |
 | `abus_classification/features/tan/` | Tan et al. (2012, 2013) features, including coronal spiculation |
