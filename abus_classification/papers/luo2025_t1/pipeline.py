@@ -214,9 +214,25 @@ def segment(net, vol, patch=PATCH, batch=8):
                 box = tuple(slice(c, min(c + s, n)) for c, s, n in zip(corner, patch, x.shape))
                 total[box] += p[tuple(slice(0, b.stop - b.start) for b in box)]
                 count[box] += 1
-    mask = (total / count > 0.5).cpu().numpy()
+    return largest_component((total / count > 0.5).cpu().numpy())
+
+
+def largest_component(mask):
     labels, n = ndimage.label(mask)
     return labels == np.bincount(labels.ravel())[1:].argmax() + 1 if n > 1 else mask
+
+
+def segment_at(net, vol, centre, patch=PATCH):
+    """One patch around `centre`, thresholded, largest component: bool mask of vol's shape, empty outside the patch."""
+    net.eval()
+    with torch.no_grad():
+        prob = torch.sigmoid(net(crop(vol.to(DEVICE).float() / 255, centre, patch)[None, None]))[0]
+    lo = [int(round(float(c) - s / 2)) for c, s in zip(centre, patch)]
+    src = tuple(slice(max(a, 0), min(a + s, n)) for a, s, n in zip(lo, patch, vol.shape))
+    dst = tuple(slice(b.start - a, b.stop - a) for a, b in zip(lo, src))
+    mask = np.zeros(vol.shape, bool)
+    mask[src] = (prob > 0.5).cpu().numpy()[dst]
+    return largest_component(mask)
 
 
 def dice(a, b):
@@ -442,6 +458,49 @@ def evaluate(data, seeds, out_dir, load_mask=read_test_mask):
     board.to_csv(out_dir / "luo2025_t1_benchmark.csv")
     print(table.to_string()), print(board.T.to_string())
     return table
+
+
+def detect_then_segment(data, seeds, weights_dir, out_dir, load_mask=read_test_mask, windows_cases=10):
+    """Our change after the stored run (not in the paper): SEGNet on one patch at DETNet's top box instead of sliding windows.
+
+    Trained weights only, no retraining. Validation decides, on its first `windows_cases` volumes since sliding windows are
+    slow on a CPU; Test is scored only if the patch wins. New files only: the stored run's masks and tables stay as they are.
+    """
+    val, test = [np.flatnonzero(data["split"] == k) for k in (1, 2)]
+    out_dir, weights_dir = Path(out_dir), Path(weights_dir)
+    def weights(net, task, s):
+        net.load_state_dict(torch.load(weights_dir / f"luo2025_t1_{task}_seed{s}.pt", map_location=DEVICE))
+        return net.to(DEVICE).eval()
+
+    nets, rows = {}, []
+    for s in seeds:
+        det, seg = weights(DETNet(), "det", s), weights(SEGNet(), "seg", s)
+        nets[s] = seg
+        centres = [detect(det, det_batch([data["vol"][i]], data["box"][[i]])[0], batch=1)[0][0, 0, :3].cpu().numpy() * 2 for i in val]
+        patch = [dice(segment_at(seg, data["vol"][i], c), data["mask"][i].numpy()) for i, c in zip(val, centres)]
+        slide = [dice(segment(seg, data["vol"][i], batch=1), data["mask"][i].numpy()) for i in val[:windows_cases]]
+        rows.append(dict(seed=s, patch_all=np.mean(patch), patch_same_cases=np.mean(patch[:windows_cases]), sliding_same_cases=np.mean(slide)))
+        log(out_dir, f"validation seed {s}: {rows[-1]}")
+    table = pd.DataFrame(rows).round(4)
+    table.to_csv(out_dir / "luo2025_t1_seg_validation.csv", index=False)
+    if table.patch_same_cases.mean() <= table.sliding_same_cases.mean():
+        return log(out_dir, "sliding windows win on Validation; Test not scored")
+    packed = {}
+    for s in seeds:
+        boxes = np.load(out_dir / f"luo2025_t1_det_seed{s}.npz")["boxes"]
+        masks = [segment_at(nets[s], data["vol"][i], boxes[k, 0, :3]) for k, i in enumerate(test)]
+        packed[s] = [np.packbits(m) for m in masks]
+        np.savez_compressed(out_dir / f"luo2025_t1_seg_det_seed{s}.npz", **{f"mask{k}": b for k, b in enumerate(packed[s])})
+    work = [(k, int(data["source"][i]), data["vol"][i].shape, {s: packed[s][k] for s in seeds}) for k, i in enumerate(test)]
+    done = Parallel(n_jobs=4, max_nbytes=None)(delayed(score_case)(load_mask, *w) for w in work)    # masks are large; more workers swap
+    stored = pd.read_csv(out_dir / "luo2025_t1_results.csv", index_col=0)
+    scores = pd.DataFrame({f"seed {s}": challenge.segmentation([d[1][s] for d in done]) for s in seeds}).T
+    scores.loc["mean of seeds"] = scores.mean()
+    scores = scores.round(4)
+    scores.to_csv(out_dir / "luo2025_t1_detect_then_segment.csv")
+    row = {**stored.loc["mean of seeds"].to_dict(), **scores.loc["mean of seeds"].to_dict()}
+    challenge.benchmark({"T1 detect then segment, mean of seeds": row}).to_csv(out_dir / "luo2025_t1_detect_then_segment_benchmark.csv")
+    return scores
 
 
 def main(seeds=(0, 1, 2), out_dir=".", max_seconds=5400, hours=None):
