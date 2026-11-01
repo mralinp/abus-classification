@@ -1,0 +1,17 @@
+,rank,misses
+Irregularity: log 1/roundness,0.21281608035816535,4.0
+Irregularity: log bending,0.22144211350990753,4.0
+"Irregularity: log budget, degrees 2-3",0.267846736358398,4.0
+"Irregularity: log budget, degrees 4-7",0.27587637261264014,4.0
+"Irregularity: log budget, degrees 8-13",0.162787996444522,4.0
+Lobes: log lobes,0.23256351853907656,4.0
+Lobes: log large lobes,0.19003080823538934,4.0
+Lobes: log prominence,0.0009052290611247736,4.0
+Lobes: log roughness,0.2227714187556918,4.0
+Lobes: log angularity,0.1826337803129039,4.0
+Orientation: logit depth share,0.7175209084282642,4.0
+Orientation: tilt,0.4256485202776763,4.0
+Radial lines: mean,0.8351059826915841,4.0
+Radial lines: skin side,0.8141997357021978,4.0
+Radial lines: strongest tenth,0.7965263198076116,4.0
+Radial lines: share outward,0.8213165084333539,4.0

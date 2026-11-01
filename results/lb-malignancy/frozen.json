@@ -1,0 +1,54 @@
+{
+ "features": [
+  "Size: log volume",
+  "Radial lines: mean",
+  "Orientation: tilt"
+ ],
+ "coefficients": [
+  1.0951497441498421,
+  1.051261417268302,
+  0.6870980274022681
+ ],
+ "intercept": 0.47111129505735094,
+ "mean": [
+  6.593210793283183,
+  0.0022776377068701404,
+  10.520157867330362
+ ],
+ "scale": [
+  1.4440992655707479,
+  0.024387833955875727,
+  12.242394168812883
+ ],
+ "picks_of_all_lesions": [
+  "Size: log volume",
+  "Irregularity: log budget, degrees 8-13",
+  "Lobes: log roughness",
+  "Orientation: tilt",
+  "Radial lines: mean"
+ ],
+ "procedure_auc": 0.8195515151515151,
+ "procedure_acc": 0.7376923076923078,
+ "picked": {
+  "Orientation: tilt": 1.0,
+  "Radial lines: mean": 0.78,
+  "Irregularity: log budget, degrees 8-13": 0.73,
+  "Lobes: log roughness": 0.7,
+  "Lobes: log lobes": 0.21,
+  "Irregularity: log bending": 0.17,
+  "Radial lines: share outward": 0.14,
+  "Irregularity: log budget, degrees 4-7": 0.1,
+  "Radial lines: skin side": 0.08,
+  "Lobes: log large lobes": 0.07,
+  "Lobes: log angularity": 0.01,
+  "Lobes: log prominence": 0.01
+ },
+ "procedure_against_size_spiculation": {
+  "before": 0.7978181818181818,
+  "after": 0.8213333333333334,
+  "gain": 0.0235151515151516,
+  "low": -0.026671180803041053,
+  "high": 0.07567130953268857
+ },
+ "fine_budget_shuffled_p": 0.23880597014925373
+}
