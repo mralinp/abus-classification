@@ -49,9 +49,9 @@ def boundary_noise(mask, spacing, amplitude_mm, seed):
     return distance + amplitude_mm * noise / noise.std() < 0
 
 
-def surface(mask, spacing, side):
+def surface(mask, spacing, side, smooth=SMOOTH):
     """Largest mesh piece of the smoothed mask's largest component, and the number of pieces."""
-    field = ndimage.gaussian_filter(np.pad(largest_component(mask).astype(np.float32), 8), SMOOTH * side / np.mean(spacing))
+    field = ndimage.gaussian_filter(np.pad(largest_component(mask).astype(np.float32), 8), smooth * side / np.mean(spacing))
     pieces = get_mesh_from_3d_mask(field, spacing=spacing, preprocess=False).split(only_watertight=False)
     return max(pieces, key=lambda piece: piece.area), len(pieces)
 

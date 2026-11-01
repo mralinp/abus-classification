@@ -160,6 +160,18 @@ of the paper. See [#28](https://github.com/mralinp/abus-classification/issues/28
 
 ![Reliability of lambda times area against mode number at three noise levels](docs/assets/lb-icc.png)
 
+**Spherical harmonics and the spectrum** (details in
+[`lb-spherical-harmonics.ipynb`](https://github.com/mralinp/abus-classification/blob/main/notebooks/lb-spherical-harmonics.ipynb)):
+
+- **The two views connect exactly on near-round shapes.** A lobe of degree d appears at harmonic degrees d ± 1 and first splits eigenvalue level d/2.
+- **Real lesions can be mapped.** All 200 map to the sphere conformally, 19 after topology correction, with almost no flipped triangles. The map is the one in Hersch's proof: its energy is within 5% of 8π, and λ₁·Area stays below it on every lesion. Thin parts shrink and reconstruct worst.
+- **Harmonic power is more reliable than eigenvalues at fine scales.** At 0.5 mm noise, ICC is 0.70 at degree 10 (about mode 120) against 0.13 at k = 100. On predicted masks, rank is 0.48 at degree 10, where eigenvalues from k = 20 keep none. At coarse scales they are about equal. Topology correction may account for part of this.
+- **Reliability does not bring class signal.** On Train + Validation, CV AUC after removing volume is at most 0.56 for harmonic features, against 0.70 for spiculation.
+
+| Rebuilding real lesions from harmonics | Sphere maps of real lesions |
+| --- | --- |
+| ![Three real lesions rebuilt up to degrees 1, 3, 5, 10 and 15, beside the true surface and its remaining error](docs/assets/lb-3d-reconstruction.png) | ![Three real lesions beside their conformal sphere maps, coloured by original height](docs/assets/lb-3d-spheremap.png) |
+
 | Predicted and true tumors, Zhou et al. 2021 | Ablations against the paper |
 | --- | --- |
 | ![Coronal planes of five test lesions from worst to best Dice, with predicted and ground-truth contours](docs/assets/zhou-segmentation-overlays.png) | ![Bar charts of classification AUC and segmentation Dice for each ablation model, ours against the paper](docs/assets/zhou-ablations.png) |
@@ -232,7 +244,7 @@ derive better-founded descriptors.
 | ✅ | Roundness and irregularity | Hersch's inequality, λ₁·Area ≤ 8π on genus-0 surfaces with equality only for the round sphere [20], makes the first eigenvalue a provable measure of departure from roundness; relate higher eigenvalues to lobulation and spiculation. Hersch's bound holds on every genus-0 lesion; a selection rule ties lobes to eigenvalue splitting on near-round shapes only. [`lb-roundness.ipynb`](https://github.com/mralinp/abus-classification/blob/main/notebooks/lb-roundness.ipynb) |
 | ✅ | Stability | Bound how far eigenvalues move under surface perturbation, mesh resolution, voxel anisotropy and segmentation error, and measure it on TDSC-ABUS. Eigenvalues are bounded by metric change except at necks; on predicted masks a lesion's spectral rank mostly disappears. [`lb-stability.ipynb`](https://github.com/mralinp/abus-classification/blob/main/notebooks/lb-stability.ipynb) |
 | 🔄 | Spectral descriptors | Shape-DNA [9], heat kernel signature [10], wave kernel signature [11], global point signature [12] — implemented, classification pending |
-| ⬜ | Spherical harmonics | Spherical harmonics are the Laplace–Beltrami eigenfunctions of the sphere, so a spherical harmonic decomposition [13, 14] and the lesion's own spectrum are two views of one framework; it needs genus-0 surfaces, so voxel-derived surfaces with handles require topology correction first |
+| ✅ | Spherical harmonics | Spherical harmonics are the Laplace–Beltrami eigenfunctions of the sphere, so a spherical harmonic decomposition [13, 14] and the lesion's own spectrum are two views of one framework; it needs genus-0 surfaces, so voxel-derived surfaces with handles require topology correction first. All 200 lesions map to the sphere, 19 after topology correction; harmonic power is more reliable than high eigenvalues. [`lb-spherical-harmonics.ipynb`](https://github.com/mralinp/abus-classification/blob/main/notebooks/lb-spherical-harmonics.ipynb) |
 | ⬜ | Theory-driven descriptors | Design descriptors from the results above, fuse them with spiculation, intensity and CNN features, and evaluate under the Phase 2 protocol with ablations |
 
 ![Lesion surfaces reconstructed by marching cubes for a malignant and a benign lesion, drawn at true physical proportions](docs/assets/lesion-surfaces-3d.png)
@@ -268,6 +280,10 @@ derive better-founded descriptors.
 **Global point signature:** a new embedding where distance reflects how the surface connects, not how it sits in space.
 
 ![Three shapes beside their first three global point signature coordinates](docs/assets/lb-3d-gps.png)
+
+**Spherical harmonics:** the sphere's own vibration patterns, used as a basis for rebuilding a surface mapped onto the sphere. Unlike the spectrum, they see how a surface sits in space.
+
+![Six spherical harmonics on the unit sphere](docs/assets/lb-3d-harmonics.png)
 
 **What it cannot see:** an isometric dent keeps the spectrum and changes the volume, and Sunada surfaces share a spectrum without being isometric.
 
@@ -383,12 +399,12 @@ uv run python -m abus_classification.papers.zhou2021 --epochs 100
 | --- | --- |
 | `abus_classification/papers/` | Paper implementations (`barekatrezaei2026`, `zhou2021`, `wang2020`, `yu2024`); completion and source verification vary |
 | `abus_classification/protocol.py` | Shared evaluation protocol: device, metrics, folds, bootstrap CI |
-| `abus_classification/lb_invariance.py`, `lb_spectrum_content.py`, `lb_roundness.py`, `lb_stability.py` | Laplace–Beltrami experiments on TDSC-ABUS lesions: invariance, what the spectrum determines, roundness, stability |
+| `abus_classification/lb_invariance.py`, `lb_spectrum_content.py`, `lb_roundness.py`, `lb_stability.py`, `lb_spharm.py` | Laplace–Beltrami experiments on TDSC-ABUS lesions: invariance, what the spectrum determines, roundness, stability, spherical harmonics |
 | `abus_classification/challenge.py` | TDSC-ABUS 2023 challenge evaluation (Dice, HD, ACC, AUC, FROC) and published leaderboard |
 | `abus_classification/data/` | Lesion cache: patches, radiomic and Laplace–Beltrami features per volume |
 | `abus_classification/features/tan/` | Tan et al. (2012, 2013) features, including coronal spiculation |
 | `abus_classification/features/radiology/` | General radiomic features in physical units |
-| `abus_classification/features/shape_descriptor/` | Laplace–Beltrami operator, spectral signatures, boundary signatures |
+| `abus_classification/features/shape_descriptor/` | Laplace–Beltrami operator, spectral signatures, boundary signatures, spherical harmonics |
 | `abus_classification/features/texture/` | Grey-level co-occurrence texture features |
 | `abus_classification/models/` | U-Net, V-Net, SE-FNet, multi-task V-Net |
 | `abus_classification/utils/` | Meshing, voxel spacing and resampling, image utilities |
@@ -425,6 +441,7 @@ uv run python -m abus_classification.papers.zhou2021 --epochs 100
 20. J. Hersch. Quatre propriétés isopérimétriques de membranes sphériques homogènes. *Comptes Rendus de l'Académie des Sciences de Paris* 270:1645–1648, 1970.
 21. M. Karpukhin, N. Nadirashvili, A. V. Penskoi, I. Polterovich. An isoperimetric inequality for Laplace eigenvalues on the sphere. *Journal of Differential Geometry* 118(2):313–333, 2021. [doi:10.4310/jdg/1622743142](https://doi.org/10.4310/jdg/1622743142)
 22. J. Dodziuk. Eigenvalues of the Laplacian on forms. *Proceedings of the American Mathematical Society* 85(3):437–443, 1982. [doi:10.1090/S0002-9939-1982-0656119-2](https://doi.org/10.1090/S0002-9939-1982-0656119-2)
+23. M. Kazhdan, J. Solomon, M. Ben-Chen. Can mean-curvature flow be modified to be non-singular? *Computer Graphics Forum* 31(5):1745–1754, 2012. [doi:10.1111/j.1467-8659.2012.03179.x](https://doi.org/10.1111/j.1467-8659.2012.03179.x)
 
 ---
 
