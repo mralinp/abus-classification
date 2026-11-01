@@ -1,3 +1,4 @@
+from abus_classification.features.shape_descriptor.spharm import map_quality, real_harmonics, spharm_coefficients, spharm_power, sphere_map
 from scipy import ndimage
 from abus_classification.features.shape_descriptor.shape_descriptors import spectrum_bound
 from abus_classification.utils.mesh import get_mesh_from_3d_mask
@@ -305,3 +306,50 @@ def test_a_thin_neck_collapses_lambda_1_but_barely_changes_the_volume():
     assert thin.is_watertight and thin.body_count == 1
     assert abs(thin.volume / thick.volume - 1) < 0.1
     assert lb_spectrum(thin, 3)[1] < 0.5 * lb_spectrum(thick, 3)[1]
+
+
+def test_sphere_map_is_identity_like_on_a_sphere_and_reconstructs_it():
+    mesh = trimesh.creation.icosphere(subdivisions=4)
+    sphere = sphere_map(mesh)
+    flipped, stretch, _ = map_quality(mesh, sphere)
+    assert flipped == 0 and stretch < 1.01
+    coefficients = spharm_coefficients(mesh, sphere, 6)
+    assert np.linalg.norm(real_harmonics(sphere, 6) @ coefficients - mesh.vertices, axis=1).max() < 0.01
+
+
+def test_real_harmonics_are_orthonormal_with_the_laplace_beltrami_eigenvalues():
+    mesh = trimesh.creation.icosphere(subdivisions=6)
+    L, M = compute_laplace_beltrami_operator(mesh)
+    basis = real_harmonics(mesh.vertices, 4)
+    gram = basis.T @ (M @ basis)
+    np.testing.assert_allclose(gram, np.eye(25), atol=1e-2)
+    expected = np.concatenate([[l * (l + 1)] * (2 * l + 1) for l in range(5)])
+    np.testing.assert_allclose(np.diag(basis.T @ (L @ basis)), expected, atol=0.1)
+
+
+def test_power_ignores_rotating_the_shape_and_scales_with_area():
+    mesh = lobed_sphere(4, 0.2, subdivisions=4)
+    power = spharm_power(spharm_coefficients(mesh, sphere_map(mesh), 8), 8)
+    moved = mesh.copy()
+    moved.apply_transform(trimesh.transformations.rotation_matrix(1.0, [1, 2, 3]))
+    turned = spharm_power(spharm_coefficients(moved, sphere_map(moved), 8), 8)
+    np.testing.assert_allclose(turned[1:], power[1:], rtol=0.01, atol=1e-5)
+
+
+@pytest.mark.parametrize("degree", [2, 4, 6])
+def test_a_lobe_of_degree_d_shows_at_degrees_d_plus_and_minus_one(degree):
+    mesh = lobed_sphere(degree, 0.05, subdivisions=5)
+    power = spharm_power(spharm_coefficients(mesh, sphere_map(mesh), 8), 8)
+    others = [l for l in range(2, 9) if l not in (degree - 1, degree + 1)]
+    assert power[degree + 1] > 10 * power[others].max()
+
+
+def test_degree_one_axes_order_ellipsoids_but_compress_their_proportions():
+    # An ellipsoid is not linear in a conformal parametrisation, unlike the area-preserving one of classic SPHARM.
+    def ratio(stretch):
+        mesh = trimesh.creation.icosphere(subdivisions=5)
+        mesh.vertices = mesh.vertices * [1, 1, stretch]
+        axes = np.linalg.svd(spharm_coefficients(mesh, sphere_map(mesh), 6)[1:4], compute_uv=False)
+        return axes[0] / axes[2]
+    mild, strong = ratio(1.5), ratio(2.5)
+    assert 1 < mild < 1.5 and mild < strong < 2.5
