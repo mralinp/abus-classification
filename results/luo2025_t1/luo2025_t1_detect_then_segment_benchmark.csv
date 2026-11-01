@@ -1,0 +1,2 @@
+,DICE,HD,ACC,AUC,FROC,Seg_Score,Seg_Rank,Cls_Score,Cls_Rank,Det_Score,Det_Rank,Overall,Overall_Rank
+"T1 detect then segment, mean of seeds",0.4725,108.3917,0.6048,0.6792,0.5276,0.6940447010573516,10/15,0.3181000822254091,6/9,0.299231613611416,10/11,0.6947781848507074,8/8

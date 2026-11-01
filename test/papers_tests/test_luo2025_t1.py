@@ -73,6 +73,20 @@ def test_windows_cover_the_volume():
         assert cover.all()
 
 
+def test_segment_at_puts_the_patch_back_and_keeps_the_largest_component():
+    class Net(torch.nn.Module):
+        def forward(self, x):           # positive where the patch is bright
+            return (x[:, 0] - 0.5) * 20
+    vol = torch.zeros(20, 20, 20, dtype=torch.uint8)
+    vol[0:3, 5:9, 5:9] = 255            # inside the patch, which starts outside the volume
+    vol[6, 12, 12] = 255                # a smaller component
+    vol[15:18, 5:9, 5:9] = 255          # bright but outside the patch
+    mask = p.segment_at(Net(), vol, (2, 8, 8), (10, 16, 16))
+    want = np.zeros((20, 20, 20), bool)
+    want[0:3, 5:9, 5:9] = True
+    assert (mask == want).all()
+
+
 def test_challenge_box_and_upsampling_match_the_original_grid():
     m = np.zeros((40, 80, 20), bool)
     m[8:24, 16:48, 4:12] = True
