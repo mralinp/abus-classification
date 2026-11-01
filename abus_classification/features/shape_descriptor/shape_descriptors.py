@@ -105,6 +105,25 @@ def sphere_level_spread(eigenvalues: np.ndarray, levels: int = 6) -> np.ndarray:
     groups = [eigenvalues[l ** 2:(l + 1) ** 2] for l in range(1, levels + 1)]
     return np.array([g.std() / g.mean() for g in groups])
 
+def spectrum_bound(mesh: trimesh.Trimesh, deformed: trimesh.Trimesh) -> Tuple[float, float]:
+    """
+    Guaranteed range of lambda_k(deformed) / lambda_k(mesh), for every k, between two meshes with the same faces.
+
+    On a triangle, a linear map with singular values s1 >= s2 scales the Dirichlet energy by at most s1 / s2 and the
+    area by s1 * s2. Min-max over piecewise-linear functions then gives lower = 1 / (E * A_max), upper = E / A_min,
+    with E the largest s1 / s2 and A the area factors. Only metric change counts, not how far points moved.
+    """
+    def frame(vertices):
+        a = vertices[mesh.faces[:, 1]] - vertices[mesh.faces[:, 0]]
+        b = vertices[mesh.faces[:, 2]] - vertices[mesh.faces[:, 0]]
+        return np.stack([a, b], axis=-1)
+
+    source, target = frame(mesh.vertices), frame(deformed.vertices)
+    # The map's singular values are those of target * pinv(source), restricted to each triangle's plane.
+    singular = np.linalg.svd(target @ np.linalg.pinv(source), compute_uv=False)[:, :2]
+    conformal, area = (singular[:, 0] / singular[:, 1]).max(), singular[:, 0] * singular[:, 1]
+    return float(1 / (conformal * area.max())), float(conformal / area.min())
+
 def compute_hks(eigenvalues: np.ndarray, eigenvectors: np.ndarray, time_points: Optional[np.ndarray] = None) -> np.ndarray:
     """
     Compute the Heat Kernel Signature (HKS)

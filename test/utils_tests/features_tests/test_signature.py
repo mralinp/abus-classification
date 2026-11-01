@@ -1,3 +1,6 @@
+from scipy import ndimage
+from abus_classification.features.shape_descriptor.shape_descriptors import spectrum_bound
+from abus_classification.utils.mesh import get_mesh_from_3d_mask
 import pytest
 from scipy.special import sph_harm_y
 from abus_classification.features.shape_descriptor.shape_descriptors import sphere_level_spread
@@ -254,3 +257,51 @@ def test_even_lobes_split_exactly_the_levels_the_selection_rule_allows(degree):
 def test_odd_lobes_split_only_at_second_order():
     small, large = (sphere_level_spread(lb_spectrum(lobed_sphere(3, e), 16, False), levels=3)[0] for e in (0.02, 0.05))
     assert 4 < large / small < 9     # (2.5)^2 = 6.25, not 2.5
+
+
+def test_spectrum_stays_inside_the_metric_bound():
+    rng = np.random.default_rng(0)
+    sphere = trimesh.creation.icosphere(subdivisions=4)
+    lam = lb_spectrum(sphere, 30, False)[1:]
+    deformations = [sphere.vertices * [1, 1, 1.3], sphere.vertices * 1.7,
+                    sphere.vertices * (1 + 0.1 * np.sin(5 * sphere.vertices[:, [2]])),
+                    sphere.vertices + rng.normal(scale=0.002, size=sphere.vertices.shape)]
+    for vertices in deformations:
+        moved = trimesh.Trimesh(vertices, sphere.faces, process=False)
+        lower, upper = spectrum_bound(sphere, moved)
+        ratio = lb_spectrum(moved, 30, False)[1:] / lam
+        assert lower * (1 - 1e-9) <= ratio.min() and ratio.max() <= upper * (1 + 1e-9)
+
+
+def test_bound_ignores_rigid_motion_and_is_tight_for_scale():
+    sphere = trimesh.creation.icosphere(subdivisions=3)
+    moved = sphere.copy()
+    moved.apply_transform(trimesh.transformations.rotation_matrix(1.0, [1, 2, 3]))
+    np.testing.assert_allclose(spectrum_bound(sphere, moved), (1, 1), atol=1e-8)
+    scaled = trimesh.Trimesh(sphere.vertices * 2, sphere.faces, process=False)
+    np.testing.assert_allclose(spectrum_bound(sphere, scaled), (0.25, 0.25), atol=1e-8)
+
+
+def test_low_modes_ignore_fine_bumps_that_widen_the_bound():
+    round_sphere = trimesh.creation.icosphere(subdivisions=6)
+    reference = lb_spectrum(round_sphere, 21)[1:]
+    change = lambda mesh: np.abs(lb_spectrum(mesh, 21)[1:] / reference - 1).mean()
+    coarse, fine = lobed_sphere(2, 0.02), lobed_sphere(16, 0.02)
+    assert change(fine) < 0.25 * change(coarse)                  # same amplitude
+    assert np.ptp(spectrum_bound(round_sphere, fine)) > np.ptp(spectrum_bound(round_sphere, coarse))
+
+
+def dumbbell(neck_mm, h=0.25):
+    """Two unit-radius-scale balls joined by a cylinder: a small change at the neck, a large one in lambda_1."""
+    x, y, z = np.mgrid[-6:6:h, -3:3:h, -3:3:h]
+    left, right = (x + 3) ** 2 + y ** 2 + z ** 2 <= 4, (x - 3) ** 2 + y ** 2 + z ** 2 <= 4
+    neck = (np.abs(x) <= 3) & (y ** 2 + z ** 2 <= neck_mm ** 2)
+    field = ndimage.gaussian_filter((left | right | neck).astype(np.float32), 1)
+    return get_mesh_from_3d_mask(np.pad(field, 2), spacing=(h, h, h), preprocess=False)
+
+
+def test_a_thin_neck_collapses_lambda_1_but_barely_changes_the_volume():
+    thick, thin = dumbbell(1.0), dumbbell(0.4)
+    assert thin.is_watertight and thin.body_count == 1
+    assert abs(thin.volume / thick.volume - 1) < 0.1
+    assert lb_spectrum(thin, 3)[1] < 0.5 * lb_spectrum(thick, 3)[1]
