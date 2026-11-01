@@ -42,6 +42,29 @@ def test_decode_inverts_the_targets():
     assert torch.allclose(found[0, 0], boxes[0], atol=1e-4) and scores[0, 0] > 0.99
 
 
+def test_det_batch_is_on_the_training_device(monkeypatch):
+    monkeypatch.setattr(p, "DEVICE", "meta")
+    x, boxes = p.det_batch([torch.zeros(20, 10, 20, dtype=torch.uint8)], np.zeros((1, 6), np.float32))
+    assert x.device.type == boxes.device.type == "meta"
+
+
+def test_lesion_dice_by_hand():
+    class Perfect(torch.nn.Module):
+        def forward(self, x):
+            return (x[:, 0] - 0.5) * 20
+    v = torch.zeros(20, 10, 20, dtype=torch.uint8)
+    v[8:12, 3:7, 8:12] = 255
+    data = dict(vol=[v], mask=[v > 0], box=np.array([[10, 5, 10, 4, 4, 4]], np.float32))
+    assert p.lesion_dice(Perfect(), data, [0], (16, 8, 16)) == 1
+
+
+def test_a_crash_reaches_the_progress_log(tmp_path):
+    import pytest
+    with pytest.raises(Exception):
+        p.run_job(dict(task="det", seed=0, out_dir=str(tmp_path), cache=str(tmp_path / "missing.npz"), max_seconds=1))
+    assert "det_seed0 failed" in (tmp_path / "luo2025_t1_progress.log").read_text()
+
+
 def test_windows_cover_the_volume():
     for shape in ((300, 80, 257), (128, 64, 128), (100, 40, 90)):
         cover = np.zeros(shape, bool)

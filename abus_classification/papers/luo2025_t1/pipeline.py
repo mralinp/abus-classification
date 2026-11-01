@@ -15,6 +15,7 @@ past `deadline` stops cleanly, leaving its checkpoint, and a later run continues
 """
 import os
 import time
+import traceback
 from pathlib import Path
 
 import numpy as np
@@ -144,7 +145,7 @@ def decode(out, k=TOP_K, stride=DETNet.STRIDE):
 
 def det_batch(volumes, boxes, multiple=8):
     """Whole volumes at 1 mm, padded at the end to one shape: (n, a, b, c), and boxes in that grid."""
-    x = [F.avg_pool3d(v[None].float() / 255, 2)[0] for v in volumes]
+    x = [F.avg_pool3d(v[None].to(DEVICE).float() / 255, 2)[0] for v in volumes]
     shape = [int(np.ceil(max(a.shape[i] for a in x) / multiple) * multiple) for i in range(3)]
     x = torch.stack([F.pad(a, [p for n, s in zip(reversed(a.shape), reversed(shape)) for p in (0, s - n)]) for a in x])
     return x, torch.as_tensor(boxes, device=x.device) / 2
@@ -222,6 +223,19 @@ def dice(a, b):
     return 2 * (a & b).sum() / max(a.sum() + b.sum(), 1)
 
 
+def lesion_dice(net, data, cases, patch=PATCH, batch=8):
+    """Mean Dice on the patch around each true lesion: fast enough for every epoch, and blind to false positives elsewhere."""
+    net.eval()
+    scores = []
+    with torch.no_grad():
+        for i in range(0, len(cases), batch):
+            pick = cases[i:i + batch]
+            x = torch.stack([crop(data["vol"][j], data["box"][j][:3], patch) for j in pick]).to(DEVICE).float() / 255
+            pred = (torch.sigmoid(net(x[:, None])) > 0.5).cpu().numpy()
+            scores += [dice(p, crop(data["mask"][j], data["box"][j][:3], patch).numpy()) for p, j in zip(pred, pick)]
+    return float(np.mean(scores))
+
+
 def train_seg(data, fit, val, name, out_dir, settings, patch=PATCH, batch=4):
     net = SEGNet().to(DEVICE)
     vols = {i: data["vol"][i].to(DEVICE) for i in fit}
@@ -236,7 +250,7 @@ def train_seg(data, fit, val, name, out_dir, settings, patch=PATCH, batch=4):
         return dice_bce(net(v[:, None]), m)
 
     def validate():
-        return float(np.mean([dice(segment(net, data["vol"][i], patch), data["mask"][i].numpy()) for i in val]))
+        return lesion_dice(net, data, val, patch)
 
     return net if train(net, step, validate, name, out_dir, settings) else None
 
@@ -335,7 +349,16 @@ def load_cache(path=CACHE):
 
 
 def run_job(job):
-    """One training and its Test predictions, in a GPU worker. A finished job is not run again."""
+    """One training and its Test predictions, in a GPU worker; a crash reaches the progress log."""
+    try:
+        run_task(job)
+    except Exception:
+        log(job["out_dir"], f"{job['task']}_seed{job['seed']} failed:\n{traceback.format_exc()}")
+        raise
+
+
+def run_task(job):
+    """A finished job is not run again."""
     task, seed, out_dir = job["task"], job["seed"], job["out_dir"]
     name, patch = f"{task}_seed{seed}", job.get("patch", PATCH)
     out = Path(out_dir) / f"luo2025_t1_{name}.npz"

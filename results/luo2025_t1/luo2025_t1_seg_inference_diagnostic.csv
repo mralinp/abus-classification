@@ -1,0 +1,4 @@
+seed,sliding_window_original_grid,patch_on_det_box,patch_on_det_box_zero_cases,patch_on_true_lesion,patch_on_true_lesion_zero_cases
+0,0.1562,0.4892,19,0.5997,5
+1,0.0928,0.4541,16,0.5626,0
+2,0.0875,0.4631,20,0.6047,1
