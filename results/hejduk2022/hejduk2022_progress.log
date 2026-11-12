@@ -1,0 +1,227 @@
+03:04:09 cache ready, 2 GPUs, 4 CPUs
+03:04:17 hejduk2022_model2_es_lr0.001_seed0 start on cuda:1, 1000 crops
+03:04:17 hejduk2022_model1_es_lr0.001_seed0 start on cuda:0, 1205 crops
+03:04:41 hejduk2022_model1_es_lr0.001_seed0 epoch 1 loss 0.192 acc 0.981 lr 1.0e-03 val AUC 1.000 best 1.000 at 1 25 s since start
+03:05:05 hejduk2022_model1_es_lr0.001_seed0 epoch 2 loss 0.004 acc 1.000 lr 1.0e-03 val AUC 1.000 best 1.000 at 1 48 s since start
+03:05:15 hejduk2022_model2_es_lr0.001_seed0 epoch 1 loss 0.562 acc 0.731 lr 1.0e-03 val AUC 0.853 best 0.853 at 1 58 s since start
+03:05:29 hejduk2022_model1_es_lr0.001_seed0 epoch 3 loss 0.001 acc 1.000 lr 1.0e-03 val AUC 1.000 best 1.000 at 1 73 s since start
+03:05:54 hejduk2022_model1_es_lr0.001_seed0 epoch 4 loss 0.000 acc 1.000 lr 1.0e-03 val AUC 1.000 best 1.000 at 1 97 s since start
+03:06:18 hejduk2022_model1_es_lr0.001_seed0 epoch 5 loss 0.000 acc 1.000 lr 1.0e-03 val AUC 1.000 best 1.000 at 1 122 s since start
+03:06:21 hejduk2022_model2_es_lr0.001_seed0 epoch 2 loss 0.381 acc 0.821 lr 1.0e-03 val AUC 0.924 best 0.924 at 2 125 s since start
+03:06:43 hejduk2022_model1_es_lr0.001_seed0 epoch 6 loss 0.000 acc 1.000 lr 5.0e-04 val AUC 1.000 best 1.000 at 1 146 s since start
+03:07:07 hejduk2022_model1_es_lr0.001_seed0 epoch 7 loss 0.002 acc 0.999 lr 5.0e-04 val AUC 1.000 best 1.000 at 1 171 s since start
+03:07:27 hejduk2022_model2_es_lr0.001_seed0 epoch 3 loss 0.310 acc 0.862 lr 1.0e-03 val AUC 0.885 best 0.924 at 2 190 s since start
+03:07:32 hejduk2022_model1_es_lr0.001_seed0 epoch 8 loss 0.000 acc 1.000 lr 5.0e-04 val AUC 1.000 best 1.000 at 1 196 s since start
+03:07:57 hejduk2022_model1_es_lr0.001_seed0 epoch 9 loss 0.000 acc 1.000 lr 5.0e-04 val AUC 1.000 best 1.000 at 1 220 s since start
+03:08:22 hejduk2022_model1_es_lr0.001_seed0 epoch 10 loss 0.000 acc 1.000 lr 2.5e-04 val AUC 1.000 best 1.000 at 1 245 s since start
+03:08:33 hejduk2022_model2_es_lr0.001_seed0 epoch 4 loss 0.268 acc 0.883 lr 1.0e-03 val AUC 0.945 best 0.945 at 4 257 s since start
+03:08:46 hejduk2022_model1_es_lr0.001_seed0 epoch 11 loss 0.000 acc 1.000 lr 2.5e-04 val AUC 1.000 best 1.000 at 1 270 s since start
+03:08:46 hejduk2022_model1_es_lr0.001_seed0 early stop at epoch 11
+03:08:47 hejduk2022_model1_es_lr0.001_seed0 done, best epoch 1, val AUC 1.000
+03:08:48 hejduk2022_model3_es_lr0.001_seed0 start on cuda:0, 500 crops
+03:09:40 hejduk2022_model2_es_lr0.001_seed0 epoch 5 loss 0.239 acc 0.897 lr 1.0e-03 val AUC 0.956 best 0.956 at 5 323 s since start
+03:09:54 hejduk2022_model3_es_lr0.001_seed0 epoch 1 loss 0.700 acc 0.515 lr 1.0e-03 val AUC 0.618 best 0.618 at 1 66 s since start
+03:10:46 hejduk2022_model2_es_lr0.001_seed0 epoch 6 loss 0.229 acc 0.899 lr 1.0e-03 val AUC 0.954 best 0.956 at 5 389 s since start
+03:11:00 hejduk2022_model3_es_lr0.001_seed0 epoch 2 loss 0.678 acc 0.576 lr 1.0e-03 val AUC 0.736 best 0.736 at 2 132 s since start
+03:11:52 hejduk2022_model2_es_lr0.001_seed0 epoch 7 loss 0.238 acc 0.895 lr 1.0e-03 val AUC 0.942 best 0.956 at 5 455 s since start
+03:12:07 hejduk2022_model3_es_lr0.001_seed0 epoch 3 loss 0.652 acc 0.631 lr 1.0e-03 val AUC 0.762 best 0.762 at 3 199 s since start
+03:12:58 hejduk2022_model2_es_lr0.001_seed0 epoch 8 loss 0.207 acc 0.910 lr 1.0e-03 val AUC 0.957 best 0.957 at 8 522 s since start
+03:13:14 hejduk2022_model3_es_lr0.001_seed0 epoch 4 loss 0.633 acc 0.657 lr 1.0e-03 val AUC 0.763 best 0.763 at 4 266 s since start
+03:14:04 hejduk2022_model2_es_lr0.001_seed0 epoch 9 loss 0.194 acc 0.919 lr 1.0e-03 val AUC 0.967 best 0.967 at 9 588 s since start
+03:14:21 hejduk2022_model3_es_lr0.001_seed0 epoch 5 loss 0.616 acc 0.666 lr 1.0e-03 val AUC 0.800 best 0.800 at 5 333 s since start
+03:15:11 hejduk2022_model2_es_lr0.001_seed0 epoch 10 loss 0.183 acc 0.921 lr 1.0e-03 val AUC 0.967 best 0.967 at 10 654 s since start
+03:15:27 hejduk2022_model3_es_lr0.001_seed0 epoch 6 loss 0.586 acc 0.681 lr 1.0e-03 val AUC 0.824 best 0.824 at 6 399 s since start
+03:16:17 hejduk2022_model2_es_lr0.001_seed0 epoch 11 loss 0.186 acc 0.921 lr 1.0e-03 val AUC 0.967 best 0.967 at 11 721 s since start
+03:16:34 hejduk2022_model3_es_lr0.001_seed0 epoch 7 loss 0.572 acc 0.698 lr 1.0e-03 val AUC 0.806 best 0.824 at 6 466 s since start
+03:17:23 hejduk2022_model2_es_lr0.001_seed0 epoch 12 loss 0.165 acc 0.932 lr 1.0e-03 val AUC 0.965 best 0.967 at 11 787 s since start
+03:17:40 hejduk2022_model3_es_lr0.001_seed0 epoch 8 loss 0.544 acc 0.719 lr 1.0e-03 val AUC 0.823 best 0.824 at 6 532 s since start
+03:18:30 hejduk2022_model2_es_lr0.001_seed0 epoch 13 loss 0.170 acc 0.931 lr 1.0e-03 val AUC 0.959 best 0.967 at 11 853 s since start
+03:18:47 hejduk2022_model3_es_lr0.001_seed0 epoch 9 loss 0.534 acc 0.726 lr 1.0e-03 val AUC 0.847 best 0.847 at 9 599 s since start
+03:19:36 hejduk2022_model2_es_lr0.001_seed0 epoch 14 loss 0.170 acc 0.935 lr 1.0e-03 val AUC 0.967 best 0.967 at 11 920 s since start
+03:19:54 hejduk2022_model3_es_lr0.001_seed0 epoch 10 loss 0.516 acc 0.736 lr 1.0e-03 val AUC 0.853 best 0.853 at 10 666 s since start
+03:20:43 hejduk2022_model2_es_lr0.001_seed0 epoch 15 loss 0.134 acc 0.948 lr 5.0e-04 val AUC 0.968 best 0.968 at 15 986 s since start
+03:21:01 hejduk2022_model3_es_lr0.001_seed0 epoch 11 loss 0.490 acc 0.759 lr 1.0e-03 val AUC 0.862 best 0.862 at 11 733 s since start
+03:21:49 hejduk2022_model2_es_lr0.001_seed0 epoch 16 loss 0.119 acc 0.950 lr 5.0e-04 val AUC 0.966 best 0.968 at 15 1052 s since start
+03:22:08 hejduk2022_model3_es_lr0.001_seed0 epoch 12 loss 0.475 acc 0.769 lr 1.0e-03 val AUC 0.868 best 0.868 at 12 800 s since start
+03:22:55 hejduk2022_model2_es_lr0.001_seed0 epoch 17 loss 0.124 acc 0.949 lr 5.0e-04 val AUC 0.972 best 0.972 at 17 1118 s since start
+03:23:14 hejduk2022_model3_es_lr0.001_seed0 epoch 13 loss 0.450 acc 0.783 lr 1.0e-03 val AUC 0.855 best 0.868 at 12 866 s since start
+03:24:01 hejduk2022_model2_es_lr0.001_seed0 epoch 18 loss 0.115 acc 0.954 lr 5.0e-04 val AUC 0.966 best 0.972 at 17 1184 s since start
+03:24:20 hejduk2022_model3_es_lr0.001_seed0 epoch 14 loss 0.451 acc 0.782 lr 1.0e-03 val AUC 0.866 best 0.868 at 12 932 s since start
+03:25:07 hejduk2022_model2_es_lr0.001_seed0 epoch 19 loss 0.097 acc 0.962 lr 5.0e-04 val AUC 0.968 best 0.972 at 17 1251 s since start
+03:25:27 hejduk2022_model3_es_lr0.001_seed0 epoch 15 loss 0.425 acc 0.798 lr 1.0e-03 val AUC 0.874 best 0.874 at 15 999 s since start
+03:26:13 hejduk2022_model2_es_lr0.001_seed0 epoch 20 loss 0.105 acc 0.962 lr 5.0e-04 val AUC 0.952 best 0.972 at 17 1316 s since start
+03:26:34 hejduk2022_model3_es_lr0.001_seed0 epoch 16 loss 0.401 acc 0.811 lr 1.0e-03 val AUC 0.877 best 0.877 at 16 1066 s since start
+03:27:19 hejduk2022_model2_es_lr0.001_seed0 epoch 21 loss 0.109 acc 0.956 lr 5.0e-04 val AUC 0.970 best 0.972 at 17 1383 s since start
+03:27:40 hejduk2022_model3_es_lr0.001_seed0 epoch 17 loss 0.368 acc 0.835 lr 1.0e-03 val AUC 0.866 best 0.877 at 16 1132 s since start
+03:28:26 hejduk2022_model2_es_lr0.001_seed0 epoch 22 loss 0.080 acc 0.969 lr 2.5e-04 val AUC 0.965 best 0.972 at 17 1449 s since start
+03:28:47 hejduk2022_model3_es_lr0.001_seed0 epoch 18 loss 0.342 acc 0.844 lr 1.0e-03 val AUC 0.851 best 0.877 at 16 1199 s since start
+03:29:33 hejduk2022_model2_es_lr0.001_seed0 epoch 23 loss 0.076 acc 0.970 lr 2.5e-04 val AUC 0.971 best 0.972 at 17 1516 s since start
+03:29:54 hejduk2022_model3_es_lr0.001_seed0 epoch 19 loss 0.319 acc 0.864 lr 1.0e-03 val AUC 0.876 best 0.877 at 16 1266 s since start
+03:30:39 hejduk2022_model2_es_lr0.001_seed0 epoch 24 loss 0.067 acc 0.973 lr 2.5e-04 val AUC 0.961 best 0.972 at 17 1582 s since start
+03:31:00 hejduk2022_model3_es_lr0.001_seed0 epoch 20 loss 0.283 acc 0.880 lr 1.0e-03 val AUC 0.860 best 0.877 at 16 1332 s since start
+03:31:45 hejduk2022_model2_es_lr0.001_seed0 epoch 25 loss 0.077 acc 0.972 lr 2.5e-04 val AUC 0.961 best 0.972 at 17 1649 s since start
+03:32:07 hejduk2022_model3_es_lr0.001_seed0 epoch 21 loss 0.214 acc 0.909 lr 5.0e-04 val AUC 0.877 best 0.877 at 16 1399 s since start
+03:32:52 hejduk2022_model2_es_lr0.001_seed0 epoch 26 loss 0.050 acc 0.981 lr 1.3e-04 val AUC 0.966 best 0.972 at 17 1715 s since start
+03:33:14 hejduk2022_model3_es_lr0.001_seed0 epoch 22 loss 0.174 acc 0.930 lr 5.0e-04 val AUC 0.895 best 0.895 at 22 1466 s since start
+03:33:58 hejduk2022_model2_es_lr0.001_seed0 epoch 27 loss 0.049 acc 0.983 lr 1.3e-04 val AUC 0.964 best 0.972 at 17 1782 s since start
+03:33:58 hejduk2022_model2_es_lr0.001_seed0 early stop at epoch 27
+03:33:59 hejduk2022_model2_es_lr0.001_seed0 done, best epoch 17, val AUC 0.972
+03:34:00 hejduk2022_model1_es_lr0.001_seed1 start on cuda:1, 1205 crops
+03:34:20 hejduk2022_model3_es_lr0.001_seed0 epoch 23 loss 0.162 acc 0.936 lr 5.0e-04 val AUC 0.857 best 0.895 at 22 1532 s since start
+03:34:28 hejduk2022_model1_es_lr0.001_seed1 epoch 1 loss 0.136 acc 0.985 lr 1.0e-03 val AUC 1.000 best 1.000 at 1 28 s since start
+03:34:56 hejduk2022_model1_es_lr0.001_seed1 epoch 2 loss 0.001 acc 1.000 lr 1.0e-03 val AUC 1.000 best 1.000 at 1 56 s since start
+03:35:24 hejduk2022_model1_es_lr0.001_seed1 epoch 3 loss 0.000 acc 1.000 lr 1.0e-03 val AUC 1.000 best 1.000 at 1 84 s since start
+03:35:27 hejduk2022_model3_es_lr0.001_seed0 epoch 24 loss 0.153 acc 0.940 lr 5.0e-04 val AUC 0.882 best 0.895 at 22 1599 s since start
+03:35:52 hejduk2022_model1_es_lr0.001_seed1 epoch 4 loss 0.000 acc 1.000 lr 1.0e-03 val AUC 1.000 best 1.000 at 1 112 s since start
+03:36:20 hejduk2022_model1_es_lr0.001_seed1 epoch 5 loss 0.000 acc 1.000 lr 1.0e-03 val AUC 1.000 best 1.000 at 1 139 s since start
+03:36:34 hejduk2022_model3_es_lr0.001_seed0 epoch 25 loss 0.141 acc 0.941 lr 5.0e-04 val AUC 0.880 best 0.895 at 22 1666 s since start
+03:36:47 hejduk2022_model1_es_lr0.001_seed1 epoch 6 loss 0.000 acc 1.000 lr 5.0e-04 val AUC 1.000 best 1.000 at 1 167 s since start
+03:37:15 hejduk2022_model1_es_lr0.001_seed1 epoch 7 loss 0.000 acc 1.000 lr 5.0e-04 val AUC 1.000 best 1.000 at 1 195 s since start
+03:37:41 hejduk2022_model3_es_lr0.001_seed0 epoch 26 loss 0.117 acc 0.955 lr 5.0e-04 val AUC 0.852 best 0.895 at 22 1733 s since start
+03:37:43 hejduk2022_model1_es_lr0.001_seed1 epoch 8 loss 0.000 acc 1.000 lr 5.0e-04 val AUC 1.000 best 1.000 at 1 223 s since start
+03:38:11 hejduk2022_model1_es_lr0.001_seed1 epoch 9 loss 0.000 acc 1.000 lr 5.0e-04 val AUC 1.000 best 1.000 at 1 251 s since start
+03:38:39 hejduk2022_model1_es_lr0.001_seed1 epoch 10 loss 0.000 acc 1.000 lr 2.5e-04 val AUC 1.000 best 1.000 at 1 278 s since start
+03:38:48 hejduk2022_model3_es_lr0.001_seed0 epoch 27 loss 0.072 acc 0.974 lr 2.5e-04 val AUC 0.882 best 0.895 at 22 1800 s since start
+03:39:06 hejduk2022_model1_es_lr0.001_seed1 epoch 11 loss 0.000 acc 1.000 lr 2.5e-04 val AUC 1.000 best 1.000 at 1 306 s since start
+03:39:06 hejduk2022_model1_es_lr0.001_seed1 early stop at epoch 11
+03:39:07 hejduk2022_model1_es_lr0.001_seed1 done, best epoch 1, val AUC 1.000
+03:39:08 hejduk2022_model2_es_lr0.001_seed1 start on cuda:1, 1000 crops
+03:39:55 hejduk2022_model3_es_lr0.001_seed0 epoch 28 loss 0.074 acc 0.971 lr 2.5e-04 val AUC 0.882 best 0.895 at 22 1867 s since start
+03:40:14 hejduk2022_model2_es_lr0.001_seed1 epoch 1 loss 0.557 acc 0.734 lr 1.0e-03 val AUC 0.861 best 0.861 at 1 66 s since start
+03:41:02 hejduk2022_model3_es_lr0.001_seed0 epoch 29 loss 0.069 acc 0.974 lr 2.5e-04 val AUC 0.888 best 0.895 at 22 1934 s since start
+03:41:20 hejduk2022_model2_es_lr0.001_seed1 epoch 2 loss 0.388 acc 0.818 lr 1.0e-03 val AUC 0.918 best 0.918 at 2 132 s since start
+03:42:08 hejduk2022_model3_es_lr0.001_seed0 epoch 30 loss 0.064 acc 0.976 lr 2.5e-04 val AUC 0.878 best 0.895 at 22 2000 s since start
+03:42:27 hejduk2022_model2_es_lr0.001_seed1 epoch 3 loss 0.324 acc 0.844 lr 1.0e-03 val AUC 0.937 best 0.937 at 3 198 s since start
+03:43:15 hejduk2022_model3_es_lr0.001_seed0 epoch 31 loss 0.039 acc 0.987 lr 1.3e-04 val AUC 0.893 best 0.895 at 22 2067 s since start
+03:43:32 hejduk2022_model2_es_lr0.001_seed1 epoch 4 loss 0.277 acc 0.877 lr 1.0e-03 val AUC 0.860 best 0.937 at 3 264 s since start
+03:44:22 hejduk2022_model3_es_lr0.001_seed0 epoch 32 loss 0.039 acc 0.986 lr 1.3e-04 val AUC 0.888 best 0.895 at 22 2134 s since start
+03:44:22 hejduk2022_model3_es_lr0.001_seed0 early stop at epoch 32
+03:44:22 hejduk2022_model3_es_lr0.001_seed0 done, best epoch 22, val AUC 0.895
+03:44:23 hejduk2022_model3_es_lr0.001_seed1 start on cuda:0, 500 crops
+03:44:38 hejduk2022_model2_es_lr0.001_seed1 epoch 5 loss 0.301 acc 0.863 lr 1.0e-03 val AUC 0.946 best 0.946 at 5 330 s since start
+03:45:29 hejduk2022_model3_es_lr0.001_seed1 epoch 1 loss 0.701 acc 0.527 lr 1.0e-03 val AUC 0.676 best 0.676 at 1 66 s since start
+03:45:43 hejduk2022_model2_es_lr0.001_seed1 epoch 6 loss 0.248 acc 0.890 lr 1.0e-03 val AUC 0.951 best 0.951 at 6 395 s since start
+03:46:36 hejduk2022_model3_es_lr0.001_seed1 epoch 2 loss 0.667 acc 0.604 lr 1.0e-03 val AUC 0.730 best 0.730 at 2 133 s since start
+03:46:50 hejduk2022_model2_es_lr0.001_seed1 epoch 7 loss 0.225 acc 0.905 lr 1.0e-03 val AUC 0.952 best 0.952 at 7 462 s since start
+03:47:43 hejduk2022_model3_es_lr0.001_seed1 epoch 3 loss 0.637 acc 0.654 lr 1.0e-03 val AUC 0.757 best 0.757 at 3 200 s since start
+03:47:56 hejduk2022_model2_es_lr0.001_seed1 epoch 8 loss 0.215 acc 0.904 lr 1.0e-03 val AUC 0.958 best 0.958 at 8 528 s since start
+03:48:50 hejduk2022_model3_es_lr0.001_seed1 epoch 4 loss 0.630 acc 0.650 lr 1.0e-03 val AUC 0.767 best 0.767 at 4 266 s since start
+03:49:03 hejduk2022_model2_es_lr0.001_seed1 epoch 9 loss 0.190 acc 0.918 lr 1.0e-03 val AUC 0.962 best 0.962 at 9 594 s since start
+03:49:57 hejduk2022_model3_es_lr0.001_seed1 epoch 5 loss 0.601 acc 0.670 lr 1.0e-03 val AUC 0.798 best 0.798 at 5 333 s since start
+03:50:09 hejduk2022_model2_es_lr0.001_seed1 epoch 10 loss 0.200 acc 0.918 lr 1.0e-03 val AUC 0.964 best 0.964 at 10 660 s since start
+03:51:04 hejduk2022_model3_es_lr0.001_seed1 epoch 6 loss 0.580 acc 0.691 lr 1.0e-03 val AUC 0.834 best 0.834 at 6 400 s since start
+03:51:15 hejduk2022_model2_es_lr0.001_seed1 epoch 11 loss 0.197 acc 0.921 lr 1.0e-03 val AUC 0.960 best 0.964 at 10 726 s since start
+03:52:10 hejduk2022_model3_es_lr0.001_seed1 epoch 7 loss 0.567 acc 0.699 lr 1.0e-03 val AUC 0.839 best 0.839 at 7 467 s since start
+03:52:20 hejduk2022_model2_es_lr0.001_seed1 epoch 12 loss 0.181 acc 0.923 lr 1.0e-03 val AUC 0.956 best 0.964 at 10 792 s since start
+03:53:17 hejduk2022_model3_es_lr0.001_seed1 epoch 8 loss 0.546 acc 0.710 lr 1.0e-03 val AUC 0.823 best 0.839 at 7 533 s since start
+03:53:27 hejduk2022_model2_es_lr0.001_seed1 epoch 13 loss 0.172 acc 0.929 lr 1.0e-03 val AUC 0.974 best 0.974 at 13 858 s since start
+03:54:24 hejduk2022_model3_es_lr0.001_seed1 epoch 9 loss 0.531 acc 0.726 lr 1.0e-03 val AUC 0.824 best 0.839 at 7 600 s since start
+03:54:33 hejduk2022_model2_es_lr0.001_seed1 epoch 14 loss 0.167 acc 0.929 lr 1.0e-03 val AUC 0.965 best 0.974 at 13 924 s since start
+03:55:30 hejduk2022_model3_es_lr0.001_seed1 epoch 10 loss 0.518 acc 0.735 lr 1.0e-03 val AUC 0.851 best 0.851 at 10 667 s since start
+03:55:39 hejduk2022_model2_es_lr0.001_seed1 epoch 15 loss 0.152 acc 0.937 lr 1.0e-03 val AUC 0.957 best 0.974 at 13 990 s since start
+03:56:37 hejduk2022_model3_es_lr0.001_seed1 epoch 11 loss 0.504 acc 0.744 lr 1.0e-03 val AUC 0.843 best 0.851 at 10 733 s since start
+03:56:44 hejduk2022_model2_es_lr0.001_seed1 epoch 16 loss 0.159 acc 0.935 lr 1.0e-03 val AUC 0.961 best 0.974 at 13 1056 s since start
+03:57:43 hejduk2022_model3_es_lr0.001_seed1 epoch 12 loss 0.481 acc 0.756 lr 1.0e-03 val AUC 0.846 best 0.851 at 10 800 s since start
+03:57:51 hejduk2022_model2_es_lr0.001_seed1 epoch 17 loss 0.152 acc 0.938 lr 1.0e-03 val AUC 0.965 best 0.974 at 13 1122 s since start
+03:58:50 hejduk2022_model3_es_lr0.001_seed1 epoch 13 loss 0.454 acc 0.778 lr 1.0e-03 val AUC 0.844 best 0.851 at 10 867 s since start
+03:58:58 hejduk2022_model2_es_lr0.001_seed1 epoch 18 loss 0.172 acc 0.931 lr 5.0e-04 val AUC 0.963 best 0.974 at 13 1190 s since start
+03:59:57 hejduk2022_model3_es_lr0.001_seed1 epoch 14 loss 0.444 acc 0.789 lr 1.0e-03 val AUC 0.857 best 0.857 at 14 934 s since start
+04:00:04 hejduk2022_model2_es_lr0.001_seed1 epoch 19 loss 0.123 acc 0.950 lr 5.0e-04 val AUC 0.971 best 0.974 at 13 1256 s since start
+04:01:04 hejduk2022_model3_es_lr0.001_seed1 epoch 15 loss 0.415 acc 0.803 lr 1.0e-03 val AUC 0.881 best 0.881 at 15 1001 s since start
+04:01:12 hejduk2022_model2_es_lr0.001_seed1 epoch 20 loss 0.112 acc 0.956 lr 5.0e-04 val AUC 0.962 best 0.974 at 13 1324 s since start
+04:02:11 hejduk2022_model3_es_lr0.001_seed1 epoch 16 loss 0.394 acc 0.815 lr 1.0e-03 val AUC 0.879 best 0.881 at 15 1067 s since start
+04:02:19 hejduk2022_model2_es_lr0.001_seed1 epoch 21 loss 0.108 acc 0.955 lr 5.0e-04 val AUC 0.968 best 0.974 at 13 1391 s since start
+04:03:17 hejduk2022_model3_es_lr0.001_seed1 epoch 17 loss 0.362 acc 0.834 lr 1.0e-03 val AUC 0.847 best 0.881 at 15 1134 s since start
+04:03:25 hejduk2022_model2_es_lr0.001_seed1 epoch 22 loss 0.092 acc 0.964 lr 2.5e-04 val AUC 0.969 best 0.974 at 13 1457 s since start
+04:04:24 hejduk2022_model3_es_lr0.001_seed1 epoch 18 loss 0.342 acc 0.845 lr 1.0e-03 val AUC 0.833 best 0.881 at 15 1200 s since start
+04:04:32 hejduk2022_model2_es_lr0.001_seed1 epoch 23 loss 0.092 acc 0.967 lr 2.5e-04 val AUC 0.961 best 0.974 at 13 1524 s since start
+04:04:32 hejduk2022_model2_es_lr0.001_seed1 early stop at epoch 23
+04:04:33 hejduk2022_model2_es_lr0.001_seed1 done, best epoch 13, val AUC 0.974
+04:04:34 hejduk2022_model1_es_lr0.001_seed2 start on cuda:1, 1205 crops
+04:05:02 hejduk2022_model1_es_lr0.001_seed2 epoch 1 loss 0.175 acc 0.982 lr 1.0e-03 val AUC 1.000 best 1.000 at 1 28 s since start
+04:05:30 hejduk2022_model1_es_lr0.001_seed2 epoch 2 loss 0.002 acc 1.000 lr 1.0e-03 val AUC 1.000 best 1.000 at 1 56 s since start
+04:05:31 hejduk2022_model3_es_lr0.001_seed1 epoch 19 loss 0.311 acc 0.861 lr 1.0e-03 val AUC 0.870 best 0.881 at 15 1267 s since start
+04:05:58 hejduk2022_model1_es_lr0.001_seed2 epoch 3 loss 0.000 acc 1.000 lr 1.0e-03 val AUC 1.000 best 1.000 at 1 84 s since start
+04:06:25 hejduk2022_model1_es_lr0.001_seed2 epoch 4 loss 0.000 acc 1.000 lr 1.0e-03 val AUC 1.000 best 1.000 at 1 111 s since start
+04:06:38 hejduk2022_model3_es_lr0.001_seed1 epoch 20 loss 0.254 acc 0.887 lr 5.0e-04 val AUC 0.901 best 0.901 at 20 1334 s since start
+04:06:53 hejduk2022_model1_es_lr0.001_seed2 epoch 5 loss 0.000 acc 1.000 lr 1.0e-03 val AUC 1.000 best 1.000 at 1 139 s since start
+04:07:21 hejduk2022_model1_es_lr0.001_seed2 epoch 6 loss 0.000 acc 1.000 lr 5.0e-04 val AUC 1.000 best 1.000 at 1 167 s since start
+04:07:44 hejduk2022_model3_es_lr0.001_seed1 epoch 21 loss 0.218 acc 0.910 lr 5.0e-04 val AUC 0.880 best 0.901 at 20 1401 s since start
+04:07:49 hejduk2022_model1_es_lr0.001_seed2 epoch 7 loss 0.000 acc 1.000 lr 5.0e-04 val AUC 1.000 best 1.000 at 1 195 s since start
+04:08:16 hejduk2022_model1_es_lr0.001_seed2 epoch 8 loss 0.000 acc 1.000 lr 5.0e-04 val AUC 1.000 best 1.000 at 1 222 s since start
+04:08:44 hejduk2022_model1_es_lr0.001_seed2 epoch 9 loss 0.000 acc 1.000 lr 5.0e-04 val AUC 1.000 best 1.000 at 1 250 s since start
+04:08:52 hejduk2022_model3_es_lr0.001_seed1 epoch 22 loss 0.193 acc 0.917 lr 5.0e-04 val AUC 0.879 best 0.901 at 20 1469 s since start
+04:09:12 hejduk2022_model1_es_lr0.001_seed2 epoch 10 loss 0.000 acc 1.000 lr 2.5e-04 val AUC 1.000 best 1.000 at 1 278 s since start
+04:09:40 hejduk2022_model1_es_lr0.001_seed2 epoch 11 loss 0.000 acc 1.000 lr 2.5e-04 val AUC 1.000 best 1.000 at 1 306 s since start
+04:09:40 hejduk2022_model1_es_lr0.001_seed2 early stop at epoch 11
+04:09:40 hejduk2022_model1_es_lr0.001_seed2 done, best epoch 1, val AUC 1.000
+04:09:42 hejduk2022_model2_es_lr0.001_seed2 start on cuda:1, 1000 crops
+04:09:59 hejduk2022_model3_es_lr0.001_seed1 epoch 23 loss 0.191 acc 0.917 lr 5.0e-04 val AUC 0.848 best 0.901 at 20 1535 s since start
+04:10:47 hejduk2022_model2_es_lr0.001_seed2 epoch 1 loss 0.544 acc 0.745 lr 1.0e-03 val AUC 0.888 best 0.888 at 1 65 s since start
+04:11:06 hejduk2022_model3_es_lr0.001_seed1 epoch 24 loss 0.173 acc 0.928 lr 5.0e-04 val AUC 0.875 best 0.901 at 20 1602 s since start
+04:11:53 hejduk2022_model2_es_lr0.001_seed2 epoch 2 loss 0.384 acc 0.820 lr 1.0e-03 val AUC 0.903 best 0.903 at 2 131 s since start
+04:12:12 hejduk2022_model3_es_lr0.001_seed1 epoch 25 loss 0.106 acc 0.956 lr 2.5e-04 val AUC 0.891 best 0.901 at 20 1669 s since start
+04:12:59 hejduk2022_model2_es_lr0.001_seed2 epoch 3 loss 0.346 acc 0.831 lr 1.0e-03 val AUC 0.941 best 0.941 at 3 197 s since start
+04:13:19 hejduk2022_model3_es_lr0.001_seed1 epoch 26 loss 0.094 acc 0.964 lr 2.5e-04 val AUC 0.894 best 0.901 at 20 1736 s since start
+04:14:04 hejduk2022_model2_es_lr0.001_seed2 epoch 4 loss 0.272 acc 0.878 lr 1.0e-03 val AUC 0.944 best 0.944 at 4 263 s since start
+04:14:26 hejduk2022_model3_es_lr0.001_seed1 epoch 27 loss 0.096 acc 0.960 lr 2.5e-04 val AUC 0.882 best 0.901 at 20 1802 s since start
+04:15:11 hejduk2022_model2_es_lr0.001_seed2 epoch 5 loss 0.245 acc 0.898 lr 1.0e-03 val AUC 0.956 best 0.956 at 5 329 s since start
+04:15:33 hejduk2022_model3_es_lr0.001_seed1 epoch 28 loss 0.095 acc 0.964 lr 2.5e-04 val AUC 0.892 best 0.901 at 20 1869 s since start
+04:16:17 hejduk2022_model2_es_lr0.001_seed2 epoch 6 loss 0.236 acc 0.904 lr 1.0e-03 val AUC 0.954 best 0.956 at 5 395 s since start
+04:16:39 hejduk2022_model3_es_lr0.001_seed1 epoch 29 loss 0.066 acc 0.974 lr 1.3e-04 val AUC 0.866 best 0.901 at 20 1936 s since start
+04:17:23 hejduk2022_model2_es_lr0.001_seed2 epoch 7 loss 0.219 acc 0.910 lr 1.0e-03 val AUC 0.959 best 0.959 at 7 461 s since start
+04:17:46 hejduk2022_model3_es_lr0.001_seed1 epoch 30 loss 0.056 acc 0.981 lr 1.3e-04 val AUC 0.875 best 0.901 at 20 2003 s since start
+04:17:46 hejduk2022_model3_es_lr0.001_seed1 early stop at epoch 30
+04:17:46 hejduk2022_model3_es_lr0.001_seed1 done, best epoch 20, val AUC 0.901
+04:17:48 hejduk2022_model3_es_lr0.001_seed2 start on cuda:0, 500 crops
+04:18:29 hejduk2022_model2_es_lr0.001_seed2 epoch 8 loss 0.198 acc 0.914 lr 1.0e-03 val AUC 0.936 best 0.959 at 7 527 s since start
+04:18:54 hejduk2022_model3_es_lr0.001_seed2 epoch 1 loss 0.700 acc 0.518 lr 1.0e-03 val AUC 0.647 best 0.647 at 1 66 s since start
+04:19:35 hejduk2022_model2_es_lr0.001_seed2 epoch 9 loss 0.206 acc 0.911 lr 1.0e-03 val AUC 0.969 best 0.969 at 9 594 s since start
+04:20:01 hejduk2022_model3_es_lr0.001_seed2 epoch 2 loss 0.671 acc 0.592 lr 1.0e-03 val AUC 0.758 best 0.758 at 2 133 s since start
+04:20:41 hejduk2022_model2_es_lr0.001_seed2 epoch 10 loss 0.200 acc 0.916 lr 1.0e-03 val AUC 0.963 best 0.969 at 9 659 s since start
+04:21:07 hejduk2022_model3_es_lr0.001_seed2 epoch 3 loss 0.649 acc 0.634 lr 1.0e-03 val AUC 0.757 best 0.758 at 2 199 s since start
+04:21:47 hejduk2022_model2_es_lr0.001_seed2 epoch 11 loss 0.177 acc 0.926 lr 1.0e-03 val AUC 0.961 best 0.969 at 9 725 s since start
+04:22:14 hejduk2022_model3_es_lr0.001_seed2 epoch 4 loss 0.622 acc 0.662 lr 1.0e-03 val AUC 0.782 best 0.782 at 4 266 s since start
+04:22:53 hejduk2022_model2_es_lr0.001_seed2 epoch 12 loss 0.172 acc 0.928 lr 1.0e-03 val AUC 0.948 best 0.969 at 9 791 s since start
+04:23:20 hejduk2022_model3_es_lr0.001_seed2 epoch 5 loss 0.621 acc 0.662 lr 1.0e-03 val AUC 0.758 best 0.782 at 4 333 s since start
+04:23:59 hejduk2022_model2_es_lr0.001_seed2 epoch 13 loss 0.176 acc 0.926 lr 1.0e-03 val AUC 0.963 best 0.969 at 9 857 s since start
+04:24:27 hejduk2022_model3_es_lr0.001_seed2 epoch 6 loss 0.609 acc 0.669 lr 1.0e-03 val AUC 0.765 best 0.782 at 4 399 s since start
+04:25:05 hejduk2022_model2_es_lr0.001_seed2 epoch 14 loss 0.155 acc 0.933 lr 5.0e-04 val AUC 0.967 best 0.969 at 9 923 s since start
+04:25:33 hejduk2022_model3_es_lr0.001_seed2 epoch 7 loss 0.594 acc 0.685 lr 1.0e-03 val AUC 0.764 best 0.782 at 4 466 s since start
+04:26:11 hejduk2022_model2_es_lr0.001_seed2 epoch 15 loss 0.131 acc 0.947 lr 5.0e-04 val AUC 0.973 best 0.973 at 15 989 s since start
+04:26:40 hejduk2022_model3_es_lr0.001_seed2 epoch 8 loss 0.582 acc 0.694 lr 1.0e-03 val AUC 0.773 best 0.782 at 4 532 s since start
+04:27:16 hejduk2022_model2_es_lr0.001_seed2 epoch 16 loss 0.126 acc 0.949 lr 5.0e-04 val AUC 0.958 best 0.973 at 15 1055 s since start
+04:27:47 hejduk2022_model3_es_lr0.001_seed2 epoch 9 loss 0.552 acc 0.716 lr 5.0e-04 val AUC 0.801 best 0.801 at 9 599 s since start
+04:28:22 hejduk2022_model2_es_lr0.001_seed2 epoch 17 loss 0.123 acc 0.949 lr 5.0e-04 val AUC 0.959 best 0.973 at 15 1121 s since start
+04:28:54 hejduk2022_model3_es_lr0.001_seed2 epoch 10 loss 0.519 acc 0.740 lr 5.0e-04 val AUC 0.814 best 0.814 at 10 666 s since start
+04:29:28 hejduk2022_model2_es_lr0.001_seed2 epoch 18 loss 0.118 acc 0.952 lr 5.0e-04 val AUC 0.968 best 0.973 at 15 1187 s since start
+04:30:00 hejduk2022_model3_es_lr0.001_seed2 epoch 11 loss 0.508 acc 0.749 lr 5.0e-04 val AUC 0.813 best 0.814 at 10 732 s since start
+04:30:34 hejduk2022_model2_es_lr0.001_seed2 epoch 19 loss 0.105 acc 0.959 lr 5.0e-04 val AUC 0.962 best 0.973 at 15 1253 s since start
+04:31:07 hejduk2022_model3_es_lr0.001_seed2 epoch 12 loss 0.486 acc 0.768 lr 5.0e-04 val AUC 0.829 best 0.829 at 12 799 s since start
+04:31:40 hejduk2022_model2_es_lr0.001_seed2 epoch 20 loss 0.094 acc 0.964 lr 2.5e-04 val AUC 0.967 best 0.973 at 15 1318 s since start
+04:32:14 hejduk2022_model3_es_lr0.001_seed2 epoch 13 loss 0.456 acc 0.780 lr 5.0e-04 val AUC 0.834 best 0.834 at 13 866 s since start
+04:32:46 hejduk2022_model2_es_lr0.001_seed2 epoch 21 loss 0.083 acc 0.968 lr 2.5e-04 val AUC 0.966 best 0.973 at 15 1384 s since start
+04:33:21 hejduk2022_model3_es_lr0.001_seed2 epoch 14 loss 0.444 acc 0.785 lr 5.0e-04 val AUC 0.818 best 0.834 at 13 933 s since start
+04:33:52 hejduk2022_model2_es_lr0.001_seed2 epoch 22 loss 0.077 acc 0.969 lr 2.5e-04 val AUC 0.967 best 0.973 at 15 1451 s since start
+04:34:27 hejduk2022_model3_es_lr0.001_seed2 epoch 15 loss 0.437 acc 0.791 lr 5.0e-04 val AUC 0.779 best 0.834 at 13 999 s since start
+04:34:58 hejduk2022_model2_es_lr0.001_seed2 epoch 23 loss 0.078 acc 0.970 lr 2.5e-04 val AUC 0.960 best 0.973 at 15 1516 s since start
+04:35:34 hejduk2022_model3_es_lr0.001_seed2 epoch 16 loss 0.418 acc 0.801 lr 5.0e-04 val AUC 0.849 best 0.849 at 16 1066 s since start
+04:36:04 hejduk2022_model2_es_lr0.001_seed2 epoch 24 loss 0.070 acc 0.973 lr 1.3e-04 val AUC 0.967 best 0.973 at 15 1582 s since start
+04:36:41 hejduk2022_model3_es_lr0.001_seed2 epoch 17 loss 0.396 acc 0.817 lr 5.0e-04 val AUC 0.839 best 0.849 at 16 1133 s since start
+04:37:10 hejduk2022_model2_es_lr0.001_seed2 epoch 25 loss 0.065 acc 0.975 lr 1.3e-04 val AUC 0.960 best 0.973 at 15 1648 s since start
+04:37:10 hejduk2022_model2_es_lr0.001_seed2 early stop at epoch 25
+04:37:10 hejduk2022_model2_es_lr0.001_seed2 done, best epoch 15, val AUC 0.973
+04:37:48 hejduk2022_model3_es_lr0.001_seed2 epoch 18 loss 0.373 acc 0.827 lr 5.0e-04 val AUC 0.839 best 0.849 at 16 1200 s since start
+04:38:55 hejduk2022_model3_es_lr0.001_seed2 epoch 19 loss 0.360 acc 0.833 lr 5.0e-04 val AUC 0.792 best 0.849 at 16 1268 s since start
+04:40:03 hejduk2022_model3_es_lr0.001_seed2 epoch 20 loss 0.355 acc 0.837 lr 5.0e-04 val AUC 0.833 best 0.849 at 16 1335 s since start
+04:41:11 hejduk2022_model3_es_lr0.001_seed2 epoch 21 loss 0.292 acc 0.870 lr 2.5e-04 val AUC 0.835 best 0.849 at 16 1403 s since start
+04:42:19 hejduk2022_model3_es_lr0.001_seed2 epoch 22 loss 0.282 acc 0.878 lr 2.5e-04 val AUC 0.818 best 0.849 at 16 1471 s since start
+04:43:26 hejduk2022_model3_es_lr0.001_seed2 epoch 23 loss 0.262 acc 0.884 lr 2.5e-04 val AUC 0.828 best 0.849 at 16 1539 s since start
+04:44:34 hejduk2022_model3_es_lr0.001_seed2 epoch 24 loss 0.242 acc 0.900 lr 2.5e-04 val AUC 0.824 best 0.849 at 16 1606 s since start
+04:45:42 hejduk2022_model3_es_lr0.001_seed2 epoch 25 loss 0.216 acc 0.909 lr 1.3e-04 val AUC 0.822 best 0.849 at 16 1674 s since start
+04:46:50 hejduk2022_model3_es_lr0.001_seed2 epoch 26 loss 0.194 acc 0.921 lr 1.3e-04 val AUC 0.823 best 0.849 at 16 1742 s since start
+04:46:50 hejduk2022_model3_es_lr0.001_seed2 early stop at epoch 26
+04:46:51 hejduk2022_model3_es_lr0.001_seed2 done, best epoch 16, val AUC 0.849
+04:46:55 seed 0 not finished
+04:46:55 seed 1 not finished
+04:46:55 seed 2 not finished
