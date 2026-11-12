@@ -1,4 +1,4 @@
-import glob, os, shutil, subprocess, sys
+import contextlib, glob, os, shutil, subprocess, sys
 OUT = "/kaggle/working"
 sh = lambda c: subprocess.run(c, shell=True, check=True)
 
@@ -26,7 +26,13 @@ if __name__ == "__main__":
     from kaggle_secrets import UserSecretsClient
     from abus_classification.papers.hejduk2022 import main
     from abus_classification.utils.drive import DriveSync, configure_rclone
-    configure_rclone(UserSecretsClient().get_secret("RCLONE_CONF"))
-    with DriveSync("abus-checkpoints/hejduk2022-kaiming", OUT):    # fails here, in minutes, if Drive does not work
-        main(seeds=(0,), out_dir=OUT, lr=1e-3, hours=3, scan=False)                         # a test of whether the models learn, before any scan
+    try:
+        conf = UserSecretsClient().get_secret("RCLONE_CONF")
+    except Exception as error:                                       # a kernel pushed from the CLI cannot read secrets (issue 51)
+        conf = None
+        print(f"drive: secret not readable ({type(error).__name__}), output stays in the kernel only", flush=True)
+    if conf:
+        configure_rclone(conf)
+    with DriveSync("abus-checkpoints/hejduk2022-kaiming", OUT) if conf else contextlib.nullcontext():   # with a secret, fails here if Drive does not work
+        main(seeds=(0, 1, 2), out_dir=OUT, lr=1e-3, hours=9, scan=False)   # train all nine models and see whether they learn, before any scan
     shutil.rmtree(f"{OUT}/repo")
