@@ -28,3 +28,5 @@ Results are in `results/zhou2021/`.
 ## Hejduk 2022
 
 `hejduk2022-early-stopping/`: runs on the `mralinp` account. Builds the crops from the private datasets, trains the three models (3 seeds, one per GPU on T4 x 2) with early stopping and an LR scheduler on the official Validation split, and scans the test volumes with a 20 pixel step on every fifth slice. It needs the same `RCLONE_CONF` secret as Yu 2024, and starts from Kaggle's editor with Save & Run All. Output goes to `abus-checkpoints/hejduk2022-early-stopping` on Drive, and a restart resumes from it. Results are in `results/hejduk2022/`.
+
+`hejduk2022-scan/`: runs on the `mralinp` account, pushed from the CLI (no secret needed). Reads the nine trained models from the output of `hejduk2022-early-stopping` and only scans the test volumes (20 pixel step, every fifth slice, one seed per GPU, 11 h limit). Each scanned volume is kept in the output, so a later run with this output attached continues.
