@@ -29,6 +29,7 @@ Results are in `results/eswa2025/`. Kernels run under the `mralinp` account. Ker
 - `zhou2021/`: trains CMSVNetIter (3 seeds x 100 epochs, about 4 h). Its output holds the trained checkpoints.
 - `zhou2021-eval/`: re-evaluates those checkpoints, read as an input, without training.
 - `zhou2021-ablations/`, `zhou2021-ablations2/`: held-out diagnostics and the paper's Table 1 models (seed 0).
+- `zhou2021-ablation-seeds/`: the same Table 1 models and lambda = 0.7 for seeds 1 and 2, one seed per GPU on T4 x 2 (about 8 h). Push with `--accelerator NvidiaTeslaT4`. Output is in `seed1/` and `seed2/`.
 
 Results are in `results/zhou2021/`.
 
